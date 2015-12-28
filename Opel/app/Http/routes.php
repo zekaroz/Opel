@@ -11,6 +11,14 @@
 |
 */
 
+Route::get('Shops/', 'ShopsController@index');
+
+Route::get('Shops/create', 'ShopsController@create');
+
+Route::get('Shops/{id}', 'ShopsController@show');
+
+
+
 Route::get('/', function()
 {
 	return View::make('home');
