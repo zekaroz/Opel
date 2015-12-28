@@ -11,6 +11,7 @@ class Shop extends Model
         'name',
         'shopDescription',
         'contactNumber',
+        'location',
         'email'
     ];
 }

@@ -17,6 +17,7 @@ Route::get('Shops/create', 'ShopsController@create');
 
 Route::get('Shops/{id}', 'ShopsController@show');
 
+Route::post('Shops', 'ShopsController@store');
 
 
 Route::get('/', function()

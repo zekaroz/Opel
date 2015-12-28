@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 
 use App\Shop;
 use App\Http\Requests;
@@ -13,7 +13,7 @@ class ShopsController extends Controller
     //
     public function index(){
                
-         $shops = Shop::All();
+         $shops = Shop::latest('created_at')->get();
          
          return view('shops.index', compact('shops'));
     }
@@ -28,5 +28,13 @@ class ShopsController extends Controller
     public function create(){
         
         return view('shops.create');
+    }
+    
+    public function store(){
+        $input = Request::all();
+         
+        Shop::create($input);
+        
+        return redirect('Shops');
     }
 }
