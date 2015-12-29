@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('page_heading')
-Create new Shop
+Edit {{ $shop->name}}
 @stop 
 
 @section('section')
@@ -10,12 +10,12 @@ Create new Shop
     <a href="{{ action('ShopsController@index') }}"><span>Back</span></a>
 </div>
 <br><br>
- 
-    @include('errors.list');
+
+ @include('errors.list');
  
 <div class="col-sm-6"  >
-{!! Form::open(['url' => 'shops']) !!}
-    @include('shops._form', ['submitButtonText' => 'Create Shop' ]);
+{!! Form::model($shop, ['method' => 'PATCH', 'action' => ['ShopsController@update',$shop->id]]) !!}
+    @include('shops._form', ['submitButtonText' => 'Update Shop Info' ]);
 {!! Form::close() !!}
 </div>
        

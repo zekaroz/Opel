@@ -11,14 +11,17 @@
 |
 */
 
-Route::get('Shops/', 'ShopsController@index');
+//Route::get('Shops/', 'ShopsController@index');
+//
+//Route::get('Shops/create', 'ShopsController@create');
+//
+//Route::get('Shops/{id}', 'ShopsController@show');
+//
+//Route::post('Shops', 'ShopsController@store');
+//
+//Route::get('Shops/{id}/edit', 'ShopsController@edit');
 
-Route::get('Shops/create', 'ShopsController@create');
-
-Route::get('Shops/{id}', 'ShopsController@show');
-
-Route::post('Shops', 'ShopsController@store');
-
+Route::resource('shops','ShopsController');
 
 Route::get('/', function()
 {
@@ -90,3 +93,5 @@ Route::get('/documentation', function()
 {
 	return View::make('documentation');
 });
+
+ 
