@@ -15,7 +15,7 @@ Create new Shop
  
 <div class="col-sm-6"  >
 {!! Form::open(['url' => 'shops']) !!}
-    @include('shops._form', ['submitButtonText' => 'Create Shop' ]);
+    @include('shops._form', ['submitButtonText' => 'Create Shop' ])
 {!! Form::close() !!}
 </div>
        

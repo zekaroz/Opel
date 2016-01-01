@@ -25,5 +25,6 @@
         {!! Form::text('email' , null , ['class' => 'form-control']) !!}
     </div>
     <div class='form-group'>
-        {!! Form::submit($submitButtonText ,  ['class' => 'btn btn-primary form-control']) !!} 
+        {!! Form::submit($submitButtonText ,  ['class' => 'btn btn-primary']) !!}  
+        or <a href='{{url('shops')}}' class="btn btn-default" > Cancel</a>
     </div>

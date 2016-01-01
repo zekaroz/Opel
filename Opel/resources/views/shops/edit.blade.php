@@ -15,7 +15,7 @@ Edit {{ $shop->name}}
  
 <div class="col-sm-6"  >
 {!! Form::model($shop, ['method' => 'PATCH', 'action' => ['ShopsController@update',$shop->id]]) !!}
-    @include('shops._form', ['submitButtonText' => 'Update Shop Info' ]);
+    @include('shops._form', ['submitButtonText' => 'Update Shop Info' ])
 {!! Form::close() !!}
 </div>
        

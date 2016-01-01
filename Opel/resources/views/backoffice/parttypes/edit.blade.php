@@ -15,7 +15,7 @@ Edit Part Type '{{ $partType->name}}'
  
 <div class="col-sm-6"  >
 {!! Form::model($partType, ['method' => 'PATCH', 'action' => ['PartTypesController@update',$partType->id]]) !!}
-     @include('backoffice.parttypes._form', ['submitButtonText' => 'Update Part Type'  ]);
+     @include('backoffice.parttypes._form', ['submitButtonText' => 'Update Part Type'  ])
 {!! Form::close() !!}
 </div>
        

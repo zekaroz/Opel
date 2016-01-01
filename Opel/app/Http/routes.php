@@ -27,6 +27,11 @@ Route::resource('shops','ShopsController');
 
 Route::resource('part_types','PartTypesController');
 
+Route::resource('brands','BrandsController');
+
+Route::resource('article_types','ArticleTypesController');
+
+//Route::get('/backoffice/users','UsersController');
 
 Route::get('/', function()
 {

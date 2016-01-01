@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('page_heading')
-Create new Part Type
+Create new Article Type
 @stop 
 
 @section('section')
@@ -14,8 +14,8 @@ Create new Part Type
     @include('errors.list');
  
 <div class="col-sm-6"  >
-{!! Form::open(['url' => 'part_types']) !!}
-    @include('backoffice.parttypes._form', ['submitButtonText' => 'Create Part Type' ])
+{!! Form::open(['url' => 'article_types']) !!}
+    @include('backoffice.articletypes._form', ['submitButtonText' => 'Create Article Type' ])
 {!! Form::close() !!}
 </div>
        

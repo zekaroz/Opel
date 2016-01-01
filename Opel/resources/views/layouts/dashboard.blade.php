@@ -103,17 +103,29 @@
                                     <a href="{{ url ('login') }}">Login Page</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
+                             <!-- /.nav-second-level -->
                         </li>
                         <li {{ (Request::is('*documentation') ? 'class="active"' : '') }}>
                             <a href="{{ url ('documentation') }}"><i class="fa fa-file-word-o fa-fw"></i> Documentation</a>
                         </li>
-                         <li {{ (Request::is('*shops') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('shops') }}"><i class="fa fa-car fa-fw"></i> Shops</a>
-                        </li>
-                         <li {{ (Request::is('*partTypes') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('part_types') }}"><i class="fa fa-car fa-fw"></i> Part Types</a>
-                        </li>
+                         <li>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Backoffice<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li {{ (Request::is('*shops') ? 'class="active"' : '') }}>
+                                     <a href="{{ url ('shops') }}"><i class="fa fa-car fa-fw"></i> Shops</a>
+                                </li>
+                                <li {{ (Request::is('*part_types') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('part_types') }}"><i class="fa fa-gears fa-fw"></i> Part Types</a>
+                                </li>
+                                <li {{ (Request::is('*article_types') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('article_types') }}"><i class="fa fa-pencil-square-o fa-fw"></i> Article Types</a>
+                                </li>
+                                <li {{ (Request::is('*brands') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('brands') }}"><i class="fa fa-bold fa-fw"></i> Brands</a>
+                                </li>
+                            </ul>
+                         </li>
+                         
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
