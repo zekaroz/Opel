@@ -111,6 +111,9 @@
                          <li {{ (Request::is('*shops') ? 'class="active"' : '') }}>
                             <a href="{{ url ('shops') }}"><i class="fa fa-car fa-fw"></i> Shops</a>
                         </li>
+                         <li {{ (Request::is('*partTypes') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('part_types') }}"><i class="fa fa-car fa-fw"></i> Part Types</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

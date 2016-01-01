@@ -21,7 +21,12 @@
 //
 //Route::get('Shops/{id}/edit', 'ShopsController@edit');
 
+
+
 Route::resource('shops','ShopsController');
+
+Route::resource('part_types','PartTypesController');
+
 
 Route::get('/', function()
 {
