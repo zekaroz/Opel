@@ -84,14 +84,18 @@ Route::get('/blank', function()
 	return View::make('blank');
 });
 
-Route::get('/login', function() 
+/*Route::get('/login', function() 
 {
 	return View::make('login');
-});
+});*/
 
 Route::get('/documentation', function()
 {
 	return View::make('documentation');
 });
 
- 
+ Route::controllers(
+         [
+             'auth' => 'Auth\AuthController',
+             'password' => 'Auth\PasswordController'
+         ]);

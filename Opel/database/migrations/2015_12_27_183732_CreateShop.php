@@ -18,8 +18,14 @@ class CreateShop extends Migration
             $table->string('shopDescription');
             $table->string('location');
             $table->string('contactNumber');
+            $table->date('openingDate');
             $table->string('email')->unique();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+            
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users');
         });
 
     }
@@ -31,6 +37,6 @@ class CreateShop extends Migration
      */
     public function down()
     {
-        Schema::drop('shop');
+        Schema::drop('shops');
     }
 }

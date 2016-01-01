@@ -8,6 +8,8 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="{{ url ('') }}">Reci-Opel | Laravel 5</a>
             </div>
+            <div class="navbar-header">
+            </div>
           <!--    /.navbar-top-links -->
 
             <div class="navbar-default sidebar" role="navigation">
@@ -106,8 +108,8 @@
                         <li {{ (Request::is('*documentation') ? 'class="active"' : '') }}>
                             <a href="{{ url ('documentation') }}"><i class="fa fa-file-word-o fa-fw"></i> Documentation</a>
                         </li>
-                         <li {{ (Request::is('*Shops') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('Shops') }}"><i class="fa fa-car fa-fw"></i> Shops</a>
+                         <li {{ (Request::is('*shops') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('shops') }}"><i class="fa fa-car fa-fw"></i> Shops</a>
                         </li>
                     </ul>
                 </div>

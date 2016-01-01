@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
 use App\Shop;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class ShopsController extends Controller
 {
+    
+    public function __construct() {
+       $this->middleware('auth');
+    }
+    
     //
     public function index(){
                
@@ -21,6 +27,8 @@ class ShopsController extends Controller
     public function show($id){
         
         $shop = Shop::findorFail($id);
+        
+        
 
         return view('shops.show', compact('shop'));
     }
@@ -32,7 +40,11 @@ class ShopsController extends Controller
     
     public function store(Requests\ShopRequest $request){       
                
-        Shop::create($request->all());
+        $shop = new Shop($request->all());
+        
+        // this automatically applies the user id for
+        //the relations ship
+        Auth::user()->shops()->save($shop );
         
         return redirect('shops');
     }

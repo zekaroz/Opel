@@ -1,4 +1,6 @@
- <div class='form-group'>
+{!! Form::hidden('owner_id',1) !!}
+
+<div class='form-group'>
         {!! Form::label('Shop Name' ) !!}
         {!! Form::text('name' , null , ['class' => 'form-control']) !!}
     </div>
