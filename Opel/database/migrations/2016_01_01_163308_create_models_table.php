@@ -17,7 +17,13 @@ class CreateModelsTable extends Migration
             $table->increments('id');
             $table->string('code');
             $table->string('name');
+            $table->integer('brand_id')->unsigned();
             $table->timestamps();
+            
+            
+            $table->foreign('brand_id')
+                  ->references('id')
+                  ->on('brands');
         });
     }
 

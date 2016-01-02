@@ -8,5 +8,6 @@ class Model extends Model
 {
       protected $fillable =  [
         'name',
-        'code'];
+        'code',
+        'brand_id'];
 }

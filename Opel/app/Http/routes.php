@@ -31,6 +31,8 @@ Route::resource('brands','BrandsController');
 
 Route::resource('article_types','ArticleTypesController');
 
+Route::resource('models','ModelsController');
+
 //Route::get('/backoffice/users','UsersController');
 
 Route::get('/', function()

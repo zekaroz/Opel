@@ -9,7 +9,7 @@ use App\Model;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class BrandsController extends Controller
+class ModelsController extends Controller
 {
     public function __construct() {
        $this->middleware('auth');
@@ -17,64 +17,43 @@ class BrandsController extends Controller
     
     //
     public function index(){
-               
-         $brands = Brand::orderBy('name', 'asc')->get();
-         
-         return view('backoffice.brands.index', compact('brands'));
+               // no index method defined on itself
     }
     
     public function show($id){
-        $brand = Brands::findorFail($id);
-        
-        return view('backoffice.brands.show', compact('brand'));
+               // no index method defined on itself
     }
     
     public function create(){
         
-        return view('backoffice.brands.create');
+               // no index method defined on itself
+        
     }
     
-    public function store(Requests\BrandRequest $request){       
+    public function store(Requests\Model $request){       
 
-        $brand = new Brand([
+        $model = new Model([
             'name'=>$request->get('name'), 
-            'code'=>$request->get('code'), 
+            'code'=>$request->get('code'),
+            'brand_id'=>$request->get('brand_id')
         ]);
-        
+                
         // this automatically applies the user id for
         //the relations ship
-        $brand->save();
+        $model->save();
         
-        $imputFileName = 'image';
-        $imagesFolder = '\public\images\brands';
         
-        if( ! is_null($request->file($imputFileName)))
-        {
-            $imagename = $brand->id . '.' .
-                    $request->file($imputFileName)
-                            ->getClientOriginalExtension();
-
-            $destinationPath = base_path() . $imagesFolder ;
-            
-            $request->file($imputFileName)
-                    ->move($destinationPath, $imagename);
-
-            $brand->update([
-                'imagePath', $destinationPath
-            ]);       
-        }  
-        return redirect('brands');
+        
+        // go back to edit page
+        return redirect('brands/'.$model->brand_id.'/edit')
+                            ->with([
+                                'message'=>'Model successfully added.',
+                                'success'=>true
+                            ]);
     }
     
     public function edit($id){
-        
-        $brand = Brand::findorFail($id);
-        
-        $brandModels = Model::where('brand_id','=',$id)->get();
-
-        return view('backoffice.brands.edit')
-               ->with(compact('brand'))
-               ->with(compact('brandModels'));
+    // no view defined for this
     }
     
     public function update($id,Requests\BrandRequest $request){
@@ -115,5 +94,18 @@ class BrandsController extends Controller
         }  
         
          return redirect('brands');           
+    }
+    
+    public function destroy($id,Requests\Model $request) {
+        
+        $model = Model::findOrFail($id);
+        
+        $model->delete();
+        
+        return redirect('brands/'.$model->brand_id.'/edit')
+                            ->with([
+                                'message'=>'Model successfully deleted.',
+                                'success'=>true
+                            ]);
     }
 }

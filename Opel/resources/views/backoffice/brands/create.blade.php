@@ -14,7 +14,8 @@ Create new Brand
     @include('errors.list');
  
 <div class="col-sm-6"  >
-{!! Form::open(['url' => 'brands']) !!}
+{!! Form::open(['url'   => 'brands',
+                'files' => true]) !!}
     @include('backoffice.brands._form', ['submitButtonText' => 'Create Brand' ])
 {!! Form::close() !!}
 </div>
