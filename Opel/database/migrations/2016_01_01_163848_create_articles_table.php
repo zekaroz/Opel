@@ -21,7 +21,7 @@ class CreateArticlesTable extends Migration
             $table->integer('shop_id')->unsigned();
             $table->integer('article_type_id')->unsigned();
             $table->integer('part_type_id')->unsigned();
-            $table->integer('model_id')->unsigned();
+            $table->integer('model_id')->unsigned()->nullable();
             $table->integer('brand_id')->unsigned();
             $table->timestamps();
             
@@ -30,7 +30,7 @@ class CreateArticlesTable extends Migration
                   ->on('shops');
             $table->foreign('article_type_id')
                   ->references('id')
-                  ->on('articles');
+                  ->on('article_types');
             $table->foreign('part_type_id')
                   ->references('id')
                   ->on('part_types');

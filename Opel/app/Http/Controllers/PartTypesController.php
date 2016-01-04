@@ -44,6 +44,8 @@ class PartTypesController extends Controller
         //TODO: rever isto para associar a peça à loja de que o user é dono;
         $partType->save();
         
+        flash()->success('Part Type has been created.');
+        
         return redirect('part_types');
     }
     
@@ -60,6 +62,8 @@ class PartTypesController extends Controller
         
         $partType->update($request->all());
         
+         flash()->success('Part Type has been updated.');
+         
          return redirect('part_types');           
     }
 }

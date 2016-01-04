@@ -11,7 +11,7 @@ Edit Article Type '{{ $articleType->name}}'
 </div>
 <br><br>
 
- @include('errors.list');
+ @include('errors.list')
  
 <div class="col-sm-6"  >
 {!! Form::model($articleType, ['method' => 'PATCH', 'action' => ['ArticleTypesController@update',$articleType->id]]) !!}

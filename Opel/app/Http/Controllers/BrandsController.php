@@ -63,6 +63,9 @@ class BrandsController extends Controller
                 'imagePath', $destinationPath
             ]);       
         }  
+        
+        flash()->success('Brand has been created.');
+
         return redirect('brands');
     }
     
@@ -113,6 +116,9 @@ class BrandsController extends Controller
                 'imagePath', $destinationPath
             ]);       
         }  
+        
+        
+        flash()->success('Brand has been updated.');
         
          return redirect('brands');           
     }

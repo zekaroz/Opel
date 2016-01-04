@@ -92,6 +92,7 @@ class ModelsController extends Controller
                 'imagePath', $destinationPath
             ]);       
         }  
+        flash()->success('Model has been added.');
         
          return redirect('brands');           
     }

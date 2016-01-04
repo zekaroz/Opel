@@ -1,4 +1,3 @@
-{!! Form::hidden('owner_id',1) !!}
 
 <div class='form-group'>
         {!! Form::label('Shop Name' ) !!}

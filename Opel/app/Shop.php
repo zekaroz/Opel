@@ -35,9 +35,13 @@ class Shop extends Model
         $this->attributes['OpeningDate'] = Carbon\Carbon::parse($date);
     }
     
-    public function user(){
+    public function owner(){
         
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User',"id","user_id");
+    }
+    
+   public function articles(){
+        return $this->hasMany('App\Article', 'shop_id', 'id');
     }
     
      

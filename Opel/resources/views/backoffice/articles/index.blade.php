@@ -1,40 +1,44 @@
 @extends('layouts.dashboard')
 
 @section('page_heading')
-Article Types
+Articles
 @stop 
 
 @section('section')       
 <div>
-    <a href="{{ action('ArticleTypesController@create') }}"><span>New Article Type</span></a>
+    <a href="{{ action('ArticlesController@create') }}"><span>New Article</span></a>
 </div>
 
 <table class="table table-striped">
     <thead>
     <th> Id </td>
     <th> Name </td>
-    <th> Code </td>
+    <th> Reference </td>
+    <th> Price   </td>
     <th> Created at </td>
     </thead>
 
-    @forelse( $articleTypes as $articleType) 
+    @forelse( $articles as $article) 
         <tr>
             <td>
-              <a href="{{action('ArticleTypesController@edit',[$articleType->id]) }}" > {{ $articleType->id }}</a>
+              <a href="{{action('ArticlesController@edit',[$article->id]) }}" > {{ $article->id }}</a>
             </td>
             <td>
-               {{ $articleType->name}}
+               {{ $article->name}}
             </td>
             <td>
-               {{ $articleType->code}}
+               {{ $article->reference}}
             </td>
             <td>
-               {{ $articleType->created_at}}
+               {{ $article->price}}
+            </td>
+            <td>
+               {{ $article->created_at}}
             </td>
         </tr>    
     @empty
         <tr>
-            <td colspan="4">
+            <td colspan="5">
                 No records to show...
             </td>
         </tr>

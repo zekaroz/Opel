@@ -44,6 +44,8 @@ class ArticleTypesController extends Controller
         //TODO: rever isto para associar a peça à loja de que o user é dono;
         $articleType->save();
         
+        flash()->success('Article Type has been created.')->important();
+        
         return redirect('article_types');
     }
     
@@ -60,7 +62,10 @@ class ArticleTypesController extends Controller
         
         $articleType->update($request->all());
         
-         return redirect('article_types');           
+        //  flash()->overlay('Article Type has been updated.','>Good Job');
+         flash()->success('Article Type has been updated.');
+        
+         return redirect('article_types');    
     }
     //
 }

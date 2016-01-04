@@ -11,7 +11,7 @@ Edit Part Type '{{ $partType->name}}'
 </div>
 <br><br>
 
- @include('errors.list');
+ @include('errors.list')
  
 <div class="col-sm-6"  >
 {!! Form::model($partType, ['method' => 'PATCH', 'action' => ['PartTypesController@update',$partType->id]]) !!}

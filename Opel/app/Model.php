@@ -10,4 +10,8 @@ class Model extends Model
         'name',
         'code',
         'brand_id'];
+
+    public function articles(){
+        return $this->hasMany('App\Article', 'model_id', 'id');
+    }
 }

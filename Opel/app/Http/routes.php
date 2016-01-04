@@ -33,6 +33,8 @@ Route::resource('article_types','ArticleTypesController');
 
 Route::resource('models','ModelsController');
 
+Route::resource('articles','ArticlesController');
+
 //Route::get('/backoffice/users','UsersController');
 
 Route::get('/', function()

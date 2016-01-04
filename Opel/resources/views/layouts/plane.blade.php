@@ -14,8 +14,13 @@
 
 	<link rel="stylesheet" href="{{ asset("assets/stylesheets/styles.css") }}" />
 </head>
-<body>
+<body>       
 	@yield('body')
 	<script src="{{ asset("assets/scripts/frontend.js") }}" type="text/javascript"></script>
+        <script>
+        $('div.alert').not('.alert_important').delay(3000).slideUp(300);
+           
+          $('#flash-overlay-modal').modal(); 
+        </script>
 </body>
 </html>

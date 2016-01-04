@@ -20,7 +20,7 @@ class ShopsController extends Controller
     public function index(){
                
          $shops = Shop::latest('created_at')->EmailFilled()->get();
-         
+                 
          return view('shops.index', compact('shops'));
     }
     
@@ -28,8 +28,6 @@ class ShopsController extends Controller
         
         $shop = Shop::findorFail($id);
         
-        
-
         return view('shops.show', compact('shop'));
     }
     
@@ -46,6 +44,8 @@ class ShopsController extends Controller
         //the relations ship
         Auth::user()->shops()->save($shop );
         
+        flash()->success('Part Type has been created.');
+        
         return redirect('shops');
     }
     
@@ -57,11 +57,12 @@ class ShopsController extends Controller
     }
     
     public function update($id,Requests\ShopRequest $request){
-        
         $shop = Shop::findOrFail($id);
         
         $shop->update($request->all());
         
-         return redirect('shops');           
+        flash()->success('Part Type has been updated.');
+        
+        return redirect('shops');           
     }
 }

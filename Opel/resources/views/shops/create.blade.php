@@ -11,7 +11,7 @@ Create new Shop
 </div>
 <br><br>
  
-    @include('errors.list');
+    @include('errors.list')
  
 <div class="col-sm-6"  >
 {!! Form::open(['url' => 'shops']) !!}

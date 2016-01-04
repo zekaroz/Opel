@@ -10,4 +10,12 @@ class Brand extends Model
         'name',
         'code'
           ];
+      
+     public function articles(){
+        return $this->hasMany('App\Article', 'brand_id', 'id');
+    }
+    
+     public function models(){
+        return $this->hasMany('App\Model', 'brand_id', 'id');
+    }
 }
