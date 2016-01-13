@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use Auth;
 use App\Http\Requests\ArticlesRequest;
 use App\Http\Controllers\Controller;
 use App\Article;
 use App\Brand;
 use App\PartType;
-
-use Auth;
- 
-use App\Shop;
+use App\BrandModel;
 
 
 class ArticlesController extends Controller
@@ -44,13 +40,14 @@ class ArticlesController extends Controller
     }
     
     public function create(){
-    //    $modelsList = \App\Model::lists('id','name');
+        $modelsList = BrandModel::lists('id','name');
         $brandsList = Brand::lists('name','id');
         $partsList = PartType::lists('name','id');
         
         return view('backoffice.articles.create' )
                     ->with(compact('brandsList'))
-                    ->with(compact('partsList'));
+                    ->with(compact('partsList'))
+                    ->with(compact('$modelsList'));
     }
     
     public function store(ArticlesRequest $request){       

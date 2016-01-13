@@ -36,7 +36,7 @@ class CreateArticlesTable extends Migration
                   ->on('part_types');
             $table->foreign('model_id')
                   ->references('id')
-                  ->on('models');
+                  ->on('brand_models');
             $table->foreign('brand_id')
                   ->references('id')
                   ->on('brands');

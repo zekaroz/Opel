@@ -22,6 +22,37 @@
 //Route::get('Shops/{id}/edit', 'ShopsController@edit');
 
 
+/*
+ Web site routes
+ *  */
+Route::get('index', function(){
+    return View::make('online_shop.welcome.index');
+});
+
+Route::get('quem_somos', function(){
+    return View::make('online_shop.about.about');
+});
+
+Route::get('mapa', function(){
+    return View::make('online_shop.contacts.contacts');
+});
+
+Route::get('pecas', function(){
+    return View::make('online_shop.partsSearch.partSearch');
+});
+
+Route::get('carros', function(){
+    return View::make('online_shop.CarsSearch.carSearch');
+});
+
+Route::get('servicos', function(){
+    return View::make('online_shop.services.services');
+});
+
+/*
+ Web site End
+ *  */
+
 
 Route::resource('shops','ShopsController');
 
@@ -31,7 +62,7 @@ Route::resource('brands','BrandsController');
 
 Route::resource('article_types','ArticleTypesController');
 
-Route::resource('models','ModelsController');
+Route::resource('models','BrandModelsController');
 
 Route::resource('articles','ArticlesController');
 

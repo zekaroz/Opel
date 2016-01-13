@@ -39,10 +39,10 @@ class Article extends Model
     /*
      * Article has one model from that brand
      */
-   /*
-    *  public function model(){
-        return $this->belongsTo('App\Model',"model_id");
-    } */
+   
+    public function model(){
+        return $this->belongsTo('App\BrandModel',"model_id");
+    } 
 
     /*
      * Article has one Part Type. Categorization from the 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Brand;
-use App\Model;
+use App\BrandModel;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -73,7 +73,7 @@ class BrandsController extends Controller
         
         $brand = Brand::findorFail($id);
         
-        $brandModels = Model::where('brand_id','=',$id)->get();
+        $brandModels = BrandModel::where('brand_id','=',$id)->get();
 
         return view('backoffice.brands.edit')
                ->with(compact('brand'))
@@ -91,9 +91,6 @@ class BrandsController extends Controller
     
         $imputFileName = 'image';
         $imagesFolder = '/public/images/brands';
-        
-        dd($request->file($imputFileName));
-            
         
         if( ! is_null($request->file($imputFileName)))
         {

@@ -1,7 +1,7 @@
          <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url ('') }}">Reci-Opel | Laravel 5</a>
+                <a class="navbar-brand" href="{{ url ('') }}">Reci-Opel | Backoffice</a>
             </div>
             <div class="navbar-header">
             <!-- /.navbar-top-links -->

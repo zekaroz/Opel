@@ -3,7 +3,7 @@
 @section('body')
  <div id="wrapper">
      
-        @include('partials.nav')
+        @include('partials.nav_backoffice')
         
         <div id="page-wrapper">
             <div class="row">
