@@ -11,7 +11,69 @@
 |
 */
 
+//Route::get('Shops/', 'ShopsController@index');
+//
+//Route::get('Shops/create', 'ShopsController@create');
+//
+//Route::get('Shops/{id}', 'ShopsController@show');
+//
+//Route::post('Shops', 'ShopsController@store');
+//
+//Route::get('Shops/{id}/edit', 'ShopsController@edit');
+
+
+/*
+ Web site routes
+ *  */
+Route::get('index', function(){
+    return View::make('online_shop.welcome.index');
+});
+
+Route::get('quem_somos', function(){
+    return View::make('online_shop.about.about');
+});
+
+Route::get('mapa', function(){
+    return View::make('online_shop.contacts.contacts');
+});
+
+Route::get('pecas', function(){
+    return View::make('online_shop.partsSearch.partSearch');
+});
+
+Route::get('carros', function(){
+    return View::make('online_shop.CarsSearch.carSearch');
+});
+
+Route::get('servicos', function(){
+    return View::make('online_shop.services.services');
+});
+
+/*
+ Web site End
+ *  */
+
+
+Route::resource('shops','ShopsController');
+
+Route::resource('part_types','PartTypesController');
+
+Route::resource('brands','BrandsController');
+
+Route::resource('article_types','ArticleTypesController');
+
+Route::resource('models','BrandModelsController');
+
+Route::resource('articles','ArticlesController');
+
+//Route::get('/backoffice/users','UsersController');
+
 Route::get('/', function()
+{
+	return View::make('home');
+});
+
+Route::get('reciopel/', function()
 {
 	return View::make('home');
 });
@@ -67,12 +129,18 @@ Route::get('/blank', function()
 	return View::make('blank');
 });
 
-Route::get('/login', function() 
+/*Route::get('/login', function() 
 {
 	return View::make('login');
-});
+});*/
 
 Route::get('/documentation', function()
 {
 	return View::make('documentation');
 });
+
+ Route::controllers(
+         [
+             'auth' => 'Auth\AuthController',
+             'password' => 'Auth\PasswordController'
+         ]);
