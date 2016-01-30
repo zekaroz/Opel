@@ -11,7 +11,7 @@
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 			@endsection
 			@include('widgets.panel', array('header'=>true, 'as'=>'inside'))
-		@endsection	
+		  @endsection	
 		@section ('dpanel_panel_footer')
 <pre class="codeWrapper">
 <i class="fa fa-at"></i>section ('inside_panel_title', 'Default title')
