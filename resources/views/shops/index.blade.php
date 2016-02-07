@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('page_heading')
-Shops
+Lojas
 @stop 
 
 @section('section')
