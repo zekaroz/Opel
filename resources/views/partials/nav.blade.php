@@ -151,7 +151,7 @@
                                     <a href="{{ url ('brands') }}"><i class="fa fa-bold fa-fw"></i> Brands</a>
                                 </li>
                                 <li {{ (Request::is('*articles') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('articles') }}"><i class="fa fa-bold fa-fw"></i> Articles</a>
+                                    <a href="{{ url ('articles') }}"><i class="fa fa-wrench fa-fw"></i> Articles</a>
                                 </li>
                             </ul>
                          </li>

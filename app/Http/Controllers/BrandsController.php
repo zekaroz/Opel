@@ -45,25 +45,6 @@ class BrandsController extends Controller
         //the relations ship
         $brand->save();
         
-        $imputFileName = 'image';
-        $imagesFolder = '\public\images\brands';
-        
-        if( ! is_null($request->file($imputFileName)))
-        {
-            $imagename = $brand->id . '.' .
-                    $request->file($imputFileName)
-                            ->getClientOriginalExtension();
-
-            $destinationPath = base_path() . $imagesFolder ;
-            
-            $request->file($imputFileName)
-                    ->move($destinationPath, $imagename);
-
-            $brand->update([
-                'imagePath', $destinationPath
-            ]);       
-        }  
-        
         flash()->success('Brand has been created.');
 
         return redirect('brands');
@@ -88,32 +69,6 @@ class BrandsController extends Controller
             'name'=>$request->get('name'), 
             'code'=>$request->get('code')
         ]);
-    
-        $imputFileName = 'image';
-        $imagesFolder = '/public/images/brands';
-        
-        if( ! is_null($request->file($imputFileName)))
-        {
-            dd($request->file($imputFileName));
-            
-            $imagename = $brand->id . '.' .
-                    $request->file($imputFileName)
-                            ->getClientOriginalExtension();
-
-            $destinationPath = base_path() . $imagesFolder ;
-
-            if(file_exists($destinationPath)){
-                file($destinationPath).unlink();
-            }
-            
-            $request->file($imputFileName)
-                    ->move($destinationPath, $imagename);
-
-            $brand->update([
-                'imagePath', $destinationPath
-            ]);       
-        }  
-        
         
         flash()->success('Brand has been updated.');
         

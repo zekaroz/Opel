@@ -15,7 +15,7 @@ Edit Article Type '{{ $articleType->name}}'
  
 <div class="col-sm-6"  >
 {!! Form::model($articleType, ['method' => 'PATCH', 'action' => ['ArticleTypesController@update',$articleType->id]]) !!}
-     @include('backoffice.articletypes._form', ['submitButtonText' => 'Update Part Type'  ])
+     @include('backoffice.articletypes._form', ['submitButtonText' => 'Update Part Type'  ]) 
 {!! Form::close() !!}
 </div>
        
