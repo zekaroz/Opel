@@ -13,14 +13,16 @@
 	<meta content="" name="author"/>
 
 	<link rel="stylesheet" href="{{ asset("assets/stylesheets/styles.css") }}" />
+        <link rel="stylesheet" href="{{ asset("assets/enyo/dropzone/dist/dropzone.css") }}" />
 </head>
 <body>       
 	@yield('body')
 	<script src="{{ asset("assets/scripts/frontend.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("assets/enyo/dropzone/dist/dropzone.js") }} " type="text/javascript"></script>
         <script>
         $('div.alert').not('.alert_important').delay(3000).slideUp(300);
            
           $('#flash-overlay-modal').modal(); 
         </script>
 </body>
-</html>
+</html>  

@@ -144,3 +144,16 @@ Route::get('/documentation', function()
              'auth' => 'Auth\AuthController',
              'password' => 'Auth\PasswordController'
          ]);
+ 
+/*
+ * We need basically 2 route, one for adding file entries, 
+ * one for download it. We are going to add a third 
+ * route to have an index page with a form 
+ * and where we will display our files. 
+ *  */
+Route::get('fileentry', 'FileEntryController@index');
+
+Route::get('fileentry/get/{filename}', [
+	'as' => 'getentry', 'uses' => 'FileEntryController@get']);
+
+Route::post('apply/upload', 'FileEntryController@add');
