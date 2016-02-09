@@ -30,7 +30,6 @@ Pictures Uploaded
  </ul>
  </div>
 
-    </ul>
- </div>
+ 
  
 @stop

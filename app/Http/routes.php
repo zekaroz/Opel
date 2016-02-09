@@ -156,4 +156,12 @@ Route::get('fileentry', 'FileEntryController@index');
 Route::get('fileentry/get/{filename}', [
 	'as' => 'getentry', 'uses' => 'FileEntryController@get']);
 
+/*
+ * This is the route for generic file upload
+ */
 Route::post('apply/upload', 'FileEntryController@add');
+
+/*
+ * brands file upload
+ */
+Route::post('BrandPictureUpload/{brand_id}', 'BrandsController@addPicture');

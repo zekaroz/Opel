@@ -14,13 +14,15 @@ class CreateArticleImagesTable extends Migration
     {
         Schema::create('article_images', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('filePath');
-            $table->string('description');
             $table->integer('article_id')->unsigned();
-
+            $table->integer('fileentry_id')->unsigned();
+            
             $table->foreign('article_id')
                   ->references('id')
                   ->on('articles');
+            $table->foreign('fileentry_id')
+                  ->references('id')
+                  ->on('fileentries');
         });
     }
 

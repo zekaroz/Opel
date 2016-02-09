@@ -18,4 +18,8 @@ class Brand extends Model
      public function models(){
         return $this->hasMany('App\Model', 'brand_id', 'id');
     }
+    
+    public function pictures(){
+        return $this->belongsToMany('App\Fileentry', 'brand_images', 'brand_id', 'fileentry_id');
+   } 
 }
