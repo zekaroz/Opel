@@ -7,12 +7,9 @@ Pictures Uploaded
 
 @section('section')
        
-<div class="secure">Drop Zone form</div>
-  {!! Form::open(['url'=>'apply/upload','method'=>'POST', 'files'=>true, 'id'=>'myDropZone','class'=>'dropzone']) !!}
-
-{!! Form::close() !!}
-</div>
-      
+@include('fileentries.dropZone', [
+                                    'postURL' => 'apply/upload',
+                                    'dropId'  => 'myDropZone'])     
       
  <h3> Pictures list</h3>
  <div class="row">
