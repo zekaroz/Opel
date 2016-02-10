@@ -165,3 +165,8 @@ Route::post('apply/upload', 'FileEntryController@add');
  * brands file upload
  */
 Route::post('BrandPictureUpload/{brand_id}', 'BrandsController@addPicture');
+
+/*
+ * Article file upload
+ */
+Route::post('ArticlePictureUpload/{article_id}', 'ArticlesController@addPicture');

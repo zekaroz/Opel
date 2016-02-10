@@ -50,4 +50,11 @@ class Article extends Model
     public function partType(){
         return $this->belongsTo('App\PartType',"part_type_id");
     }
+    
+    /*
+     *One article can have many pictures
+     *       */
+    public function pictures(){
+        return $this->belongsToMany('App\Fileentry', 'article_images', 'article_id', 'fileentry_id');
+   } 
 }

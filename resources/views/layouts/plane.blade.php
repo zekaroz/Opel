@@ -24,5 +24,7 @@
            
           $('#flash-overlay-modal').modal(); 
         </script>
+        
+        @yield('afterBody')
 </body>
 </html>  

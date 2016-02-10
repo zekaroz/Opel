@@ -28,7 +28,7 @@
     </div>
     <div class='form-group'>
         {!! Form::label('Model' ) !!}
-        {!! Form::select('model_id' , ['models'] ,null ,['class' => 'form-control']) !!}
+        {!! Form::select('model_id' , $modelsList , null ,['class' => 'form-control']) !!}
     </div>
     
     <div class='form-group'>
