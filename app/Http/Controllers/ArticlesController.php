@@ -45,7 +45,7 @@ class ArticlesController extends Controller
     }
     
     public function create(){
-        $ $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
+        $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
         $brandsList = Brand::lists('name','id')->prepend('(all)','');
         $partsList = PartType::lists('name','id')->prepend('(all)','');
         
