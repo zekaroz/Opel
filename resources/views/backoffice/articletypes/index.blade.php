@@ -20,7 +20,8 @@ Article Types
     @forelse( $articleTypes as $articleType) 
         <tr>
             <td>
-              <a href="{{action('ArticleTypesController@edit',[$articleType->id]) }}" > {{ $articleType->id }}</a>
+              <a href="{{action('ArticleTypesController@edit',[$articleType->id]) }}" > <i class="fa fa-pencil-square-o fa-fw"></i> 
+                  {{ $articleType->id }}</a>
             </td>
             <td>
                {{ $articleType->name}}

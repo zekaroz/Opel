@@ -20,7 +20,8 @@ Part Types
     @forelse( $partTypes as $partType) 
         <tr>
             <td>
-              <a href="{{action('PartTypesController@edit',[$partType->id]) }}" > {{ $partType->id }}</a>
+              <a href="{{action('PartTypesController@edit',[$partType->id]) }}" > <i class="fa fa-pencil-square-o fa-fw"></i> 
+                  {{ $partType->id }}</a>
             </td>
             <td>
                {{ $partType->name}}

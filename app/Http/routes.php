@@ -139,11 +139,8 @@ Route::get('/documentation', function()
 	return View::make('documentation');
 });
 
- Route::controllers(
-         [
-             'auth' => 'Auth\AuthController',
-             'password' => 'Auth\PasswordController'
-         ]);
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+ 
  
 /*
  * We need basically 2 route, one for adding file entries, 
@@ -170,3 +167,9 @@ Route::post('BrandPictureUpload/{brand_id}', 'BrandsController@addPicture');
  * Article file upload
  */
 Route::post('ArticlePictureUpload/{article_id}', 'ArticlesController@addPicture');
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
+});

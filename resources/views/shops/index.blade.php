@@ -19,8 +19,10 @@ Lojas
  @forelse( $shops as $shop) 
        <tr>
             <td>
-              <a style="font-size:18px;"
-            href="{{action('ShopsController@edit',[$shop->id]) }}" > {{$shop->id }} </a>
+              <a style=""
+            href="{{action('ShopsController@edit',[$shop->id]) }}" > 
+                  <i class="fa fa-pencil-square-o fa-fw"></i> 
+                  {{$shop->id }} </a>
             </td>
             <td>
                {{ $shop->name}}

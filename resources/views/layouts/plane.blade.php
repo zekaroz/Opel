@@ -16,7 +16,9 @@
         <link rel="stylesheet" href="{{ asset("assets/enyo/dropzone/dist/dropzone.css") }}" />
 </head>
 <body>       
-	@yield('body')
+        @include('partials.nav_backoffice')
+	
+        @yield('body')
 	<script src="{{ asset("assets/scripts/frontend.js") }}" type="text/javascript"></script>
         <script src="{{ asset("assets/enyo/dropzone/dist/dropzone.js") }} " type="text/javascript"></script>
         <script>

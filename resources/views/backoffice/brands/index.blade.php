@@ -20,7 +20,8 @@ Brands
     @forelse( $brands as $brand) 
         <tr>
             <td>
-              <a href="{{action('BrandsController@edit',[$brand->id]) }}" > {{ $brand->id }}</a>
+              <a href="{{action('BrandsController@edit',[$brand->id]) }}" ><i class="fa fa-pencil-square-o fa-fw"></i> 
+                   {{ $brand->id }}</a>
             </td>
             <td>
                {{ $brand->name}}
