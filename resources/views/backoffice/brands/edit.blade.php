@@ -20,9 +20,23 @@ Edit Brand '{{ $brand->name}}'
                  ) !!}
      @include('backoffice.brands._form', ['submitButtonText' => 'Update Brand'  ])
 {!! Form::close() !!}
+
+  <div class="col-sm-12" style="margin-top:40px;">
+            @include('fileentries.dropZone', [
+                                    'postURL' => 'BrandPictureUpload/'.$brand->id,
+                                    'dropId'  => 'myDropZone'])   
+        </div>
+        
+        @if ( isset($brandPictures) )
+            <div class="panel-body">
+                <hr>
+                <h4>Brand Sample Pictures</h4>
+                @include('fileentries.listPictures', ['pictures' => $brandPictures])
+            </div>
+        @endif
 </div>
  
- <div class="col-sm-6">
+ <div class="col-sm-6" >
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
@@ -45,7 +59,9 @@ Edit Brand '{{ $brand->name}}'
                 @include('backoffice.brands._Models_table', ['brandModels'=>$brandModels]) 
             </div>
         </div>
-    </div>
-</div>     
+        
+        <hr>
+    </div>    
+</div>
      
 @stop

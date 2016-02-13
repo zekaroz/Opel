@@ -17,7 +17,7 @@ Create new Article Type
 {!! Form::open(['url' => 'article_types']) !!}
     @include('backoffice.articletypes._form', ['submitButtonText' => 'Create Article Type' ])
 {!! Form::close() !!}
-</div>
+</div> 
        
 
 @stop

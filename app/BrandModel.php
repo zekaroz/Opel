@@ -14,4 +14,8 @@ class BrandModel extends Model
     public function articles(){
         return $this->hasMany('App\Article', 'model_id', 'id');
     }
+    
+    public function pictures(){
+        return $this->hasMany('App\Article', 'model_id', 'id');
+    }    
 }

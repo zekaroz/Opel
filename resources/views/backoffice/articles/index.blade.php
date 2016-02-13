@@ -21,7 +21,8 @@ Articles
     @forelse( $articles as $article) 
         <tr>
             <td>
-              <a href="{{action('ArticlesController@edit',[$article->id]) }}" > {{ $article->id }}</a>
+              <a href="{{action('ArticlesController@edit',[$article->id]) }}" ><i class="fa fa-pencil-square-o fa-fw"></i> 
+                   {{ $article->id }}</a>
             </td>
             <td>
                {{ $article->name}}

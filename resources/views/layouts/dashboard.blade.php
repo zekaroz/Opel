@@ -1,10 +1,8 @@
-@extends('layouts.plane')
+@extends('layouts.app')
 
 @section('body')
- <div id="wrapper">
-     
-        @include('partials.nav_backoffice')
-        
+<div class="">
+     <div id="wrapper">       
         <div id="page-wrapper">
             <div class="row">
                    <div class="col-lg-12">
@@ -24,5 +22,7 @@
                 <!-- /#page-wrapper -->
         </div>
     </div>
+</div>
+
 @stop
 
