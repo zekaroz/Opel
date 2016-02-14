@@ -18,5 +18,6 @@ return array(
     '752af1c2bdb339e8474c3c31b22b7d54' => $vendorDir . '/illuminate/html/helpers.php',
     'f18cc91337d49233e5754e93f3ed9ec3' => $vendorDir . '/laravelcollective/html/src/helpers.php',
     'e23faeee409e941dc9b4c80386209c39' => $vendorDir . '/laracasts/flash/src/Laracasts/Flash/functions.php',
+    'c3506a526c5ff171720322fdf42d15c3' => $vendorDir . '/sofa/eloquence/src/helpers.php',
     'b4e3f29b106af37a2bb239f73cdf68c7' => $baseDir . '/app/helpers.php',
 );

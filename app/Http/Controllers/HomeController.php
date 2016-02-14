@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Article;
+use App\PartType;
+use App\Brand;
+use App\BrandModel;
 
 class HomeController extends Controller
 {
@@ -24,6 +28,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $articleCount = Article::all()->count()  ;
+        $partTypeCount = PartType::all()->count();
+        $brandsCount = Brand::all()->count();
+        $modelCount = BrandModel::all()->count();
+        
+       // dd($articleCount);
+        
+        return view('home')
+            ->with( ['articleCount' => $articleCount 
+                    , 'partTypeCount' => $partTypeCount
+                    , 'brandsCount' => $brandsCount 
+                    , 'modelCount' => $modelCount ]);
     }
 }

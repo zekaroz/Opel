@@ -21,20 +21,20 @@
                 <ul class="nav navbar-nav">
                     @if (Auth::user())
                     <li><a href="{{ url('/') }}">Home</a></li>
-                    <li {{ (Request::is('*shops') ? 'class="active"' : '') }}>
+                <!--    <li {{ (Request::is('*shops') ? 'class="active"' : '') }}>
                           <a href="{{ url ('shops') }}"><i class="fa fa-car fa-fw"></i> Shops</a>
-                     </li>
+                     </li> -->
                      <li {{ (Request::is('*part_types') ? 'class="active"' : '') }}>
                          <a href="{{ url ('part_types') }}"><i class="fa fa-gears fa-fw"></i> Part Types</a>
                      </li>
-                     <li {{ (Request::is('*article_types') ? 'class="active"' : '') }}>
+                <!--     <li {{ (Request::is('*article_types') ? 'class="active"' : '') }}>
                          <a href="{{ url ('article_types') }}"><i class="fa fa-pencil-square-o fa-fw"></i> Article Types</a>
-                     </li>
+                     </li> -->
                      <li {{ (Request::is('*brands') ? 'class="active"' : '') }}>
-                         <a href="{{ url ('brands') }}"><i class="fa fa-bold fa-fw"></i> Brands</a>
+                         <a href="{{ url ('brands') }}"><i class="fa fa-tags fa-fw"></i> Brands</a>
                      </li>
                      <li {{ (Request::is('*articles') ? 'class="active"' : '') }}>
-                         <a href="{{ url ('articles') }}"><i class="fa fa-wrench fa-fw"></i> Articles</a>
+                         <a href="{{ url ('articles') }}"><i class="fa fa-folder-open-o fa-fw"></i> Articles</a>
                      </li>
                      
                      @endif
