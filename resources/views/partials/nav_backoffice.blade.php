@@ -1,4 +1,12 @@
-    <nav class="navbar navbar-default" style="margin-bottom: 0px;">
+    @if(env('APP_ENV') == 'local')
+    <style>
+        .DEVENV{
+            border-bottom: 2px solid red !important;
+        }
+    </style>
+    @endif
+
+<nav class="navbar navbar-default {{ (env('APP_ENV') == 'local')? 'DEVENV' : '' }}" style="margin-bottom: 0px;">
         <div class="container">
             <div class="navbar-header">
 
