@@ -12,5 +12,7 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+     mix.copy('vendor/enyo/dropzone/dist', 'public/assets/dropzone');
+     
+     mix.copy('vendor/robinherbots/jquery.inputmask/dist/min', 'public/assets/inputmask');
 });

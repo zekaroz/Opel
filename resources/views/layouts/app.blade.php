@@ -13,9 +13,10 @@
 
     <!-- Styles -->
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset("assets/stylesheets/styles.css") }}" />
-    <link rel="stylesheet" href="{{ asset("assets/enyo/dropzone/dist/dropzone.css") }}" />
+    <link rel="stylesheet" href="{{ asset("assets/dropzone/basic.css") }} " />
+    <link rel="stylesheet" href="{{ asset("assets/dropzone/dropzone.css") }} " />
     <style>
         body {
             font-family: 'Lato';
@@ -31,8 +32,9 @@
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="{{ asset("assets/enyo/dropzone/dist/dropzone.js") }} " type="text/javascript"></script>
-
+    <script src="{{ asset("assets/dropzone/dropzone.js") }} " type="text/javascript"></script>
+    <script src="{{ asset("assets/inputmask/jquery.inputmask.bundle.min.js") }} " type="text/javascript"></script>
+    
     @include('partials.nav_backoffice')
 
     @yield('body')
@@ -41,7 +43,21 @@
     $('div.alert').not('.alert_important').delay(3000).slideUp(300);
 
       $('#flash-overlay-modal').modal(); 
+
+    $(document).ready(function(){
+        $('.decimal').inputmask('decimal', 
+                                { radixPoint: ".",
+                                   autoGroup: true,
+                                   groupSize: 3,
+                                   allowMinus: false,
+                                   allowPlus: false
+                                });
+    });
+    
+    
     </script>
+    
+    
         
     @yield('afterBody')
 </body>
