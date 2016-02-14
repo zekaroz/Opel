@@ -20,8 +20,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     @if (Auth::user())
-                    <li><a href="{{ url('/') }}">Home</a></li>
-                <!--    <li {{ (Request::is('*shops') ? 'class="active"' : '') }}>
+                     <!--    <li {{ (Request::is('*shops') ? 'class="active"' : '') }}>
                           <a href="{{ url ('shops') }}"><i class="fa fa-car fa-fw"></i> Shops</a>
                      </li> -->
                      <li {{ (Request::is('*part_types') ? 'class="active"' : '') }}>
