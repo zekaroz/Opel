@@ -15,7 +15,7 @@
     {!! Form::label('Price' ) !!}
     <div class="form-group input-group">
         <span class="input-group-addon"><i class="fa fa-eur"></i></span>
-        {!! Form::text('price' , null , ['class' => 'form-control', 'placeholder'=>'Place the price here']) !!}
+        {!! Form::text('price' , null , ['class' => 'form-control decimal', 'placeholder'=>'Place the price here']) !!}
     </div>
 
     <div class='form-group'>
