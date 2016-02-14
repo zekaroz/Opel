@@ -68,10 +68,7 @@ Route::resource('articles','ArticlesController');
 
 //Route::get('/backoffice/users','UsersController');
 
-Route::get('/', function()
-{
-	return View::make('home');
-});
+   Route::get('/', 'HomeController@index');
 
 Route::get('reciopel/', function()
 {
@@ -129,10 +126,6 @@ Route::get('/blank', function()
 	return View::make('blank');
 });
 
-/*Route::get('/login', function() 
-{
-	return View::make('login');
-});*/
 
 Route::get('/documentation', function()
 {
