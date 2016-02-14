@@ -68,7 +68,10 @@ Route::resource('articles','ArticlesController');
 
 //Route::get('/backoffice/users','UsersController');
 
-   Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index');
+
+Route::get('users', 'UsersController@index');
+
 
 Route::get('reciopel/', function()
 {

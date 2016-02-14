@@ -35,7 +35,9 @@
                      <li {{ (Request::is('*articles') ? 'class="active"' : '') }}>
                          <a href="{{ url ('articles') }}"><i class="fa fa-folder-open-o fa-fw"></i> Articles</a>
                      </li>
-                     
+                     <li {{ (Request::is('*users') ? 'class="active"' : '') }}>
+                         <a href="{{ url ('users') }}"><i class="fa fa-user fa-fw"></i> Users</a>
+                     </li>
                      @endif
                 </ul>
 
