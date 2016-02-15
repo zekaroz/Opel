@@ -64,7 +64,7 @@ class BrandModelsController extends Controller
         return \Response::json([
                            'error' => false,
                            'code'  => 200, 
-                           'feedback' =>'Shop has been deleted.'
+                           'feedback' =>'Model has been deleted.'
                        ], 200);        
     }
     
