@@ -8,6 +8,7 @@ use Auth;
 use App\Shop;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
 
 class ShopsController extends Controller
 {
@@ -64,5 +65,18 @@ class ShopsController extends Controller
         flash()->success('Part Type has been updated.');
         
         return redirect('shops');           
+    }
+    
+    public function destroy($id){
+        
+        $shop = Shop::findOrFail($id);
+        
+        $shop->delete();
+
+        return \Response::json([
+                           'error' => false,
+                           'code'  => 200, 
+                           'feedback' =>'Shop has been deleted.'
+                       ], 200);        
     }
 }

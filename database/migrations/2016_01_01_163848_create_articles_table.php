@@ -18,11 +18,11 @@ class CreateArticlesTable extends Migration
             $table->string('reference');
             $table->string('description');
             $table->decimal('price',15,2);
-            $table->integer('shop_id')->unsigned();
-            $table->integer('article_type_id')->unsigned();
+            $table->integer('shop_id')->unsigned()->nullable();
+            $table->integer('article_type_id')->unsigned()->nullable();
             $table->integer('part_type_id')->unsigned();
             $table->integer('model_id')->unsigned()->nullable();
-            $table->integer('brand_id')->unsigned();
+            $table->integer('brand_id')->unsigned()->nullable();
             $table->timestamps();
             
             $table->foreign('shop_id')

@@ -56,15 +56,17 @@ class BrandModelsController extends Controller
         
     }
     
-    public function destroy($id,Requests\BrandModel $request) {
-        
+    public function destroy($id) {
         $model = BrandModel::findOrFail($id);
         
         $model->delete();
         
-        flash()->success('Model has been deleted.');
-        
-        return redirect('brands/'.$model->brand_id.'/edit');
-                      
+        return \Response::json([
+                           'error' => false,
+                           'code'  => 200, 
+                           'feedback' =>'Shop has been deleted.'
+                       ], 200);        
     }
+    
+ 
 }

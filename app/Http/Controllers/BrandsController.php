@@ -116,5 +116,6 @@ class BrandsController extends Controller
                             'error' => false,
                             'code'  => 200
                         ], 200);
-    }
+    }    
+    
 }

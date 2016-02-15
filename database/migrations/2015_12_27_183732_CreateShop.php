@@ -20,7 +20,7 @@ class CreateShop extends Migration
             $table->string('contactNumber');
             $table->date('openingDate');
             $table->string('email')->unique();
-            $table->integer('user_id')->unsigned()->unique();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
             
             $table->foreign('user_id')
