@@ -11,7 +11,7 @@
                         type: 'post',
                         data: {_method: 'delete'},
                         success:function(msg) {
-                            link.closest('tr').remove();
+                            link.closest('tr').animate({'line-height':0},1000).hide(1);
                          },
                         error:function(msg) {
                            alert('Something wrong...');
