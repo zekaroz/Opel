@@ -7,7 +7,11 @@
                         <img id="img{{$picture->id}}" src="{{route('getentry', $picture->filename)}}" alt="ALT NAME" class="img-responsive thumbs" />
                     </a>
                     <div class="caption">
-                        <p>{{$picture->filename}}</p>
+                        <div style="text-align: right;">
+                            <a  href="#" class="deleteImage btn btn-default" data-id="{{$picture->id}}">
+                                <span><i class="fa fa-trash-o fa-fw"></i>  </span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -21,7 +25,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Image preview</h4>
+        <h4 class="modal-title" id="myModalLabel">Image</h4>
       </div>
       <div class="modal-body">
         <img src="" id="imagepreview" style="width: 400px; height: 700px;" >

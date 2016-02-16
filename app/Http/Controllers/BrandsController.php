@@ -50,7 +50,7 @@ class BrandsController extends Controller
         
         flash()->success('Brand has been created.');
 
-        return redirect('brands');
+        return redirect('/brands/'.$brand->id.'/edit');
     }
     
     public function edit($id){
@@ -117,5 +117,41 @@ class BrandsController extends Controller
                             'code'  => 200
                         ], 200);
     }    
+    
+    public function destroyPicture($picture_id, $brand_id){
+        
+                
+        $brand = Brand::findOrFail($brand_id);
+        
+        //then we get the picture
+        $picture = Fileentry::findOrFail($picture_id);
+        
+       //then we delete the physical file;
+        $path = $picture->path;
+               
+        if(File::exists($path)){
+            File::delete($path);
+        }
+//        else
+//        {
+//             return \Response::json([
+//                   'error' => true,
+//                   'code'  => 200, 
+//                   'feedback' =>'Error deleting file'
+//               ], 101);            
+//        }
+        
+        // first we detach the file from the brand;
+        $brand->pictures()->detach($picture_id);
+                 
+        // then we delete the record in the database
+        $picture->delete();
+
+        return \Response::json([
+                   'error' => false,
+                   'code'  => 200, 
+                   'feedback' =>'Brand picture removed.'
+               ], 200); 
+    }
     
 }

@@ -56,4 +56,17 @@ class FileEntryController extends Controller
 		return (new Response($file, 200))
                     ->header('Content-Type', $entry->mime);
 	}
+        
+        public function destroy($file_id) {
+            
+            $file = Fileentry::findOrFail($file_id);
+
+            $file->delete();
+
+            return \Response::json([
+                               'error' => false,
+                               'code'  => 200, 
+                               'feedback' =>'Model has been deleted.'
+                           ], 200);        
+        }
 }

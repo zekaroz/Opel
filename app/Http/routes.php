@@ -149,6 +149,9 @@ Route::get('fileentry', 'FileEntryController@index');
 Route::get('fileentry/get/{filename}', [
 	'as' => 'getentry', 'uses' => 'FileEntryController@get']);
 
+Route::delete('fileentry/{file_id}', 'FileEntryController@destroy'  );
+
+
 /*
  * This is the route for generic file upload
  */
@@ -158,6 +161,8 @@ Route::post('apply/upload', 'FileEntryController@add');
  * brands file upload
  */
 Route::post('BrandPictureUpload/{brand_id}', 'BrandsController@addPicture');
+
+Route::delete('BrandPictureUpload/{picture_id}/brand/{brand_id}', 'BrandsController@destroyPicture');
 
 /*
  * Article file upload
