@@ -18,6 +18,7 @@ Edit Article '{{ $article->name}}'
      @include('backoffice.articles._form', ['submitButtonText' => 'Update Article'  ])
 {!! Form::close() !!}
 </div>
+ 
  <div class="col-sm-6"  >
                  <h4>Fotografias</h4>
         @include('fileentries.dropZone', [
@@ -33,5 +34,28 @@ Edit Article '{{ $article->name}}'
         @endif
 </div>
        
+ 
+  <script >
+    $(document).ready( function( $ ) {        
+        $( '.thumbnail .deleteImage' ).on( 'click', function(e) {
+                    e.preventDefault();
+                    var link = $(this);
+                    var postUrl = '/ArticlePictureUpload/'+link.attr('data-id')+'/article/'+{{$article->id}};
+
+                    $.ajax({
+                        url: postUrl,
+                        type: 'post',
+                        data: {_method: 'delete'},
+                        success:function(msg) {
+                            link.closest('.thumbnail').toggle( "explode" );
+                         },
+                        error:function(data) {
+
+                             alert('somethings wrong...' );
+                        }
+                    });
+        });
+    });
+</script>
 
 @stop

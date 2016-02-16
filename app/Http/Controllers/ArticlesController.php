@@ -15,6 +15,7 @@ use Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Fileentry;
+use Illuminate\Support\Facades\DB;
 
 class ArticlesController extends Controller
 {
@@ -142,4 +143,41 @@ class ArticlesController extends Controller
                         ], 200);
     }
     
+   public function destroyPicture($picture_id, $article_id){
+                  
+        $article = Brand::findOrFail($article_id);
+        
+        //then we get the picture
+        $picture = Fileentry::findOrFail($picture_id);
+        
+       //then we delete the physical file;
+        $path =  $picture->path;
+               
+        if(File::exists($path)){
+            File::delete($path);
+        }
+        
+//        else
+//        {
+//             return \Response::json([
+//                   'error' => true,
+//                   'code'  => 200, 
+//                   'feedback' =>'Error deleting file'
+//               ], 101);            
+//        }
+        
+        // first we detach the file from the brand;
+        // this is not working:   $article->pictures()->detach($picture_id);
+        
+        DB::delete('DELETE FROM article_images WHERE article_id = ? AND fileentry_id = ? LIMIT 1',[$article_id, $picture_id]);
+                    
+        // then we delete the record in the database
+        $picture->delete();
+        
+            return \Response::json([
+                   'error' => false,
+                   'code'  => 200, 
+                   'feedback' =>'Brand picture removed.'
+               ], 200); 
+    }
 }

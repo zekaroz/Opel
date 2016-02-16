@@ -169,6 +169,9 @@ Route::delete('BrandPictureUpload/{picture_id}/brand/{brand_id}', 'BrandsControl
  */
 Route::post('ArticlePictureUpload/{article_id}', 'ArticlesController@addPicture');
 
+Route::delete('ArticlePictureUpload/{picture_id}/article/{article_id}', 'ArticlesController@destroyPicture');
+
+
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
