@@ -20,15 +20,15 @@
 
     <div class='form-group'>
         {!! Form::label('Part Type' ) !!}
-        {!! Form::select('part_type_id' , $partsList ,null ,['class' => 'form-control']) !!}
+        {!! Form::select('part_type_id' , $partsList ,null ,['class' => 'form-control specialSelect']) !!}
     </div>
     <div class='form-group'>
         {!! Form::label('Brand' ) !!}
-        {!! Form::select('brand_id' , $brandsList ,null ,['class' => 'form-control']) !!}
+        {!! Form::select('brand_id' , $brandsList ,null ,['class' => 'form-control specialSelect']) !!}
     </div>
     <div class='form-group'>
         {!! Form::label('Model' ) !!}
-        {!! Form::select('model_id' , $modelsList , null ,['class' => 'form-control']) !!}
+        {!! Form::select('model_id' , $modelsList , null ,['class' => 'form-control specialSelect']) !!}
     </div>
     
     <div class='form-group'>

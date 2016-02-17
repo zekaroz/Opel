@@ -10,6 +10,6 @@
         {!! Form::text('code' , null , ['class' => 'form-control']) !!}
     </div>
     <div class='form-group'>
-        {!! Form::submit($submitButtonText ,  ['class' => 'btn btn-primary']) !!} 
-        or <a href='{{url('brands/' . $brand_id . '/edit')}}' class="btn btn-default" > Cancel</a>
+        {!! Form::submit($submitButtonText ,  ['id' => $buttonId, 'class' => 'btn btn-primary']) !!} 
+        or <a href="Javascript: $('#addModel').show(); $('#modelForm').hide('slide'); " class="btn btn-default" > Cancel</a>
     </div>

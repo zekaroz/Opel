@@ -14,7 +14,8 @@
         "dflydev/apache-mime-types": "^1.0",
         "enyo/dropzone": "^4.2",
         "robinherbots/jquery.inputmask": "^3.2",
-        "sofa/eloquence": "^5.2"
+        "sofa/eloquence": "^5.2",
+        "ivaynberg/select2": "^4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

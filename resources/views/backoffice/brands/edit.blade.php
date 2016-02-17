@@ -38,23 +38,30 @@ Edit Brand '{{ $brand->name}}'
  
  <div class="col-sm-6" >
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                Models
-            </h3>
-        </div>
+        <div class="panel-heading" style="height:35px;">        
+               <div class="col-sm-9"> 
+                  <h3 class="panel-title"> Models </h3>
+               </div>  
+               <div class="col-sm-3" style="text-align: right;"> 
+                    <a id="addModel" class="btn btn btn-default btn-xs" href="Javascript:  $(this).hide(); $('#modelForm').show('slide');">
+                        Add Model
+                    </a>
+               </div>
+         </div>
 
-        <div class="col-sm-6"  >
+
+        <div id="modelForm" class="col-sm-6" style='display:none; padding:40px;'  >
             {!! Form::open(['url'   => 'models']) !!}
                 @include('backoffice.brands._formModel',
                          [
                          'submitButtonText' => 'Add Model', 
-                         'brand_id' => $brand->id
+                         'brand_id' => $brand->id,
+                         'buttonId' => 'brandModelSave' 
                          ])
             {!! Form::close() !!}
          </div>
         
-        <div class="panel-body">
+        <div id="#brandModels" class="panel-body">
             <div class="">
                 @include('backoffice.brands._Models_table', ['brandModels'=>$brandModels]) 
             </div>
@@ -66,24 +73,46 @@ Edit Brand '{{ $brand->name}}'
  
  
  <script >
+     
+     
     $(document).ready( function( $ ) {        
+        
+//        $('#brandModelSave').on('click', function (e){
+//            e.preventDefault();
+//            
+//             $.ajax({
+//                url: '/models',
+//                type: 'POST',
+//                data: {},
+//                success:function(msg) {
+//                           $('#brandModels').load('ajax/listBrandPictures/'+{{$brand->id }},function() {
+//                               alert( "Load was performed." );
+//                             });
+//                },
+//                error:function(data) {
+//
+//                     alert('somethings wrong...' );
+//                }
+//            });
+//        });
+        
         $( '.thumbnail .deleteImage' ).on( 'click', function(e) {
-                    e.preventDefault();
-                    var link = $(this);
-                    var postUrl = '/BrandPictureUpload/'+link.attr('data-id')+'/brand/'+{{$brand->id}};
+            e.preventDefault();
+            var link = $(this);
+            var postUrl = '/BrandPictureUpload/'+link.attr('data-id')+'/brand/'+{{$brand->id}};
 
-                    $.ajax({
-                        url: postUrl,
-                        type: 'post',
-                        data: {_method: 'delete'},
-                        success:function(msg) {
-                            link.closest('.thumbnail').toggle( "explode" );
-                         },
-                        error:function(data) {
+            $.ajax({
+                url: postUrl,
+                type: 'post',
+                data: {_method: 'delete'},
+                success:function(msg) {
+                    link.closest('.thumbnail').toggle( "explode" );
+                 },
+                error:function(data) {
 
-                             alert('somethings wrong...' );
-                        }
-                    });
+                     alert('somethings wrong...' );
+                }
+            });
         });
     });
 </script>

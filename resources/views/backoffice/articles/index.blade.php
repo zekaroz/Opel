@@ -14,8 +14,8 @@ Articles
     <th> Id </td>
     <th> Name </td>
     <th> Reference </td>
-    <th> Price   </td>
-    <th> Created at </td>
+    <th class="number"> Price   </td>
+    <th class="date"> Created at </td>
     </thead>
 
     @forelse( $articles as $article) 
@@ -30,10 +30,10 @@ Articles
             <td>
                {{ $article->reference}}
             </td>
-            <td>
-               {{ $article->price}}
+            <td class="number">
+               {{ $article->price}} €
             </td>
-            <td>
+            <td class="date">
                {{ $article->created_at}}
             </td>
         </tr>    

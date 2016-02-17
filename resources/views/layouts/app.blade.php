@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset("assets/stylesheets/styles.css") }}" />
     <link rel="stylesheet" href="{{ asset("assets/dropzone/basic.css") }} " />
     <link rel="stylesheet" href="{{ asset("assets/dropzone/dropzone.css") }} " />
+     <link rel="stylesheet" href="{{ asset("assets/select2/css/select2.min.css") }} " />
     <style>
         body {
             font-family: 'Lato';
@@ -24,6 +25,12 @@
 
         .fa-btn {
             margin-right: 6px;
+        }
+        .number{
+            text-align: right;
+        }
+        .date{
+             text-align: right;
         }
     </style>
 </head>
@@ -34,7 +41,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{{ asset("assets/dropzone/dropzone.js") }} " type="text/javascript"></script>
     <script src="{{ asset("assets/inputmask/jquery.inputmask.bundle.min.js") }} " type="text/javascript"></script>
-    
+    <script src="{{ asset("assets/select2/js/select2.min.js") }} " type="text/javascript"></script>
     @include('partials.nav_backoffice')
 
     @yield('body')
@@ -52,6 +59,8 @@
                                    allowMinus: false,
                                    allowPlus: false
                                 });
+                                
+         $('.specialSelect').select2();
     });    
     </script>
     <script type="text/javascript">

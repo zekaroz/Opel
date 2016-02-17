@@ -16,4 +16,6 @@ return array(
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
     'Dflydev\\ApacheMimeTypes' => array($vendorDir . '/dflydev/apache-mime-types/src'),
     'Cron' => array($vendorDir . '/mtdowling/cron-expression/src'),
+    'ComponentInstaller' => array($vendorDir . '/robloach/component-installer/src'),
+    'Assetic' => array($vendorDir . '/kriswallsmith/assetic/src'),
 );
