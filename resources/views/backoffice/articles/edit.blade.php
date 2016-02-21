@@ -6,9 +6,6 @@ Edit Article '{{ $article->name}}'
 
 @section('section')
 
-<div>
-    <a href="{{ action('ArticlesController@index') }}"><span>Back</span></a>
-</div>
 <br><br>
 
  @include('errors.list')

@@ -6,6 +6,7 @@ use Auth;
 use App\Http\Requests\ArticlesRequest;
 use App\Http\Controllers\Controller;
 use App\Article;
+use App\ArticleType;
 use App\Brand;
 use App\PartType;
 use App\BrandModel;
@@ -49,11 +50,14 @@ class ArticlesController extends Controller
         $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
         $brandsList = Brand::lists('name','id')->prepend('(all)','');
         $partsList = PartType::lists('name','id')->prepend('(all)','');
+        $articleTypesList = ArticleType::lists('name','id')->prepend('(choose one)','');
         
         return view('backoffice.articles.create' )
                     ->with(compact('brandsList'))
                     ->with(compact('partsList'))
-                    ->with(compact('modelsList'));
+                    ->with(compact('modelsList'))
+                    ->with(compact('articleTypesList'))
+                ;
     }
     
     public function store(ArticlesRequest $request){       
@@ -61,8 +65,6 @@ class ArticlesController extends Controller
         $article = new Article($request->all());
         
         $article->shop_id = Auth::user()->shops()->first()->id;
-        
-        $article->article_type_id = \App\ArticleType::first()->id;
         
         $article->model_id = null; 
         // this automatically applies the user id for
@@ -79,6 +81,7 @@ class ArticlesController extends Controller
         $modelsList =  BrandModel::lists('name','id')->prepend('(all)', '');
         $brandsList = Brand::lists('name','id')->prepend('(all)', '');
         $partsList = PartType::lists('name','id')->prepend('(all)', '');
+         $articleTypesList = ArticleType::lists('name','id')->prepend('(choose one)','');
         
         $article = Article::findorFail($id);
 
@@ -90,7 +93,8 @@ class ArticlesController extends Controller
                     ->with(compact('partsList'))
                     ->with(compact('modelsList'))
                     ->with(compact('article'))
-                    ->with(compact('articlePictures'));
+                    ->with(compact('articlePictures'))
+                    ->with(compact('articleTypesList'));
     }
     
     public function update($id,ArticlesRequest $request){

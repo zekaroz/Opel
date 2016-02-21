@@ -9,28 +9,39 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Shop Homepage - Start Bootstrap Template</title>
+    <title>Reciopel</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/shop-homepage.css" rel="stylesheet">
+     <link rel="stylesheet" type="text/css" href="{{ asset("assets/DataTables/datatables.css") }}"/>
+     
 
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    
+    <style>
+       .fa-btn {
+            margin-right: 6px;
+        }
+        .number{
+            text-align: right;
+        }
+        .date{
+             text-align: right;
+        }
+    </style>
     
     
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="{{ asset("assets/DataTables/datatables.js") }} " type="text/javascript"></script>
+    
     <div class="container">
         
         @yield('menu')
@@ -51,12 +62,26 @@
         </footer>
     </div>
     
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 
+    
+    <script>
+
+        $(document).ready(function() {
+            try{
+                $('.search-table').DataTable( {
+                    "language": {
+                        "url": "{{ asset("assets/DataTables/Multilingue/Portuguese.json") }}"
+                    }
+                } );
+            }catch (e){
+                 return;
+             }
+        } );   
+
+        $('div.alert').not('.alert_important').delay(3000).slideUp(300);
+        $('#flash-overlay-modal').modal(); 
+    </script>
 </body>
 
 </html>
