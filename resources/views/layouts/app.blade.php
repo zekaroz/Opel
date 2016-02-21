@@ -34,6 +34,10 @@
         .date{
              text-align: right;
         }
+        .form-group.required label:after {
+          content:"*";
+          color:red;
+        }
     </style>
 </head>
 <body> 

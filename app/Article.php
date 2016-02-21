@@ -28,6 +28,10 @@ class Article extends Model
     public function shop(){
         return $this->belongsTo('App\Shop',"shop_id");
     }
+    
+    public function articleType(){
+        return $this->belongsTo('App\ArticleType',"article_type_id");
+    }
 
     /*
      * Article has one brand

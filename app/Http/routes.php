@@ -37,13 +37,9 @@ Route::get('mapa', function(){
     return View::make('online_shop.contacts.contacts');
 });
 
-Route::get('pecas', function(){
-    return View::make('online_shop.partsSearch.partSearch');
-});
+Route::get('pecas','OnlineShopController@partSearch');
 
-Route::get('carros', function(){
-    return View::make('online_shop.CarsSearch.carSearch');
-});
+Route::get('carros','OnlineShopController@carSearch');
 
 Route::get('servicos', function(){
     return View::make('online_shop.services.services');
