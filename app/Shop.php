@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Shop extends Model
 {
+    
+    use SoftDeletes;
     //
     protected $fillable =  [
         'name',

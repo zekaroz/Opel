@@ -22,6 +22,7 @@ class CreateShop extends Migration
             $table->string('email')->unique();
             $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
+            $table->softDeletes();
             
             $table->foreign('user_id')
                   ->references('id')

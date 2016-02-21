@@ -19,6 +19,7 @@ class CreateBrandsTable extends Migration
             $table->string('name');
             $table->string('imagePath');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

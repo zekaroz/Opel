@@ -16,6 +16,7 @@ class CreateFileentriesTable extends Migration
 		{
 			$table->increments('id');
 			$table->string('path');
+                        $table->string('thumbnail_path');
 			$table->string('filename');
 			$table->string('mime');
 			$table->string('original_filename');
