@@ -4,19 +4,22 @@
 Article Types
 @stop 
 
+@section('page_title_buttons')
+    <a class ="btn btn-primary" href="{{ action('ArticleTypesController@create') }}">
+        <i class="fa fa-plus-square fa-fw"></i>
+        <span>New Article Type</span>
+    </a>
+@stop
+
 @section('section')       
-<div>
-    <a href="{{ action('ArticleTypesController@create') }}"><span>New Article Type</span></a>
-</div>
-
-<table class="table table-striped">
+<table class="table table-striped search-table">
     <thead>
-    <th> Id </td>
-    <th> Name </td>
-    <th> Code </td>
-    <th> Created at </td>
+    <th> Id </th>
+    <th> Name </th>
+    <th> Code </th>
+    <th> Created at </th>
     </thead>
-
+<tbody>
     @forelse( $articleTypes as $articleType) 
         <tr>
             <td>
@@ -40,6 +43,7 @@ Article Types
             </td>
         </tr>
     @endforelse
+</tbody>
 </table>
         
 @stop

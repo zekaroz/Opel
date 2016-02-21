@@ -4,20 +4,24 @@
 Articles
 @stop 
 
+@section('page_title_buttons')
+<a class ="btn btn-primary" href="{{ action('ArticlesController@create') }}">
+    <i class="fa fa-plus-square fa-fw"></i>
+    <span>New Article</span>
+</a>
+@stop
+
 @section('section')       
-<div>
-    <a href="{{ action('ArticlesController@create') }}"><span>New Article</span></a>
-</div>
 
-<table class="table table-striped">
+<table class="table table-striped search-table">
     <thead>
-    <th> Id </td>
-    <th> Name </td>
-    <th> Reference </td>
-    <th class="number"> Price   </td>
-    <th class="date"> Created at </td>
+    <th> Id </th>
+    <th> Name </th>
+    <th> Reference </th>
+    <th class="number"> Price   </th>
+    <th class="date"> Created at </th>
     </thead>
-
+<tbody>
     @forelse( $articles as $article) 
         <tr>
             <td>
@@ -44,6 +48,7 @@ Articles
             </td>
         </tr>
     @endforelse
+</tbody>
 </table>
         
 @stop

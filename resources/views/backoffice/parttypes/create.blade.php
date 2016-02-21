@@ -6,9 +6,6 @@ Create new Part Type
 
 @section('section')
 
-<div>
-    <a href="{{ action('PartTypesController@index') }}"><span>Back</span></a>
-</div>
 <br><br>
  
     @include('errors.list')

@@ -4,19 +4,22 @@
 Brands
 @stop 
 
+@section('page_title_buttons')
+    <a class ="btn btn-primary" href="{{ action('BrandsController@create') }}">
+        <i class="fa fa-plus-square fa-fw"></i>
+        <span>New Brand</span>
+    </a> 
+@stop
+
 @section('section')
- <div>
-    <a href="{{ action('BrandsController@create') }}"><span>New Brand</span></a>
-</div>
-
-<table class="table table-striped">
+<table class="table table-striped search-table">
     <thead>
-    <th> Id </td>
-    <th> Name </td>
-    <th> Code </td>
-    <th> Created at </td>
+    <th> Id </th>
+    <th> Name </th>
+    <th> Code </th>
+    <th> Created at </th>
     </thead>
-
+<tbody>
     @forelse( $brands as $brand) 
         <tr>
             <td>
@@ -40,6 +43,7 @@ Brands
             </td>
         </tr>
     @endforelse
+</tbody>
 </table>
         
 @stop

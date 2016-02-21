@@ -6,9 +6,6 @@ Create new Brand
 
 @section('section')
 
-<div>
-    <a href="{{ action('BrandsController@index') }}"><span>Back</span></a>
-</div>
 <br><br>
  
     @include('errors.list')
