@@ -56,6 +56,17 @@ class FileEntryController extends Controller
 		return (new Response($file, 200))
                     ->header('Content-Type', $entry->mime);
 	}
+	
+        public function getThumbnail($filename){
+
+		$entry = Fileentry::where('filename', '=', $filename)->firstOrFail();
+ 
+                $file = Storage::disk('local')->get($entry->thumbnail_path);
+ 
+		return (new Response($file, 200))
+                    ->header('Content-Type', $entry->mime);
+	}
+        
         
         public function destroy($file_id) {
             

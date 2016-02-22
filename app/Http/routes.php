@@ -25,9 +25,7 @@
 /*
  Web site routes
  *  */
-Route::get('index', function(){
-    return View::make('online_shop.welcome.index');
-});
+Route::get('index','OnlineShopController@homepage' );
 
 Route::get('quem_somos', function(){
     return View::make('online_shop.about.about');
@@ -144,6 +142,9 @@ Route::get('fileentry', 'FileEntryController@index');
 
 Route::get('fileentry/get/{filename}', [
 	'as' => 'getentry', 'uses' => 'FileEntryController@get']);
+
+Route::get('fileentry/get/{filename}', [
+	'as' => 'getThumb', 'uses' => 'FileEntryController@getThumbnail']);
 
 Route::delete('fileentry/{file_id}', 'FileEntryController@destroy'  );
 

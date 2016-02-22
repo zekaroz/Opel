@@ -117,7 +117,9 @@ class ArticlesController extends Controller
          $extension = $file->getClientOriginalExtension();
          
          $finalpath = 'article/'.$article_id.'/'.$file->getFilename().'.'.$extension;
+         
          $thumbnail_path = public_path('images\article\\'.$article_id.'\\'.$file->getFilename().'_thumb'.'.'.$extension);
+         $final_thumbnailpath  = 'article/'.$article_id.'/'.$file->getFilename().'_thumb'.'.'.$extension;
          
          $image = File::get($file);
          
@@ -131,7 +133,7 @@ class ArticlesController extends Controller
          $entry->original_filename = $file->getClientOriginalName();
          $entry->filename = $file->getFilename().'.'.$extension;
          $entry->path = $finalpath;
-         $entry->thumbnail_path = $thumbnail_path;
+         $entry->thumbnail_path = $final_thumbnailpath;
 
          $entry->save();
          

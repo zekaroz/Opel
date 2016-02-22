@@ -1,6 +1,6 @@
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="thumbnail">
-            <img src="{{$itemImageURL}}" alt="">
+            <img src="{{ ($picture_filename!='')?route('getThumb', $picture_filename) :"http://placehold.it/320x150"}} " alt="">
             <div class="caption">
                 <h4 class="pull-right">{{$itemPrice}}</h4>
                 <h4><a href="#">{{$itemName}}</a>

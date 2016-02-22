@@ -4,7 +4,7 @@
                <div class="col-md-4">
                    <div class="thumbnail">
                        <a id='{{$picture->id}}' href="#" class="popupLink"> 
-                           <img id="img{{$picture->id}}" src="{{route('getentry', $picture->filename)}}" alt="ALT NAME" class="img-responsive thumbs" />
+                           <img id="img{{$picture->id}}" src="{{route('getThumb', $picture->filename)}}" alt="ALT NAME" class="img-responsive thumbs" />
                        </a>
                        <div class="caption">
                            <div style="text-align: right;">

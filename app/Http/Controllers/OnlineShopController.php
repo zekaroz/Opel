@@ -91,6 +91,15 @@ class OnlineShopController extends Controller
         //
     }
     
+    public function homepage(){
+        
+        $articles = Article::with('pictures')->get();
+        
+        return view('online_shop.welcome.index')
+                ->with(compact('articles'));
+    }
+    
+    
     public function partSearch(){
         
         $article_type_car = ArticleType::where('code', 'P')->get()->first();
