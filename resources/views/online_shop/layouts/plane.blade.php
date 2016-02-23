@@ -13,7 +13,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <!-- Custom CSS -->
     <link href="css/shop-homepage.css" rel="stylesheet">
      <link rel="stylesheet" type="text/css" href="{{ asset("assets/DataTables/datatables.css") }}"/>
