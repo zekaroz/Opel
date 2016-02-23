@@ -2,22 +2,16 @@
 
 @section('page_Heading')
     Quem Somos
+    <small>Reciopel</small>
 @stop
 
 @section('section')
- 
 
- <!-- Page Content -->
     <div class="container">
-
-        <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">About
-                    <small>Reciopel</small>
-                </h1>
                 <ol class="breadcrumb">
-                    <li><a href="index">Home</a>
+                    <li><a href="/">Home</a>
                     </li>
                     <li class="active">Quem somos</li>
                 </ol>
@@ -28,13 +22,14 @@
         <!-- Intro Content -->
         <div class="row">
             <div class="col-md-6">
-                <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                <img class="img-responsive" src="Motor.jpg" alt="">
             </div>
             <div class="col-md-6">
-                <h2>About Modern Business</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis?</p>
+                <h2>Acerca da ReciOpel</h2>
+                <p>A Reciopel é uma empresa de cariz familiar, onde imperam os valores da honestidade frontalidade e paixão por automóveis </p>
+                <p>Acreditamos fundamentalmente na racionalização e tomada de decisão em relação ao seu veiculo sem medo e com alta capacidade de aproveitamente dos automóveis usados e antigos.</p>
+                <p>Tem um atuomóvel e não sabe se deve vende-lo ou se deve tentar arranja-lo?</p>
+                <p>Venha pedir-nos uma opinião.</p>
             </div>
         </div>
         <!-- /.row -->

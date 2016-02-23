@@ -10,12 +10,14 @@
     <meta name="author" content="">
 
     <title>Reciopel</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+    
+    
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/shop-homepage.css" rel="stylesheet">
+    <link href="{{ asset("css/shop-homepage.css") }}" rel="stylesheet">
      <link rel="stylesheet" type="text/css" href="{{ asset("assets/DataTables/datatables.css") }}"/>
      
 
@@ -86,6 +88,8 @@
         $('div.alert').not('.alert_important').delay(3000).slideUp(300);
         $('#flash-overlay-modal').modal(); 
     </script>
+    
+      @yield('afterBody')
 </body>
 
 </html>

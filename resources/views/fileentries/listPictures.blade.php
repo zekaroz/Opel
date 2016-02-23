@@ -1,22 +1,26 @@
  <div class="row">
   <ul class="thumbnails">
     @forelse($pictures as $picture)
-               <div class="col-md-4">
+               <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                    <div class="thumbnail">
                        <a id='{{$picture->id}}' href="#" class="popupLink"> 
-                           <img id="img{{$picture->id}}" src="{{route('getThumb', $picture->filename)}}" alt="ALT NAME" class="img-responsive thumbs" />
+                           <img id="img{{$picture->id}}" src="{{route('getentry', $picture->filename)}}" alt="ALT NAME" class="img-responsive thumbs" />
                        </a>
                        <div class="caption">
                            <div style="text-align: right;">
-                               <a  href="#" class="deleteImage btn btn-default" data-id="{{$picture->id}}">
-                                   <span><i class="fa fa-trash-o fa-fw"></i>  </span>
-                               </a>
+                              @if(isset($showOnly))
+                                @if(!$showOnly)
+                                    <a  href="#" class="deleteImage btn btn-default" data-id="{{$picture->id}}">
+                                        <span><i class="fa fa-trash-o fa-fw"></i>  </span>
+                                    </a>
+                                @endif
+                              @endif
                            </div>
                        </div>
                    </div>
                </div>
      @empty
-           <div>No images to show...</div>
+           <div> </div>
     @endforelse
   </ul>
  </div>

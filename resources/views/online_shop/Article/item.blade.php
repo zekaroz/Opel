@@ -6,34 +6,37 @@
 
  
 @section('section')       
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ol class="breadcrumb">
+                    <li> 
+                        <small>{{$article->reference}}</small>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
 
-<table class="table table-striped search-table">
-    <thead>
-    <th> Referência </th>
-    <th> Nome </th>
-    <th class="number"> Preço (€)  </th>
-    </thead>
-<tbody>
-    @forelse( $articles as $article) 
-        <tr>
-           <td>
-               {{ $article->reference}}
-            </td>
-            <td>
-               {{ $article->name}}
-            </td>
-            <td class="number">
-               {{ $article->price}} €
-            </td>
-        </tr>    
-    @empty
-        <tr>
-            <td colspan="5">
-                Sem artigos a mostrar...
-            </td>
-        </tr>
-    @endforelse
-</tbody>
-</table>
+        <!-- Intro Content -->
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Descrição do Artigo</h4>
+                <hr>
+                <p> {{$article->description}}</p>
+            </div>
+            <div class="col-md-12">
+                <h4>Fotografias</h4>
+                <hr>
+                @if ( isset($article->pictures) )
+                    <div class="panel-body">
+                        @include('fileentries.listPictures', ['pictures' => $article->pictures
+                                                             ,'showOnly' => true])
+                    </div>
+                @endif
+            </div>
+        </div>
+        <!-- /.row -->
+
         
 @stop

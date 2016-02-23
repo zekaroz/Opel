@@ -121,4 +121,12 @@ class OnlineShopController extends Controller
         return view('online_shop.partsSearch.partSearch')
                     ->with(compact('articles'));
     }
+    
+    public function showArticle($articleid){
+        
+        $article = Article::with('pictures')->findOrFail($articleid);
+        
+        return view('online_shop.Article.item')
+                    ->with(compact('article'));
+    }
 }
