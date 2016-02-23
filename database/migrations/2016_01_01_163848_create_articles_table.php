@@ -23,6 +23,7 @@ class CreateArticlesTable extends Migration
             $table->integer('part_type_id')->unsigned();
             $table->integer('model_id')->unsigned()->nullable();
             $table->integer('brand_id')->unsigned()->nullable();
+            $table->softDeletes();
             $table->timestamps();
             
             $table->foreign('shop_id')

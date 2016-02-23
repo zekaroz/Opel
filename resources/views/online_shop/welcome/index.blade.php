@@ -12,20 +12,21 @@
                                                                 ] )
                 </div>
 
-                <div class="row">
-
-                    @for ($i = 0; $i < 6; $i++)
-                        @include('online_shop.partials.squareDisplay',
-                             [
-                                'numberOfStars'=> 3 ,
-                                'numberOfReviews'=> (12-$i),
-                                'itemName'=> ($i+1) . 'º Dynamic Product',
-                                'itemDescription'=> 'this is a description' ,
-                                'itemPrice' => '€ 15.99',
-                                'itemImageURL' => 'http://placehold.it/320x150'
-                             ])
-                    @endfor                    
-
+                <div class="row">                    
+                    @if( isset($articles) )
+                        @foreach( $articles as $article) 
+                            @include('online_shop.partials.squareDisplay',
+                                                         [
+                                                            'numberOfStars'=> 0 ,
+                                                            'numberOfReviews'=> (0),
+                                                            'itemURL' => 'item/'.$article->id.'/show',
+                                                            'itemName'=> $article->name,
+                                                            'itemDescription'=> $article->description,
+                                                            'itemPrice' => $article->price.'€',
+                                                            'picture_filename' => (count($article->pictures)>0)?($article->pictures->first()->filename):''
+                                                         ])
+                        @endforeach
+                    @endif
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <h4><a href="#">Like this page?</a>
                         </h4>

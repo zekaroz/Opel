@@ -91,6 +91,15 @@ class OnlineShopController extends Controller
         //
     }
     
+    public function homepage(){
+        
+        $articles = Article::with('pictures')->get();
+        
+        return view('online_shop.welcome.index')
+                ->with(compact('articles'));
+    }
+    
+    
     public function partSearch(){
         
         $article_type_car = ArticleType::where('code', 'P')->get()->first();
@@ -111,5 +120,13 @@ class OnlineShopController extends Controller
         
         return view('online_shop.partsSearch.partSearch')
                     ->with(compact('articles'));
+    }
+    
+    public function showArticle($articleid){
+        
+        $article = Article::with('pictures')->findOrFail($articleid);
+        
+        return view('online_shop.Article.item')
+                    ->with(compact('article'));
     }
 }

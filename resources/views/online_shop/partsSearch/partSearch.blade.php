@@ -17,7 +17,9 @@
     @forelse( $articles as $article) 
         <tr>
            <td>
-               {{ $article->reference}}
+               <a href="item/{{$article->id}}/show">
+                    {{ $article->reference}}
+               </a>
             </td>
             <td>
                {{ $article->name}}

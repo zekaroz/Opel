@@ -19,6 +19,7 @@ class CreateModelsTable extends Migration
             $table->string('name');
             $table->integer('brand_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
             
             
             $table->foreign('brand_id')

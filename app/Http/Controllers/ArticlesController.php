@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Fileentry;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image;
 
 class ArticlesController extends Controller
 {
@@ -66,7 +67,6 @@ class ArticlesController extends Controller
         
         $article->shop_id = Auth::user()->shops()->first()->id;
         
-        $article->model_id = null; 
         // this automatically applies the user id for
         //the relations ship
         //TODO: rever isto para associar a peça à loja de que o user é dono;
@@ -118,18 +118,26 @@ class ArticlesController extends Controller
          
          $finalpath = 'article/'.$article_id.'/'.$file->getFilename().'.'.$extension;
          
-         Storage::disk('local')->put($finalpath,  File::get($file));
+         $thumbnail_path = public_path('images\article\\'.$article_id.'\\'.$file->getFilename().'_thumb'.'.'.$extension);
+         $final_thumbnailpath  = 'article/'.$article_id.'/'.$file->getFilename().'_thumb'.'.'.$extension;
+         
+         $image = File::get($file);
+         
+         Storage::disk('local')->put($finalpath, $image );
+         
+         // create an image
+         Image::make($file->getRealPath())->fit(320, 150)->save($thumbnail_path);
 
          $entry = new Fileentry();
          $entry->mime = $file->getClientMimeType();
          $entry->original_filename = $file->getClientOriginalName();
          $entry->filename = $file->getFilename().'.'.$extension;
          $entry->path = $finalpath;
+         $entry->thumbnail_path = $final_thumbnailpath;
 
          $entry->save();
          
          // now the image is saved
-         
          //now we need to attach this image to our brand;
          
          $article_image = new ArticleImage();
