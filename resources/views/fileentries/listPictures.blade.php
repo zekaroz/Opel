@@ -34,7 +34,7 @@
            <h4 class="modal-title" id="myModalLabel">Image</h4>
          </div>
          <div class="modal-body">
-           <img src="" id="imagepreview" style="width: 400px; height: 700px;" >
+           <img src="" id="imagepreview" style="width: 900px; height: 700px;" >
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
