@@ -60,9 +60,12 @@ class FileEntryController extends Controller
         public function getThumbnail($filename){
 
 		$entry = Fileentry::where('filename', '=', $filename)->firstOrFail();
- 
+                
+                dd($entry->thumbnail_path);
+                
                 $file = Storage::disk('local')->get($entry->thumbnail_path);
- 
+                
+                
 		return (new Response($file, 200))
                     ->header('Content-Type', $entry->mime);
 	}
