@@ -61,10 +61,7 @@ class FileEntryController extends Controller
 
 		$entry = Fileentry::where('filename', '=', $filename)->firstOrFail();
                 
-                
-                dd($entry->thumbnail_path);
-                $file = Storage::disk('local')->get($entry->thumbnail_path);
-                
+                $file = Storage::disk('local')->get($entry->path);
                 
 		return (new Response($file, 200))
                     ->header('Content-Type', $entry->mime);
