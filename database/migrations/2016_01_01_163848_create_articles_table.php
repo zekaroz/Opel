@@ -15,14 +15,15 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('reference');
+            $table->string('reference')->nullable();
             $table->string('description');
-            $table->decimal('price',15,2);
+            $table->decimal('price',15,2)->nullable();
             $table->integer('shop_id')->unsigned()->nullable();
             $table->integer('article_type_id')->unsigned()->nullable();
-            $table->integer('part_type_id')->unsigned();
+            $table->integer('part_type_id')->unsigned()->nullable();
             $table->integer('model_id')->unsigned()->nullable();
             $table->integer('brand_id')->unsigned()->nullable();
+            $table->boolean('public'); // show in website
             $table->softDeletes();
             $table->timestamps();
             

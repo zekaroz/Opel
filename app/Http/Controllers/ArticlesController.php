@@ -61,17 +61,37 @@ class ArticlesController extends Controller
                 ;
     }
     
-    public function store(ArticlesRequest $request){       
-        // set the shop to the shop of the logged user
-        $article = new Article($request->all());
+    private function saveArticle(Article $article){
+    
+        $article->shop_id = \App\Shop::all()->first()->id;
+  
+        if($article->model_id == '')
+        {
+           $article->model_id = null; 
+        }
         
-        $article->shop_id = Auth::user()->shops()->first()->id;
+        if($article->brand_id== '')
+        {
+           $article->brand_id = null; 
+        }
+        
+        if($article->part_type_id== '')
+        {
+           $article->part_type_id = null; 
+        }
         
         // this automatically applies the user id for
         //the relations ship
         //TODO: rever isto para associar a peça à loja de que o user é dono;
-        $article->save();
-        
+        $article->save();        
+    }
+    
+    public function store(ArticlesRequest $request){       
+        // set the shop to the shop of the logged user
+        $article = new Article($request->all());
+             
+        $this->saveArticle($article);
+
         flash()->success('Article has been created.');
         
         return redirect('articles');
@@ -99,16 +119,22 @@ class ArticlesController extends Controller
     
     public function update($id,ArticlesRequest $request){
         
-        $article = Article::findOrFail($id);
+        $article = Article::findOrFail($id);        
         
-        $article->model_id =  BrandModel::first()->id; 
+        $article_new = new Article($request->all());
         
+        $article->name = $article_new->name;
+        $article->description = $article_new->description;
+        $article->price = $article_new->price ;
+        $article->reference = $article_new->reference;
+        $article->brand_id= $article_new->brand_id;
+        $article->model_id= $article_new->model_id;
         
-        $article->update($request->all());
+        $this->saveArticle($article);
         
-         flash()->success('Article has been updated.');
+        flash()->success('Article has been updated.');
          
-         return redirect('articles');           
+        return redirect('articles');           
     }
        
     public function addPicture($article_id) {

@@ -27,9 +27,7 @@ class ArticlesRequest extends Request
             'name'=>'required',
             'description'=>'required',
             'price'=>'required', 
-         // 'model_id' => 'required',
-            'brand_id' => 'required',
-            'part_type_id' => 'required'
+            'brand_id' => 'required'
         ];
     }
 }
