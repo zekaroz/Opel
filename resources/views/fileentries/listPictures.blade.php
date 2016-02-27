@@ -17,9 +17,6 @@
                               @endif
                            </div>
                        </div>
-                      <div style="border:1px solid black">
-                           {{$picture->id}} | {{$picture->path}}  | {{$picture->thumbnail_path}}
-                       </div>
                    </div>
                </div>
      @empty
