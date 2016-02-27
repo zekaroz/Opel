@@ -84,18 +84,22 @@ class BrandsController extends Controller
     
     public function addPicture($brand_id) {
          $file = Request::file('file');
-         
+
          $extension = $file->getClientOriginalExtension();
          
-         $finalpath = 'brands/'.$file->getFilename().'.'.$extension;
+         $path = 'brand/'.$brand_id.'/';
          
-         Storage::disk('local')->put($finalpath,  File::get($file));
+         $filename = $file->getFilename().'.'.$extension;
+         
+         $fileStorage = new FileStorageController();
+         
+         $fileStorage->saveImage($path, $filename, $file);
 
          $entry = new Fileentry();
          $entry->mime = $file->getClientMimeType();
          $entry->original_filename = $file->getClientOriginalName();
          $entry->filename = $file->getFilename().'.'.$extension;
-         $entry->path = $finalpath;
+         $entry->path = $path.$filename;
 
          $entry->save();
          
