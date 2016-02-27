@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
+
+class FileStorageController extends Controller
+{
+    public function __construct() {
+
+    }
+    
+    public function saveImage(string $path, string $filename, $file) {        
+        
+        $image = File::get($file);
+        
+        $fullpath = $path.$filename;
+        
+        Storage::disk('local')->put($fullpath, $image );
+       
+        return $fullpath;
+    }
+    
+    public function saveThumbnail(string $path, string $filename,  $file,  $width,  $height) {
+        $fullpath = $path.$filename;
+        // create an image
+        //  Image::make($file->getRealPath())->fit($width, $height)->save(public_path($fullpath));
+        
+        return $fullpath;
+    }
+    
+    public function getImage(string $path) {
+        $file = new File();
+        
+        return $file;
+    }
+}
+
+ 
