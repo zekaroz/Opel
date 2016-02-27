@@ -84,18 +84,22 @@ class BrandsController extends Controller
     
     public function addPicture($brand_id) {
          $file = Request::file('file');
-         
+
          $extension = $file->getClientOriginalExtension();
          
-         $finalpath = 'brands/'.$file->getFilename().'.'.$extension;
+         $path = 'brand/'.$brand_id.'/';
          
-         Storage::disk('local')->put($finalpath,  File::get($file));
+         $filename = $file->getFilename().'.'.$extension;
+         
+         $fileStorage = new FileStorageController();
+         
+         $fileStorage->saveImage($path, $filename, $file);
 
          $entry = new Fileentry();
          $entry->mime = $file->getClientMimeType();
          $entry->original_filename = $file->getClientOriginalName();
          $entry->filename = $file->getFilename().'.'.$extension;
-         $entry->path = $finalpath;
+         $entry->path = $path.$filename;
 
          $entry->save();
          
@@ -124,23 +128,11 @@ class BrandsController extends Controller
         $brand = Brand::findOrFail($brand_id);
         
         //then we get the picture
-        $picture = Fileentry::findOrFail($picture_id);
+        $picture = Fileentry::findOrFail($picture_id);             
         
-       //then we delete the physical file;
-        $path = $picture->path;
-               
-        if(File::exists($path)){
-            File::delete($path);
-        }
-//        else
-//        {
-//             return \Response::json([
-//                   'error' => true,
-//                   'code'  => 200, 
-//                   'feedback' =>'Error deleting file'
-//               ], 101);            
-//        }
+        $fs = new FileStorageController();
         
+        $fs->deleteImage($picture->path);
         // first we detach the file from the brand;
         $brand->pictures()->detach($picture_id);
                  
@@ -152,6 +144,19 @@ class BrandsController extends Controller
                    'code'  => 200, 
                    'feedback' =>'Brand picture removed.'
                ], 200); 
+    }
+    
+    
+    public function destroy($id) {
+        $brand = Brand::findOrFail($id);
+        
+        $brand->delete();
+        
+        return \Response::json([
+                           'error' => false,
+                           'code'  => 200, 
+                           'feedback' =>'Brand has been deleted.'
+                       ], 200);        
     }
     
 }

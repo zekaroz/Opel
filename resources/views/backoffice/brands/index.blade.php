@@ -18,6 +18,7 @@ Brands
     <th> Name </th>
     <th> Code </th>
     <th> Created at </th>
+    <th></th>
     </thead>
 <tbody>
     @forelse( $brands as $brand) 
@@ -35,6 +36,11 @@ Brands
             <td>
                {{ $brand->created_at}}
             </td>
+             <td>
+            <a  href="#" class="deleteLink btn btn-default" data-id="{{$brand->id}}">
+                       <span><i class="fa fa-trash-o fa-fw"></i>  </span>
+           </a>
+            </td>
         </tr>    
     @empty
         <tr>
@@ -45,5 +51,28 @@ Brands
     @endforelse
 </tbody>
 </table>
+
+
+<script >
+    $(document).ready( function( $ ) {        
+        $( '.deleteLink' ).on( 'click', function(e) {
+                    e.preventDefault();
+                    var link = $(this);
+                    var postUrl = '/brands/'+link.attr('data-id');
+
+                    $.ajax({
+                        url: postUrl,
+                        type: 'post',
+                        data: {_method: 'delete'},
+                        success:function(msg) {
+                            link.closest('tr').animate({'line-height':0},1000).hide(1);
+                         },
+                        error:function(msg) {
+                           alert('Something wrong...');
+                        }
+                    });
+        });
+    });
+</script>
         
 @stop

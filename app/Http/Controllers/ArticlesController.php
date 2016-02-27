@@ -33,7 +33,7 @@ class ArticlesController extends Controller
     //
     public function index(){
                
-         $articles = Article::orderBy('name', 'asc')->get();
+         $articles = Article::with('articleType','brand','model','partType')->orderBy('name', 'asc')->get();
          
          return view('backoffice.articles.index', compact('articles'));
     }
@@ -177,40 +177,38 @@ class ArticlesController extends Controller
     }
     
    public function destroyPicture($picture_id, $article_id){
-                  
-        $article = Brand::findOrFail($article_id);
+ 
+        $article = Article::findOrFail($article_id);
         
         //then we get the picture
         $picture = Fileentry::findOrFail($picture_id);
+         
+        //deletes the relationship of the file that is being deleted.
+        $article->pictures()->detach($picture_id);
         
-       //then we delete the physical file;
-        $path =  $picture->path;
-               
-        if(File::exists($path)){
-            File::delete($path);
-        }
+        $fs = new FileStorageController();
         
-//        else
-//        {
-//             return \Response::json([
-//                   'error' => true,
-//                   'code'  => 200, 
-//                   'feedback' =>'Error deleting file'
-//               ], 101);            
-//        }
+        $fs->deleteImage($picture->path);
         
-        // first we detach the file from the brand;
-        // this is not working:   $article->pictures()->detach($picture_id);
-        
-        DB::delete('DELETE FROM article_images WHERE article_id = ? AND fileentry_id = ? LIMIT 1',[$article_id, $picture_id]);
-                    
-        // then we delete the record in the database
+         // then we delete the record in the database
         $picture->delete();
         
-            return \Response::json([
-                   'error' => false,
-                   'code'  => 200, 
-                   'feedback' =>'Brand picture removed.'
-               ], 200); 
+        return \Response::json([
+                'error' => false,
+                'code'  => 200, 
+                'feedback' =>'Brand picture removed.'
+                ], 200);  
+    }
+    
+    public function destroy($id) {
+        $article = Article::findOrFail($id);
+        
+        $article->delete();
+        
+        return \Response::json([
+                           'error' => false,
+                           'code'  => 200, 
+                           'feedback' =>'Article has been deleted.'
+                       ], 200);        
     }
 }

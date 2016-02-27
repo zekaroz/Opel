@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
@@ -36,10 +34,21 @@ class FileStorageController extends Controller
         return $fullpath;
     }
 
-    public function getImage(string $path) {
-        $file = new File();
-
+    public function getImage($path) {
+        $file  = Storage::disk('local')->get($path); 
         return $file;
     }
+    
+    public function deleteImage( $path) {
+        $exists = Storage::disk('local')->has($path);
+        
+        if($exists){
+            Storage::disk('local')->delete($path);
+        }
+        
+        return true;
+    }
+    
+    
 }
 
