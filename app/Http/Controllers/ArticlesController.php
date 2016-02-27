@@ -33,7 +33,7 @@ class ArticlesController extends Controller
     //
     public function index(){
                
-         $articles = Article::orderBy('name', 'asc')->get();
+         $articles = Article::with('articleType','brand','model','partType')->orderBy('name', 'asc')->get();
          
          return view('backoffice.articles.index', compact('articles'));
     }
@@ -182,14 +182,15 @@ class ArticlesController extends Controller
         
         //then we get the picture
         $picture = Fileentry::findOrFail($picture_id);
-                              
+         
+        //deletes the relationship of the file that is being deleted.
+        $article->pictures()->detach($picture_id);
+        
         $fs = new FileStorageController();
         
         $fs->deleteImage($picture->path);
         
-        DB::delete('DELETE FROM article_images WHERE article_id = ? AND fileentry_id = ? LIMIT 1',[$article_id, $picture_id]);
-                    
-        // then we delete the record in the database
+         // then we delete the record in the database
         $picture->delete();
         
         return \Response::json([
@@ -197,5 +198,17 @@ class ArticlesController extends Controller
                 'code'  => 200, 
                 'feedback' =>'Brand picture removed.'
                 ], 200);  
+    }
+    
+    public function destroy($id) {
+        $article = Article::findOrFail($id);
+        
+        $article->delete();
+        
+        return \Response::json([
+                           'error' => false,
+                           'code'  => 200, 
+                           'feedback' =>'Article has been deleted.'
+                       ], 200);        
     }
 }

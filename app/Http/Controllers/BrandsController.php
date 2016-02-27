@@ -146,4 +146,17 @@ class BrandsController extends Controller
                ], 200); 
     }
     
+    
+    public function destroy($id) {
+        $brand = Brand::findOrFail($id);
+        
+        $brand->delete();
+        
+        return \Response::json([
+                           'error' => false,
+                           'code'  => 200, 
+                           'feedback' =>'Brand has been deleted.'
+                       ], 200);        
+    }
+    
 }
