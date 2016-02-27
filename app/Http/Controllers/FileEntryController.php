@@ -8,6 +8,7 @@ use Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Response;
+use App\Http\Controllers\FileStorageController;
 
 class FileEntryController extends Controller
 {
@@ -51,8 +52,10 @@ class FileEntryController extends Controller
 
 		$entry = Fileentry::where('filename', '=', $filename)->firstOrFail();
                 
-                $file = Storage::disk('local')->get($entry->path);
- 
+                $fs = new FileStorageController();
+                
+                $file = $fs->getImage($entry->path);
+
 		return (new Response($file, 200))
                     ->header('Content-Type', $entry->mime);
 	}
@@ -61,7 +64,9 @@ class FileEntryController extends Controller
 
 		$entry = Fileentry::where('filename', '=', $filename)->firstOrFail();
                 
-                $file = Storage::disk('local')->get($entry->path);
+                $fs = new FileStorageController();
+                
+                $file = $fs->getImage($entry->thumbnail_path);
                 
 		return (new Response($file, 200))
                     ->header('Content-Type', $entry->mime);
