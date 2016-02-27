@@ -26,7 +26,8 @@ Edit Article '{{ $article->name}}'
             <div class="panel-body">
                 <hr>
 
-                @include('fileentries.listPictures', ['pictures' => $articlePictures])
+                @include('fileentries.listPictures', ['pictures' => $articlePictures, 
+                                                      'showOnly' => false            ])
             </div>
         @endif
 </div>

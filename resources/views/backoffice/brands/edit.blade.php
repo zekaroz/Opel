@@ -31,7 +31,8 @@ Edit Brand '{{ $brand->name}}'
             <div class="panel-body" style="margin-top:175px;">
                 <hr>
                 <h4>Brand Sample Pictures</h4>
-                @include('fileentries.listPictures', ['pictures' => $brandPictures])
+                @include('fileentries.listPictures', ['pictures' => $brandPictures,  
+                                                      'showOnly' => false ])
             </div>
         @endif
 </div>

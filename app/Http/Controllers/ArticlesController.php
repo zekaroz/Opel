@@ -177,40 +177,25 @@ class ArticlesController extends Controller
     }
     
    public function destroyPicture($picture_id, $article_id){
-                  
-        $article = Brand::findOrFail($article_id);
+ 
+        $article = Article::findOrFail($article_id);
         
         //then we get the picture
         $picture = Fileentry::findOrFail($picture_id);
+                              
+        $fs = new FileStorageController();
         
-       //then we delete the physical file;
-        $path =  $picture->path;
-               
-        if(File::exists($path)){
-            File::delete($path);
-        }
-        
-//        else
-//        {
-//             return \Response::json([
-//                   'error' => true,
-//                   'code'  => 200, 
-//                   'feedback' =>'Error deleting file'
-//               ], 101);            
-//        }
-        
-        // first we detach the file from the brand;
-        // this is not working:   $article->pictures()->detach($picture_id);
+        $fs->deleteImage($picture->path);
         
         DB::delete('DELETE FROM article_images WHERE article_id = ? AND fileentry_id = ? LIMIT 1',[$article_id, $picture_id]);
                     
         // then we delete the record in the database
         $picture->delete();
         
-            return \Response::json([
-                   'error' => false,
-                   'code'  => 200, 
-                   'feedback' =>'Brand picture removed.'
-               ], 200); 
+        return \Response::json([
+                'error' => false,
+                'code'  => 200, 
+                'feedback' =>'Brand picture removed.'
+                ], 200);  
     }
 }

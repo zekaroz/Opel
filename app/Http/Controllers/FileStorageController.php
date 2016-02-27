@@ -34,9 +34,21 @@ class FileStorageController extends Controller
         return $fullpath;
     }
 
-    public function getImage(string $path) {
+    public function getImage($path) {
         $file  = Storage::disk('local')->get($path); 
         return $file;
     }
+    
+    public function deleteImage( $path) {
+        $exists = Storage::disk('local')->has($path);
+        
+        if($exists){
+            Storage::disk('local')->delete($path);
+        }
+        
+        return true;
+    }
+    
+    
 }
 
