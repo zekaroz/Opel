@@ -30,8 +30,10 @@ class FileStorageController extends Controller
     public function saveThumbnail($path, $filename,  $file,  $width,  $height) {
         $fullpath = $path.$filename;
         // create an image
-        //  Image::make($file->getRealPath())->fit($width, $height)->save(public_path($fullpath));
-        
+        $image = Image::make($file->getRealPath())->fit($width, $height);
+      
+        Storage::disk('local')->put($fullpath, $image->stream() );
+                
         return $fullpath;
     }
     
