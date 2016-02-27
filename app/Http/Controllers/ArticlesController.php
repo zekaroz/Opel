@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Http\Requests\ArticlesRequest;
 use App\Http\Controllers\Controller;
 use App\Article;
@@ -13,11 +12,9 @@ use App\BrandModel;
 use App\ArticleImage;
 use Illuminate\Support\Facades\Response;
 use Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Fileentry;
 use Illuminate\Support\Facades\DB;
-use Intervention\Image\Facades\Image;
 
 class ArticlesController extends Controller
 {
@@ -139,27 +136,25 @@ class ArticlesController extends Controller
        
     public function addPicture($article_id) {
          $file = Request::file('file');
-         
+
          $extension = $file->getClientOriginalExtension();
          
-         $finalpath = 'article/'.$article_id.'/'.$file->getFilename().'.'.$extension;
+         $path = 'article/'.$article_id.'/';
          
-         $thumbnail_path = public_path('images\article\\'.$article_id.'\\'.$file->getFilename().'_thumb'.'.'.$extension);
-         $final_thumbnailpath  = 'article/'.$article_id.'/'.$file->getFilename().'_thumb'.'.'.$extension;
+         $filename = $file->getFilename().'.'.$extension;
+         $thumb_filename = $file->getFilename().'_thumb.'.$extension;
          
-         $image = File::get($file);
+         $fileStorage = new FileStorageController();
          
-         Storage::disk('local')->put($finalpath, $image );
+         $fileStorage->saveImage($path, $filename, $file);
+         $fileStorage->saveThumbnail($path, $thumb_filename, $file, 320, 150);
          
-         // create an image
-         Image::make($file->getRealPath())->fit(320, 150)->save($thumbnail_path);
-
          $entry = new Fileentry();
          $entry->mime = $file->getClientMimeType();
          $entry->original_filename = $file->getClientOriginalName();
          $entry->filename = $file->getFilename().'.'.$extension;
-         $entry->path = $finalpath;
-         $entry->thumbnail_path = $final_thumbnailpath;
+         $entry->path = $path.$filename;
+         $entry->thumbnail_path = $path.$thumb_filename;
 
          $entry->save();
          
