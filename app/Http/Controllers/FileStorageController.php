@@ -16,7 +16,7 @@ class FileStorageController extends Controller
 
     }
     
-    public function saveImage(string $path, string $filename, $file) {        
+    public function saveImage($path, string $filename, $file) {        
         
         $image = File::get($file);
         
@@ -27,7 +27,7 @@ class FileStorageController extends Controller
         return $fullpath;
     }
     
-    public function saveThumbnail(string $path, string $filename,  $file,  $width,  $height) {
+    public function saveThumbnail($path, string $filename,  $file,  $width,  $height) {
         $fullpath = $path.$filename;
         // create an image
         //  Image::make($file->getRealPath())->fit($width, $height)->save(public_path($fullpath));
