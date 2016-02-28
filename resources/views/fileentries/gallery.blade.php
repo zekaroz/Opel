@@ -1,34 +1,16 @@
-
-<div class="row">
 <div class="container">
-  <ul class="thumbnails">
     @forelse($pictures as $picture)
-               <div class="col-lg-3 col-md-4 col-xs-3 thumb">
-                   <div class="thumbnail">
-                       <a id='{{$picture->id}}' href="#" class="popupLink"> 
-                           <img id="img{{$picture->id}}" src="{{route('getentry', $picture->filename)}}" alt="ALT NAME" class="img-responsive thumbs jbox-img" />
-                       </a>
-                       <div class="caption">
-                           <div style="text-align: right;">
-                              @if(isset($showOnly))
-                                @if(!$showOnly)
-                                    <a  href="#" class="deleteImage btn btn-default" data-id="{{$picture->id}}">
-                                        <span><i class="fa fa-trash-o fa-fw"></i>  </span>
-                                    </a>
-                                @endif
-                              @endif
-                           </div>
-                       </div>
-                   </div>
-               </div>
-     @empty
-           <div> </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <div class="thumbnail">
+                 <img id="img{{$picture->id}}" src="{{route('getentry', $picture->filename)}}" alt="ALT NAME" class="img-responsive thumbs jbox-img" />
+            </div>
+        </div>
+    @empty
+       
     @endforelse
-  </ul>
 </div>
- </div>
-
-     <div class="jbox-container">
+     
+    <div class="jbox-container">
         <div class="img-alt-text"></div>
         <div style="background-color: white;">
             <img src="" />
@@ -67,7 +49,7 @@
 <script src="{{ asset("js/jBox.js") }} " type="text/javascript"></script> 
     
 @stop    
-   
+    
  
  
 
