@@ -8,12 +8,13 @@ Users
 
  <table class="table table-striped">
     <thead>
-    <th> Id </td>
-    <th> Name </td>
-    <th> Email  </td>
-    <th> Created at</td>
+    <th> Id </th>
+    <th> Name </th>
+    <th> Email  </th>
+    <th> Created at</th>
     </thead>
- @forelse( $users as $user) 
+<tbody>
+    @forelse( $users as $user) 
        <tr>
             <td>
               <i class="fa fa-pencil-square-o fa-fw"></i> 
@@ -36,12 +37,7 @@ Users
             </td>
         </tr>
     @endforelse
- 
-
-
-
-      
-
+</tbody>
 </table>
         
 @stop
