@@ -2,15 +2,15 @@
 
 @section('page_heading')
 Edit Brand '{{ $brand->name}}'
-@stop
+@stop 
 
 @section('section')
 
  @include('errors.list')
-
+ 
 <div class="col-sm-6"  >
-{!! Form::model($brand,
-                ['method' => 'PATCH',
+{!! Form::model($brand, 
+                ['method' => 'PATCH', 
                  'action' => ['BrandsController@update',$brand->id]]
                  ) !!}
      @include('backoffice.brands._form', ['submitButtonText' => 'Update Brand'  ])
@@ -19,26 +19,26 @@ Edit Brand '{{ $brand->name}}'
   <div class="col-sm-12" style="margin-top:40px;">
             @include('fileentries.dropZone', [
                                     'postURL' => 'BrandPictureUpload/'.$brand->id,
-                                    'dropId'  => 'myDropZone'])
+                                    'dropId'  => 'myDropZone'])   
         </div>
-
+        
         @if ( isset($brandPictures) )
             <div class="panel-body" style="margin-top:175px;">
                 <hr>
                 <h4>Brand Sample Pictures</h4>
-                @include('fileentries.listPictures', ['pictures' => $brandPictures,
+                @include('fileentries.listPictures', ['pictures' => $brandPictures,  
                                                       'showOnly' => false ])
             </div>
         @endif
 </div>
-
+ 
  <div class="col-sm-6" >
     <div class="panel panel-default">
-        <div class="panel-heading" style="height:35px;">
-               <div class="col-sm-9">
+        <div class="panel-heading" style="height:35px;">        
+               <div class="col-sm-9"> 
                   <h3 class="panel-title"> Models </h3>
-               </div>
-               <div class="col-sm-3" style="text-align: right;">
+               </div>  
+               <div class="col-sm-3" style="text-align: right;"> 
                     <a id="addModel" class="btn btn btn-default btn-xs" href="Javascript:  $(this).hide(); $('#modelForm').show('slide');">
                         Add Model
                     </a>
@@ -50,28 +50,28 @@ Edit Brand '{{ $brand->name}}'
             {!! Form::open(['url'   => 'models']) !!}
                 @include('backoffice.brands._formModel',
                          [
-                         'submitButtonText' => 'Add Model',
+                         'submitButtonText' => 'Add Model', 
                          'brand_id' => $brand->id,
-                         'buttonId' => 'brandModelSave'
+                         'buttonId' => 'brandModelSave' 
                          ])
             {!! Form::close() !!}
          </div>
-
-        <div id="brandModels" class="panel-body">
+        
+        <div id="#brandModels" class="panel-body">
             <div class="">
-                @include('backoffice.brands._Models_table', ['brandModels'=>$brandModels])
+                @include('backoffice.brands._Models_table', ['brandModels'=>$brandModels]) 
             </div>
         </div>
-
+        
         <hr>
-    </div>
+    </div>    
 </div>
-
-
+ 
+ 
  <script >
-
-
-    $(document).ready( function( $ ) {
+     
+     
+    $(document).ready( function( $ ) {        
         $( '.thumbnail .deleteImage' ).on( 'click', function(e) {
             e.preventDefault();
             var link = $(this);
@@ -92,5 +92,5 @@ Edit Brand '{{ $brand->name}}'
         });
     });
 </script>
-
+     
 @stop
