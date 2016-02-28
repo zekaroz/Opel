@@ -10,12 +10,12 @@
             <!-- Map Column -->
             <div class="col-md-8">
                 <!-- Embedded Google Map -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6262.517239888821!2d-8.72279894042573!3d39.659931896099785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd227623ad900345%3A0x3776c3cf29bb56c4!2sR.+da+Sra.+do+Monte%2C+2495!5e0!3m2!1spt-PT!2spt!4v1452726336986" 
-                width="100%" 
-                height="450" 
-                frameborder="0" 
-                style="border:0" 
-                allowfullscreen></iframe>
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2089.864982656969!2d-8.722258590769775!3d39.65991785614968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2276238dc72131%3A0x30b44128438bbe00!2sR.+da+Lagoa+31%2C+2495!5e0!3m2!1spt-PT!2spt!4v1456617940615" 
+                          width="100%"
+                          height="450" 
+                          frameborder="0" 
+                          style="border:1px solid #CCC; margin-left:10px; margin-right:10px;" 
+                          allowfullscreen></iframe>
             </div>
             <!-- Contact Details Column -->
             <div class="col-md-4">
