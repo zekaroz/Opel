@@ -8,7 +8,7 @@ Edit Brand '{{ $brand->name}}'
 
 @include('errors.list')
  
-<div class="col-sm-6"  >
+<div class="col-sm-6">
 {!! Form::model($brand, 
                 ['method' => 'PATCH', 
                  'action' => ['BrandsController@update',$brand->id]]
@@ -20,19 +20,19 @@ Edit Brand '{{ $brand->name}}'
             @include('fileentries.dropZone', [
                                     'postURL' => 'BrandPictureUpload/'.$brand->id,
                                     'dropId'  => 'myDropZone'])   
-        </div>
+  </div>
         
-        @if ( isset($brandPictures) )
-            <div class="panel-body" style="margin-top:175px;">
-                <hr>
-                <h4>Brand Sample Pictures</h4>
-                @include('fileentries.listPictures', ['pictures' => $brandPictures,  
-                                                      'showOnly' => false ])
-            </div>
-        @endif
+    @if ( isset($brandPictures) )
+        <div class="panel-body" style="margin-top:175px;">
+            <hr>
+            <h4>Brand Sample Pictures</h4>
+            @include('fileentries.listPictures', ['pictures' => $brandPictures,  
+                                                  'showOnly' => false ])
+        </div>
+    @endif
 </div>
  
- <div class="col-sm-6" >
+ <div class="col-sm-6">
     <div class="panel panel-default">
         <div class="panel-heading" style="height:35px;">        
                <div class="col-sm-9"> 
@@ -62,36 +62,12 @@ Edit Brand '{{ $brand->name}}'
                 @include('backoffice.brands._Models_table', ['brandModels'=>$brandModels]) 
             </div>
         </div>
-        
-        <hr>
     </div>    
 </div>
  
  
- <script >
-     
-     
-    $(document).ready( function( $ ) {        
-        
-//        $('#brandModelSave').on('click', function (e){
-//            e.preventDefault();
-//            
-//             $.ajax({
-//                url: '/models',
-//                type: 'POST',
-//                data: {},
-//                success:function(msg) {
-//                           $('#brandModels').load('ajax/listBrandPictures/'+{{$brand->id }},function() {
-//                               alert( "Load was performed." );
-//                             });
-//                },
-//                error:function(data) {
-//
-//                     alert('somethings wrong...' );
-//                }
-//            });
-//        });
-        
+ <script>
+    $(document).ready( function( $ ) {         
         $( '.thumbnail .deleteImage' ).on( 'click', function(e) {
             e.preventDefault();
             var link = $(this);
