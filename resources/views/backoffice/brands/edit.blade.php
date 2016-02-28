@@ -6,12 +6,7 @@ Edit Brand '{{ $brand->name}}'
 
 @section('section')
 
-<div>
-    <a href="{{ action('BrandsController@index') }}"><span>Back</span></a>
-</div>
-<br><br>
-
- @include('errors.list')
+@include('errors.list')
  
 <div class="col-sm-6"  >
 {!! Form::model($brand, 
