@@ -6,11 +6,6 @@ Edit Brand '{{ $brand->name}}'
 
 @section('section')
 
-<div>
-    <a href="{{ action('BrandsController@index') }}"><span>Back</span></a>
-</div>
-<br><br>
-
  @include('errors.list')
  
 <div class="col-sm-6"  >
@@ -77,26 +72,6 @@ Edit Brand '{{ $brand->name}}'
      
      
     $(document).ready( function( $ ) {        
-        
-//        $('#brandModelSave').on('click', function (e){
-//            e.preventDefault();
-//            
-//             $.ajax({
-//                url: '/models',
-//                type: 'POST',
-//                data: {},
-//                success:function(msg) {
-//                           $('#brandModels').load('ajax/listBrandPictures/'+{{$brand->id }},function() {
-//                               alert( "Load was performed." );
-//                             });
-//                },
-//                error:function(data) {
-//
-//                     alert('somethings wrong...' );
-//                }
-//            });
-//        });
-        
         $( '.thumbnail .deleteImage' ).on( 'click', function(e) {
             e.preventDefault();
             var link = $(this);
