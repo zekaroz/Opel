@@ -49,7 +49,7 @@ Articles
         </tr>    
     @empty
         <tr>
-            <td colspan="5">
+            <td colspan="6">
                 No records to show...
             </td>
         </tr>

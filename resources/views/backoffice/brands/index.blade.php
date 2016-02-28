@@ -44,7 +44,7 @@ Brands
         </tr>    
     @empty
         <tr>
-            <td colspan="4">
+            <td colspan="5">
                 No records to show...
             </td>
         </tr>
