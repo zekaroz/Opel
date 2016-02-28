@@ -30,7 +30,7 @@
                 <hr>
                 @if ( isset($article->pictures) )
                     <div class="panel-body">
-                        @include('fileentries.listPictures', ['pictures' => $article->pictures
+                        @include('fileentries.gallery', ['pictures' => $article->pictures
                                                              ,'showOnly' => true])
                     </div>
                 @endif
