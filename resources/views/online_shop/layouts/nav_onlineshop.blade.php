@@ -21,7 +21,7 @@
                         <a href="/servicos">Serviços</a>
                     </li>
                     <li>
-                        <a href="/mapa">Localização</a>
+                        <a href="/contactos">Localização</a>
                     </li>
                 </ul>
             </div>

@@ -8,12 +8,12 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
 use App\ArticleType;
+use Reciopel\Mailers\OnlineSiteMailer;
 
 class OnlineShopController extends Controller
 {
-    
     public function __construct() {
-        
+
    }
     /**
      * Display a listing of the resource.
@@ -90,43 +90,59 @@ class OnlineShopController extends Controller
     {
         //
     }
-    
+
     public function homepage(){
-        
+
         $articles = Article::with('pictures')->get();
-        
+
         return view('online_shop.welcome.index')
                 ->with(compact('articles'));
     }
-    
-    
+
+
     public function partSearch(){
-        
+
         $article_type_car = ArticleType::where('code', 'P')->get()->first();
-              
+
         $articles = Article::all()
                     ->where('article_type_id', $article_type_car->id) ;
         return view('online_shop.partsSearch.partSearch')
                     ->with(compact('articles'));
     }
-    
-        
+
+
     public function carSearch(){
-        
+
         $article_type_car = ArticleType::where('code', 'C')->get()->first();
-              
+
         $articles = Article::all()
                     ->where('article_type_id', $article_type_car->id) ;
-        
+
         return view('online_shop.partsSearch.partSearch')
                     ->with(compact('articles'));
     }
-    
+
     public function showArticle($articleid){
-        
+
         $article = Article::with('pictures')->findOrFail($articleid);
-        
+
         return view('online_shop.Article.item')
                     ->with(compact('article'));
+    }
+
+    public function contactUs(Request $request){
+        $info_email = 'zekaroz@gmail.com';
+        $email = $request->email;
+        $fullname = $request->name;
+        $contactNumber = $request->phone;
+        $message = $request->message;
+
+        $mailer  = new OnlineSiteMailer();
+
+        $mailer->contactUs($info_email, $fullname, $contactNumber, $email, $message);
+
+        flash()->overlay('O seu contacto foi recebido. Obrigado por nos contactar.');
+
+        return view('online_shop.contacts.contacts');
     }
 }

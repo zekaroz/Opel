@@ -4,4 +4,5 @@ Homestead.yaml
 Homestead.json
 /nbproject
 /public/images
-/vendor 
+/vendor
+/public/mailoutput

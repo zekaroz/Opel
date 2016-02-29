@@ -34,7 +34,13 @@ Route::get('quem_somos', function(){
     return View::make('online_shop.about.about');
 });
 
-Route::get('mapa', function(){
+/*
+* This is to send emails from the contacts page...
+*/
+Route::post('contactos/email','OnlineShopController@contactUs');
+
+
+Route::get('contactos', function(){
     return View::make('online_shop.contacts.contacts');
 });
 
@@ -133,13 +139,13 @@ Route::get('/documentation', function()
 });
 
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
- 
- 
+
+
 /*
- * We need basically 2 route, one for adding file entries, 
- * one for download it. We are going to add a third 
- * route to have an index page with a form 
- * and where we will display our files. 
+ * We need basically 2 route, one for adding file entries,
+ * one for download it. We are going to add a third
+ * route to have an index page with a form
+ * and where we will display our files.
  *  */
 Route::get('fileentry', 'FileEntryController@index');
 
