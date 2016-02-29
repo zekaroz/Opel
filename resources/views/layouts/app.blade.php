@@ -20,7 +20,7 @@
      <link rel="stylesheet" href="{{ asset("assets/select2/css/select2.min.css") }} " />
      <link rel="stylesheet" type="text/css" href="{{ asset("assets/DataTables/datatables.css") }}"/>
      <link rel="stylesheet" type="text/css" href="{{ asset("css/jBox.css") }}"/>
-     
+
     <style>
         body {
             font-family: 'Lato';
@@ -41,7 +41,7 @@
         }
     </style>
 </head>
-<body> 
+<body>
        <!-- JavaScripts -->
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -52,39 +52,43 @@
     <script src="{{ asset("assets/select2/js/select2.min.js") }} " type="text/javascript"></script>
     <script src="{{ asset("assets/DataTables/datatables.js") }} " type="text/javascript"></script>
     <script src="{{ asset("js/jquery.touchSwipe.min.js") }} " type="text/javascript"></script>
- 
+
     @include('partials.nav_backoffice')
 
     @yield('body')
 
     <script>
-         
+
     $(document).ready(function() {
          $('.search-table').DataTable();
-    } );   
+    } );
 
     $(document).ready(function(){
-        $('.decimal').inputmask('decimal', 
+        $('.decimal').inputmask('decimal',
                                 { radixPoint: ".",
                                    autoGroup: true,
                                    groupSize: 3,
                                    allowMinus: false,
                                    allowPlus: false
                                 });
-                                
-         $('.specialSelect').select2();
-    });    
-    
+
+         $('.specialSelect').select2({
+              width: '100%',
+              minimumResultsForSearch: 10,
+               closeOnSelect: true 
+         });
+    });
+
     $('div.alert').not('.alert_important').delay(3000).slideUp(300);
-    $('#flash-overlay-modal').modal(); 
+    $('#flash-overlay-modal').modal();
     </script>
     <script type="text/javascript">
         $.ajaxSetup({
            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
         });
     </script>
-    
-        
-    @yield('afterBody') 
+
+
+    @yield('afterBody')
 </body>
 </html>

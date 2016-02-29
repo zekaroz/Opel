@@ -15,18 +15,18 @@
 	<link rel="stylesheet" href="{{ asset("assets/stylesheets/styles.css") }}" />
         <link rel="stylesheet" href="{{ asset("assets/enyo/dropzone/dist/dropzone.css") }}" />
 </head>
-<body>       
+<body>
         @include('partials.nav_backoffice')
-	
+
         @yield('body')
-	<script src="{{ asset("assets/scripts/frontend.js") }}" type="text/javascript"></script>
+				<script src="{{ asset("assets/scripts/frontend.js") }}" type="text/javascript"></script>
         <script src="{{ asset("assets/enyo/dropzone/dist/dropzone.js") }} " type="text/javascript"></script>
         <script>
         $('div.alert').not('.alert_important').delay(3000).slideUp(300);
-           
-          $('#flash-overlay-modal').modal(); 
+
+          $('#flash-overlay-modal').modal();
         </script>
-        
+
         @yield('afterBody')
 </body>
-</html>  
+</html>
