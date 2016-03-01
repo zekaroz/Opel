@@ -19,7 +19,7 @@ Articles
     <th> Name </th>
     <th> Reference </th>
     <th class="number"> Price   </th>
-    <th class="date"> Created at </th>
+    <th class="date"> Privacy </th>
     <th></th>
     </thead>
 <tbody>
@@ -39,7 +39,17 @@ Articles
                {{ $article->price}} €
             </td>
             <td class="date">
-               {{ $article->created_at}}
+                  @if($article->public)
+                     <span title="It appears on the website">
+                       <i class="fa fa-globe "></i>
+                        Public
+                     </span>
+                  @else
+                    <span title="This is a private article, only owner can see">
+                      <i class="fa fa-lock "></i>
+                       Private
+                    </span>
+                  @endif
             </td>
             <td>
             <a  href="#" class="deleteLink btn btn-default" data-id="{{$article->id}}">

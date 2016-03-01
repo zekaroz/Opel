@@ -34,8 +34,13 @@
         {!! Form::label('Model' ) !!}
         {!! Form::select('model_id' , $modelsList , null ,['class' => 'form-control specialSelect']) !!}
     </div>
+    <div class='form-group'>
+        {!! Form::label('publicid','Is Public' ) !!}
+        {{ Form::checkbox('public', 1, null, ['class' => 'field']) }}
+    </div>
 
     <div class='form-group'>
+
         {!! Form::submit($submitButtonText ,  ['class' => 'btn btn-primary']) !!}
         or <a href='{{url('articles')}}' class="btn btn-default" > Cancel</a>
     </div>
