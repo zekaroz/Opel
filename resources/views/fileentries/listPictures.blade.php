@@ -2,20 +2,21 @@
 <div class="row">
 <div class="container" style="width:100%;">
     @forelse($pictures as $picture)
-               <div class="col-lg-6 col-md-6 col-xs-6 thumb">
+               <div class="col-lg-4 col-md-6 col-xs-6 thumb">
                    <div class="thumbnail">
                             <img id="img{{$picture->id}}" src="{{route('getentry', $picture->filename)}}" alt="ALT NAME" class="img-responsive thumbs jbox-img" />
+                  @if(isset($showOnly))
+                    @if(!$showOnly)
                        <div class="caption">
                            <div style="text-align: right;">
-                              @if(isset($showOnly))
-                                @if(!$showOnly)
+
                                     <a  href="#" class="deleteImage btn btn-default" data-id="{{$picture->id}}">
                                         <span><i class="fa fa-trash-o fa-fw"></i>  </span>
                                     </a>
-                                @endif
-                              @endif
                            </div>
                        </div>
+                     @endif
+                   @endif
                    </div>
                </div>
      @empty

@@ -4,13 +4,13 @@
     {{$article->name}}
 @stop
 
- 
-@section('section')       
+
+@section('section')
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <ol class="breadcrumb">
-                    <li> 
+                    <li>
                         <small>{{$article->reference}}</small>
                     </li>
                 </ol>
@@ -30,7 +30,7 @@
                 <hr>
                 @if ( isset($article->pictures) )
                     <div class="panel-body">
-                        @include('fileentries.gallery', ['pictures' => $article->pictures
+                        @include('fileentries.listPictures', ['pictures' => $article->pictures
                                                              ,'showOnly' => true])
                     </div>
                 @endif
@@ -38,5 +38,5 @@
         </div>
         <!-- /.row -->
 
-        
+
 @stop
