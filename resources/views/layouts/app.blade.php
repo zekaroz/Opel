@@ -75,7 +75,7 @@
          $('.specialSelect').select2({
               width: '100%',
               minimumResultsForSearch: 10,
-               closeOnSelect: true 
+               closeOnSelect: true
          });
     });
 
