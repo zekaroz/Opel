@@ -17,7 +17,7 @@ class ShopsSeeder extends Seeder
 
     //  Shop::truncate();
       $startDate = Carbon::createFromTimeStamp($faker->dateTimeBetween('-1 years', '+1 month')->getTimestamp());
-
+  
        foreach(range(1,20) as $index){
              Shop::create([
                'name' => $faker->name,
