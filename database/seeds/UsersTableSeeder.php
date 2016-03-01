@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Faker;
+use App\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -12,22 +12,23 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-         User::create([
-            'email' => 'zekaroz@gmail.com',
-            'name' => 'José Queirós',
-            'password' => Hash::make('123456')
-         ]);
+        $faker = Faker\Factory::create();
+        /*  for brand new environments
+       User::truncate();*/
 
-         $faker = Faker\Factory::create();
+       User::create([
+                'email' => 'zekaroz@gmail.com',
+                'name' => 'José Queirós',
+                'password' => Hash::make('123456')
+             ]);
 
-         foreach(range(1,20) as $index){
+
+         foreach(range(1,50) as $index){
              User::create([
                 'email' => $faker->email,
                 'name' => $faker->name,
                 'password' => Hash::make('123456')
              ]);
          }
-
-
-    }
+  }
 }

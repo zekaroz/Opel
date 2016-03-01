@@ -16,7 +16,7 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('reference')->nullable();
-            $table->string('description');
+            $table->text('description');
             $table->decimal('price',15,2)->nullable();
             $table->integer('shop_id')->unsigned()->nullable();
             $table->integer('article_type_id')->unsigned()->nullable();
@@ -26,7 +26,7 @@ class CreateArticlesTable extends Migration
             $table->boolean('public'); // show in website
             $table->softDeletes();
             $table->timestamps();
-            
+
             $table->foreign('shop_id')
                   ->references('id')
                   ->on('shops');
@@ -42,7 +42,7 @@ class CreateArticlesTable extends Migration
             $table->foreign('brand_id')
                   ->references('id')
                   ->on('brands');
-          
+
         });
     }
 

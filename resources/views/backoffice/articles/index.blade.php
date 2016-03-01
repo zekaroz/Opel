@@ -2,7 +2,7 @@
 
 @section('page_heading')
 Articles
-@stop 
+@stop
 
 @section('page_title_buttons')
 <a class ="btn btn-primary" href="{{ action('ArticlesController@create') }}">
@@ -11,7 +11,7 @@ Articles
 </a>
 @stop
 
-@section('section')       
+@section('section')
 
 <table class="table table-striped search-table">
     <thead>
@@ -23,10 +23,10 @@ Articles
     <th></th>
     </thead>
 <tbody>
-    @forelse( $articles as $article) 
+    @forelse( $articles as $article)
         <tr>
             <td>
-              <a href="{{action('ArticlesController@edit',[$article->id]) }}" ><i class="fa fa-pencil-square-o fa-fw"></i> 
+              <a href="{{action('ArticlesController@edit',[$article->id]) }}" ><i class="fa fa-pencil-square-o fa-fw"></i>
                    {{ $article->id }}</a>
             </td>
             <td>
@@ -46,7 +46,7 @@ Articles
                        <span><i class="fa fa-trash-o fa-fw"></i>  </span>
            </a>
             </td>
-        </tr>    
+        </tr>
     @empty
         <tr>
             <td colspan="6">
@@ -58,7 +58,7 @@ Articles
 </table>
 
 <script >
-    $(document).ready( function( $ ) {        
+    $(document).ready( function( $ ) {
         $( '.deleteLink' ).on( 'click', function(e) {
                     e.preventDefault();
                     var link = $(this);
@@ -69,7 +69,7 @@ Articles
                         type: 'post',
                         data: {_method: 'delete'},
                         success:function(msg) {
-                            link.closest('tr').animate({'line-height':0},1000).hide(1);
+                            link.closest('tr').hide(100);
                          },
                         error:function(msg) {
                            alert('Something wrong...');
@@ -78,5 +78,5 @@ Articles
         });
     });
 </script>
-        
+
 @stop
