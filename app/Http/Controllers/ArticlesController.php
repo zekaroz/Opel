@@ -18,10 +18,10 @@ use Illuminate\Support\Facades\DB;
 
 class ArticlesController extends Controller
 {
-    // this will be the main object controller for this app 
-    
+    // this will be the main object controller for this app
+
     public function __construct() {
-        
+
         /*
          *this must be changed
          * we want just to be authenticated on Creation and Update
@@ -29,27 +29,27 @@ class ArticlesController extends Controller
          *           */
        $this->middleware('auth');
     }
-    
+
     //
     public function index(){
-               
+
          $articles = Article::with('articleType','brand','model','partType')->orderBy('name', 'asc')->get();
-         
+
          return view('backoffice.articles.index', compact('articles'));
     }
-    
+
     public function show($id){
         $article = Article::findorFail($id);
-        
+
         return view('backoffice.articles.show', compact('article'));
     }
-    
+
     public function create(){
         $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
         $brandsList = Brand::lists('name','id')->prepend('(all)','');
         $partsList = PartType::lists('name','id')->prepend('(all)','');
         $articleTypesList = ArticleType::lists('name','id')->prepend('(choose one)','');
-        
+
         return view('backoffice.articles.create' )
                     ->with(compact('brandsList'))
                     ->with(compact('partsList'))
@@ -57,54 +57,54 @@ class ArticlesController extends Controller
                     ->with(compact('articleTypesList'))
                 ;
     }
-    
+
     private function saveArticle(Article $article){
-    
+
         $article->shop_id = \App\Shop::all()->first()->id;
-  
+
         if($article->model_id == '')
         {
-           $article->model_id = null; 
+           $article->model_id = null;
         }
-        
+
         if($article->brand_id== '')
         {
-           $article->brand_id = null; 
+           $article->brand_id = null;
         }
-        
+
         if($article->part_type_id== '')
         {
-           $article->part_type_id = null; 
+           $article->part_type_id = null;
         }
-        
+
         // this automatically applies the user id for
         //the relations ship
         //TODO: rever isto para associar a peça à loja de que o user é dono;
-        $article->save();        
+        $article->save();
     }
-    
-    public function store(ArticlesRequest $request){       
+
+    public function store(ArticlesRequest $request){
         // set the shop to the shop of the logged user
         $article = new Article($request->all());
-             
+
         $this->saveArticle($article);
 
         flash()->success('Article has been created.');
-        
+
         return redirect('articles');
     }
-    
+
     public function edit($id){
         $modelsList =  BrandModel::lists('name','id')->prepend('(all)', '');
         $brandsList = Brand::lists('name','id')->prepend('(all)', '');
         $partsList = PartType::lists('name','id')->prepend('(all)', '');
          $articleTypesList = ArticleType::lists('name','id')->prepend('(choose one)','');
-        
+
         $article = Article::findorFail($id);
 
         // get the brand pictures
         $articlePictures = $article->pictures()->get();
-        
+
         return view('backoffice.articles.edit')
                     ->with(compact('brandsList'))
                     ->with(compact('partsList'))
@@ -113,42 +113,43 @@ class ArticlesController extends Controller
                     ->with(compact('articlePictures'))
                     ->with(compact('articleTypesList'));
     }
-    
+
     public function update($id,ArticlesRequest $request){
-        
-        $article = Article::findOrFail($id);        
-        
+
+        $article = Article::findOrFail($id);
+
         $article_new = new Article($request->all());
-        
+
         $article->name = $article_new->name;
         $article->description = $article_new->description;
         $article->price = $article_new->price ;
         $article->reference = $article_new->reference;
         $article->brand_id= $article_new->brand_id;
         $article->model_id= $article_new->model_id;
-        
+        $article->public = $article_new->public;
+
         $this->saveArticle($article);
-        
+
         flash()->success('Article has been updated.');
-         
-        return redirect('articles');           
+
+        return redirect('articles');
     }
-       
+
     public function addPicture($article_id) {
          $file = Request::file('file');
 
          $extension = $file->getClientOriginalExtension();
-         
+
          $path = 'article/'.$article_id.'/';
-         
+
          $filename = $file->getFilename().'.'.$extension;
          $thumb_filename = $file->getFilename().'_thumb.'.$extension;
-         
+
          $fileStorage = new FileStorageController();
-         
+
          $fileStorage->saveImage($path, $filename, $file);
          $fileStorage->saveThumbnail($path, $thumb_filename, $file, 320, 150);
-         
+
          $entry = new Fileentry();
          $entry->mime = $file->getClientMimeType();
          $entry->original_filename = $file->getClientOriginalName();
@@ -157,58 +158,58 @@ class ArticlesController extends Controller
          $entry->thumbnail_path = $path.$thumb_filename;
 
          $entry->save();
-         
+
          // now the image is saved
          //now we need to attach this image to our brand;
-         
+
          $article_image = new ArticleImage();
          $article_image->article_id = $article_id;
          $article_image->fileentry_id = $entry->id;
 
          $article_image->save();
-         
+
          // Because this will be called via Ajax by DropZone
-         // The response must be in JSON 
+         // The response must be in JSON
          // - this is a 200 OK success
          return Response::json([
                             'error' => false,
                             'code'  => 200
                         ], 200);
     }
-    
+
    public function destroyPicture($picture_id, $article_id){
- 
+
         $article = Article::findOrFail($article_id);
-        
+
         //then we get the picture
         $picture = Fileentry::findOrFail($picture_id);
-         
+
         //deletes the relationship of the file that is being deleted.
         $article->pictures()->detach($picture_id);
-        
+
         $fs = new FileStorageController();
-        
+
         $fs->deleteImage($picture->path);
-        
+
          // then we delete the record in the database
         $picture->delete();
-        
+
         return \Response::json([
                 'error' => false,
-                'code'  => 200, 
+                'code'  => 200,
                 'feedback' =>'Brand picture removed.'
-                ], 200);  
+                ], 200);
     }
-    
+
     public function destroy($id) {
         $article = Article::findOrFail($id);
-        
+
         $article->delete();
-        
+
         return \Response::json([
                            'error' => false,
-                           'code'  => 200, 
+                           'code'  => 200,
                            'feedback' =>'Article has been deleted.'
-                       ], 200);        
+                       ], 200);
     }
 }
