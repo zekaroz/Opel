@@ -15,7 +15,7 @@
         {!! Form::label('','Article Description') !!}
         {!! Form::textarea('description' , null , ['class' => 'form-control']) !!}
     </div>
-    <div class='form-group required'>{!! Form::label('Price' ) !!}  
+    <div class='form-group required'>{!! Form::label('Price' ) !!}
         <div class="form-group input-group">
             <span class="input-group-addon"><i class="fa fa-eur"></i></span>
             {!! Form::text('price' , null , ['class' => 'form-control decimal', 'placeholder'=>'Place the price here']) !!}
@@ -34,8 +34,8 @@
         {!! Form::label('Model' ) !!}
         {!! Form::select('model_id' , $modelsList , null ,['class' => 'form-control specialSelect']) !!}
     </div>
-    
+
     <div class='form-group'>
-        {!! Form::submit($submitButtonText ,  ['class' => 'btn btn-primary']) !!} 
+        {!! Form::submit($submitButtonText ,  ['class' => 'btn btn-primary']) !!}
         or <a href='{{url('articles')}}' class="btn btn-default" > Cancel</a>
     </div>

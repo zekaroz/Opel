@@ -105,7 +105,8 @@ class OnlineShopController extends Controller
         $article_type_car = ArticleType::where('code', 'P')->get()->first();
 
         $articles = Article::all()
-                    ->where('article_type_id', $article_type_car->id) ;
+                    ->where('article_type_id', $article_type_car->id)
+                    ->where('public',true) ;
         return view('online_shop.partsSearch.partSearch')
                     ->with(compact('articles'))
                     ->with(compact('article_type_car'));
@@ -117,7 +118,8 @@ class OnlineShopController extends Controller
         $article_type_car = ArticleType::where('code', 'C')->get()->first();
 
         $articles = Article::all()
-                    ->where('article_type_id', $article_type_car->id) ;
+                    ->where('article_type_id', $article_type_car->id)
+                    ->where('public',true) ;
 
         return view('online_shop.CarsSearch.carSearch')
                     ->with(compact('articles'))
