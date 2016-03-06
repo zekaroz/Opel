@@ -45,7 +45,6 @@
        <!-- JavaScripts -->
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{{ asset("assets/dropzone/dropzone.js") }} " type="text/javascript"></script>
     <script src="{{ asset("assets/inputmask/jquery.inputmask.bundle.min.js") }} " type="text/javascript"></script>
@@ -55,7 +54,10 @@
 
     @include('partials.nav_backoffice')
 
-    @yield('body')
+    <div id="app">
+          @yield('body')
+    </div>
+
 
     <script>
 
@@ -90,5 +92,8 @@
 
 
     @yield('afterBody')
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.17/vue.min.js" charset="utf-8">  </script>
+    <script src="{{ asset("js/main.js") }} " type="text/javascript"></script>
 </body>
 </html>

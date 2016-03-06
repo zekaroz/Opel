@@ -2,7 +2,7 @@
 
 @section('page_heading')
 Edit {{ $shop->name}}
-@stop 
+@stop
 
 @section('section')
 
@@ -12,12 +12,14 @@ Edit {{ $shop->name}}
 <br><br>
 
  @include('errors.list');
- 
+
 <div class="col-sm-6"  >
 {!! Form::model($shop, ['method' => 'PATCH', 'action' => ['ShopsController@update',$shop->id]]) !!}
-    @include('shops._form', ['submitButtonText' => 'Update Shop Info' ])
+    @include('shops._form', ['submitButtonText' => 'Update Shop Info',
+                              'shop' => $shop
+                            ])
 {!! Form::close() !!}
 </div>
-       
+
 
 @stop

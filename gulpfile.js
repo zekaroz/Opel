@@ -1,5 +1,6 @@
 var elixir = require('laravel-elixir');
 
+require('laravel-elixir-vueify');
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -13,9 +14,12 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
      mix.copy('vendor/enyo/dropzone/dist', 'public/assets/dropzone');
-     
+
      mix.copy('vendor/robinherbots/jquery.inputmask/dist/min', 'public/assets/inputmask');
-     
+
      // for select2 plugin
      mix.copy('vendor/ivaynberg/select2/dist/', 'public/assets/select2');
+
+     mix.browserify('main.js');
+
 });

@@ -2,7 +2,7 @@
 
 @section('page_heading')
 Create new Shop
-@stop 
+@stop
 
 @section('section')
 
@@ -10,14 +10,13 @@ Create new Shop
     <a href="{{ action('ShopsController@index') }}"><span>Back</span></a>
 </div>
 <br><br>
- 
+
     @include('errors.list')
- 
+
 <div class="col-sm-6"  >
 {!! Form::open(['url' => 'shops']) !!}
     @include('shops._form', ['submitButtonText' => 'Create Shop' ])
 {!! Form::close() !!}
 </div>
-       
 
 @stop
