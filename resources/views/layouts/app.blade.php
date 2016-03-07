@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="_token" content="{!! csrf_token() !!}"/>
+    <meta name="_token" content="{{ csrf_token() }}"/>
     <title>ReciOpel - Backoffice</title>
 
     <!-- Fonts -->
@@ -51,7 +51,7 @@
     <script src="{{ asset("assets/select2/js/select2.min.js") }} " type="text/javascript"></script>
     <script src="{{ asset("assets/DataTables/datatables.js") }} " type="text/javascript"></script>
     <script src="{{ asset("js/jquery.touchSwipe.min.js") }} " type="text/javascript"></script>
-
+    
     @include('partials.nav_backoffice')
 
     <div id="app">
@@ -92,8 +92,6 @@
 
 
     @yield('afterBody')
-
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.17/vue.min.js" charset="utf-8">  </script>
     <script src="{{ asset("js/main.js") }} " type="text/javascript"></script>
 </body>
 </html>

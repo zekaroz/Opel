@@ -38,6 +38,22 @@ class ArticlesController extends Controller
          return view('backoffice.articles.index', compact('articles'));
     }
 
+    public function list(){
+
+          $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
+          $brandsList = Brand::lists('name','id')->prepend('(all)','');
+          $partsList = PartType::lists('name','id')->prepend('(all)','');
+
+         return view('backoffice.globalArticleSearch')
+                ->with(compact('modelsList'))
+                ->with(compact('brandsList'))
+                ->with(compact('partsList'));
+    }
+
+    public function API_All(){
+         return  Article::with('articleType','brand','model','partType')->get();
+    }
+
     public function show($id){
         $article = Article::findorFail($id);
 

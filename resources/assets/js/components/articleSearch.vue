@@ -1,0 +1,138 @@
+<template id="search-template">
+      <div class="searchBox">
+          <div class="form-group col-sm-3">
+            <label for="keyword">Keyword</label>
+            <input id="keyword" class="form-control" v-model="searchText"> </input>
+          </div>
+          <div class="form-group col-sm-3">
+            <label for="keyword">Marcas</label>
+            <select v-model="filter_brand_id" options="{{brands}}" class="form-control specialSelect" name="brand" >
+            </select>
+
+            <pre>
+              {{ brands | json }}
+              selected: {{ brand_id }}
+            </pre>
+          </div>
+          <div class="form-group col-sm-3">
+            <label for="keyword">Modelos</label>
+            <input id="keyword" class="form-control" v-model="searchText"> </input>
+          </div>
+          <div class="form-group col-sm-3">
+            <label for="keyword">Tipo de Peça</label>
+            <input id="keyword" class="form-control" v-model="searchText"> </input>
+          </div>
+          <div class="form-group col-sm-3">
+              <div class="col-sm-6">
+                <label for="public">Público</label>
+                <input type="radio" id="public" value="true" v-model="public">
+              </div>
+              <div class="col-sm-6">
+                <label for="private">Privado</label>
+                <input type="radio" id="private" value="false" v-model="public">
+              </div>
+            </div>
+          <button type="button" class="btn btn btn-primary     " name="button"> Pequisar</button>
+      </div>
+      <hr>
+
+      <table class="table table-striped ">
+        <thead>
+          <th>
+            Aticle Name
+          </th>
+          <th>
+            Reference
+          </th>
+          <th>
+            Price
+          </th>
+          <th>
+            Brand
+          </th>
+          <th>
+            Is Public
+          </th>
+        </thead>
+      <tbody>
+        <tr v-for="article of list">
+          <td>
+              {{article.name}}
+          </td>
+          <td>
+                {{article.reference}}
+          </td>
+          <td>
+               {{article.price}}
+          </td>
+          <td>
+              {{article.brand? article.brand.name : ''}}
+          </td>
+          <td>
+                 <span v-if="article.public==1" title="It appears on the website">
+                   <i class="fa fa-globe "></i>
+                    Public
+                 </span>
+
+                <span v-else title="This is a private article, only owner can see">
+                  <i class="fa fa-lock "></i>
+                   Private
+                </span>
+
+          </td>
+        </tr>
+    </tbody>
+    </table>
+
+
+</template>
+
+
+  <script>
+  export default('al',{
+      template : "#search-template",
+      props: {
+          brands: [],
+          models: [],
+          part_type: []
+      },
+      data(){
+          return {
+                  list: [],
+                  searchText: '',
+                  public: null,
+                  filter_brand_id: null
+          }
+      },
+      created: function(){
+          this.fetchArticles();
+      },
+      methods:{
+          fetchArticles: function(){
+              var resource = this.$resource('articles/all/{id}')
+
+               resource.get(function(data){
+                     this.$set('list', data);
+                }.bind(this));
+
+          //    this.$http.get('articles/all',function(data){
+          //        this.$set('list', data);
+          //    }.bind(this));
+          },
+          deleteArticle: function(article){
+              this.list.$remove(article);
+          }
+      },
+      filters: {
+            BrandFormater: function(val) {
+                var newVal = '';
+                this.brands.map(function(el){
+                    if (val == el.value){
+                        newVal = el.value + ' ' + el.text;
+                    }
+                });
+                return newVal;
+            }
+        }
+  });
+  </script>

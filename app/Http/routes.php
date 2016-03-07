@@ -25,6 +25,10 @@
 /*
  Web site routes
  *  */
+Route::get('a/','ArticlesController@list' );
+
+Route::get('articles/all','ArticlesController@API_All');
+
 Route::get('/','OnlineShopController@homepage' );
 
 Route::get('/item/{articleid}/show','OnlineShopController@showArticle' );
