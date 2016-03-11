@@ -29,6 +29,8 @@ Route::get('a/','ArticlesController@list' );
 
 Route::get('articles/all','ArticlesController@API_All');
 
+Route::get('articleModels/{brandid}','ArticlesController@API_models');
+
 Route::get('/','OnlineShopController@homepage' );
 
 Route::get('/item/{articleid}/show','OnlineShopController@showArticle' );
@@ -67,11 +69,15 @@ Route::resource('part_types','PartTypesController');
 
 Route::resource('brands','BrandsController');
 
+Route::get('brands/{brand_id}/loadImages', 'BrandsController@loadImages');
+
 Route::resource('article_types','ArticleTypesController');
 
 Route::resource('models','BrandModelsController');
 
 Route::resource('articles','ArticlesController');
+
+Route::get('articles/{article_id}/loadImages', 'ArticlesController@loadImages');
 
 //Route::get('/backoffice/users','UsersController');
 

@@ -11624,23 +11624,34 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = ('al', {
     template: "#search-template",
     props: {
-        brands: [],
         models: [],
-        part_type: []
+        parts: [],
+        brands: []
     },
     data: function data() {
         return {
             list: [],
             searchText: '',
             public: null,
-            filter_brand_id: null
+            filters: {
+                brandid: null,
+                modelid: null,
+                partid: null
+            },
+            brandModels: []
         };
     },
 
     created: function created() {
         this.fetchArticles();
+        this.brandModels = this.models;
     },
     methods: {
+        getModels: function getModels() {
+            this.$http.get('articleModels/' + this.filters.brandid, function (data) {
+                this.$set('models', data);
+            }.bind(this));
+        },
         fetchArticles: function fetchArticles() {
             var resource = this.$resource('articles/all/{id}');
 
@@ -11655,21 +11666,10 @@ exports.default = ('al', {
         deleteArticle: function deleteArticle(article) {
             this.list.$remove(article);
         }
-    },
-    filters: {
-        BrandFormater: function BrandFormater(val) {
-            var newVal = '';
-            this.brands.map(function (el) {
-                if (val == el.value) {
-                    newVal = el.value + ' ' + el.text;
-                }
-            });
-            return newVal;
-        }
     }
 });
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div class=\"searchBox\">\n      <div class=\"form-group col-sm-3\">\n        <label for=\"keyword\">Keyword</label>\n        <input id=\"keyword\" class=\"form-control\" v-model=\"searchText\"> \n      </div>\n      <div class=\"form-group col-sm-3\">\n        <label for=\"keyword\">Marcas</label>\n        <select v-model=\"filter_brand_id\" options=\"{{brands}}\" class=\"form-control specialSelect\" name=\"brand\">\n        </select>\n\n        <pre>              {{ brands | json }}\n          selected: {{ brand_id }}\n        </pre>\n      </div>\n      <div class=\"form-group col-sm-3\">\n        <label for=\"keyword\">Modelos</label>\n        <input id=\"keyword\" class=\"form-control\" v-model=\"searchText\"> \n      </div>\n      <div class=\"form-group col-sm-3\">\n        <label for=\"keyword\">Tipo de Peça</label>\n        <input id=\"keyword\" class=\"form-control\" v-model=\"searchText\"> \n      </div>\n      <div class=\"form-group col-sm-3\">\n          <div class=\"col-sm-6\">\n            <label for=\"public\">Público</label>\n            <input type=\"radio\" id=\"public\" value=\"true\" v-model=\"public\">\n          </div>\n          <div class=\"col-sm-6\">\n            <label for=\"private\">Privado</label>\n            <input type=\"radio\" id=\"private\" value=\"false\" v-model=\"public\">\n          </div>\n        </div>\n      <button type=\"button\" class=\"btn btn btn-primary     \" name=\"button\"> Pequisar</button>\n  </div>\n  <hr>\n\n  <table class=\"table table-striped \">\n    <thead>\n      <tr><th>\n        Aticle Name\n      </th>\n      <th>\n        Reference\n      </th>\n      <th>\n        Price\n      </th>\n      <th>\n        Brand\n      </th>\n      <th>\n        Is Public\n      </th>\n    </tr></thead>\n  <tbody>\n    <tr v-for=\"article of list\">\n      <td>\n          {{article.name}}\n      </td>\n      <td>\n            {{article.reference}}\n      </td>\n      <td>\n           {{article.price}}\n      </td>\n      <td>\n          {{article.brand? article.brand.name : ''}}\n      </td>\n      <td>\n             <span v-if=\"article.public==1\" title=\"It appears on the website\">\n               <i class=\"fa fa-globe \"></i>\n                Public\n             </span>\n\n            <span v-else=\"\" title=\"This is a private article, only owner can see\">\n              <i class=\"fa fa-lock \"></i>\n               Private\n            </span>\n\n      </td>\n    </tr>\n</tbody>\n</table>\n\n\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n  <div class=\"searchBox\">\n      <div class=\"form-group col-sm-3\">\n        <label for=\"keyword\">Keyword</label>\n        <input id=\"keyword\" class=\"form-control\" v-model=\"searchText\"> \n      </div>\n      <div class=\"form-group col-sm-3\">\n        <label for=\"keyword\">Marcas</label>\n          <select v-select=\"filters.brandid\" :options=\"brands | combobox 'id' 'name'\" @click=\"getModels\">\n             <option value=\"0\">(all)</option>\n           </select>\n        <pre>              selected: {{    filters.brandid     }}\n        </pre>\n      </div>\n      <div class=\"form-group col-sm-3\">\n        <label for=\"keyword\">Modelos</label>\n        <select v-select=\"filters.modelid\" :options=\"brandModels | combobox 'id' 'name'\">\n           <option value=\"0\">(all)</option>\n         </select>\n         <pre>               selected: {{     filters.modelid     }}\n         </pre>\n      </div>\n      <div class=\"form-group col-sm-3\">\n        <label for=\"keyword\">Tipo de Peça</label>\n        <select v-select=\"filters.partid\" :options=\"parts | combobox 'id' 'name'\">\n           <option value=\"0\">(all)</option>\n         </select>\n         <pre>               selected: {{   filters.partid   }}\n         </pre>\n      </div>\n      <div class=\"form-group col-sm-3\">\n          <div class=\"col-sm-6\">\n            <label for=\"public\">Público</label>\n            <input type=\"radio\" id=\"public\" value=\"true\" v-model=\"public\">\n          </div>\n          <div class=\"col-sm-6\">\n            <label for=\"private\">Privado</label>\n            <input type=\"radio\" id=\"private\" value=\"false\" v-model=\"public\">\n          </div>\n        </div>\n      <button type=\"button\" class=\"btn btn btn-primary\" name=\"button\"> Pequisar</button>\n  </div>\n  <hr>\n\n  <pre>          {{ $data.filters | json}}\n  </pre>\n\n  <table class=\"table table-striped \">\n    <thead>\n      <tr><th>\n        Aticle Name\n      </th>\n      <th>\n        Reference\n      </th>\n      <th>\n        Price\n      </th>\n      <th>\n        Brand\n      </th>\n      <th>\n        Is Public\n      </th>\n    </tr></thead>\n  <tbody>\n    <tr v-for=\"article of list\">\n      <td>\n          {{article.name}}\n      </td>\n      <td>\n            {{article.reference}}\n      </td>\n      <td>\n           {{article.price}}\n      </td>\n      <td>\n          {{article.brand? article.brand.name : ''}}\n      </td>\n      <td>\n             <span v-if=\"article.public==1\" title=\"It appears on the website\">\n               <i class=\"fa fa-globe \"></i>\n                Public\n             </span>\n\n            <span v-else=\"\" title=\"This is a private article, only owner can see\">\n              <i class=\"fa fa-lock \"></i>\n               Private\n            </span>\n\n      </td>\n    </tr>\n</tbody>\n</table>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -11728,6 +11728,48 @@ var _articleSearch2 = _interopRequireDefault(_articleSearch);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Vue = require('Vue');
+
+Vue.directive('select', {
+  twoWay: true,
+  priority: 1000,
+
+  params: ['options'],
+
+  bind: function bind() {
+    var self = this;
+    $(this.el).select2({
+      data: this.params.options,
+      width: '100%'
+    }).on('change', function () {
+      self.set(this.value);
+      $(self.el).click();
+    });
+  },
+  update: function update(value) {
+    $(this.el).val(value).trigger('change');
+    $(this.el).change();
+  },
+  unbind: function unbind() {
+    $(this.el).off().select2('destroy');
+  }
+});
+
+// So this filter is to apply to any array when passing it o select tags
+// in this case a every record must have a text and and Id
+Vue.filter('combobox', function (records, id_name, text_name) {
+  if (records.length == 0) {
+    return [];
+  }
+
+  var recordsList = []; // { id : 0, text : "Item One" }, // example
+
+  $.each(records, function (key, record) {
+    var option = { id: record[id_name], text: record[text_name] };
+    recordsList.push(option);
+  });
+
+  return recordsList;
+});
 
 Vue.use(require('vue-resource'));
 

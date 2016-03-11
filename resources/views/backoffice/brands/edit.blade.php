@@ -19,17 +19,42 @@ Edit Brand '{{ $brand->name}}'
   <div class="col-sm-12" style="margin-top:40px;">
             @include('fileentries.dropZone', [
                                     'postURL' => 'BrandPictureUpload/'.$brand->id,
-                                    'dropId'  => 'myDropZone'])
+                                    'dropId'  => 'filedrop'])
   </div>
 
-    @if ( isset($brandPictures) )
-        <div class="panel-body" style="margin-top:175px;">
-            <hr>
-            <h4>Brand Sample Pictures</h4>
-            @include('fileentries.listPictures', ['pictures' => $brandPictures,
-                                                  'showOnly' => false ])
-        </div>
-    @endif
+
+      <div id="picturesContainer">
+        @if ( isset($brandPictures) )
+          <div class="panel-body" style="margin-top:175px;">
+              <hr>
+              <h4>Brand Sample Pictures</h4>
+              @include('fileentries.listPictures', ['pictures' => $brandPictures,
+                                                    'showOnly' => false ])
+          </div>
+        @endif
+        <script type="text/javascript">
+            $( '.thumbnail .deleteImage' ).on( 'click', function(e) {
+                   e.preventDefault();
+                   var link = $(this);
+                   var postUrl = '/BrandPictureUpload/'+link.attr('data-id')+'/brand/'+{{$brand->id}};
+
+                   $.ajax({
+                       url: postUrl,
+                       type: 'post',
+                       data: {_method: 'delete'},
+                       success:function(msg) {
+                           link.closest('.thumbnail').toggle( "explode" );
+                        },
+                       error:function(data) {
+
+                            alert('somethings wrong...' );
+                       }
+                   });
+               });
+        </script>
+
+     </div>
+
 </div>
 
  <div class="col-sm-6">
@@ -65,28 +90,26 @@ Edit Brand '{{ $brand->name}}'
     </div>
 </div>
 
+<script>
 
- <script>
-    $(document).ready( function( $ ) {
-        $( '.thumbnail .deleteImage' ).on( 'click', function(e) {
-            e.preventDefault();
-            var link = $(this);
-            var postUrl = '/BrandPictureUpload/'+link.attr('data-id')+'/brand/'+{{$brand->id}};
+// when using file Entries partial the function with the name
+// reloadPictures will be called after changes in the
+// images like, adding pictures
+function reloadPictures(){
+  // reload the content of the pictures for this page
+      $( "#picturesContainer" ).load( "/brands/{{$brand->id}}/loadImages" , function( response, status, xhr ) {
+          if ( status == "error" ) {
+            var msg = "Sorry but there was an error: ";
+            alert( msg + xhr.status + " " + xhr.statusText );
+          }
+      });
+}
 
-            $.ajax({
-                url: postUrl,
-                type: 'post',
-                data: {_method: 'delete'},
-                success:function(msg) {
-                    link.closest('.thumbnail').toggle( "explode" );
-                 },
-                error:function(data) {
+$(document).ready( function( $ ) {
 
-                     alert('somethings wrong...' );
-                }
-            });
-        });
-    });
+});
+
+
 </script>
 
 @stop

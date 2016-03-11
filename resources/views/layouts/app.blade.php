@@ -51,7 +51,7 @@
     <script src="{{ asset("assets/select2/js/select2.min.js") }} " type="text/javascript"></script>
     <script src="{{ asset("assets/DataTables/datatables.js") }} " type="text/javascript"></script>
     <script src="{{ asset("js/jquery.touchSwipe.min.js") }} " type="text/javascript"></script>
-    
+
     @include('partials.nav_backoffice')
 
     <div id="app">
@@ -60,6 +60,8 @@
 
 
     <script>
+
+
 
     $(document).ready(function() {
          $('.search-table').DataTable();
@@ -79,6 +81,33 @@
               minimumResultsForSearch: 10,
                closeOnSelect: true
          });
+
+
+         // Dropzone.options.{DropzoneDivId} - the id of the drop zones must be
+         // identifier tby the Id of the {DropzoneDivId}, in this carSearch
+         // filedrop, so this event can be handled here
+         Dropzone.options.filedrop = {
+             init: function () {
+               this.on("complete", function (file) {
+                 if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+
+                     //when using dropzone to upload files,
+                     //after the upload is complete
+                     // and if there is a function named reloadPictures
+                     if(reloadPictures){
+                         reloadPictures();
+                     }
+                     // each client of the dropzone must write a function reloadPictures()
+                     // if they want to reload their pictures after upload
+                 }
+               });
+
+               this.on("success", function(file, responseText) {
+                // Handle the responseText here. For example, add the text to the preview element:
+                this.removeFile(file);
+              });
+             } //end of init Function
+         };
     });
 
     $('div.alert').not('.alert_important').delay(3000).slideUp(300);

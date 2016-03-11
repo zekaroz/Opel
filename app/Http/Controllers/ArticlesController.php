@@ -39,10 +39,9 @@ class ArticlesController extends Controller
     }
 
     public function list(){
-
-          $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
-          $brandsList = Brand::lists('name','id')->prepend('(all)','');
-          $partsList = PartType::lists('name','id')->prepend('(all)','');
+          $brandsList =  Brand::all('name','id');
+          $modelsList =  BrandModel::all('name','id', 'brand_id');
+          $partsList  =  PartType::all('name','id');
 
          return view('backoffice.globalArticleSearch')
                 ->with(compact('modelsList'))
@@ -52,6 +51,13 @@ class ArticlesController extends Controller
 
     public function API_All(){
          return  Article::with('articleType','brand','model','partType')->get();
+    }
+
+    public function API_models($brandid){
+
+         $brand = Brand::findorFail($brandid);
+
+         return   $brand->models('name','id','brand_id')->get();
     }
 
     public function show($id){
@@ -130,6 +136,19 @@ class ArticlesController extends Controller
                     ->with(compact('articleTypesList'));
     }
 
+
+    public function loadImages($id){
+
+        $article = Article::findorFail($id);
+
+        // get the brand pictures
+        $articlePictures = $article->pictures()->get();
+
+        return view('backoffice.articles.articlePictures')
+                    ->with(compact('article'))
+                    ->with(compact('articlePictures'));
+    }
+
     public function update($id,ArticlesRequest $request){
 
         $article = Article::findOrFail($id);
@@ -188,7 +207,7 @@ class ArticlesController extends Controller
          // The response must be in JSON
          // - this is a 200 OK success
          return Response::json([
-                            'error' => false,
+                            'error' => 'File could not be saved!',
                             'code'  => 200
                         ], 200);
     }

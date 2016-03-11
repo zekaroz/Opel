@@ -11,7 +11,8 @@ Articles
 @section('section')
 
 <div id="articlesList">
-    <articlesearch brands="{{$brandsList}}" brands="{{$modelsList}}" brands="{{$partsList}}"> </articlesearch>
+    <articlesearch :brands="{{  $brandsList  }}" :models="{{  $modelsList  }}" :parts="{{  $partsList  }}" >
+    </articlesearch>
 
 </div>
 

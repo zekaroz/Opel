@@ -6,7 +6,7 @@
           </div>
           <div class="form-group col-sm-3">
             <label for="keyword">Marcas</label>
-              <select v-select="filters.brandid" :options="brands | combobox 'id' 'name'" @click="getModels">
+              <select v-select="filters.brandid" :options="brands | combobox 'id' 'name'" @change="getModels">
                  <option value="0">(all)</option>
                </select>
             <pre>
@@ -15,7 +15,7 @@
           </div>
           <div class="form-group col-sm-3">
             <label for="keyword">Modelos</label>
-            <select v-select="filters.modelid" :options="brandModels | combobox 'id' 'name'">
+            <select v-select="filters.modelid" :options="models | combobox 'id' 'name'">
                <option value="0">(all)</option>
              </select>
              <pre>
@@ -116,19 +116,15 @@
                        brandid: null,
                        modelid: null,
                        partid: null
-                  },
-                  brandModels:[]
+                  }
           }
       },
       created: function(){
           this.fetchArticles();
-          this.brandModels = this.models;
       },
       methods:{
           getModels: function(){
-                  this.$http.get('articleModels/'+this.filters.brandid,function(data){
-                          this.$set('models', data);
-                  }.bind(this));
+              console.log('change Brand');
           },
           fetchArticles: function(){
               var resource = this.$resource('articles/all/{id}')
