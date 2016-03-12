@@ -20,6 +20,7 @@ elixir(function(mix) {
      // for select2 plugin
      mix.copy('vendor/ivaynberg/select2/dist/', 'public/assets/select2');
 
+     //my personal Javascrpit for helper functions
+     mix.copy('resources/assets/js/JQ.js', 'public/assets/js');
      mix.browserify('main.js');
-
 });
