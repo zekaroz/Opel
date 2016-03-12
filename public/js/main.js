@@ -11674,7 +11674,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "c:\\Opel\\resources\\assets\\js\\components\\articleSearch.vue"
+  var id = "C:\\Opel\\resources\\assets\\js\\components\\articleSearch.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
@@ -11707,7 +11707,7 @@ if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "c:\\Opel\\resources\\assets\\js\\components\\formtext.vue"
+  var id = "C:\\Opel\\resources\\assets\\js\\components\\formtext.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {

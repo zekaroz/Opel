@@ -70,7 +70,7 @@ function reloadPictures(){
             var msg = "Sorry but there was an error: ";
             alert( msg + xhr.status + " " + xhr.statusText );
           }
-      });
+      })
 }
 
 </script>

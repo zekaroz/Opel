@@ -51,6 +51,8 @@
     <script src="{{ asset("assets/select2/js/select2.min.js") }} " type="text/javascript"></script>
     <script src="{{ asset("assets/DataTables/datatables.js") }} " type="text/javascript"></script>
     <script src="{{ asset("js/jquery.touchSwipe.min.js") }} " type="text/javascript"></script>
+    <script src="{{ asset("js/JQ.js") }} " type="text/javascript"></script>
+
 
     @include('partials.nav_backoffice')
 
@@ -91,6 +93,7 @@
                this.on("complete", function (file) {
                  if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
 
+                    loadingStart();
                      //when using dropzone to upload files,
                      //after the upload is complete
                      // and if there is a function named reloadPictures
@@ -99,6 +102,8 @@
                      }
                      // each client of the dropzone must write a function reloadPictures()
                      // if they want to reload their pictures after upload
+
+                     loadingEnd();
                  }
                });
 
