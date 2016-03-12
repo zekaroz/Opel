@@ -38,7 +38,7 @@ class ArticlesController extends Controller
          return view('backoffice.articles.index', compact('articles'));
     }
 
-    public function list(){
+    public function listAll(){
           $brandsList =  Brand::all('name','id');
           $modelsList =  BrandModel::all('name','id', 'brand_id');
           $partsList  =  PartType::all('name','id');
