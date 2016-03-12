@@ -1,5 +1,7 @@
-
-    <textfield label="Shop Name" name="name" mandatory="true" content="{{isset($shop) ? $shop->name : ''}}"></textfield>
+    <div class='form-group'>
+        {!! Form::label('Shop Name' ) !!}
+        {!! Form::text('name' , null , ['class' => 'form-control']) !!}
+    </div>
     <div class='form-group'>
         {!! Form::label('Shop Description' ) !!}
         {!! Form::textarea('shopDescription' , null , ['class' => 'form-control']) !!}
