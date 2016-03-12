@@ -24,12 +24,12 @@
 
 /*
  Web site routes
- *  */
-Route::get('a/','ArticlesController@list' );
-
-Route::get('articles/all','ArticlesController@API_All');
-
-Route::get('articleModels/{brandid}','ArticlesController@API_models');
+//  *  */
+// Route::get('a/','ArticlesController@list' );
+//
+// Route::get('articles/all','ArticlesController@API_All');
+//
+// Route::get('articleModels/{brandid}','ArticlesController@API_models');
 
 Route::get('/','OnlineShopController@homepage' );
 
