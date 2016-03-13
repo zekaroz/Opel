@@ -31,6 +31,8 @@
 //
 // Route::get('articleModels/{brandid}','ArticlesController@API_models');
 
+Route::get('articles/all','ArticlesController@articleSearcher');
+
 Route::get('/','OnlineShopController@homepage' );
 
 Route::get('/item/{articleid}/show','OnlineShopController@showArticle' );
