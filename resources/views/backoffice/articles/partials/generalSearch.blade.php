@@ -2,7 +2,7 @@
   <div class="row">
       <div class="form-group col-sm-3">
         <label for="keyword">Keyword</label>
-        <input id="keyword" class="form-control" v-model="searchText"> </input>
+        <input type="text" id="keyword" class="form-control"> </input>
       </div>
       <div class="form-group col-sm-3">
         <label for="keyword">Marcas</label>
@@ -28,9 +28,29 @@
           {!! Form::radio('public' , false ,['class' => 'form-control']) !!}
         </div>
       </div>
-    <button type="button" class="btn btn btn-primary" name="button"> Pequisar</button>
+    <button id="search" type="button" class="btn btn btn-primary" name="button"> Pequisar</button>
   </div>
 </div>
 <hr>
 
+<div id="searchResult">
   @include('backoffice.articles.partials.articlesTable', ['articles' => $articles ])
+</div>
+
+<script type="text/javascript">
+      $(document).ready(function(){
+
+          $('#search').on('click', function(e){
+            var postData = 'keyword='+ $('#keyword')[0].value;
+            var refreshElement = $('#searchResult');
+
+            console.log('Calling the function form_post...');
+
+            // this is a post method to the articles/all route
+            form_post(postData, '/articles/all' , refreshElement);
+
+            console.log('post end...');
+          });
+      });
+
+</script>

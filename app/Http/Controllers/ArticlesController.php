@@ -93,6 +93,20 @@ class ArticlesController extends Controller
                 ->with(compact('articles'));
     }
 
+    public function search(){
+
+      $searchKeyword = Request::input('keyword');
+
+      $articles = Article::
+                  where('name','like','%'.$searchKeyword.'%')
+                  ->with('articleType','brand','model','partType')
+                  ->orderBy('name', 'asc')->get();
+
+      $outputView = view('backoffice.articles.partials.articlesTable')->with(compact('articles'))->render();
+
+      return $outputView;
+    }
+
     private function saveArticle(Article $article){
 
         $article->shop_id = \App\Shop::all()->first()->id;
