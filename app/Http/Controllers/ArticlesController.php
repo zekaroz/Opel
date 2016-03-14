@@ -96,9 +96,17 @@ class ArticlesController extends Controller
     public function search(){
 
       $searchKeyword = Request::input('keyword');
+      $brand_id =  Request::input('brand_id');
+      $brand_model_id =  Request::input('brand_model_id');
+      $part_type_id =  Request::input('part_type_id');
+      $public =  Request::input('public');
 
       $articles = Article::
                   where('name','like','%'.$searchKeyword.'%')
+                  ->where(function ($query) use ($brand_id){
+                      if($brand_id != '')
+                        $query->where('brand_id', $brand_id);
+                    })
                   ->with('articleType','brand','model','partType')
                   ->orderBy('name', 'asc')->get();
 
