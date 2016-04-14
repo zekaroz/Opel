@@ -24,10 +24,8 @@ class ArticlesRequest extends Request
     public function rules()
     {
         return [
-            'name'=>'required',
-            'description'=>'required',
-            'price'=>'required', 
-            'brand_id' => 'required'
+            'article_type_id'=>'required',
+            'name'=>'required'
         ];
     }
 }

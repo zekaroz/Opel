@@ -8,7 +8,7 @@
         {!! Form::text('name' , null , ['class' => 'form-control']) !!}
     </div>
     <div class='form-group required'>
-        {!! Form::label('Reference' , 'Reference') !!}
+        {!! Form::label('Reference OEM' , 'Reference') !!}
         {!! Form::text('reference' , null , ['class' => 'form-control']) !!}
     </div>
     <div class='form-group required'>
