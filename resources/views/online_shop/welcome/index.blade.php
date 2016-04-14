@@ -12,9 +12,9 @@
                                                                 ] )
                 </div>
 
-                <div class="row">                    
+                <div class="row">
                     @if( isset($articles) )
-                        @foreach( $articles as $article) 
+                        @foreach( $articles as $article)
                             @include('online_shop.partials.squareDisplay',
                                                          [
                                                             'numberOfStars'=> 0 ,
@@ -22,7 +22,7 @@
                                                             'itemURL' => 'item/'.$article->id.'/show',
                                                             'itemName'=> $article->name,
                                                             'itemDescription'=> $article->description,
-                                                            'itemPrice' => $article->price.'€',
+                                                            'itemPrice' => $article->price,
                                                             'picture_filename' => (count($article->pictures)>0)?($article->pictures->first()->filename):''
                                                          ])
                         @endforeach
