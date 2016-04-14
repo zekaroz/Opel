@@ -33,9 +33,16 @@ class ArticlesController extends Controller
     //
     public function index(){
 
-         $articles = Article::with('articleType','brand','model','partType')->orderBy('name', 'asc')->get();
+       $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
+       $brandsList = Brand::lists('name','id')->prepend('(all)','');
+       $partsList = PartType::lists('name','id')->prepend('(all)','');
+       $articles = Article::with('articleType','brand','model','partType')->orderBy('name', 'asc')->get();
 
-         return view('backoffice.articles.index', compact('articles'));
+         return view('backoffice.articles.index')
+                 ->with(compact('modelsList'))
+                 ->with(compact('brandsList'))
+                 ->with(compact('partsList'))
+                   ->with(compact('articles'));
     }
 
     public function listAll(){
@@ -78,6 +85,57 @@ class ArticlesController extends Controller
                     ->with(compact('modelsList'))
                     ->with(compact('articleTypesList'))
                 ;
+    }
+
+    public function articleSearcher(){
+        $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
+        $brandsList = Brand::lists('name','id')->prepend('(all)','');
+        $partsList = PartType::lists('name','id')->prepend('(all)','');
+         $articles = Article::with('articleType','brand','model','partType')->orderBy('name', 'asc')->get();
+
+       return view('backoffice.articles.ArticleSearcher')
+              ->with(compact('modelsList'))
+              ->with(compact('brandsList'))
+              ->with(compact('partsList'))
+                ->with(compact('articles'));
+    }
+
+    public function search(){
+
+      $searchKeyword = Request::input('keyword');
+      $brand_id =  Request::input('brand_id');
+      $brand_model_id =  Request::input('brand_model_id');
+      $part_type_id =  Request::input('part_type_id');
+      $public =  Request::input('public');
+
+      if($public == 'all'){
+          $public = null;
+      }
+
+       $articles = Article::
+                  where('name','like','%'.$searchKeyword.'%')
+                ->where(function ($query) use ($brand_id){
+                  if($brand_id != '')
+                    $query->where('brand_id', $brand_id);
+                })
+                ->where(function ($query) use ($brand_model_id){
+                  if($brand_model_id != '')
+                    $query->where('model_id', $brand_model_id);
+                })
+                ->where(function ($query) use ($part_type_id){
+                  if($part_type_id != '')
+                    $query->where('part_type_id', $part_type_id);
+                })
+                ->where(function ($query) use ($public){
+                  if( isset($public))
+                    $query->where('public', $public);
+                })
+                  ->with('articleType','brand','model','partType')
+                  ->orderBy('name', 'asc')->get();
+
+      $outputView = view('backoffice.articles.partials.articlesTable')->with(compact('articles'))->render();
+
+      return $outputView;
     }
 
     private function saveArticle(Article $article){

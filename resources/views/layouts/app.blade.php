@@ -63,13 +63,9 @@
 
     <script>
 
-
-
     $(document).ready(function() {
-         $('.search-table').DataTable();
-    } );
+        $('.search-table').DataTable();
 
-    $(document).ready(function(){
         $('.decimal').inputmask('decimal',
                                 { radixPoint: ".",
                                    autoGroup: true,
