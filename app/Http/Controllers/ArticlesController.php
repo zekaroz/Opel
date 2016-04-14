@@ -163,17 +163,6 @@ class ArticlesController extends Controller
         $article->save();
     }
 
-    public function store(ArticlesRequest $request){
-        // set the shop to the shop of the logged user
-        $article = new Article($request->all());
-
-        $this->saveArticle($article);
-
-        flash()->success('Article has been created.');
-
-        return redirect('articles');
-    }
-
     public function edit($id){
         $modelsList =  BrandModel::lists('name','id')->prepend('(all)', '');
         $brandsList = Brand::lists('name','id')->prepend('(all)', '');
@@ -181,6 +170,31 @@ class ArticlesController extends Controller
          $articleTypesList = ArticleType::lists('name','id')->prepend('(choose one)','');
 
         $article = Article::findorFail($id);
+
+        // get the brand pictures
+        $articlePictures = $article->pictures()->get();
+
+        return view('backoffice.articles.edit')
+                    ->with(compact('brandsList'))
+                    ->with(compact('partsList'))
+                    ->with(compact('modelsList'))
+                    ->with(compact('article'))
+                    ->with(compact('articlePictures'))
+                    ->with(compact('articleTypesList'));
+    }
+
+    public function store(ArticlesRequest $request){
+        // set the shop to the shop of the logged user
+        $article = new Article($request->all());
+
+        $this->saveArticle($article);
+
+        flash()->success('Article has been created. You can now enter the Pictures!');
+
+        $modelsList =  BrandModel::lists('name','id')->prepend('(all)', '');
+        $brandsList = Brand::lists('name','id')->prepend('(all)', '');
+        $partsList = PartType::lists('name','id')->prepend('(all)', '');
+        $articleTypesList = ArticleType::lists('name','id')->prepend('(choose one)','');
 
         // get the brand pictures
         $articlePictures = $article->pictures()->get();
