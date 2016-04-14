@@ -15,12 +15,15 @@
     <th>
       Is Public
     </th>
+    <th>
+    </th>
   </thead>
   <tbody>
 @forelse( $articles as $article)
       <tr>
         <td>
-            {{$article->name}}
+          <a href="{{action('ArticlesController@edit',[$article->id]) }}" ><i class="fa fa-pencil-square-o fa-fw"></i>
+              {{$article->name}}</a>
         </td>
         <td>
               {{$article->reference}}
@@ -44,6 +47,11 @@
                  Private
               </span>
             @endif
+        </td>
+        <td>
+        <a id="deleteLink_{{  $article->id  }}"  href="Javascript: deleteArticle(  {{  $article->id  }} );" class="deleteLink btn btn-default" data-id="{{$article->id}}">
+                   <span><i class="fa fa-trash-o fa-fw"></i>  </span>
+       </a>
         </td>
       </tr>
 @empty

@@ -2,7 +2,7 @@
       <form id="searchForm" action="javascript: makeSearch();">
           <div class="row">
               <div class="form-group col-sm-3">
-                <label for="keyword">Keyword</label>
+                <label for="keyword">Pesquisa</label>
                 {!! Form::text('keyword' , null , ['class' => 'form-control']) !!}
               </div>
               <div class="form-group col-sm-3">
@@ -20,13 +20,17 @@
           </div>
           <div class="row">
             <div class="form-group col-sm-3">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label for="">Público</label>
-                  {!! Form::radio('public' , true ,['class' => 'form-control']) !!}
+                  {!! Form::radio('public' , true, ['class' => 'form-control']) !!}
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label for="">Privado</label>
-                  {!! Form::radio('public' , false ,['class' => 'form-control']) !!}
+                  {!! Form::radio('public' , false, ['class' => 'form-control']) !!}
+                </div>
+                <div class="col-sm-4">
+                  <label for="">Todos</label>
+                  {!! Form::radio('public' , 'all', ['class' => 'form-control']) !!}
                 </div>
               </div>
             <button id="search" type="button" class="btn btn btn-primary" name="search"> Search</button>
@@ -72,5 +76,22 @@
           // this initializes the list for this screen;
           makeSearch();
       });
+
+      function deleteArticle(articleId) {
+              var link = $('#deleteLink_' + articleId) ;
+              var postUrl = '/articles/'+articleId;
+
+              $.ajax({
+                  url: postUrl,
+                  type: 'post',
+                  data: {_method: 'delete'},
+                  success:function(msg) {
+                      link.closest('tr').hide(100);
+                   },
+                  error:function(msg) {
+                     alert('Something wrong...');
+                  }
+              });
+      }
 
 </script>
