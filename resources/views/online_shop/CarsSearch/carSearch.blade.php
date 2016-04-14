@@ -9,20 +9,20 @@
 
 <table class="table table-striped search-table">
     <thead>
-    <th> Referência </th>
     <th> Nome </th>
+    <th> Referência </th>
     <th class="number"> Preço (€)  </th>
     </thead>
 <tbody>
     @forelse( $articles as $article)
         <tr>
+          <td>
+              <a href="item/{{$article->id}}/show">
+                {{ $article->name}}
+              </a>
+          </td>
            <td>
-                <a href="item/{{$article->id}}/show">
-                    {{ $article->reference}}
-                </a>
-            </td>
-            <td>
-               {{ $article->name}}
+              {{ $article->reference}}
             </td>
             <td class="number">
                {{ $article->price}} €

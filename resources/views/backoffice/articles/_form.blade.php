@@ -7,15 +7,15 @@
         {!! Form::label('Name', 'Name' ) !!}
         {!! Form::text('name' , null , ['class' => 'form-control']) !!}
     </div>
-    <div class='form-group required'>
+    <div class='form-group'>
         {!! Form::label('Reference OEM' , 'Reference') !!}
         {!! Form::text('reference' , null , ['class' => 'form-control']) !!}
     </div>
-    <div class='form-group required'>
+    <div class='form-group '>
         {!! Form::label('','Article Description') !!}
         {!! Form::textarea('description' , null , ['class' => 'form-control']) !!}
     </div>
-    <div class='form-group required'>{!! Form::label('Price' ) !!}
+    <div class='form-group '>{!! Form::label('Price' ) !!}
         <div class="form-group input-group">
             <span class="input-group-addon"><i class="fa fa-eur"></i></span>
             {!! Form::text('price' , null , ['class' => 'form-control decimal', 'placeholder'=>'Place the price here']) !!}
