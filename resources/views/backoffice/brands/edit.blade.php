@@ -103,13 +103,7 @@ function reloadPictures(){
             alert( msg + xhr.status + " " + xhr.statusText );
           }
       });
-}
-
-$(document).ready( function( $ ) {
-
-});
-
-
+} 
 </script>
 
 @stop
