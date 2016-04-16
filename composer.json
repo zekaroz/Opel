@@ -17,7 +17,8 @@
         "sofa/eloquence": "^5.2",
         "ivaynberg/select2": "^4.0",
         "intervention/image": "^2.3",
-        "fzaninotto/faker": "^1.5"
+        "fzaninotto/faker": "^1.5",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
