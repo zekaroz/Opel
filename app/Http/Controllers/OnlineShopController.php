@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Article;
 use App\ArticleType;
 use Reciopel\Mailers\OnlineSiteMailer;
+use App\Http\Requests\ContactFormRequest;
 
 class OnlineShopController extends Controller
 {
@@ -134,8 +135,9 @@ class OnlineShopController extends Controller
                     ->with(compact('article'));
     }
 
-    public function contactUs(Request $request){
-        $info_email = 'zekaroz@gmail.com';
+    public function contactUs(ContactFormRequest $request){
+        $info_email = env('RECIOPEL_MAIL', 'zekaroz@gmail.com');
+
         $email = $request->email;
         $fullname = $request->name;
         $contactNumber = $request->phone;
@@ -145,7 +147,7 @@ class OnlineShopController extends Controller
 
         $mailer->contactUs($info_email, $fullname, $contactNumber, $email, $message);
 
-        flash()->overlay('O seu contacto foi recebido. Obrigado por nos contactar.');
+        flash()->success('O seu contacto foi recebido. Obrigado por nos contactar.');
 
         return view('online_shop.contacts.contacts');
     }

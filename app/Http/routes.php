@@ -11,25 +11,6 @@
 |
 */
 
-//Route::get('Shops/', 'ShopsController@index');
-//
-//Route::get('Shops/create', 'ShopsController@create');
-//
-//Route::get('Shops/{id}', 'ShopsController@show');
-//
-//Route::post('Shops', 'ShopsController@store');
-//
-//Route::get('Shops/{id}/edit', 'ShopsController@edit');
-
-
-/*
- Web site routes
-//  *  */
-// Route::get('a/','ArticlesController@list' );
-//
-// Route::get('articles/all','ArticlesController@API_All');
-//
-// Route::get('articleModels/{brandid}','ArticlesController@API_models');
 
 Route::get('articles/all','ArticlesController@articleSearcher');
 

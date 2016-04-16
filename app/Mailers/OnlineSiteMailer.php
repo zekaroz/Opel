@@ -18,7 +18,7 @@ class OnlineSiteMailer extends Mailer
                  'customerMessage'=> $message,
                  'contact_number' => $number
                 ];
-        $subject = 'Contacto Online de ' . $name;
+        $subject = '[Reciopel] Contacto de ' . $name;
 
         return $this->sendTo($emailTo, $subject, $view, $data);
     }
