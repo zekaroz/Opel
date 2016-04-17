@@ -11,7 +11,7 @@
                    @if( isset($articles) )
                        @foreach( $articles as $index => $article)
                              <div class="item {{ ( $index==0)?'active':'' }}">
-                                 <img class="slide-image" src="{{  ( count($article->pictures) > 0 ) ? route('getThumb', $article->pictures->first()->filename) : "http://placehold.it/640x300" }} " alt="">
+                                 <img class="slide-image" src="{{  ( count($article->pictures) > 0 ) ? route('getThumb', $article->pictures->first()->filename) : "http://placehold.it/640x300" }} " alt="{{ $article->name }}">
                              </div>
                        @endforeach
                    @endif
