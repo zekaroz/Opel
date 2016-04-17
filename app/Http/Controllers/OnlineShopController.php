@@ -99,9 +99,19 @@ class OnlineShopController extends Controller
                             ->take(6)
                             ->get();
 
+
+        $carrousselArticle= Article::whereHas('pictures',
+                            function($query) {
+                              $query->whereNotNull('fileentries.id');
+                            })
+                            ->orderByRaw("RAND()")
+                            ->take(5)
+                            ->get();
+
         return view('online_shop.welcome.index')
-                ->with(compact('articles'));
-    }
+                ->with(compact('articles'))
+                ->with(compact('carrousselArticle'));
+      }
 
 
     public function partSearch(){
