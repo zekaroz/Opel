@@ -1,6 +1,8 @@
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="thumbnail">
-            <img src="{{ ($picture_filename!='')?route('getThumb', $picture_filename) :"http://placehold.it/320x150"}} " alt="">
+            <a href="{{$itemURL}}">
+              <img src="{{ ($picture_filename!='')?route('getThumb', $picture_filename) :"http://placehold.it/320x150"}} " alt="">
+            </a>
             <div class="caption">
                 <h4 class="pull-right">
                     @if( $itemPrice > 0 )

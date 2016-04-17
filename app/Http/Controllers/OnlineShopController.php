@@ -94,7 +94,10 @@ class OnlineShopController extends Controller
 
     public function homepage(){
 
-        $articles = Article::with('pictures')->get();
+        $articles = Article::with('pictures')
+                            ->orderByRaw("RAND()")
+                            ->take(6)
+                            ->get();
 
         return view('online_shop.welcome.index')
                 ->with(compact('articles'));
