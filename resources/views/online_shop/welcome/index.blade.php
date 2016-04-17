@@ -8,7 +8,8 @@
                 <div class="row carousel-holder">
 
                 @include('online_shop.partials.carouselLarge', [
-                                                                'numberOfBanners' => 5
+                                                                'numberOfBanners' => 5,
+                                                                'articles' => $carrousselArticle
                                                                 ] )
                 </div>
 
