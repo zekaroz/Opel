@@ -25,7 +25,7 @@ return [
     | application. If disabled, a simple generic error page is shown.
     |
     */
-    
+
     'debug' => env('APP_DEBUG', false),
 
     /*
@@ -149,6 +149,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Snowfire\Beautymail\BeautymailServiceProvider::class,
 
 
 
