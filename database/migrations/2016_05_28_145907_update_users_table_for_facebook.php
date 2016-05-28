@@ -5,23 +5,23 @@ use Illuminate\Database\Migrations\Migration;
 
 class UpdateUsersTableForFacebook extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+  /**
+  * Run the migrations.
+  *
+  * @return void
+  */
+  public function up()
+  {
+    if(Schema::hasColumn('users', 'facebook_id')) {
+    } else
     {
-        //
+      Schema::table('users', function ($table) {
+        $table->string('facebook_id');  
+      });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        //
-    }
-}
+  }
+  public function down()  {
+    Schema::table('users', function ($table) {
+      $table->dropColumn('facebook_id');
+    });
+  }}
