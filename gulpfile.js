@@ -23,4 +23,9 @@ elixir(function(mix) {
      //my personal Javascrpit for helper functions
      mix.copy('resources/assets/js/JQ.js', 'public/js');
      mix.browserify('main.js');
+
+      mix.sass([
+        "app.scss"
+      ]);
+
 });

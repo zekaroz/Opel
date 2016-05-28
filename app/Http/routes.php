@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::get('articles/all','ArticlesController@articleSearcher');
 
 Route::post('articles/all','ArticlesController@search');
@@ -135,9 +134,6 @@ Route::get('/documentation', function()
 	return View::make('documentation');
 });
 
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
-
-
 /*
  * We need basically 2 route, one for adding file entries,
  * one for download it. We are going to add a third
@@ -175,8 +171,16 @@ Route::post('ArticlePictureUpload/{article_id}', 'ArticlesController@addPicture'
 Route::delete('ArticlePictureUpload/{picture_id}/article/{article_id}', 'ArticlesController@destroyPicture');
 
 
+
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
+
+    Route::get('login/facebook', 'Auth\AuthController@redirectToFacebook');
+
+    Route::get('login/facebook/callback', 'Auth\AuthController@getFacebookCallback');
+
 
     Route::get('/home', 'HomeController@index');
 });

@@ -20,6 +20,8 @@
      <link rel="stylesheet" href="{{ asset("assets/select2/css/select2.min.css") }} " />
      <link rel="stylesheet" type="text/css" href="{{ asset("assets/DataTables/datatables.css") }}"/>
      <link rel="stylesheet" type="text/css" href="{{ asset("css/jBox.css") }}"/>
+     <link rel="stylesheet" type="text/css" href="{{ asset("css/app.css") }}"/>
+     <link rel="stylesheet" type="text/css" href="{{ asset("css/bootstrap-social.css") }}"/>
 
     <style>
         body {
