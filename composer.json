@@ -19,7 +19,8 @@
         "intervention/image": "^2.3",
         "fzaninotto/faker": "^1.5",
         "guzzlehttp/guzzle": "^6.2",
-        "snowfire/beautymail": "^1.0"
+        "snowfire/beautymail": "^1.0",
+        "laravel/socialite": "^2.0"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
