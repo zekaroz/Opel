@@ -181,6 +181,8 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('login/facebook/callback', 'Auth\AuthController@getFacebookCallback');
 
+    Route::get('/social/redirect/{provider}', 'Auth\AuthController@getSocialRedirect');
+    Route::get('/social/handle/{provider}',   'Auth\AuthController@getSocialHandle');
 
     Route::get('/home', 'HomeController@index');
 });

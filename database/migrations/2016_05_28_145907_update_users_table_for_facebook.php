@@ -16,7 +16,7 @@ class UpdateUsersTableForFacebook extends Migration
     } else
     {
       Schema::table('users', function ($table) {
-        $table->string('facebook_id');  
+        $table->string('facebook_id');
       });
     }
   }
@@ -24,4 +24,5 @@ class UpdateUsersTableForFacebook extends Migration
     Schema::table('users', function ($table) {
       $table->dropColumn('facebook_id');
     });
-  }}
+  }
+}
