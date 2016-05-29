@@ -65,6 +65,11 @@
                                 <i class="fa fa-facebook"></i> Sign in with Facebook
                               </a>
                             </div>
+                            <div class="col-md-6 col-md-offset-4" style="margin-top:20px;">
+                              <a href="/social/redirect/google" class="btn btn-block btn-social btn-google">
+                                <i class="fa fa-google"></i> Sign in with Google
+                              </a>
+                            </div>
                         </div>
                     </form>
                 </div>
