@@ -162,7 +162,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
+
 
     ],
 
@@ -214,7 +214,6 @@ return [
         'Flash'     => Laracasts\Flash\Flash::class,
         'Image'     => Intervention\Image\Facades\Image::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
