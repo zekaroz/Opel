@@ -9,11 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Reciopel</title>
+    <title>PCQAR</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
-    
-    
+
+
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
     <!-- Custom CSS -->
@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset("css/jBox.css") }}"/>
 
 
-    
+
     <style>
        .fa-btn {
             margin-right: 6px;
@@ -38,8 +38,8 @@
           color:red;
         }
     </style>
-    
-    
+
+
 </head>
 
 <body>
@@ -49,18 +49,18 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <script src="{{ asset("assets/DataTables/datatables.js") }} " type="text/javascript"></script>
       <script src="{{ asset("js/jquery.touchSwipe.min.js") }} " type="text/javascript"></script>
-    
+
     <div class="container">
-        
+
         @yield('menu')
-        
+
         <hr>
         <div class="container">
             <div class="row">
                 @yield('body')
             </div>
         </div>
-        
+
         <footer>
             <div class="row">
                 <div class="col-lg-12">
@@ -69,10 +69,10 @@
             </div>
         </footer>
     </div>
-    
 
 
-    
+
+
     <script>
 
         $(document).ready(function() {
@@ -85,12 +85,12 @@
             }catch (e){
                  return;
              }
-        } );   
+        } );
 
         $('div.alert').not('.alert_important').delay(3000).slideUp(300);
-        $('#flash-overlay-modal').modal(); 
+        $('#flash-overlay-modal').modal();
     </script>
-    
+
       @yield('afterBody')
 </body>
 
