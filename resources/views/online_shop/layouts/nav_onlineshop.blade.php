@@ -28,12 +28,13 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
+                    <!--  Inactivated for now   
                         <li>
                           <a class="btn btn-social-icon btn-facebook" href="/login/facebook">
                               <span class="fa fa-facebook"></span>
                               Login
                           </a>
-                        </li>
+                        </li> -->
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
