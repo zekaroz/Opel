@@ -50,7 +50,7 @@
     <script src="{{ asset("assets/DataTables/datatables.js") }} " type="text/javascript"></script>
       <script src="{{ asset("js/jquery.touchSwipe.min.js") }} " type="text/javascript"></script>
 
-    <div class="container">
+    <div class="container Header">
 
         @yield('menu')
 
