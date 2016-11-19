@@ -139,9 +139,6 @@ class ArticlesController extends Controller
     }
 
     private function saveArticle(Article $article){
-
-        $article->shop_id = \App\Shop::all()->first()->id;
-
         if($article->model_id == '')
         {
            $article->model_id = null;
@@ -185,6 +182,8 @@ class ArticlesController extends Controller
 
     public function store(ArticlesRequest $request){
         // set the shop to the shop of the logged user
+
+
         $article = new Article($request->all());
 
         $this->saveArticle($article);
