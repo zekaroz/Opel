@@ -57,7 +57,7 @@
                     <div class="panel-heading">
                         <span class="fa-stack fa-5x">
                               <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-fa-wrench fa-stack-1x fa-inverse"></i>
+                              <i class="fa fa-wrench fa-stack-1x fa-inverse"></i>
                         </span>
                     </div>
                     <div class="panel-body">
