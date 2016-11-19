@@ -64,7 +64,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Reciopel 2016</p>
+                    <p>Copyright &copy; PcQar 2016</p>
                 </div>
             </div>
         </footer>
