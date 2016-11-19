@@ -32,12 +32,12 @@
             <div class="col-lg-12">
                 <h2 class="page-header">Services Panels</h2>
             </div>
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-12 col-sm-12">
                 <div class="panel panel-default text-center">
                     <div class="panel-heading">
                         <span class="fa-stack fa-5x">
                               <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-tree fa-stack-1x fa-inverse"></i>
+                              <i class="fa fa-car fa-stack-1x fa-inverse"></i>
                         </span>
                     </div>
                     <div class="panel-body">
@@ -48,7 +48,7 @@
                           Usamos óleos e peças de qualidade de forma a assegurar a fiabilidade e
                           longevidade da sua viatura.</p>
                           <p>Levamos o seu carro à Inspecção Periódica Obrigatória, sem lhe causar transtorno.</p>
-                        <a href="#" class="btn btn-primary">Learn More</a>
+
                     </div>
                 </div>
             </div>
@@ -57,13 +57,13 @@
                     <div class="panel-heading">
                         <span class="fa-stack fa-5x">
                               <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-car fa-stack-1x fa-inverse"></i>
+                              <i class="fa fa-fa-wrench fa-stack-1x fa-inverse"></i>
                         </span>
                     </div>
                     <div class="panel-body">
                         <h4>REPARAÇÃO</h4>
                         <p>Qualquer avaria, seja ela mecânica ou eléctrica, será reparada por nós, garantindo um resultado eficaz e duradouro. Turbos, bombas injectoras,  EGRs, filtros de partículas, imobilizadores, centralinas, são uns dos problemas mais frequentes hoje em dia. Todos serão resolvidos por nós, garantindo a sua resolução.</p>
-                        <a href="#" class="btn btn-primary">Learn More</a>
+
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                         <p>Somos a solução!</p>
                         <p>Fazemos restauros de A a Z ou fazemos apenas o necessário para manter a melhor qualidade num veículo “sobrevivente” mantendo assim ao máximo o seu estado original.
                         </p>
-                        <a href="#" class="btn btn-primary">Learn More</a>
+
                     </div>
                 </div>
             </div>
