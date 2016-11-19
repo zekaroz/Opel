@@ -48,6 +48,7 @@
              ,
              error:  function(XMLHttpRequest, textStatus, errorThrown) {
                     console.error("Some error submiting the form...");
+                    loadingEnd();
             }
            });
            return false;
