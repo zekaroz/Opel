@@ -1,7 +1,7 @@
 @extends('online_shop.layouts.main')
 
 @section('page_Heading')
-   Automóveis Reciclados
+   Veículos Usados
 @stop
 
 

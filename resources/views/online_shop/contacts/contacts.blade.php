@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-lg-12">
             <ol class="breadcrumb">
-                <li><a href="/">Home</a>
+                <li><a href="/">Entrada</a>
                 </li>
                 <li class="active">Localização</li>
             </ol>
@@ -37,7 +37,7 @@
                 <p><i class="fa fa-phone"></i>
                     <abbr title="Telefone">P</abbr>: (+351) 918 619 751</p>
                 <p><i class="fa fa-envelope-o"></i>
-                    <abbr title="Email">E</abbr>: <a href="mailto:info@reciopel.online">info@reciopel.online</a>
+                    <abbr title="Email">E</abbr>: <a href="mailto:geral@pcqar.pt">geral@pcqar.pt</a>
                 </p>
                 <p><i class="fa fa-clock-o"></i>
                     <abbr title="Hours">Horário</abbr>: Segunda - Sexta: das 9:00 AM às 6:00 PM</p>
