@@ -69,6 +69,8 @@ Route::get('articles/{article_id}/loadImages', 'ArticlesController@loadImages');
 
 Route::get('backoffice', 'HomeController@index');
 
+Route::post('/readSiteContact/{id}', 'SiteContactController@markAsRead');
+
 Route::get('users', 'UsersController@index');
 
 

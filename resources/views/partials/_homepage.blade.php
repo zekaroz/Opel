@@ -96,7 +96,7 @@
             <tr style="font-weight: bold;">
         @endif
               <td>
-                <a href="Javascript: $('#{{ 'contactMessage' . $contactMessage->id }}').toggle('slow');" ><i class="fa fa-pencil-square-o fa-fw"></i>
+                <a href="#" data-id="{{ $contactMessage->id }}" class="readLink"><i class="fa fa-pencil-square-o fa-fw"></i>
                     {{  $contactMessage->name  }}</a>
               </td>
               <td>
@@ -113,7 +113,7 @@
                      </span>
                   @else
                     <span title="This is a private article, only owner can see">
-                      <i class="fa fa-eye-slash "></i>
+                      <i class="fa fa-eye "></i>
                        Unread
                     </span>
                   @endif
@@ -138,4 +138,33 @@
       </tbody>
       </table>
     </div>
+    <script >
+        $(document).ready( function(  ) {
+            $( '.readLink' ).on( 'click', function(e){
+                  "use strict";
+                  e.preventDefault();
+                  var link = $(this);
+                  var dataid =link.attr('data-id');
+                  var postUrl = '/readSiteContact/'+dataid;
+
+                  // this function marks the message as read.
+                  // if it is already read it does nothing
+                  $.ajax({
+                      url: postUrl,
+                      type: 'post',
+                      data: {_method: 'post'},
+                      success:function(msg) {
+                      },
+                      error:function(msg) {
+                          console.log(msg);
+                      }
+                  });
+
+                  // this function allways toggles the content
+                  $('#contactMessage'+dataid).toggle('slow');
+
+                  return false;
+            });
+        });
+    </script>
 @endif
