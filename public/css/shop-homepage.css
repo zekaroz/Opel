@@ -127,3 +127,33 @@ Licensed under MIT
     color: #656565;
     font-size: 12px;
 }
+
+.navbar-inverse.navbar-custom{
+  background-color: transparent;
+}
+
+.navbar-inverse.navbar-custom.HeaderSolid{
+    background-color: #222;
+}
+
+.HeaderColorBackground{
+    background-color: rgb(45,50,60);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.HeaderImage{
+  background-image: url("/logo_sm.jpg");
+  width: 100%;
+  height: 180px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.HeaderPlaceHolder{
+  height: 80px;
+}

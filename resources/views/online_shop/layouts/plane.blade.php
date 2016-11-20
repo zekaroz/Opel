@@ -48,9 +48,10 @@
     <script src="{{ asset("js/html5shiv.js") }}"></script>
     <script src="{{asset("js/respond.min.js")}}"></script>
     <script src="{{ asset("assets/DataTables/datatables.js") }} " type="text/javascript"></script>
-      <script src="{{ asset("js/jquery.touchSwipe.min.js") }} " type="text/javascript"></script>
+    <script src="{{ asset("js/jquery.touchSwipe.min.js") }} " type="text/javascript"></script>
 
-    <div class="container">
+
+    <div class="container Header">
 
         @yield('menu')
 
@@ -62,6 +63,8 @@
         </div>
 
         <footer>
+
+          <script src="{{ asset("/js/header_fading.js") }}" type="text/javascript"></script>
             <div class="row">
                 <div class="col-lg-12">
                     <p>Copyright &copy; PcQar 2016</p>
