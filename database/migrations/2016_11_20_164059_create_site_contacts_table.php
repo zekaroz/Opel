@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBrandsTable extends Migration
+class CreateSiteContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,15 @@ class CreateBrandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('brands', function (Blueprint $table) {
+        Schema::create('site_contacts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code');
             $table->string('name');
-            $table->string('imagePath');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('subject');
+            $table->string('message');
+            $table->boolean('isSeen'); 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +31,6 @@ class CreateBrandsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('brands');
+        Schema::drop('site_contacts');
     }
 }

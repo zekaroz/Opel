@@ -8,6 +8,7 @@ use App\Article;
 use App\PartType;
 use App\Brand;
 use App\BrandModel;
+use App\SiteContact;
 
 class HomeController extends Controller
 {
@@ -32,13 +33,17 @@ class HomeController extends Controller
         $partTypeCount = PartType::all()->count();
         $brandsCount = Brand::all()->count();
         $modelCount = BrandModel::all()->count();
-        
+
+        $contactList = SiteContact::all();
+
        // dd($articleCount);
-        
+
         return view('home')
-            ->with( ['articleCount' => $articleCount 
+            ->with( ['articleCount' => $articleCount
                     , 'partTypeCount' => $partTypeCount
-                    , 'brandsCount' => $brandsCount 
-                    , 'modelCount' => $modelCount ]);
+                    , 'brandsCount' => $brandsCount
+                    , 'modelCount' => $modelCount
+                    , 'contactList' => $contactList
+                  ]);
     }
 }
