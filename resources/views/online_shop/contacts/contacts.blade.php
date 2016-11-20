@@ -87,6 +87,12 @@
                     </div>
                     <div class="control-group form-group required">
                         <div class="controls">
+                            <label>Assunto:</label>
+                            <input type="text" class="form-control" name="subject" required data-validation-required-message="Insira o assunto do contacto">
+                        </div>
+                    </div>
+                    <div class="control-group form-group required">
+                        <div class="controls">
                             <label>Mensagem:</label>
                             <textarea rows="10" cols="100" class="form-control" name="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
                         </div>

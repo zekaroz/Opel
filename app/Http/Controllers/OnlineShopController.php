@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
 use App\ArticleType;
-use Reciopel\Mailers\OnlineSiteMailer;
+use App\SiteContact;
 use App\Http\Requests\ContactFormRequest;
 
 class OnlineShopController extends Controller
@@ -151,15 +151,22 @@ class OnlineShopController extends Controller
     public function contactUs(ContactFormRequest $request){
         $info_email = env('RECIOPEL_MAIL', 'zekaroz@gmail.com');
 
-        $email = $request->email;
-        $fullname = $request->name;
-        $contactNumber = $request->phone;
-        $message = $request->message;
+        $site_contact_message = new SiteContact();
 
-        $mailer  = new OnlineSiteMailer();
+        $site_contact_message->email = $request->email;
+        $site_contact_message->subject = $request->subject;
+        $site_contact_message->name = $request->name;
+        $site_contact_message->phone = $request->phone;
+        $site_contact_message->message = $request->message;
+        $site_contact_message->isSeen= false;
 
-        $mailer->contactUs($info_email, $fullname, $contactNumber, $email, $message);
+        $site_contact_message->save();
 
+        /* Site no longer send direct emails, but stores the messages as alerts in the backoffice
+                $mailer  = new OnlineSiteMailer();
+
+                $mailer->contactUs($info_email, $fullname, $contactNumber, $email, $message);
+        */
         flash()->success('O seu contacto foi recebido. Obrigado por nos contactar.');
 
         return view('online_shop.contacts.contacts');
