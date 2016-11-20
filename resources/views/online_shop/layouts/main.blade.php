@@ -12,30 +12,6 @@
     </div>
 
     <div class="col-md-9">
-
-      <script >
-
-          //script to fade the header in when the user scrolls
-          var headerHeight = 50;
-          var navBar = $(".navbar");
-          var headerBackground = $(".HeaderColorBackground");
-          var hasSolidHeader = false;
-
-          $(window).scroll(function() {
-              if ($(this).scrollTop() > headerHeight) {
-                if(! hasSolidHeader){
-                  headerBackground.fadeIn();
-                  hasSolidHeader = true;
-                }
-              }else{
-                if(hasSolidHeader){
-                  headerBackground.fadeOut();
-                  hasSolidHeader = false;
-                }
-              }
-          });
-      </script>
-
         <h2>
             <div class="Title_Section">
               @yield('page_Heading')

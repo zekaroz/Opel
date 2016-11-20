@@ -144,3 +144,16 @@ Licensed under MIT
     width: 100%;
     z-index: -1;
 }
+
+.HeaderImage{
+  background-image: url("/logo_sm.jpg");
+  width: 100%;
+  height: 180px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.HeaderPlaceHolder{
+  height: 80px;
+}
