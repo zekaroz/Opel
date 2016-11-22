@@ -1,7 +1,7 @@
 @extends('online_shop.layouts.main_wide')
 
 @section('head_section')
-  <meta name="description" content="Serviços auto de confiança. Na PcQar pode manter, reparar, vender ou restaurar o seu automóvel.">
+  <meta name="description" content="Serviços Auto de qualidade.">
   <title>PcQar - Serviços</title>
 @stop
 
@@ -35,10 +35,7 @@
 
         <!-- Service Panels -->
         <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Services Panels</h2>
-            </div>
+        <div class="row" style="margin-top: 20px;">
             <div class="col-md-6 col-sm-6">
                 <div class="panel panel-default text-center services">
                     <div class="panel-heading">

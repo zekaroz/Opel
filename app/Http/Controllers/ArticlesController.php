@@ -233,6 +233,7 @@ class ArticlesController extends Controller
         $article->brand_id= $article_new->brand_id;
         $article->model_id= $article_new->model_id;
         $article->public = $article_new->public;
+        $article->article_type_id = $article_new->article_type_id;
 
         $this->saveArticle($article);
 
