@@ -1,5 +1,11 @@
 @extends('online_shop.layouts.main')
 
+@section('head_section')
+  <meta name="description" content="Veículos Usados PcQar. Temos os automóveis ao preços que precisa com a nossa garantia.">
+  <title>PcQar - Veículos Usados</title>
+@stop
+
+
 @section('page_Heading')
    Veículos Usados
 @stop

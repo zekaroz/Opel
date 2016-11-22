@@ -1,5 +1,10 @@
 @extends('online_shop.layouts.main_wide')
 
+@section('head_section')
+  <meta name="description" content="Acerca da PcQar.">
+  <title>PcQar - Quem Somos</title>
+@stop
+
 @section('page_Heading')
     Quem Somos
     <small>PcQar</small>

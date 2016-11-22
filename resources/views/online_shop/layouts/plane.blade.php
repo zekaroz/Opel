@@ -6,10 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Garagem de confiança e familiar onde pode arranjar o seu carro.">
+
+    @yield('head_section')
     <meta name="author" content="Pedro Queirós">
 
-    <title>PCQAR</title>
+    
     <link href="{{ asset("/css/font-awesome.min.css")}}" rel='stylesheet' type='text/css'>
     <link href="{{ asset("/css/fonts.googleapis.css.css")}}" rel='stylesheet' type='text/css'>
 

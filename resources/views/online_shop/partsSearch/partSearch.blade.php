@@ -1,5 +1,11 @@
 @extends('online_shop.layouts.main')
 
+@section('head_section')
+  <meta name="description" content="Procure facilmente nas peças que temos se encontrar o que pretende só terá de nos contactar.">
+  <title>PcQar - Peças recicladas</title>
+@stop
+
+
 @section('page_Heading')
     Peças Recicladas
 @stop
