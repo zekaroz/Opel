@@ -37,12 +37,14 @@ class ArticlesController extends Controller
        $brandsList = Brand::lists('name','id')->prepend('(all)','');
        $partsList = PartType::lists('name','id')->prepend('(all)','');
        $articles = Article::with('articleType','brand','model','partType')->orderBy('name', 'asc')->get();
+       $articleTypeList  = ArticleType::lists('name','id')->prepend('(all)','');
 
          return view('backoffice.articles.index')
                  ->with(compact('modelsList'))
                  ->with(compact('brandsList'))
                  ->with(compact('partsList'))
-                   ->with(compact('articles'));
+                   ->with(compact('articles'))
+                   ->with(compact('articleTypeList'));
     }
 
     public function listAll(){
@@ -91,13 +93,16 @@ class ArticlesController extends Controller
         $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
         $brandsList = Brand::lists('name','id')->prepend('(all)','');
         $partsList = PartType::lists('name','id')->prepend('(all)','');
-         $articles = Article::with('articleType','brand','model','partType')->orderBy('name', 'asc')->get();
+        $articles = Article::with('articleType','brand','model','partType')->orderBy('name', 'asc')->get();
+        $articleTypeList  = ArticleType::lists('name','id')->prepend('(all)','');
+
 
        return view('backoffice.articles.ArticleSearcher')
               ->with(compact('modelsList'))
               ->with(compact('brandsList'))
               ->with(compact('partsList'))
-                ->with(compact('articles'));
+              ->with(compact('articles'))
+              ->with(compact('articleTypeList'));
     }
 
     public function search(){
@@ -107,6 +112,8 @@ class ArticlesController extends Controller
       $brand_model_id =  Request::input('brand_model_id');
       $part_type_id =  Request::input('part_type_id');
       $public =  Request::input('public');
+      $article_type_id =  Request::input('article_type_id');
+
 
       if($public == 'all'){
           $public = null;
@@ -129,6 +136,10 @@ class ArticlesController extends Controller
                 ->where(function ($query) use ($public){
                   if( isset($public))
                     $query->where('public', $public);
+                })
+                ->where(function ($query) use ($article_type_id){
+                  if( $article_type_id != '' )
+                    $query->where('article_type_id', $article_type_id);
                 })
                   ->with('articleType','brand','model','partType')
                   ->orderBy('name', 'asc')->get();

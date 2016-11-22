@@ -36,7 +36,7 @@
     </div>
     <div class='form-group'>
         {!! Form::label('publicid','Is Public' ) !!}
-        {{ Form::checkbox('public', 1, null, ['class' => 'field']) }}
+        {{ Form::checkbox('public', 1, 1, ['class' => 'field']) }}
     </div>
 
     <div class='form-group'>

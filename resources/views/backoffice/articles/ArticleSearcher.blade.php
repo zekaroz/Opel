@@ -13,7 +13,8 @@ Articles
   @include('backoffice.articles.partials.generalSearch', ['articles' => $articles ,
                                                           'modelsList' => $modelsList,
                                                           'brandsList' => $brandsList,
-                                                          'partsList' => $partsList
+                                                          'partsList' => $partsList,
+                                                          'articleTypeList' => $articleTypeList
                                                           ])
 
 @stop
