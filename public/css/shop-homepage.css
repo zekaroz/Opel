@@ -161,3 +161,8 @@ Licensed under MIT
 .panel-default.services{
     min-height: 375px;
 }
+
+.page-selected{
+  font-weight: bold;
+  background: #CCC;
+}
