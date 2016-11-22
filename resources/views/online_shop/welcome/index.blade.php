@@ -1,5 +1,10 @@
 @extends('online_shop.layouts.main')
 
+@section('head_section')
+  <meta name="description" content="Serviços auto de confiança. Na PcQar pode manter, reparar, vender ou restaurar o seu automóvel.">
+  <title>PcQar - Entrada</title>
+@stop
+
 @section('page_Heading')
     Bem vindo
 @stop
@@ -29,9 +34,9 @@
                         @endforeach
                     @endif
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                        <h4><a href="#">Like this page?</a>
+                        <h4><a href="#">Gostou deste sítio?</a>
                         </h4>
-                        <p>If you like this page, then check out <a target="_blank" href="https://www.facebook.com/pcqar/">a nossa página no Facebook</a></p>
+                        <p>Se gosta desta página veja <a target="_blank" href="https://www.facebook.com/pcqar/">a nossa página no Facebook</a></p>
                         <a class="btn btn-primary" target="_blank" href="https://www.facebook.com/pcqar/">Ir para Facebook</a>
                     </div>
 

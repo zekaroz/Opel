@@ -1,5 +1,10 @@
 @extends('online_shop.layouts.main_wide')
 
+@section('head_section')
+  <meta name="description" content="PcQar Contactos e direcções. Venha ter connosco temos a solução para o seu problema.">
+  <title>PcQar - Contactos</title>
+@stop
+
 @section('page_Heading')
     Localização
 @stop
