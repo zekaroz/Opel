@@ -7,7 +7,7 @@
 
 
 @section('page_Heading')
-   Veículos Usados
+<i class="fa fa-car"></i> Veículos Usados
 @stop
 
 
@@ -31,7 +31,7 @@
               {{ $article->reference}}
             </td>
             <td class="number">
-               {{ $article->price}} €
+              {{ $article->price == 0 ? 'Sob Consulta'  : $article->price.' €' }}
             </td>
         </tr>
     @empty

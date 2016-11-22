@@ -1,13 +1,13 @@
 @extends('online_shop.layouts.main')
 
 @section('head_section')
-  <meta name="description" content="Procure facilmente nas peças que temos se encontrar o que pretende só terá de nos contactar.">
-  <title>PcQar - Peças recicladas</title>
+  <meta name="description" content="Veículos para Peças, procura veículos baratos para desmontar e aproveitar peças? Fale connosco!">
+  <title>PcQar - Veículos para Peças</title>
 @stop
 
 
 @section('page_Heading')
-<i class="fa fa-cogs"></i>  Peças Recicladas
+<i class="fa fa-wrench"></i>  Veículos para Peças
 @stop
 
 
@@ -22,20 +22,21 @@
 <tbody>
     @forelse( $articles as $article)
         <tr>
-          <td><a href="item/{{$article->id}}/show">
-             {{ $article->name}}
-                </a>
+          <td>
+              <a href="item/{{$article->id}}/show">
+                {{ $article->name}}
+              </a>
           </td>
            <td>
-             {{ $article->reference}}
-           </td>
+              {{ $article->reference}}
+            </td>
             <td class="number">
               {{ $article->price == 0 ? 'Sob Consulta'  : $article->price.' €' }}
             </td>
         </tr>
     @empty
         <tr>
-            <td colspan="3">
+            <td colspan="5">
                 Sem artigos a mostrar...
             </td>
         </tr>
