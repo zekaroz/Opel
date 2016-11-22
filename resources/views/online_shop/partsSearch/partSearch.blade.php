@@ -7,7 +7,7 @@
 
 
 @section('page_Heading')
-    Peças Recicladas
+<i class="fa fa-cogs"></i>  Peças Recicladas
 @stop
 
 

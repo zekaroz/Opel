@@ -36,9 +36,11 @@ Route::get('contactos', function(){
     return View::make('online_shop.contacts.contacts');
 });
 
-Route::get('pecas','OnlineShopController@partSearch');
+Route::get('/pecas','OnlineShopController@partSearch');
 
-Route::get('carros','OnlineShopController@carSearch');
+Route::get('/carros','OnlineShopController@carSearch');
+
+Route::get('/carros_para_pecas','OnlineShopController@carPartsSearch');
 
 Route::get('servicos', function(){
     return View::make('online_shop.services.services');
