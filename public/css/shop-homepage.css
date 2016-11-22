@@ -157,3 +157,7 @@ Licensed under MIT
 .HeaderPlaceHolder{
   height: 80px;
 }
+
+.panel-default.services{
+    min-height: 375px;
+}

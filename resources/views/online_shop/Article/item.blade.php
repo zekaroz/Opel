@@ -1,5 +1,10 @@
 @extends('online_shop.layouts.main')
 
+@section('head_section')
+<meta name="description" content="{{ $article->description }}">
+<title>{{$article->name}}</title>
+@stop
+
 @section('page_Heading')
     {{$article->name}}
 @stop
