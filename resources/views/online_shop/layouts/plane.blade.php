@@ -6,20 +6,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Garagem de confiança e familiar onde pode arranjar o seu carro.">
+    <meta name="author" content="Pedro Queirós">
 
     <title>PCQAR</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+    <link href="{{ asset("/css/font-awesome.min.css")}}" rel='stylesheet' type='text/css'>
+    <link href="{{ asset("/css/fonts.googleapis.css.css")}}" rel='stylesheet' type='text/css'>
 
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("/css/bootstrap.min.css") }}" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="{{ asset("css/shop-homepage.css") }}" rel="stylesheet">
-     <link rel="stylesheet" type="text/css" href="{{ asset("assets/DataTables/datatables.css") }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset("css/jBox.css") }}"/>
+    <link href="{{ asset("/css/shop-homepage.css") }}" rel="stylesheet">
+     <link rel="stylesheet" type="text/css" href="{{ asset("/assets/DataTables/datatables.css") }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset("/css/jBox.css") }}"/>
 
 
 
@@ -43,14 +43,15 @@
 </head>
 
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="{{ asset("js/jquery.min.js") }}"></script>
+    <script src="{{ asset("js/bootstrap.min.js") }}"></script>
+    <script src="{{ asset("js/html5shiv.js") }}"></script>
+    <script src="{{asset("js/respond.min.js")}}"></script>
     <script src="{{ asset("assets/DataTables/datatables.js") }} " type="text/javascript"></script>
-      <script src="{{ asset("js/jquery.touchSwipe.min.js") }} " type="text/javascript"></script>
+    <script src="{{ asset("js/jquery.touchSwipe.min.js") }} " type="text/javascript"></script>
 
-    <div class="container">
+
+    <div class="container Header">
 
         @yield('menu')
 
@@ -62,9 +63,11 @@
         </div>
 
         <footer>
+
+          <script src="{{ asset("/js/header_fading.js") }}" type="text/javascript"></script>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Reciopel 2016</p>
+                    <p>Copyright &copy; PcQar 2016</p>
                 </div>
             </div>
         </footer>

@@ -1,5 +1,11 @@
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Navigation
+    <div class="HeaderImage">
+    </div>
+    <div class="HeaderPlaceHolder">
+    </div>-->
+    <nav class="navbar navbar-inverse navbar-custom navbar-fixed-top" role="navigation">
+      <div class="HeaderColorBackground" style="display: none;">
+      </div>
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -28,7 +34,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                    <!--  Inactivated for now   
+                    <!--  Inactivated for now
                         <li>
                           <a class="btn btn-social-icon btn-facebook" href="/login/facebook">
                               <span class="fa fa-facebook"></span>

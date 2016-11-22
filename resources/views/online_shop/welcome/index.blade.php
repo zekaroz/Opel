@@ -31,8 +31,8 @@
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <h4><a href="#">Like this page?</a>
                         </h4>
-                        <p>If you like this page, then check out <a target="_blank" href="https://www.facebook.com/reciopel/">a nossa página no Facebook</a></p>
-                        <a class="btn btn-primary" target="_blank" href="https://www.facebook.com/reciopel/">Ir para Facebook</a>
+                        <p>If you like this page, then check out <a target="_blank" href="https://www.facebook.com/pcqar/">a nossa página no Facebook</a></p>
+                        <a class="btn btn-primary" target="_blank" href="https://www.facebook.com/pcqar/">Ir para Facebook</a>
                     </div>
 
                 </div>
