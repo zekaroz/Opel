@@ -140,6 +140,18 @@ class OnlineShopController extends Controller
                     ->with('viewName', $article_type_car);
     }
 
+    public function carPartsSearch(){
+        $article_type_car = ArticleType::where('code', 'VP')->get()->first();
+
+        $articles = Article::all()
+                    ->where('article_type_id', $article_type_car->id)
+                    ->where('public',1) ;
+
+        return view('online_shop.CarsSearch.carPartsSearch')
+                    ->with(compact('articles'))
+                    ->with('viewName', $article_type_car);
+    }
+
     public function showArticle($articleid){
 
         $article = Article::with('pictures')->findOrFail($articleid);
