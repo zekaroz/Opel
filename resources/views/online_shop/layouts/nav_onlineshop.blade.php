@@ -1,9 +1,8 @@
-    <!-- Navigation -->
+    <!-- Navigation
     <div class="HeaderImage">
     </div>
     <div class="HeaderPlaceHolder">
-
-    </div>
+    </div>-->
     <nav class="navbar navbar-inverse navbar-custom navbar-fixed-top" role="navigation">
       <div class="HeaderColorBackground" style="display: none;">
       </div>
