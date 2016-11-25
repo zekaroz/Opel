@@ -36,10 +36,7 @@ class FileStorageController extends Controller
 
     public function getImage($path) {
         $file  = Storage::disk('local')->get($path);
-        
-        $image = Image::make($file)->orientate();
-
-        return $image->stream();
+        return $file;
     }
 
     public function deleteImage( $path) {
