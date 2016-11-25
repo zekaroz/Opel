@@ -13,7 +13,7 @@ class FileStorageController extends Controller
 
     }
 
-    public function saveImage($path, $filename, $file) {        
+    public function saveImage($path, $filename, $file) {
 
         $image = File::get($file);
 
@@ -35,20 +35,22 @@ class FileStorageController extends Controller
     }
 
     public function getImage($path) {
-        $file  = Storage::disk('local')->get($path); 
-        return $file;
+        $file  = Storage::disk('local')->get($path);
+        
+        $image = Image::make($file)->orientate();
+
+        return $image->stream();
     }
-    
+
     public function deleteImage( $path) {
         $exists = Storage::disk('local')->has($path);
-        
+
         if($exists){
             Storage::disk('local')->delete($path);
         }
-        
+
         return true;
     }
-    
-    
-}
 
+
+}
