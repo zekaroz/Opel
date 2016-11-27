@@ -150,6 +150,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Snowfire\Beautymail\BeautymailServiceProvider::class,
+        Roumen\Sitemap\SitemapServiceProvider::class,
 
 
 
