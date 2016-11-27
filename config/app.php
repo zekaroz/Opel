@@ -150,6 +150,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Snowfire\Beautymail\BeautymailServiceProvider::class,
+        Ipunkt\LaravelAnalytics\AnalyticsServiceProvider::class,
         Roumen\Sitemap\SitemapServiceProvider::class,
 
 
@@ -163,7 +164,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        Ipunkt\LaravelAnalytics\AnalyticsServiceProvider::class,
     ],
 
     /*
