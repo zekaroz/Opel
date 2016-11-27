@@ -188,28 +188,33 @@ class OnlineShopController extends Controller
     public function  sitemap(){
       // use this package for the easy sitemap creation in Laravel 4.*: https://github.com/RoumenDamianoff/laravel4-sitemap
       // then, do something like this for all your dynamic and static content:
-
       // Place the following code in a route or controller that should return a sitemap
       $sitemap = App::make("sitemap");
 
-
       // Add static pages like this:
-      $sitemap->add(route('homepage'), '2013-11-16T12:30:00+02:00', '0.7', 'daily');
-      $sitemap->add(route('about'), '2013-11-16T12:30:00+02:00', '0.3', 'monthly');
-      $sitemap->add(route('contacts'), '2013-11-16T12:30:00+02:00', '0.3', 'monthly');
-      $sitemap->add(route('services'), '2013-11-16T12:30:00+02:00', '0.3', 'monthly');
-      $sitemap->add(route('pecas'), '2013-11-16T12:30:00+02:00', '1.0', 'daily');
-      $sitemap->add(route('carros'), '2013-11-16T12:30:00+02:00', '1.0', 'daily');
-      $sitemap->add(route('carros_para_pecas'), '2013-11-16T12:30:00+02:00', '1.0', 'daily');
-
-
+      $sitemap->add(route('homepage'),          '2016-11-27T12:30:00+02:00', '0.7', 'daily');
+      $sitemap->add(route('about'),             '2016-11-27T12:30:00+02:00', '0.3', 'monthly');
+      $sitemap->add(route('contacts'),          '2016-11-27T12:30:00+02:00', '0.3', 'monthly');
+      $sitemap->add(route('services'),          '2016-11-27T12:30:00+02:00', '0.3', 'monthly');
+      $sitemap->add(route('pecas'),             '2016-11-27T12:30:00+02:00', '1.0', 'daily');
+      $sitemap->add(route('carros'),            '2016-11-27T12:30:00+02:00', '1.0', 'daily');
+      $sitemap->add(route('carros_para_pecas'), '2016-11-27T12:30:00+02:00', '1.0', 'daily');
 
       // Add dynamic pages of the site like this (using an example of this very site):
-
       $articles = Article::all();
 
       foreach($articles as $item) {
-        $sitemap->add(route('itemDisplay', ['articleid' => $item->id]), $item->created_at, '0.9', 'weekly');
+        $sitemap_item_images = [];
+
+        foreach( $item->pictures()->get() as $image ){
+          $sitemap_item_images = array_prepend($sitemap_item_images,
+                                            [
+                                             'url'=> route('article_image',['imageid' => $image->id]),
+                                             'title' =>  $item->name
+                                           ]
+                                          );
+        }
+        $sitemap->add(route('itemDisplay', ['articleid' => $item->id]), $item->created_at, '0.9', 'weekly', $sitemap_item_images);
       }
       // Now, output the sitemap:
       return $sitemap->render('xml');
