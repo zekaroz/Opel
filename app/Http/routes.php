@@ -55,9 +55,12 @@ Route::get('/item/{articleid}/show',[
     'as' => 'itemDisplay', 'uses' => 'OnlineShopController@showArticle'
 ] );
 
+Route::get('/item/{slug}',[
+    'as' => 'itemDisplayWithSlug', 'uses' => 'OnlineShopController@showItem'
+] );
+
 // route to get one of the pictures from the shops
 Route::get('/image/{imageid}',['as' => 'article_image', 'uses' => 'FileEntryController@getImage']);
-
 
 /*
 * This is to send emails from the contacts page...

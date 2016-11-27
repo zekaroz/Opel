@@ -161,6 +161,13 @@ class OnlineShopController extends Controller
                     ->with(compact('article'));
     }
 
+    public function showItem($slug){
+      $article = Article::where('slug', $slug)->with('pictures')->first();
+
+      return view('online_shop.Article.item')
+                  ->with(compact('article'));
+    }
+
     public function contactUs(ContactFormRequest $request){
         $info_email = env('RECIOPEL_MAIL', 'zekaroz@gmail.com');
 
@@ -214,7 +221,7 @@ class OnlineShopController extends Controller
                                            ]
                                           );
         }
-        $sitemap->add(route('itemDisplay', ['articleid' => $item->id]), $item->created_at, '0.9', 'weekly', $sitemap_item_images);
+        $sitemap->add(route('itemDisplayWithSlug', ['slug' => $item->slug]), $item->updated_at, '0.9', 'daily', $sitemap_item_images);
       }
       // Now, output the sitemap:
       return $sitemap->render('xml');
