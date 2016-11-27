@@ -15,7 +15,7 @@
         "enyo/dropzone": "^4.2",
         "robinherbots/jquery.inputmask": "^3.2",
         "sofa/eloquence": "^5.2",
-        "ivaynberg/select2": "^4.0",
+        "ivaynberg/select2": "4.0.3",
         "intervention/image": "^2.3",
         "fzaninotto/faker": "^1.5",
         "guzzlehttp/guzzle": "^6.2",
