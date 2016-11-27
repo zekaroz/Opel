@@ -55,6 +55,8 @@ Route::get('/item/{articleid}/show',[
     'as' => 'itemDisplay', 'uses' => 'OnlineShopController@showArticle'
 ] );
 
+// route to get one of the pictures from the shops
+Route::get('/image/{imageid}',['as' => 'article_image', 'uses' => 'FileEntryController@getImage']);
 
 
 /*
