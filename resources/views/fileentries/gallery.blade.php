@@ -2,14 +2,14 @@
     @forelse($pictures as $picture)
         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
             <div class="thumbnail">
-                 <img id="img{{$picture->id}}" src="{{route('getentry', $picture->filename)}}" alt="ALT NAME" class="img-responsive thumbs jbox-img" />
+                 <img id="img{{$picture->id}}" src="{{route('getentry', $picture->filename)}}" alt="" class="img-responsive thumbs jbox-img" />
             </div>
         </div>
     @empty
-       
+
     @endforelse
 </div>
-     
+
     <div class="jbox-container">
         <div class="img-alt-text"></div>
         <div style="background-color: white;">
@@ -42,14 +42,10 @@
  <script>
     $(document).ready(function() {
          var gallery = new jBox();
-    } );   
+    } );
 </script>
 
 @section('afterBody')
-<script src="{{ asset("js/jBox.js") }} " type="text/javascript"></script> 
-    
-@stop    
-    
- 
- 
+<script src="{{ asset("js/jBox.js") }} " type="text/javascript"></script>
 
+@stop

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d1f32a3658952500d505db652a24a760",
-    "content-hash": "c789d5ed3148841cd7799aa43b3003ba",
+    "hash": "5498a6355a505832b184c65c2feb3516",
+    "content-hash": "5637bd4ffe8e54cf821371a9e482b0cf",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -501,6 +501,7 @@
                 "rest",
                 "web service"
             ],
+            "abandoned": "guzzlehttp/guzzle",
             "time": "2014-01-28 22:29:15"
         },
         {
@@ -781,6 +782,59 @@
                 "watermark"
             ],
             "time": "2016-01-02 19:15:13"
+        },
+        {
+            "name": "ipunkt/laravel-analytics",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ipunkt/laravel-analytics.git",
+                "reference": "35193df6f4371a694ccc0f022bcb679a37847eac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ipunkt/laravel-analytics/zipball/35193df6f4371a694ccc0f022bcb679a37847eac",
+                "reference": "35193df6f4371a694ccc0f022bcb679a37847eac",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "~5.0",
+                "illuminate/session": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "laravel/framework": "~5.0"
+            },
+            "suggest": {
+                "martijnc/php-csp": "For handling Content Security Policy matters"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Ipunkt\\LaravelAnalytics\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robert Kummer",
+                    "email": "r.kummer@ipunkt.biz"
+                }
+            ],
+            "description": "Analytics tracking for Laravel",
+            "keywords": [
+                "analytics",
+                "google analytics",
+                "javascript",
+                "laravel",
+                "php",
+                "statistics"
+            ],
+            "time": "2016-11-03 07:42:58"
         },
         {
             "name": "ivaynberg/select2",
