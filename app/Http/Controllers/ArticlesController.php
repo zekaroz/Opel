@@ -165,6 +165,8 @@ class ArticlesController extends Controller
            $article->part_type_id = null;
         }
 
+        $article->slug = str_slug($article->name) .'-' .$article->id;
+
         // this automatically applies the user id for
         //the relations ship
         //TODO: rever isto para associar a peça à loja de que o user é dono;
