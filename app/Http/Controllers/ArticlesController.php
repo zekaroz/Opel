@@ -11,10 +11,11 @@ use App\PartType;
 use App\BrandModel;
 use App\ArticleImage;
 use Illuminate\Support\Facades\Response;
-use Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Fileentry;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class ArticlesController extends Controller
 {
@@ -171,6 +172,18 @@ class ArticlesController extends Controller
         $article->save();
     }
 
+    public function saveImageOrder($articleId , Request $request){
+
+      $data = json_encode(Input::all());
+
+      $article = Article::findorFail($articleId);
+
+      return \Response::json([
+                         'data_reveived' => $data,
+                         'code'  => 200
+                     ], 200);
+    }
+
     public function edit($id){
         $modelsList =  BrandModel::lists('name','id')->prepend('(all)', '');
         $brandsList = Brand::lists('name','id')->prepend('(all)', '');
@@ -180,7 +193,7 @@ class ArticlesController extends Controller
         $article = Article::findorFail($id);
 
         // get the brand pictures
-        $articlePictures = $article->pictures()->get();
+        $articlePictures = $article->pictures()->orderBy('order', 'asc')->get();
 
         return view('backoffice.articles.edit')
                     ->with(compact('brandsList'))
@@ -223,8 +236,8 @@ class ArticlesController extends Controller
 
         $article = Article::findorFail($id);
 
-        // get the brand pictures
-        $articlePictures = $article->pictures()->get();
+        // get the article pictures
+        $articlePictures = $article->pictures()->orderBy('order', 'asc')->get();
 
         return view('backoffice.articles.articlePictures')
                     ->with(compact('article'))

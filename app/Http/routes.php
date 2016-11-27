@@ -10,6 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::post('/article/{articleid}/imagesOrder', 'ArticlesController@saveImageOrder');
 
 Route::get('articles/all','ArticlesController@articleSearcher');
 

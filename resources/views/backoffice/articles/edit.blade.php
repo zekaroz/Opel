@@ -26,6 +26,8 @@ Edit Article '{{ $article->name}}'
 
             @if ( isset($articlePictures) )
               <div class="panel-body">
+
+                  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
                   <hr>
                   @include('fileentries.listPictures', ['pictures' => $articlePictures,
                                                         'showOnly' => false            ])
@@ -34,6 +36,42 @@ Edit Article '{{ $article->name}}'
 
 
             <script type="text/javascript">
+                  $(function(){
+                     // to make images sortable only in this page
+                      $('.picturesHolder').sortable({
+                        update: function (event, ui) {
+                          //create the array that hold the positions...
+                            var order = [];
+                              //loop trought each li...
+                             $('.picturesHolder>div').each( function(e) {
+
+                               //add each li position to the array...
+                               // the +1 is for make it start from 1 instead of 0
+                               var image_id = $(this).attr('data-id');
+                               var image_order = ( $(this).index() + 1 )
+                               order.push({
+                                      picId: image_id,
+                                      order: image_order
+                                    });
+                              });
+                             //use the variable as you need!
+                            console.log( order );
+                            $.ajax({
+                                url: '/article/'+{{ $article->id }}+'/imagesOrder',
+                                type: 'post',
+                                data: JSON.stringify(order),
+                                success:function(response) {
+                                    console.log(response.data_reveived);
+                                 },
+                                error:function(data) {
+
+                                     alert('somethings wrong...' );
+                                }
+                            });
+                      }
+                     });
+                   });
+
                   $( '.thumbnail .deleteImage' ).on( 'click', function(e) {
                               e.preventDefault();
                               var link = $(this);
