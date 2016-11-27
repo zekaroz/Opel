@@ -97,7 +97,7 @@ class OnlineShopController extends Controller
 
         $articles = Article::with('pictures')
                             ->orderByRaw("RAND()")
-                            ->take(6)
+                            ->take(12)
                             ->get();
 
 
@@ -106,7 +106,7 @@ class OnlineShopController extends Controller
                               $query->whereNotNull('fileentries.id');
                             })
                             ->orderByRaw("RAND()")
-                            ->take(5)
+                            ->take(6)
                             ->get();
 
         return view('online_shop.welcome.index')

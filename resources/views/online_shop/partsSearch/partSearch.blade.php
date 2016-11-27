@@ -22,7 +22,7 @@
 <tbody>
     @forelse( $articles as $article)
         <tr>
-          <td><a href="item/{{$article->id}}/show">
+          <td><a href="{{ route('itemDisplayWithSlug', ['slug' => $article->slug]) }}">
              {{ $article->name}}
                 </a>
           </td>
