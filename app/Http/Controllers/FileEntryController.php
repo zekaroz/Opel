@@ -49,7 +49,7 @@ class FileEntryController extends Controller
 	}
 
   public function getImage($imageid){
-		$entry = Fileentry::where('id', '=', $id)->firstOrFail();
+		$entry = Fileentry::where('id', '=', $imageid)->firstOrFail();
     $fs = new FileStorageController();
     $file = $fs->getImage($entry->path);
 

@@ -206,12 +206,13 @@ class OnlineShopController extends Controller
       foreach($articles as $item) {
         $sitemap_item_images = [];
 
-        dd($item->pictures());
-
-        foreach( $item->pictures() as $image ){
-          $sitemap_item_images = array_add($sitemap_item_images,
-                                            'url', route('article_image',['imageid' => $image->id]),
-                                            'title', $item->name);
+        foreach( $item->pictures()->get() as $image ){
+          $sitemap_item_images = array_prepend($sitemap_item_images,
+                                            [
+                                             'url'=> route('article_image',['imageid' => $image->id]),
+                                             'title' =>  $item->name
+                                           ]
+                                          );
         }
         $sitemap->add(route('itemDisplay', ['articleid' => $item->id]), $item->created_at, '0.9', 'weekly', $sitemap_item_images);
       }

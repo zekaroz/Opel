@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/sitemap','OnlineShopController@sitemap');
+Route::get('/google_info/pcqar/sitemap','OnlineShopController@sitemap');
 
 Route::get('articles/all','ArticlesController@articleSearcher');
 
