@@ -33,10 +33,11 @@
             <div class="col-md-12">
                 <h4>Fotografias</h4>
                 <hr>
-                @if ( isset($article->pictures) )
+                @if ( isset($articlePictures) )
                     <div class="panel-body">
-                        @include('fileentries.listPictures', ['pictures' => $article->pictures
-                                                             ,'showOnly' => true])
+                        @include('fileentries.listPictures', ['pictures' => $articlePictures
+                                                             ,'showOnly' => true
+                                                             ,'altText'  => $article->name])
                     </div>
                 @endif
             </div>

@@ -155,10 +155,7 @@ class OnlineShopController extends Controller
 
     public function showArticle($articleid){
 
-        $article = Article::all()
-                            ->with('pictures')
-                            ->find($articleid);
-
+        $article = Article::find($articleid);
 
         return view('online_shop.Article.item')
                     ->with(compact('article'));
@@ -171,8 +168,12 @@ class OnlineShopController extends Controller
       if( empty($article) )
           return view('errors.PageNotFound');
 
+      $articlePictures = $article->pictures()->orderBy('position', 'asc')->get();
+
+
       return view('online_shop.Article.item')
-                 ->with(compact('article'));
+                 ->with(compact('article'))
+                 ->with(compact('articlePictures'));
     }
 
     public function contactUs(ContactFormRequest $request){
