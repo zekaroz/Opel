@@ -30,24 +30,19 @@ class FileEntryController extends Controller
 	}
 
 	public function add() {
-
-                $file = Request::file('file');
+    $file = Request::file('file');
 		$extension = $file->getClientOriginalExtension();
 
-                Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
+    Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
 
-                $entry = new Fileentry();
+    $entry = new Fileentry();
 		$entry->mime = $file->getClientMimeType();
 		$entry->original_filename = $file->getClientOriginalName();
 		$entry->filename = $file->getFilename().'.'.$extension;
-                $entry->path = $file->getFilename().'.'.$extension;
+    $entry->path = $file->getFilename().'.'.$extension;
 
-		$entry->save();
-
+    $entry->save();
 		return redirect('fileentry');
-
-<<<<<<< HEAD
-=======
 	}
 
   public function getImage($imageid){
@@ -55,9 +50,9 @@ class FileEntryController extends Controller
     $fs = new FileStorageController();
     $file = $fs->getImage($entry->path);
 
-  return (new Response($file, 200))
+    // return the image to the page, just a binary
+    return (new Response($file, 200))
                     ->header('Content-Type', $entry->mime);
->>>>>>> 7898f3f9a9446019415ca87ae6fd596932c46859
 	}
 
 	public function get($filename){
@@ -67,11 +62,6 @@ class FileEntryController extends Controller
 		return (new Response($file, 200))
                     ->header('Content-Type', $entry->mime);
 	}
-<<<<<<< HEAD
-=======
-
-        public function getThumbnail($filename){
->>>>>>> 7898f3f9a9446019415ca87ae6fd596932c46859
 
   public function getThumbnail($filename){
 		$entry = Fileentry::where('filename', '=', $filename)->firstOrFail();
@@ -82,29 +72,16 @@ class FileEntryController extends Controller
                   ->header('Content-Type', $entry->mime);
 	}
 
-
-<<<<<<< HEAD
     public function destroy($file_id) {
+
         $file = Fileentry::findOrFail($file_id);
+
         $file->delete();
+
         return \Response::json([
                            'error' => false,
                            'code'  => 200,
                            'feedback' =>'Model has been deleted.'
                        ], 200);
     }
-=======
-        public function destroy($file_id) {
-
-            $file = Fileentry::findOrFail($file_id);
-
-            $file->delete();
-
-            return \Response::json([
-                               'error' => false,
-                               'code'  => 200,
-                               'feedback' =>'Model has been deleted.'
-                           ], 200);
-        }
->>>>>>> 7898f3f9a9446019415ca87ae6fd596932c46859
 }
