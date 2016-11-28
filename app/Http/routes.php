@@ -12,40 +12,65 @@
 */
 Route::post('/article/{articleid}/imagesOrder', 'ArticlesController@saveImageOrder');
 
+Route::get('not_found', ['as'=> 'PageNotFound', function(){
+    return View::make('errors.PageNotFound');
+}]);
+
+Route::get('/google_info/pcqar/sitemap','OnlineShopController@sitemap');
+
 Route::get('articles/all','ArticlesController@articleSearcher');
 
 Route::post('articles/all','ArticlesController@search');
 
 Route::get('articles/search','ArticlesController@search');
 
-Route::get('/','OnlineShopController@homepage' );
+/*Static pages from the online store*/
 
-Route::get('/item/{articleid}/show','OnlineShopController@showArticle' );
+// the Homepage
+Route::get('/',['as' => 'homepage', 'uses' => 'OnlineShopController@homepage'] );
+
+//Contactos
+Route::get('contactos',['as' => 'contacts',  function(){
+        return View::make('online_shop.contacts.contacts');
+    }]);
 
 
-Route::get('quem_somos', function(){
-    return View::make('online_shop.about.about');
-});
+// Quem Somos
+Route::get('quem_somos',['as' => 'about', function(){
+        return View::make('online_shop.about.about');
+    }]);
+
+
+// Serviços
+Route::get('servicos',['as' => 'services',   function(){
+        return View::make('online_shop.services.services');
+    }]);
+
+//Pesquisa de Peças
+Route::get('/pecas', ['as' => 'pecas', 'uses' => 'OnlineShopController@partSearch']);
+
+//Pesquisa de Automóveis Usados
+Route::get('/carros',['as' => 'carros', 'uses' => 'OnlineShopController@carSearch']);
+
+//Pesquisa de Automóveis para Peças
+Route::get('/carros_para_pecas', ['as' => 'carros_para_pecas', 'uses' => 'OnlineShopController@carPartsSearch']);
+
+//Article Display Page
+Route::get('/item/{articleid}/show',[
+    'as' => 'itemDisplay', 'uses' => 'OnlineShopController@showArticle'
+] );
+
+Route::get('/item/{slug}',[
+    'as' => 'itemDisplayWithSlug', 'uses' => 'OnlineShopController@showItem'
+] );
+
+// route to get one of the pictures from the shops
+Route::get('/image/{imageid}',['as' => 'article_image', 'uses' => 'FileEntryController@getImage']);
 
 /*
 * This is to send emails from the contacts page...
 */
 Route::post('contactos/email','OnlineShopController@contactUs');
-
-
-Route::get('contactos', function(){
-    return View::make('online_shop.contacts.contacts');
-});
-
-Route::get('/pecas','OnlineShopController@partSearch');
-
-Route::get('/carros','OnlineShopController@carSearch');
-
-Route::get('/carros_para_pecas','OnlineShopController@carPartsSearch');
-
-Route::get('servicos', function(){
-    return View::make('online_shop.services.services');
-});
 
 /*
  Web site End

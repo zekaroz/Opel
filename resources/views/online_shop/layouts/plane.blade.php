@@ -10,7 +10,7 @@
     @yield('head_section')
     <meta name="author" content="Pedro Queirós">
 
-    
+
     <link href="{{ asset("/css/font-awesome.min.css")}}" rel='stylesheet' type='text/css'>
     <link href="{{ asset("/css/fonts.googleapis.css.css")}}" rel='stylesheet' type='text/css'>
 
@@ -40,7 +40,7 @@
         }
     </style>
 
-
+    {!! Analytics::render() !!}
 </head>
 
 <body>

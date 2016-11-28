@@ -25,7 +25,7 @@
                                                          [
                                                             'numberOfStars'=> 0 ,
                                                             'numberOfReviews'=> (0),
-                                                            'itemURL' => 'item/'.$article->id.'/show',
+                                                            'itemURL' =>  route('itemDisplayWithSlug', ['slug' => $article->slug]) ,
                                                             'itemName'=> $article->name,
                                                             'itemDescription'=> $article->description,
                                                             'itemPrice' => $article->price,

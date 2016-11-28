@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
@@ -94,18 +95,20 @@ class OnlineShopController extends Controller
 
     public function homepage(){
 
-        $articles = Article::with('pictures')
+        $articles = Article::where('public',1)
+                            ->with('pictures')
                             ->orderByRaw("RAND()")
-                            ->take(6)
+                            ->take(12)
                             ->get();
 
 
-        $carrousselArticle= Article::whereHas('pictures',
+        $carrousselArticle= Article::where('public',1)
+                            ->whereHas('pictures',
                             function($query) {
                               $query->whereNotNull('fileentries.id');
                             })
                             ->orderByRaw("RAND()")
-                            ->take(5)
+                            ->take(6)
                             ->get();
 
         return view('online_shop.welcome.index')
@@ -118,8 +121,8 @@ class OnlineShopController extends Controller
         $article_type_car = ArticleType::where('code', 'P')->get()->first();
 
         $articles = Article::all()
-                    ->where('article_type_id', $article_type_car->id)
-                    ->where('public',1) ;
+                    ->where('article_type_id', $article_type_car->id);
+
 
         return view('online_shop.partsSearch.partSearch')
                     ->with(compact('articles'))
@@ -132,8 +135,7 @@ class OnlineShopController extends Controller
         $article_type_car = ArticleType::where('code', 'C')->get()->first();
 
         $articles = Article::all()
-                    ->where('article_type_id', $article_type_car->id)
-                    ->where('public',1) ;
+                    ->where('article_type_id', $article_type_car->id);
 
         return view('online_shop.CarsSearch.carSearch')
                     ->with(compact('articles'))
@@ -144,8 +146,7 @@ class OnlineShopController extends Controller
         $article_type_car = ArticleType::where('code', 'VP')->get()->first();
 
         $articles = Article::all()
-                    ->where('article_type_id', $article_type_car->id)
-                    ->where('public',1) ;
+                    ->where('article_type_id', $article_type_car->id);
 
         return view('online_shop.CarsSearch.carPartsSearch')
                     ->with(compact('articles'))
@@ -154,10 +155,24 @@ class OnlineShopController extends Controller
 
     public function showArticle($articleid){
 
-        $article = Article::with('pictures')->findOrFail($articleid);
+        $article = Article::all()
+                            ->with('pictures')
+                            ->find($articleid);
+
 
         return view('online_shop.Article.item')
                     ->with(compact('article'));
+    }
+
+    public function showItem($slug){
+
+      $article = Article::where('slug', $slug)->with('pictures')->first();
+
+      if( empty($article) )
+          return view('errors.PageNotFound');
+
+      return view('online_shop.Article.item')
+                 ->with(compact('article'));
     }
 
     public function contactUs(ContactFormRequest $request){
@@ -182,5 +197,40 @@ class OnlineShopController extends Controller
         flash()->success('O seu contacto foi recebido. Obrigado por nos contactar.');
 
         return view('online_shop.contacts.contacts');
+    }
+
+    public function  sitemap(){
+      // use this package for the easy sitemap creation in Laravel 4.*: https://github.com/RoumenDamianoff/laravel4-sitemap
+      // then, do something like this for all your dynamic and static content:
+      // Place the following code in a route or controller that should return a sitemap
+      $sitemap = App::make("sitemap");
+
+      // Add static pages like this:
+      $sitemap->add(route('homepage'),          '2016-11-27T12:30:00+02:00', '0.7', 'daily');
+      $sitemap->add(route('about'),             '2016-11-27T12:30:00+02:00', '0.3', 'monthly');
+      $sitemap->add(route('contacts'),          '2016-11-27T12:30:00+02:00', '0.3', 'monthly');
+      $sitemap->add(route('services'),          '2016-11-27T12:30:00+02:00', '0.3', 'monthly');
+      $sitemap->add(route('pecas'),             '2016-11-27T12:30:00+02:00', '1.0', 'daily');
+      $sitemap->add(route('carros'),            '2016-11-27T12:30:00+02:00', '1.0', 'daily');
+      $sitemap->add(route('carros_para_pecas'), '2016-11-27T12:30:00+02:00', '1.0', 'daily');
+
+      // Add dynamic pages of the site like this (using an example of this very site):
+      $articles = Article::all();
+
+      foreach($articles as $item) {
+        $sitemap_item_images = [];
+
+        foreach( $item->pictures()->get() as $image ){
+          $sitemap_item_images = array_prepend($sitemap_item_images,
+                                            [
+                                             'url'=> route('article_image',['imageid' => $image->id]),
+                                             'title' =>  $item->name
+                                           ]
+                                          );
+        }
+        $sitemap->add(route('itemDisplayWithSlug', ['slug' => $item->slug]), $item->updated_at, '0.9', 'daily', $sitemap_item_images);
+      }
+      // Now, output the sitemap:
+      return $sitemap->render('xml');
     }
 }
