@@ -98,7 +98,8 @@ class OnlineShopController extends Controller
         $articles = Article::where('public',1)
                             ->with('pictures')
                             ->orderByRaw("RAND()")
-                            ->take(12);
+                            ->take(12)
+                            ->get();
 
 
         $carrousselArticle= Article::where('public',1)
@@ -107,7 +108,8 @@ class OnlineShopController extends Controller
                               $query->whereNotNull('fileentries.id');
                             })
                             ->orderByRaw("RAND()")
-                            ->take(6);
+                            ->take(6)
+                            ->get();
 
         return view('online_shop.welcome.index')
                 ->with(compact('articles'))
