@@ -26,6 +26,9 @@ Edit Article '{{ $article->name}}'
 
             @if ( isset($articlePictures) )
               <div class="panel-body">
+
+                  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
                   <hr>
                   @include('fileentries.listPictures', ['pictures' => $articlePictures,
                                                         'showOnly' => false            ])
@@ -34,6 +37,50 @@ Edit Article '{{ $article->name}}'
 
 
             <script type="text/javascript">
+
+                  var serialize = function(obj) {
+                                  var str = [];
+                                  for(var p in obj)
+                                    if (obj.hasOwnProperty(p)) {
+                                      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                                    }
+                                  return str.join("&");
+                                };
+
+                  $(function(){
+                     // to make images sortable only in this page
+                      $('.picturesHolder').sortable({
+                        start: function(e, ui) {
+                            // creates a temporary attribute on the element with the old index
+                            $(this).attr('data-previndex', ui.item.index());
+                        },
+                        update: function(e, ui) {
+                            // gets the new and old index then removes the temporary attribute
+                            var payload = {};
+
+                            // fills the object to send
+                            payload.newIndex = ui.item.index();
+                            payload.oldIndex = $(this).attr('data-previndex');
+                            payload.image_id =  ui.item.attr('data-id');
+
+                            $(this).removeAttr('data-previndex');
+
+                            $.ajax({
+                                url: '/article/'+{{ $article->id }}+'/imagesOrder',
+                                type: 'post',
+                                data: serialize(payload) , // serialize the object to send
+                                dataType: 'json',
+                                success:function(response) {
+                                    console.log(response);
+                                 },
+                                error:function(data) {
+                                     console.error('Save didn\'t work...' );
+                                }
+                            });
+                        }
+                     });
+                   });
+
                   $( '.thumbnail .deleteImage' ).on( 'click', function(e) {
                               e.preventDefault();
                               var link = $(this);

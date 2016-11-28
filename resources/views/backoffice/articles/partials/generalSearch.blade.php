@@ -56,6 +56,7 @@
 
           function makeSearch(){
             var postData = $('#searchForm').serialize();
+            console.log(postData);
             var refreshElement = $('#searchResult');
 
             // this is a post method to the articles/all route

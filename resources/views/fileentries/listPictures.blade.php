@@ -1,23 +1,22 @@
 
 <div class="row">
-<div class="container" style="width:100%;">
+<div class="container picturesHolder" style="width:100%;">
     @forelse($pictures as $picture)
-               <div class="col-lg-4 col-md-6 col-xs-6 thumb">
-                   <div class="thumbnail">
-                            <img id="img{{$picture->id}}" src="{{route('getentry', $picture->filename)}}" alt="ALT NAME" class="img-responsive thumbs jbox-img" />
+               <div data-id="{{ $picture->id }}" class="col-md-2 col-xs-3 thumbnail left-buffer">
+                  <img id="img{{$picture->id}}" src="{{route('getentry', $picture->filename)}}" alt="{{ isset($altText) ? $altText : '' }}" class="jbox-img" />
                   @if(isset($showOnly))
                     @if(!$showOnly)
-                       <div class="caption">
-                           <div style="text-align: right;">
-
-                                    <a  href="#" class="deleteImage btn btn-default" data-id="{{$picture->id}}">
-                                        <span><i class="fa fa-trash-o fa-fw"></i>  </span>
-                                    </a>
-                           </div>
-                       </div>
-                     @endif
+                       <div class="deleteIcon">
+                           <a  href="#" class="deleteImage" data-id="{{$picture->id}}">
+                               <i class="fa fa-times fa-fw"></i>
+                           </a>
+                      </div>
+                      <div class="grabber">
+                          <div class="">
+                          </div>
+                      </div>
                    @endif
-                   </div>
+                 @endif
                </div>
      @empty
            <div> </div>

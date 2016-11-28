@@ -38,6 +38,13 @@
           content:"*";
           color:red;
         }
+
+        .thumbnail > img, .thumbnail a > img{
+          height: 100px;
+        }
+        .left-buffer{
+          margin-left: 10px;
+        }
     </style>
 
     {!! Analytics::render() !!}
