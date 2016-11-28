@@ -1,10 +1,10 @@
 
 <div class="row">
-<div class="container" style="width:100%;">
+<div class="container picturesHolder" style="width:100%;">
     @forelse($pictures as $picture)
-               <div class="col-lg-4 col-md-6 col-xs-6 thumb">
+               <div data-id="{{ $picture->id }}" class="col-lg-4 col-md-6 col-xs-6 thumb">
                    <div class="thumbnail">
-                            <img id="img{{$picture->id}}" src="{{route('getentry', $picture->filename)}}" alt="ALT NAME" class="img-responsive thumbs jbox-img" />
+                            <img id="img{{$picture->id}}" src="{{route('getentry', $picture->filename)}}" alt="{{ isset($altText) ? $altText : '' }}" class="img-responsive thumbs jbox-img" />
                   @if(isset($showOnly))
                     @if(!$showOnly)
                        <div class="caption">
