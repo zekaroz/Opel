@@ -34,9 +34,16 @@ class FileStorageController extends Controller
         return $fullpath;
     }
 
+    private function buildImagePath($image_path){
+      $full_imagepath = str_replace('\\','/', public_path('images/'.$image_path));
+
+      return $full_imagepath;
+    }
+
     public function getImage($path) {
-        $file  = Storage::disk('local')->get($path);
-        return $file;
+      // orientate only works when Image::make uses the actual file path to the pic
+        $image = Image::make($this->buildImagePath($path))->orientate()->stream();
+        return $image;
     }
 
     public function deleteImage( $path) {

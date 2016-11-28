@@ -30,22 +30,19 @@ class FileEntryController extends Controller
 	}
 
 	public function add() {
-
-                $file = Request::file('file');
+    $file = Request::file('file');
 		$extension = $file->getClientOriginalExtension();
 
-                Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
+    Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
 
-                $entry = new Fileentry();
+    $entry = new Fileentry();
 		$entry->mime = $file->getClientMimeType();
 		$entry->original_filename = $file->getClientOriginalName();
 		$entry->filename = $file->getFilename().'.'.$extension;
-                $entry->path = $file->getFilename().'.'.$extension;
+    $entry->path = $file->getFilename().'.'.$extension;
 
-		$entry->save();
-
+    $entry->save();
 		return redirect('fileentry');
-
 	}
 
   public function getImage($imageid){
@@ -53,38 +50,38 @@ class FileEntryController extends Controller
     $fs = new FileStorageController();
     $file = $fs->getImage($entry->path);
 
-  return (new Response($file, 200))
+    // return the image to the page, just a binary
+    return (new Response($file, 200))
                     ->header('Content-Type', $entry->mime);
 	}
 
 	public function get($filename){
 		$entry = Fileentry::where('filename', '=', $filename)->firstOrFail();
-                $fs = new FileStorageController();
-                $file = $fs->getImage($entry->path);
+    $fs = new FileStorageController();
+    $file = $fs->getImage($entry->path);
 		return (new Response($file, 200))
                     ->header('Content-Type', $entry->mime);
 	}
 
-        public function getThumbnail($filename){
-
+  public function getThumbnail($filename){
 		$entry = Fileentry::where('filename', '=', $filename)->firstOrFail();
-                $fs = new FileStorageController();
-                $file = $fs->getImage($entry->thumbnail_path);
-		return (new Response($file, 200))
-                    ->header('Content-Type', $entry->mime);
+    $fs = new FileStorageController();
+    $file = $fs->getImage($entry->thumbnail_path);
+
+    return (new Response($file, 200))
+                  ->header('Content-Type', $entry->mime);
 	}
 
+    public function destroy($file_id) {
 
-        public function destroy($file_id) {
+        $file = Fileentry::findOrFail($file_id);
 
-            $file = Fileentry::findOrFail($file_id);
+        $file->delete();
 
-            $file->delete();
-
-            return \Response::json([
-                               'error' => false,
-                               'code'  => 200,
-                               'feedback' =>'Model has been deleted.'
-                           ], 200);
-        }
+        return \Response::json([
+                           'error' => false,
+                           'code'  => 200,
+                           'feedback' =>'Model has been deleted.'
+                       ], 200);
+    }
 }
