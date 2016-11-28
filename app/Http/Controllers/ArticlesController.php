@@ -332,4 +332,6 @@ class ArticlesController extends Controller
                            'feedback' =>'Article has been deleted.'
                        ], 200);
     }
+
+
 }

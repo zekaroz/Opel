@@ -63,4 +63,14 @@ class Article extends Model
     public function pictures(){
         return $this->belongsToMany('App\Fileentry', 'article_images', 'article_id', 'fileentry_id');
    }
+
+   /**
+     * Scope a query to only include public articles.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+   public function scopePublic($query)
+   {
+     return $query->where('public', 1);
+   }
 }

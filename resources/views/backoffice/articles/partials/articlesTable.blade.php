@@ -1,7 +1,7 @@
 <table class="table table-striped ">
   <thead>
     <th>
-      Aticle Name
+      Article Name
     </th>
     <th>
       Reference
