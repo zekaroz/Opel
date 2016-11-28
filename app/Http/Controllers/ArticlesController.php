@@ -11,7 +11,7 @@ use App\PartType;
 use App\BrandModel;
 use App\ArticleImage;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Http\Request;
+use Request;
 use Illuminate\Support\Facades\File;
 use App\Fileentry;
 use Illuminate\Support\Facades\DB;
