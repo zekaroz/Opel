@@ -95,18 +95,19 @@ class OnlineShopController extends Controller
 
     public function homepage(){
 
-        $articles = Article::public()
+        $articles = Article::all()
                             ->with('pictures')
+                            ->where('public',1)
                             ->orderByRaw("RAND()")
-                            ->take(12)
-                            ->get();
+                            ->take(12);
 
 
-        $carrousselArticle= Article::public()
+        $carrousselArticle= Article::all()
                             ->whereHas('pictures',
                             function($query) {
                               $query->whereNotNull('fileentries.id');
                             })
+                            ->where('public',1)
                             ->orderByRaw("RAND()")
                             ->take(6)
                             ->get();
