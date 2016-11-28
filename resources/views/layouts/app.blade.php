@@ -41,6 +41,32 @@
           content:"*";
           color:red;
         }
+        .deleteIcon{
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+        .deleteIcon .fa{
+          color: red;
+        }
+
+        .thumbnail > img, .thumbnail a > img{
+          height: 100px;
+        }
+        .left-buffer{
+          margin-left: 10px;
+        }
+        .grabber{
+          position: absolute;
+          top:-10px;
+          margin-left: 25%;
+        }
+        .grabber div{
+          height: 5px;
+          width: 50px;
+          border: 1px dashed #999;
+          cursor: move;
+        }
     </style>
 </head>
 <body>

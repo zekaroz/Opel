@@ -285,7 +285,7 @@ class ArticlesController extends Controller
         $article = Article::findorFail($id);
 
         // get the article pictures
-        $articlePictures = $article->pictures()->orderBy('order', 'asc')->get();
+        $articlePictures = $article->pictures()->orderBy('position', 'asc')->get();
 
         return view('backoffice.articles.articlePictures')
                     ->with(compact('article'))
