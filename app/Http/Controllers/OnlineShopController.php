@@ -95,13 +95,15 @@ class OnlineShopController extends Controller
 
     public function homepage(){
 
-        $articles = Article::with('pictures')
+        $articles = Article::where('public',1)
+                            ->with('pictures')
                             ->orderByRaw("RAND()")
                             ->take(12)
                             ->get();
 
 
-        $carrousselArticle= Article::whereHas('pictures',
+        $carrousselArticle= Article::where('public',1)
+                            ->whereHas('pictures',
                             function($query) {
                               $query->whereNotNull('fileentries.id');
                             })
@@ -119,8 +121,8 @@ class OnlineShopController extends Controller
         $article_type_car = ArticleType::where('code', 'P')->get()->first();
 
         $articles = Article::all()
-                    ->where('article_type_id', $article_type_car->id)
-                    ->where('public',1) ;
+                    ->where('article_type_id', $article_type_car->id);
+
 
         return view('online_shop.partsSearch.partSearch')
                     ->with(compact('articles'))
@@ -133,8 +135,7 @@ class OnlineShopController extends Controller
         $article_type_car = ArticleType::where('code', 'C')->get()->first();
 
         $articles = Article::all()
-                    ->where('article_type_id', $article_type_car->id)
-                    ->where('public',1) ;
+                    ->where('article_type_id', $article_type_car->id);
 
         return view('online_shop.CarsSearch.carSearch')
                     ->with(compact('articles'))
@@ -145,8 +146,7 @@ class OnlineShopController extends Controller
         $article_type_car = ArticleType::where('code', 'VP')->get()->first();
 
         $articles = Article::all()
-                    ->where('article_type_id', $article_type_car->id)
-                    ->where('public',1) ;
+                    ->where('article_type_id', $article_type_car->id);
 
         return view('online_shop.CarsSearch.carPartsSearch')
                     ->with(compact('articles'))
@@ -155,17 +155,24 @@ class OnlineShopController extends Controller
 
     public function showArticle($articleid){
 
-        $article = Article::with('pictures')->findOrFail($articleid);
+        $article = Article::all()
+                            ->with('pictures')
+                            ->find($articleid);
+
 
         return view('online_shop.Article.item')
                     ->with(compact('article'));
     }
 
     public function showItem($slug){
+
       $article = Article::where('slug', $slug)->with('pictures')->first();
 
+      if( empty($article) )
+          return view('errors.PageNotFound');
+
       return view('online_shop.Article.item')
-                  ->with(compact('article'));
+                 ->with(compact('article'));
     }
 
     public function contactUs(ContactFormRequest $request){
