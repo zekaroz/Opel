@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnOrderToArticleImages extends Migration
+class AddIsStarredToFileEntryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddColumnOrderToArticleImages extends Migration
      */
     public function up()
     {
-        Schema::table('article_images', function (Blueprint $table) {
-             $table->integer('position');
+        Schema::table('fileentries', function (Blueprint $table) {
+            $table->boolean('is_starred');
         });
     }
 
@@ -24,8 +24,8 @@ class AddColumnOrderToArticleImages extends Migration
      */
     public function down()
     {
-        Schema::table('article_images', function (Blueprint $table) {
-             $table->dropColumn('position');
+        Schema::table('fileentries', function (Blueprint $table) {
+            $table->dropColumn('is_starred');
         });
     }
 }

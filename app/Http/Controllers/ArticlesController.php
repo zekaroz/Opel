@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ArticlesRequest;
 use App\Http\Controllers\Controller;
 use App\Article;
+use App\ArticleImage;
 use App\ArticleType;
 use App\Brand;
 use App\PartType;
 use App\BrandModel;
-use App\ArticleImage;
 use Illuminate\Support\Facades\Response;
 use Request;
 use Illuminate\Support\Facades\File;
@@ -175,15 +175,61 @@ class ArticlesController extends Controller
     }
 
     public function saveImageOrder($articleId , Request $request){
+      /*
+      * in the data comes 3 values:
+      ** image_id: the picture id that was dragged
+      ** newIndex: the new index o the dragged image
+      ** oldIndex: the old index of that image
+      */
+      $data = Input::all();
 
-      $data = json_encode(Input::all());
+      $newIndex = $data['newIndex'];
+      $oldIndex = $data['oldIndex'];
+      $image_id = $data['image_id'];
 
-      $article = Article::findorFail($articleId);
+      if($newIndex > $oldIndex){
+          $min_index = $oldIndex;
+          $max_index =  $newIndex;
+          $factor = -1;
+      }
+      else {
+          $min_index =  $newIndex;
+          $max_index =  $oldIndex;
+          $factor = 1;
+      }
 
-      return \Response::json([
-                         'data_reveived' => $data,
-                         'code'  => 200
-                     ], 200);
+      // we update all image orders after to be in the correct order
+      $affected = DB::update('update article_images
+                              set position=position + ?
+                              where article_id = ?
+                                  and position >= ?
+                                  and position <= ?
+                                ',
+                               [
+                                $factor,
+                                $articleId,
+                                $min_index,
+                                $max_index
+                              ]);
+
+      // this updates the dragged image to the current order
+      DB::update('update article_images
+                  set position=?
+                  where article_id = ?
+                      and fileentry_id = ?
+                    ',
+                   [
+                    $newIndex,
+                    $articleId,
+                    $image_id
+                  ]);
+
+      // we find the current image with order of the new image
+      return Response::json([
+              'error' => false,
+              'code'  => 200,
+              'feedback' =>'Order changed. '.$affected.' rows afected;'
+            ], 200);
     }
 
     public function edit($id){
@@ -195,7 +241,7 @@ class ArticlesController extends Controller
         $article = Article::findorFail($id);
 
         // get the brand pictures
-        $articlePictures = $article->pictures()->orderBy('order', 'asc')->get();
+        $articlePictures = $article->pictures()->orderBy('position', 'asc')->get();
 
         return view('backoffice.articles.edit')
                     ->with(compact('brandsList'))

@@ -28,6 +28,7 @@ Edit Article '{{ $article->name}}'
               <div class="panel-body">
 
                   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
                   <hr>
                   @include('fileentries.listPictures', ['pictures' => $articlePictures,
                                                         'showOnly' => false            ])
@@ -36,39 +37,47 @@ Edit Article '{{ $article->name}}'
 
 
             <script type="text/javascript">
+
+                  var serialize = function(obj) {
+                                  var str = [];
+                                  for(var p in obj)
+                                    if (obj.hasOwnProperty(p)) {
+                                      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                                    }
+                                  return str.join("&");
+                                };
+
                   $(function(){
                      // to make images sortable only in this page
                       $('.picturesHolder').sortable({
-                        update: function (event, ui) {
-                          //create the array that hold the positions...
-                            var order = [];
-                              //loop trought each li...
-                             $('.picturesHolder>div').each( function(e) {
+                        start: function(e, ui) {
+                            // creates a temporary attribute on the element with the old index
+                            $(this).attr('data-previndex', ui.item.index());
+                        },
+                        update: function(e, ui) {
+                            // gets the new and old index then removes the temporary attribute
+                            var payload = {};
 
-                               //add each li position to the array...
-                               // the +1 is for make it start from 1 instead of 0
-                               var image_id = $(this).attr('data-id');
-                               var image_order = ( $(this).index() + 1 )
-                               order.push({
-                                      picId: image_id,
-                                      order: image_order
-                                    });
-                              });
-                             //use the variable as you need!
-                            console.log( order );
+                            // fills the object to send
+                            payload.newIndex = ui.item.index();
+                            payload.oldIndex = $(this).attr('data-previndex');
+                            payload.image_id =  ui.item.attr('data-id');
+
+                            $(this).removeAttr('data-previndex');
+
                             $.ajax({
                                 url: '/article/'+{{ $article->id }}+'/imagesOrder',
                                 type: 'post',
-                                data: JSON.stringify(order),
+                                data: serialize(payload) , // serialize the object to send
+                                dataType: 'json',
                                 success:function(response) {
-                                    console.log(response.data_reveived);
+                                    console.log(response);
                                  },
                                 error:function(data) {
-
-                                     alert('somethings wrong...' );
+                                     console.error('Save didn\'t work...' );
                                 }
                             });
-                      }
+                        }
                      });
                    });
 
