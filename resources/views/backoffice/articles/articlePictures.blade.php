@@ -8,6 +8,8 @@
     </div>
 
     <script >
+
+        $( function(){
           $( '.thumbnail .deleteImage' ).on( 'click', function(e) {
                       e.preventDefault();
                       var link = $(this);
@@ -27,9 +29,8 @@
                       });
           });
 
-          $( '.thumbnail .starImage' ).on( 'click', function(e) {
+          $('.thumbnail a.starImage' ).on( 'click', function(e) {
                       e.preventDefault();
-
                       var link = $(this);
                       var postUrl = '/starImage/'+link.attr('data-id')+'/article/'+{{$article->id}};
 
@@ -39,13 +40,16 @@
                           type: 'post',
                           data: {_method: 'patch'},
                           success:function(response) {
-                              console.log(response);
+                              if( !reponse.error ){
+                                  console.log(response);
+                              }
                            },
                           error:function(response) {
                                console.error(response );
                           }
                       });
           });
+        });
   </script>
   </div>
 

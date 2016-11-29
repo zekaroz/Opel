@@ -99,6 +99,29 @@ Edit Article '{{ $article->name}}'
                                   }
                               });
                   });
+
+                  $('.thumbnail a.starImage' ).on( 'click', function(e) {
+                              e.preventDefault();
+
+
+                              var link = $(this);
+                              var postUrl = '/starImage/'+link.attr('data-id')+'/article/'+{{$article->id}};
+
+                              console.log(postUrl);
+                              $.ajax({
+                                  url: postUrl,
+                                  type: 'post',
+                                  success:function(response) {
+                                      var oldClass = response.is_starred ? 'fa-star-o': 'fa-star';
+                                      var newClass = response.is_starred ? 'fa-star': 'fa-star-o';
+                                      $(e.target).removeClass(oldClass).addClass(newClass);
+                                   },
+                                  error:function(response) {
+                                       console.error(response );
+                                  }
+                              });
+                  });
+
           </script>
         </div>
 

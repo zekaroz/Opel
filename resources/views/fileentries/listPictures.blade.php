@@ -2,22 +2,22 @@
 <div class="row">
 <div class="container picturesHolder" style="width:100%;">
     @forelse($pictures as $picture)
-               <div data-id="{{ $picture->id }}" class="col-md-2 col-xs-3 thumbnail left-buffer">
+               <div data-id="{{ $picture->id }}" class="col-md-2 col-xs-3 thumbnail left-buffer" style="padding-bottom: 20px;">
                   <img id="img{{$picture->id}}" src="{{route('getentry', $picture->filename)}}" alt="{{ isset($altText) ? $altText : '' }}" class="jbox-img" />
                   @if(isset($showOnly))
                     @if(!$showOnly)
                        <div class="deleteIcon">
-                           <a  href="#" class="deleteImage" data-id="{{$picture->id}}">
+                           <a  href="#" class="deleteImage" data-id="{{$picture->id}}" title="Remover imagem deste artigo">
                                <i class="fa fa-times fa-fw"></i>
                            </a>
                       </div>
-                      <div class="grabber">
+                      <div class="grabber" title="Arraste para ordenar as imagens.">
                           <div class="">
                           </div>
                       </div>
 
                       <div class="img-star">
-                          <a  href="#" class="starImage" data-id="{{$picture->id}}">
+                          <a  href="#" class="starImage" data-id="{{$picture->id}}" title="Marcar como imagem preferida para disposição como capa do artigo.">
                             <i class="fa fa-fw {{ $picture->is_starred ? 'fa-star' : 'fa-star-o'  }}"></i>
                           </a>
                       </div>

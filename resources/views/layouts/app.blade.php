@@ -22,59 +22,7 @@
      <link rel="stylesheet" type="text/css" href="{{ asset("css/jBox.css") }}"/>
      <link rel="stylesheet" type="text/css" href="{{ asset("css/app.css") }}"/>
      <link rel="stylesheet" type="text/css" href="{{ asset("css/bootstrap-social.css") }}"/>
-
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-        .number{
-            text-align: right;
-        }
-        .date{
-             text-align: right;
-        }
-        .form-group.required label:after {
-          content:"*";
-          color:red;
-        }
-        .deleteIcon{
-            position: absolute;
-            top: -10px;
-            right: -10px;
-        }
-        .deleteIcon .fa{
-          color: red;
-        }
-
-        .thumbnail > img, .thumbnail a > img{
-          height: 100px;
-        }
-        .left-buffer{
-          margin-left: 10px;
-        }
-        .grabber{
-          position: absolute;
-          top:-10px;
-          margin-left: 25%;
-        }
-        .grabber div{
-          height: 5px;
-          width: 50px;
-          border: 1px dashed #999;
-          cursor: move;
-        }
-        .img-star{
-          color: #CCC;
-        }
-
-        .img-star .fa-star{
-          background-color: gold;
-        }
-    </style>
+     <link rel="stylesheet" type="text/css" href="{{ asset("css/backoffice.css") }}"/>
 </head>
 <body>
        <!-- JavaScripts -->

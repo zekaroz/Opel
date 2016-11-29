@@ -1,0 +1,60 @@
+body {
+    font-family: 'Lato';
+}
+
+.fa-btn {
+    margin-right: 6px;
+}
+.number{
+    text-align: right;
+}
+.date{
+     text-align: right;
+}
+.form-group.required label:after {
+  content:"*";
+  color:red;
+}
+.deleteIcon{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+.deleteIcon .fa{
+  color: red;
+}
+
+.thumbnail > img, .thumbnail a > img{
+  height: 100px;
+}
+.left-buffer{
+  margin-left: 5%;
+}
+.grabber{
+  position: absolute;
+  top:-10px;
+  margin-left: 25%;
+}
+.grabber div{
+  height: 5px;
+  width: 50px;
+  border: 1px dashed #999;
+  cursor: move;
+}
+.img-star{
+  color: #CCC;
+  position:absolute;
+  bottom: 0px;
+  width: 100%;
+  z-index: 10000;
+  text-align: center;
+}
+
+.img-star a{
+  margin-right: 10px;
+  color: #DDD;
+}
+
+.img-star .fa-star{
+  color: gold;
+}
