@@ -15,6 +15,12 @@
                           <div class="">
                           </div>
                       </div>
+
+                      <div class="img-star">
+                          <a  href="#" class="starImage" data-id="{{$picture->id}}">
+                            <i class="fa fa-fw {{ $picture->is_starred ? 'fa-star' : 'fa-star-o'  }}"></i>
+                          </a>
+                      </div>
                    @endif
                  @endif
                </div>

@@ -67,6 +67,13 @@
           border: 1px dashed #999;
           cursor: move;
         }
+        .img-star{
+          color: #CCC;
+        }
+
+        .img-star .fa-star{
+          background-color: gold;
+        }
     </style>
 </head>
 <body>
