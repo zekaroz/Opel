@@ -200,6 +200,7 @@ Route::post('ArticlePictureUpload/{article_id}', 'ArticlesController@addPicture'
 
 Route::delete('ArticlePictureUpload/{picture_id}/article/{article_id}', 'ArticlesController@destroyPicture');
 
+Route::post('/starImage/{picture_id}/article/{article_id}', 'ArticlesController@starPicture');
 
 
 Route::get('auth/logout', 'Auth\AuthController@getLogout');

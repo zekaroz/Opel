@@ -29,7 +29,7 @@
                                                             'itemName'=> $article->name,
                                                             'itemDescription'=> $article->description,
                                                             'itemPrice' => $article->price,
-                                                            'picture_filename' => (count($article->pictures)>0)?($article->pictures()->orderBy('position', 'asc')->first()->filename):''
+                                                            'picture_filename' => (count($article->pictures)>0)?($article->pictures()->orderBy('is_starred', 'desc')->first()->filename):''
                                                          ])
                         @endforeach
                     @endif
