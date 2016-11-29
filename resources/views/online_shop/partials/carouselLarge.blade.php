@@ -11,17 +11,19 @@
                    @if( isset($articles) )
                        @foreach( $articles as $index => $article)
                              <div class="item {{ ( $index==0)?'active':'' }}">
-                                 <img class="slide-image" src="{{  ( count($article->pictures) > 0 ) ? route('getThumb', $article->pictures()->orderBy('is_starred','desc')->first()->filename) : "http://placehold.it/640x300" }} " alt="{{ $article->name }}">
-                                 <div class="carousel-legend">
-                                      {{  $article->name  }}
-                                 </div>
-                                 @if( $article->price > 0 )
-                                   <div class="carousel-legend-price">
-                                     <div class="price-tag">
-                                         {{  $article->price }} €
-                                     </div>
+                                 <a href="{{ route('itemDisplayWithSlug', ['slug' => $article->slug]) }}">
+                                   <img class="slide-image" src="{{  ( count($article->pictures) > 0 ) ? route('getThumb', $article->pictures()->orderBy('is_starred','desc')->first()->filename) : "http://placehold.it/640x300" }} " alt="{{ $article->name }}">
+                                   <div class="carousel-legend">
+                                        {{  $article->name  }}
                                    </div>
-                                 @endif
+                                   @if( $article->price > 0 )
+                                     <div class="carousel-legend-price">
+                                       <div class="price-tag">
+                                           {{  $article->price }} €
+                                       </div>
+                                     </div>
+                                   @endif
+                                 </a>
                              </div>
                        @endforeach
                    @endif
