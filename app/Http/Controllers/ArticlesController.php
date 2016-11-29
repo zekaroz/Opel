@@ -376,7 +376,23 @@ class ArticlesController extends Controller
         return \Response::json([
                 'error' => false,
                 'code'  => 200,
-                'feedback' =>'Brand picture removed.'
+                'feedback' =>'Article picture removed.'
+                ], 200);
+    }
+
+    public function starPicture($picture_id, $article_id){
+        //then we get the picture
+        $picture = Fileentry::findOrFail($picture_id);
+
+        $picture->is_starred = !$picture->is_starred;
+
+        $picture->save();
+
+        return \Response::json([
+                'error' => false,
+                'is_starred' => $picture->is_starred,
+                'code'  => 200,
+                'feedback' =>'Image has been starred'
                 ], 200);
     }
 
