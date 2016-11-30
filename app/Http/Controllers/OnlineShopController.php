@@ -261,4 +261,22 @@ class OnlineShopController extends Controller
       // Now, output the sitemap:
       return $sitemap->render('xml');
     }
+
+    public function fixOrderFromImages(){
+        $articles_count = 0;
+        $pictures_count = 0;
+        foreach(Article::all() as $article){
+            if($article->pictures){
+              // if aeticle has pictures
+
+              foreach ($article->pictures()->orderBy('position','asc')->get() as $index => $picture) {
+                  $picture->position = $index;
+                  $picture->save();
+                  $pictures_count += 1;
+              }
+              $articles_count +=1;
+            }
+        }
+        return '<div>Success! Order have been fixed!</div> <h3>Articles: '.$articles_count.'</h3><h3>Pictures: '.$pictures_count.'</h3> ';
+    }
 }
