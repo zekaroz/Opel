@@ -188,7 +188,7 @@ Route::delete('fileentry/{file_id}', 'FileEntryController@destroy'  );
 
 Route::get('/article/thumbnail/{id}', [
     'as' => 'getArticleThumbnailURL',
-    'uses' => 'ArticlesController@getArticleThumbnailURL'
+    'uses' => 'OnlineShopController@getArticleThumbnailURL'
 ]);
 
 

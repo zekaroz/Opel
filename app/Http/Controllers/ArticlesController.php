@@ -411,30 +411,6 @@ class ArticlesController extends Controller
                 ], 200);
     }
 
-    public function getArticleThumbnailURL($id){
-        $pictures = Article::find($id)
-                        ->pictures();
-
-        $pic = Article::find($id)
-                        ->pictures()
-                        ->orderBy('is_starred', 'desc')
-                        ->first();
-
-        if( ! $pic ){
-          // when article has no pictures
-          $placeholder = str_replace('\\','/', public_path('placeholderThumbnail.png'));
-          $image = Image::make($placeholder)->stream();
-          return (new Response($image, 200))
-                        ->header('Content-Type', 'image/jpeg');
-        }
-
-        $fileController = new FileEntryController();
-
-        $image = $fileController->getThumbnail($pic->filename);
-
-        return $image;
-    }
-
     public function destroy($id) {
         $article = Article::findOrFail($id);
 
