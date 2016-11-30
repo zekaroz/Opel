@@ -13,6 +13,7 @@ use App\SiteContact;
 use App\Http\Requests\ContactFormRequest;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 
 class OnlineShopController extends Controller
@@ -269,10 +270,19 @@ class OnlineShopController extends Controller
             if($article->pictures){
               // if aeticle has pictures
 
+
               foreach ($article->pictures()->orderBy('position','asc')->get() as $index => $picture) {
-                  $picture->position = $index;
-                  $picture->save();
-                  $pictures_count += 1;
+                  DB::update('update article_images
+                              set position=?
+                              where article_id = ?
+                                  and fileentry_id = ?
+                                ',
+                               [
+                                $index,
+                                $article->id,
+                                $picture->id
+                              ]);
+                   $pictures_count += 1;
               }
               $articles_count +=1;
             }
