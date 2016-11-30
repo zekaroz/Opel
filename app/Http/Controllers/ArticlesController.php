@@ -10,12 +10,13 @@ use App\ArticleType;
 use App\Brand;
 use App\PartType;
 use App\BrandModel;
-use Illuminate\Support\Facades\Response;
+use Illuminate\Http\Response;
 use Request;
 use Illuminate\Support\Facades\File;
 use App\Fileentry;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
 
 class ArticlesController extends Controller
 {
@@ -394,6 +395,30 @@ class ArticlesController extends Controller
                 'code'  => 200,
                 'feedback' =>'Image has been starred'
                 ], 200);
+    }
+
+    public function getArticleThumbnailURL($id){
+        $pictures = Article::find($id)
+                        ->pictures();
+
+        $pic = Article::find($id)
+                        ->pictures()
+                        ->orderBy('is_starred', 'desc')
+                        ->first();
+
+        if( ! $pic ){
+          // when article has no pictures
+          $placeholder = str_replace('\\','/', public_path('placeholderThumbnail.png'));
+          $image = Image::make($placeholder)->stream();
+          return (new Response($image, 200))
+                        ->header('Content-Type', 'image/jpeg');
+        }
+
+        $fileController = new FileEntryController();
+
+        $image = $fileController->getThumbnail($pic->filename);
+
+        return $image;
     }
 
     public function destroy($id) {

@@ -1,7 +1,7 @@
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="thumbnail">
             <a href="{{$itemURL}}">
-              <img src="{{ ($picture_filename!='')?route('getThumb', $picture_filename) :"http://placehold.it/320x150"}} " alt="">
+              <img src="{{ route('getArticleThumbnailURL', $article->id) }}" alt="">
             </a>
             <div class="caption">
                 <h4 class="pull-right">

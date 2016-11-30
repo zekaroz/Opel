@@ -180,6 +180,11 @@ Route::get('fileentry/getThumb/{filename}', [
 
 Route::delete('fileentry/{file_id}', 'FileEntryController@destroy'  );
 
+Route::get('/article/thumbnail/{id}', [
+    'as' => 'getArticleThumbnailURL',
+    'uses' => 'ArticlesController@getArticleThumbnailURL'
+]);
+
 
 /*
  * This is the route for generic file upload

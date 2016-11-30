@@ -12,7 +12,7 @@
                        @foreach( $articles as $index => $article)
                              <div class="item {{ ( $index==0)?'active':'' }}">
                                  <a href="{{ route('itemDisplayWithSlug', ['slug' => $article->slug]) }}">
-                                   <img class="slide-image" src="{{  ( count($article->pictures) > 0 ) ? route('getThumb', $article->pictures()->orderBy('is_starred','desc')->first()->filename) : "http://placehold.it/640x300" }} " alt="{{ $article->name }}">
+                                   <img class="slide-image" src="{{ route('getArticleThumbnailURL', $article->id) }} " alt="{{ $article->name }}">
                                    <div class="carousel-legend">
                                         {{  $article->name  }}
                                    </div>

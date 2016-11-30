@@ -15,6 +15,7 @@
 
 <table class="table table-striped search-table">
     <thead>
+    <th>  </th>
     <th> Nome </th>
     <th> Referência </th>
     <th class="number"> Preço (€)  </th>
@@ -22,6 +23,9 @@
 <tbody>
     @forelse( $articles as $article)
         <tr>
+          <td style="width:130px;">
+            <img src="{{ route('getArticleThumbnailURL', $article->id) }}" style="width:120px;" alt="">
+          </td>
           <td>
               <a href="{{ route('itemDisplayWithSlug', ['slug' => $article->slug]) }}">
                 {{ $article->name}}
