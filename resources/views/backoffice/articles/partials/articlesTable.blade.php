@@ -33,6 +33,7 @@
         </td>
         <td>
             {{$article->brand? $article->brand->name : ''}}
+            <small>{{$article->model? '('.$article->model->name.')' : ''}}</small>
         </td>
         <td>
 

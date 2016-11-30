@@ -93,6 +93,12 @@ Route::resource('articles','ArticlesController');
 
 Route::get('articles/{article_id}/loadImages', 'ArticlesController@loadImages');
 
+// the id of the brand goes in the post paylod
+Route::post('api/brand/models', [
+    'as' => 'getModelsByBrand',
+    'uses' => 'ArticlesController@getModelsByBrand'
+]);
+
 //Route::get('/backoffice/users','UsersController');
 
 Route::get('backoffice', 'HomeController@index');
