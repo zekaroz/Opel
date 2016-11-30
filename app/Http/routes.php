@@ -191,11 +191,6 @@ Route::get('/article/thumbnail/{id}', [
     'uses' => 'OnlineShopController@getArticleThumbnailURL'
 ]);
 
-/* Temporary Route to fix orders in Production*/
-
-Route::get('/fixOrderFromImages', 'OnlineShopController@fixOrderFromImages');
-
-
 /*
  * This is the route for generic file upload
  */
