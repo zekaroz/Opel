@@ -365,7 +365,7 @@ class ArticlesController extends Controller
          // Because this will be called via Ajax by DropZone
          // The response must be in JSON
          // - this is a 200 OK success
-         return Response::json([
+         return \Response::json([
                             'error' => 'File could not be saved!',
                             'code'  => 200
                         ], 200);
