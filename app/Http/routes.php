@@ -93,6 +93,12 @@ Route::resource('articles','ArticlesController');
 
 Route::get('articles/{article_id}/loadImages', 'ArticlesController@loadImages');
 
+// the id of the brand goes in the post paylod
+Route::post('api/brand/models', [
+    'as' => 'getModelsByBrand',
+    'uses' => 'ArticlesController@getModelsByBrand'
+]);
+
 //Route::get('/backoffice/users','UsersController');
 
 Route::get('backoffice', 'HomeController@index');
@@ -179,6 +185,11 @@ Route::get('fileentry/getThumb/{filename}', [
 	'as' => 'getThumb', 'uses' => 'FileEntryController@getThumbnail']);
 
 Route::delete('fileentry/{file_id}', 'FileEntryController@destroy'  );
+
+Route::get('/article/thumbnail/{id}', [
+    'as' => 'getArticleThumbnailURL',
+    'uses' => 'ArticlesController@getArticleThumbnailURL'
+]);
 
 
 /*

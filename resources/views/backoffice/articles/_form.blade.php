@@ -28,11 +28,11 @@
     </div>
     <div class='form-group'>
         {!! Form::label('Brand' ) !!}
-        {!! Form::select('brand_id' , $brandsList ,null ,['class' => 'form-control specialSelect']) !!}
+        {!! Form::select('brand_id' , $brandsList ,null ,['class' => 'form-control specialSelect brand_select']) !!}
     </div>
     <div class='form-group'>
         {!! Form::label('Model' ) !!}
-        {!! Form::select('model_id' , $modelsList , null ,['class' => 'form-control specialSelect']) !!}
+        {!! Form::select('model_id' , $modelsList , null ,['class' => 'form-control specialSelect model_select']) !!}
     </div>
     <div class='form-group'>
         {!! Form::label('publicid','Is Public' ) !!}
@@ -44,3 +44,28 @@
         {!! Form::submit($submitButtonText ,  ['class' => 'btn btn-primary']) !!}
         or <a href='{{url('articles')}}' class="btn btn-default" > Cancel</a>
     </div>
+
+    <script type="text/javascript">
+    $(document).ready(function()
+    {
+      $(".brand_select").change(function()
+      {
+        var id=$(this).val();
+        var dataString = 'brand_id='+id ;
+
+        $.ajax
+        ({
+          type: "POST",
+          url: "{{ route('getModelsByBrand') }}",
+          data: dataString,
+          success: function(html)
+          {
+            $(".model_select").html(html);
+            $(".model_select").select2();
+          }
+        });
+
+      });
+
+    });
+    </script>
