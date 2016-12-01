@@ -30,15 +30,11 @@ Route::get('articles/search','ArticlesController@search');
 Route::get('/',['as' => 'homepage', 'uses' => 'OnlineShopController@homepage'] );
 
 //Contactos
-Route::get('contactos',['as' => 'contacts',  function(){
-        return View::make('online_shop.contacts.contacts');
-    }]);
+Route::get('contactos',['as' => 'contacts', 'uses'=>'OnlineShopController@contacts']);
 
 
 // Quem Somos
-Route::get('quem_somos',['as' => 'about', function(){
-        return View::make('online_shop.about.about');
-    }]);
+Route::get('quem_somos',['as' => 'about', 'uses' => 'OnlineShopController@aboutUs']);
 
 
 // Serviços
@@ -214,6 +210,8 @@ Route::post('/starImage/{picture_id}/article/{article_id}', 'ArticlesController@
 
 
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+Route::post('/ajax_login' , ['as' => 'ajax_login', 'uses' => 'Auth\AuthController@postLogin']);
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();

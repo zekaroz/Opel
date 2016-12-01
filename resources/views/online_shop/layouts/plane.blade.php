@@ -57,7 +57,9 @@
     <script src="{{asset("js/respond.min.js")}}"></script>
     <script src="{{ asset("assets/DataTables/datatables.js") }} " type="text/javascript"></script>
     <script src="{{ asset("js/jquery.touchSwipe.min.js") }} " type="text/javascript"></script>
-
+    @if( isset($context_snippet) )
+        {!! $context_snippet !!}
+    @endif
 
     <div class="container Header">
 

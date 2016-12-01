@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "81eaf282a55aa7442c25d12e307f283a",
-    "content-hash": "baa40dee141228d84b48181e4e7e2905",
+    "hash": "14811a6268ddceb8edc6357c28ca9cb5",
+    "content-hash": "dd2c17db3057c7d220fa4c2fce770e4d",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -3094,6 +3094,57 @@
                 "dump"
             ],
             "time": "2016-07-26 08:03:56"
+        },
+        {
+            "name": "torann/json-ld",
+            "version": "0.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Torann/json-ld.git",
+                "reference": "9bb879e8875b35c5b60ce3395ab045c3ce9f360d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Torann/json-ld/zipball/9bb879e8875b35c5b60ce3395ab045c3ce9f360d",
+                "reference": "9bb879e8875b35c5b60ce3395ab045c3ce9f360d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JsonLd\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Stainback",
+                    "email": "daniel@lyften.com"
+                }
+            ],
+            "description": "Extremely simple JSON-LD markup generator.",
+            "keywords": [
+                "JSON-LD",
+                "generator",
+                "schema",
+                "structured-data"
+            ],
+            "time": "2016-10-14 18:58:34"
         },
         {
             "name": "uxweb/sweet-alert",

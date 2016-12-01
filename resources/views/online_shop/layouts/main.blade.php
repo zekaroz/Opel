@@ -5,8 +5,6 @@
 @stop
 
 @section('body')
-
-
     <div class="col-md-3">
          @include('online_shop.layouts.sidemenu')
     </div>
