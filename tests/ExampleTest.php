@@ -11,9 +11,12 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function testBasicExample()
+    public function test_page_is_up()
     {
         $this->visit('/')
-             ->see('Laravel 5');
+             ->see('PCQAR')
+             ->see('Quem Somos')
+             ->see('Serviços')
+             ->see('Localização');
     }
 }
