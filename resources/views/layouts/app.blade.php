@@ -24,6 +24,7 @@
      <link rel="stylesheet" type="text/css" href="{{ asset("css/bootstrap-social.css") }}"/>
      <link rel="stylesheet" type="text/css" href="{{ asset("css/backoffice.css") }}"/>
      <link rel="stylesheet" type="text/css" href="{{ asset("css/sweetalert.css") }}">
+     <link rel="stylesheet" type="text/css" href="{{ asset("css/ladda-themeless.min.css") }}">
 </head>
 <body>
        <!-- JavaScripts -->
@@ -37,7 +38,14 @@
     <script src="{{ asset("js/jquery.touchSwipe.min.js") }} " type="text/javascript"></script>
     <script src="{{ asset("js/JQ.js") }} " type="text/javascript"></script>
     <script src="{{ asset("js/sweetalert.min.js") }}" ></script>
+    <script src="{{ asset("js/spin.min.js") }}" ></script>
+    <script src="{{ asset("js/ladda.min.js") }}" ></script>
+    <script src="{{ asset("js/custom_script.js") }}" ></script>
+    <script src="{{ asset("js/parsley.min.js") }}" ></script>
+
     @include('sweet::alert')
+
+
 
 
     @include('partials.nav_backoffice')

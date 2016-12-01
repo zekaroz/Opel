@@ -10,6 +10,8 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Auth;
 use Socialite;
 use Alert;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class AuthController extends Controller
 {
@@ -31,7 +33,7 @@ class AuthController extends Controller
   *
   * @var string
   */
-  protected $redirectTo = 'backoffice';
+  protected $redirectTo = '/backoffice';
 
   /**
   * Create a new authentication controller instance.
@@ -76,7 +78,7 @@ class AuthController extends Controller
   public function getLogout()
   {
     Auth::logout();
-    return redirect('/');
+    return redirect('/backoffice');
   }
 
   public function redirectToFacebook()
@@ -114,6 +116,33 @@ class AuthController extends Controller
 
     return redirect('/backoffice');
   }
+
+  public function postLogin(Request $request)
+  {
+
+    $validator = Validator::make($request->all(), [
+      'email' => 'required|email',
+      'password' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      $message = ['errors' => $validator->messages()->all()];
+      $response = \Response::json($message, 202);
+    } else {
+      $remember = $request->remember? true : false;
+
+      if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember)) {
+        $message = ['success' => 'Love to see you here!', 'url' => '/backoffice'];
+        $response = \Response::json($message, 200);
+      } else {
+        $message = ['errors' => 'Please check your email or password again.'];
+        $response = \Response::json($message, 202);
+      }
+    }
+
+    return $response;
+  }
+
 
   public function getSocialRedirect( $provider )
   {
