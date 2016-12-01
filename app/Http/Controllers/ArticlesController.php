@@ -36,10 +36,10 @@ class ArticlesController extends Controller
     //
     public function index(){
 
-       $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
-       $brandsList = Brand::lists('name','id')->prepend('(all)','');
-       $partsList = PartType::lists('name','id')->prepend('(all)','');
-       $articles = Article::with('articleType','brand','model','partType')->orderBy('name', 'asc')->get();
+       $modelsList =  BrandModel::orderBy('name', 'asc')->lists('name','id')->prepend('(all)','');
+       $brandsList = Brand::orderBy('name', 'asc')->lists('name','id')->prepend('(all)','');
+       $partsList = PartType::orderBy('name', 'asc')->lists('name','id')->prepend('(all)','');
+       $articles = Article::orderBy('name', 'asc')->with('articleType','brand','model','partType')->orderBy('name', 'asc')->get();
        $articleTypeList  = ArticleType::lists('name','id')->prepend('(all)','');
 
          return view('backoffice.articles.index')
@@ -79,10 +79,10 @@ class ArticlesController extends Controller
     }
 
     public function create(){
-        $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
-        $brandsList = Brand::lists('name','id')->prepend('(all)','');
-        $partsList = PartType::lists('name','id')->prepend('(all)','');
-        $articleTypesList = ArticleType::lists('name','id')->prepend('(choose one)','');
+        $modelsList =  BrandModel::orderBy('name', 'asc')->lists('name','id')->prepend('(all)','');
+        $brandsList = Brand::orderBy('name', 'asc')->lists('name','id')->prepend('(all)','');
+        $partsList = PartType::orderBy('name', 'asc')->lists('name','id')->prepend('(all)','');
+        $articleTypesList = ArticleType::orderBy('name', 'asc')->lists('name','id')->prepend('(choose one)','');
 
         return view('backoffice.articles.create' )
                     ->with(compact('brandsList'))
@@ -249,10 +249,10 @@ class ArticlesController extends Controller
     }
 
     public function edit($id){
-        $modelsList =  BrandModel::lists('name','id')->prepend('(all)', '');
-        $brandsList = Brand::lists('name','id')->prepend('(all)', '');
-        $partsList = PartType::lists('name','id')->prepend('(all)', '');
-         $articleTypesList = ArticleType::lists('name','id')->prepend('(choose one)','');
+        $modelsList =  BrandModel::orderBy('name', 'asc')->lists('name','id')->prepend('(all)', '');
+        $brandsList = Brand::orderBy('name', 'asc')->lists('name','id')->prepend('(all)', '');
+        $partsList = PartType::orderBy('name', 'asc')->lists('name','id')->prepend('(all)', '');
+         $articleTypesList = ArticleType::orderBy('name', 'asc')->lists('name','id')->prepend('(choose one)','');
 
         $article = Article::findorFail($id);
 
@@ -274,10 +274,10 @@ class ArticlesController extends Controller
 
         $this->saveArticle($article);
 
-        $modelsList =  BrandModel::lists('name','id')->prepend('(all)', '');
-        $brandsList = Brand::lists('name','id')->prepend('(all)', '');
-        $partsList = PartType::lists('name','id')->prepend('(all)', '');
-        $articleTypesList = ArticleType::lists('name','id')->prepend('(choose one)','');
+        $modelsList =  BrandModel::orderBy('name', 'asc')->lists('name','id')->prepend('(all)', '');
+        $brandsList = Brand::orderBy('name', 'asc')->lists('name','id')->prepend('(all)', '');
+        $partsList = PartType::orderBy('name', 'asc')->lists('name','id')->prepend('(all)', '');
+        $articleTypesList = ArticleType::orderBy('name', 'asc')->lists('name','id')->prepend('(choose one)','');
 
         // get the brand pictures
         $articlePictures = $article->pictures()->get();
