@@ -13,19 +13,6 @@ require('laravel-elixir-vueify');
  */
 
 elixir(function(mix) {
-     mix.copy('vendor/enyo/dropzone/dist', 'public/assets/dropzone');
-
-     mix.copy('vendor/robinherbots/jquery.inputmask/dist/min', 'public/assets/inputmask');
-
-     // for select2 plugin
-     mix.copy('vendor/ivaynberg/select2/dist/', 'public/assets/select2');
-
-     //my personal Javascrpit for helper functions
-     mix.copy('resources/assets/js/JQ.js', 'public/js');
-     mix.browserify('main.js');
-
-      mix.sass([
-        "app.scss"
-      ]);
+     mix.phpUnit();
 
 });
