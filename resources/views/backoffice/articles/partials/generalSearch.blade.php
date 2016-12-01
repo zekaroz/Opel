@@ -93,11 +93,24 @@
                   url: postUrl,
                   type: 'post',
                   data: {_method: 'delete'},
-                  success:function(msg) {
+                  success:function(response) {
                       link.closest('tr').hide(100);
+                      swal({
+                         title: "Artigo removido com sucesso" ,
+                         text: response.feedback,
+                         timer: 5000,
+                         showConfirmButton: true,
+                         type: "success"
+                       });
                    },
-                  error:function(msg) {
-                     alert('Something wrong...');
+                  error:function(response) {
+                    swal({
+                       title: "Ocorreu um erro a apagar o artigo" ,
+                       text: 'Aconteceu um erro inesperado, por favor tira um print-screen e envia-me sff. :)',
+                       timer: 15000,
+                       showConfirmButton: true,
+                       type: "error"
+                     });
                   }
               });
       }
