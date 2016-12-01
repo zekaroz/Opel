@@ -81,7 +81,6 @@
              init: function () {
                this.on("complete", function (file) {
                  if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-
                     loadingStart();
                      //when using dropzone to upload files,
                      //after the upload is complete
@@ -91,7 +90,6 @@
                      }
                      // each client of the dropzone must write a function reloadPictures()
                      // if they want to reload their pictures after upload
-
                      loadingEnd();
                  }
                });

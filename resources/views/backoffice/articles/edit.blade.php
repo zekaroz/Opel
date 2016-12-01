@@ -47,83 +47,88 @@ Edit Article '{{ $article->name}}'
                                   return str.join("&");
                                 };
 
-                  $(function(){
-                     // to make images sortable only in this page
-                      $('.picturesHolder').sortable({
-                        start: function(e, ui) {
-                            // creates a temporary attribute on the element with the old index
-                            $(this).attr('data-previndex', ui.item.index());
-                        },
-                        update: function(e, ui) {
-                            // gets the new and old index then removes the temporary attribute
-                            var payload = {};
+                  var init_page_scripts = function(){
+                    $(function(){
+                       // to make images sortable only in this page
+                        $('.picturesHolder').sortable({
+                          start: function(e, ui) {
+                              // creates a temporary attribute on the element with the old index
+                              $(this).attr('data-previndex', ui.item.index());
+                          },
+                          update: function(e, ui) {
+                              // gets the new and old index then removes the temporary attribute
+                              var payload = {};
 
-                            // fills the object to send
-                            payload.newIndex = ui.item.index();
-                            payload.oldIndex = $(this).attr('data-previndex');
-                            payload.image_id =  ui.item.attr('data-id');
+                              // fills the object to send
+                              payload.newIndex = ui.item.index();
+                              payload.oldIndex = $(this).attr('data-previndex');
+                              payload.image_id =  ui.item.attr('data-id');
 
-                            $(this).removeAttr('data-previndex');
-
-                            $.ajax({
-                                url: '/article/'+{{ $article->id }}+'/imagesOrder',
-                                type: 'post',
-                                data: serialize(payload) , // serialize the object to send
-                                dataType: 'json',
-                                success:function(response) {
-                                    console.log(response);
-                                 },
-                                error:function(data) {
-                                     console.error('Save didn\'t work...' );
-                                }
-                            });
-                        }
-                     });
-                   });
-
-                  $( '.thumbnail .deleteImage' ).on( 'click', function(e) {
-                              e.preventDefault();
-                              var link = $(this);
-                              var postUrl = '/ArticlePictureUpload/'+link.attr('data-id')+'/article/'+{{$article->id}};
+                              $(this).removeAttr('data-previndex');
 
                               $.ajax({
-                                  url: postUrl,
+                                  url: '/article/'+{{ $article->id }}+'/imagesOrder',
                                   type: 'post',
-                                  data: {_method: 'delete'},
-                                  success:function(msg) {
-                                      link.closest('.thumbnail').toggle( "explode" );
+                                  data: serialize(payload) , // serialize the object to send
+                                  dataType: 'json',
+                                  success:function(response) {
+                                      console.log(response);
                                    },
                                   error:function(data) {
-
-                                       alert('somethings wrong...' );
+                                       console.error('Save didn\'t work...' );
                                   }
                               });
-                  });
+                          }
+                       });
+                     });
 
-                  $('.thumbnail a.starImage' ).on( 'click', function(e) {
-                              e.preventDefault();
+                    $( '.thumbnail .deleteImage' ).on( 'click', function(e) {
+                                e.preventDefault();
+                                var link = $(this);
+                                var postUrl = '/ArticlePictureUpload/'+link.attr('data-id')+'/article/'+{{$article->id}};
+
+                                $.ajax({
+                                    url: postUrl,
+                                    type: 'post',
+                                    data: {_method: 'delete'},
+                                    success:function(msg) {
+                                        link.closest('.thumbnail').toggle( "explode" );
+                                     },
+                                    error:function(data) {
+
+                                         alert('somethings wrong...' );
+                                    }
+                                });
+                    });
+
+                    $('.thumbnail a.starImage' ).on( 'click', function(e) {
+                                e.preventDefault();
 
 
-                              var link = $(this);
-                              var postUrl = '/starImage/'+link.attr('data-id')+'/article/'+{{$article->id}};
+                                var link = $(this);
+                                var postUrl = '/starImage/'+link.attr('data-id')+'/article/'+{{$article->id}};
 
-                              console.log(postUrl);
-                              $.ajax({
-                                  url: postUrl,
-                                  type: 'post',
-                                  success:function(response) {
-                                      var oldClass = response.is_starred ? 'fa-star-o': 'fa-star';
-                                      var newClass = response.is_starred ? 'fa-star': 'fa-star-o';
-                                      $(e.target).removeClass(oldClass).addClass(newClass);
-                                   },
-                                  error:function(response) {
-                                       console.error(response );
-                                  }
-                              });
-                  });
+                                console.log(postUrl);
+                                $.ajax({
+                                    url: postUrl,
+                                    type: 'post',
+                                    success:function(response) {
+                                        var oldClass = response.is_starred ? 'fa-star-o': 'fa-star';
+                                        var newClass = response.is_starred ? 'fa-star': 'fa-star-o';
+                                        $(e.target).removeClass(oldClass).addClass(newClass);
+                                     },
+                                    error:function(response) {
+                                         console.error(response );
+                                    }
+                                });
+                    });
+                  };
+
+                  // executes the script to initialization of the page
+                  init_page_scripts();
 
           </script>
-        </div>
+      </div>
 
 
 </div>
@@ -140,7 +145,10 @@ function reloadPictures(){
             var msg = "Sorry but there was an error: ";
             alert( msg + xhr.status + " " + xhr.statusText );
           }
-      })
+          else {
+            init_page_scripts();
+          }
+      });
 }
 
 </script>

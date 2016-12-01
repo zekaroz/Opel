@@ -227,7 +227,7 @@ class ArticlesController extends Controller
                   ]);
 
       // we find the current image with order of the new image
-      return Response::json([
+      return \Response::json([
               'error' => false,
               'code'  => 200,
               'feedback' =>'Order changed. '.$affected.' rows afected;'
