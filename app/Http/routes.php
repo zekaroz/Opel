@@ -215,6 +215,8 @@ Route::post('/starImage/{picture_id}/article/{article_id}', 'ArticlesController@
 
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
+Route::post('/ajax_login' , ['as' => 'ajax_login', 'uses' => 'Auth\AuthController@postLogin']);
+
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
