@@ -152,7 +152,7 @@ return [
         Snowfire\Beautymail\BeautymailServiceProvider::class,
         Ipunkt\LaravelAnalytics\AnalyticsServiceProvider::class,
         Roumen\Sitemap\SitemapServiceProvider::class,
-
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
 
 
         /*
@@ -215,6 +215,7 @@ return [
         'Image'     => Intervention\Image\Facades\Image::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Analytics' => Ipunkt\LaravelAnalytics\AnalyticsFacade::class,
+        'Alert'     => UxWeb\SweetAlert\SweetAlert::class,
 
     ],
 

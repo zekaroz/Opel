@@ -9,6 +9,7 @@ use App\PartType;
 use App\Brand;
 use App\BrandModel;
 use App\SiteContact;
+use Alert;
 
 class HomeController extends Controller
 {

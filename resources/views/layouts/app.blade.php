@@ -23,6 +23,7 @@
      <link rel="stylesheet" type="text/css" href="{{ asset("css/app.css") }}"/>
      <link rel="stylesheet" type="text/css" href="{{ asset("css/bootstrap-social.css") }}"/>
      <link rel="stylesheet" type="text/css" href="{{ asset("css/backoffice.css") }}"/>
+     <link rel="stylesheet" type="text/css" href="{{ asset("css/sweetalert.css") }}">
 </head>
 <body>
        <!-- JavaScripts -->
@@ -35,6 +36,8 @@
     <script src="{{ asset("assets/DataTables/datatables.js") }} " type="text/javascript"></script>
     <script src="{{ asset("js/jquery.touchSwipe.min.js") }} " type="text/javascript"></script>
     <script src="{{ asset("js/JQ.js") }} " type="text/javascript"></script>
+    <script src="{{ asset("js/sweetalert.min.js") }}" ></script>
+    @include('sweet::alert')
 
 
     @include('partials.nav_backoffice')
@@ -45,7 +48,6 @@
 
 
     <script>
-
     $(document).ready(function() {
         $('.search-table').DataTable();
 
