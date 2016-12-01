@@ -14,7 +14,7 @@ use App\Http\Requests\ContactFormRequest;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-
+use JsonLd\Context;
 
 class OnlineShopController extends Controller
 {
@@ -95,6 +95,50 @@ class OnlineShopController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function aboutUs(){
+        $context_snippet = Context::create('local_business', [
+          'name' => 'PcQar',
+          'description' => 'A PcQar dedica-se ao recondicionamento de peças e veículos usados. Prima pela honestidade e pela satisfação dos clientes. Trabalhamos com todos o tipo de marcas, mas somos especialistas nas marcas Alemãs, Japonesas e Norte Americanas.',
+          'telephone' => '(+351) 918 619 751',
+          'openingHours' => 'mon,tue,,wed,thu,fri',
+          'address' => [
+              'streetAddress' => 'Rua da Lagoa 31.',
+              'addressLocality' => 'Casal Dos Lobos',
+              'addressRegion' => 'Leiria, Portual',
+              'postalCode' => '2495-016',
+          ],
+          'geo' => [
+              'latitude' => '39.660159',
+              'longitude' => '-8.723281',
+          ],
+      ]);
+
+      return view('online_shop.about.about')
+                ->with(compact('context_snippet'));
+    }
+
+    public function contacts(){
+        $context_snippet = Context::create('local_business', [
+          'name' => 'PcQar',
+          'description' => 'A PcQar dedica-se ao recondicionamento de peças e veículos usados. Prima pela honestidade e pela satisfação dos clientes. Trabalhamos com todos o tipo de marcas, mas somos especialistas nas marcas Alemãs, Japonesas e Norte Americanas.',
+          'telephone' => '(+351) 918 619 751',
+          'openingHours' => 'mon,tue,,wed,thu,fri',
+          'address' => [
+              'streetAddress' => 'Rua da Lagoa 31.',
+              'addressLocality' => 'Casal Dos Lobos',
+              'addressRegion' => 'Leiria, Portual',
+              'postalCode' => '2495-016',
+          ],
+          'geo' => [
+              'latitude' => '39.660159',
+              'longitude' => '-8.723281',
+          ],
+      ]);
+
+      return view('online_shop.contacts.contacts')
+                ->with(compact('context_snippet'));
     }
 
     public function homepage(){
