@@ -17,6 +17,7 @@ use App\Fileentry;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image;
+use Alert;
 
 class ArticlesController extends Controller
 {
@@ -269,13 +270,9 @@ class ArticlesController extends Controller
 
     public function store(ArticlesRequest $request){
         // set the shop to the shop of the logged user
-
-
         $article = new Article($request->all());
 
         $this->saveArticle($article);
-
-        flash()->success('Article has been created. You can now enter the Pictures!');
 
         $modelsList =  BrandModel::lists('name','id')->prepend('(all)', '');
         $brandsList = Brand::lists('name','id')->prepend('(all)', '');
@@ -284,6 +281,8 @@ class ArticlesController extends Controller
 
         // get the brand pictures
         $articlePictures = $article->pictures()->get();
+
+        alert()->success('Podes agora adicionar as fotografias relativas ao artigo...' , $article->name.' criado com sucesso!');
 
         return view('backoffice.articles.edit')
                     ->with(compact('brandsList'))
@@ -324,7 +323,7 @@ class ArticlesController extends Controller
 
         $this->saveArticle($article);
 
-        flash()->success('Article has been updated.');
+        alert()->success($article->name.' actualizado com sucesso');
 
         return redirect('articles');
     }
@@ -419,7 +418,7 @@ class ArticlesController extends Controller
         return \Response::json([
                            'error' => false,
                            'code'  => 200,
-                           'feedback' =>'Article has been deleted.'
+                           'feedback' =>'O artigo '.$article->name.' foi apagado.'
                        ], 200);
     }
 

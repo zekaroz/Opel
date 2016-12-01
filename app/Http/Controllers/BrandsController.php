@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Fileentry;
 use App\BrandImage;
+use Alert;
 
 class BrandsController extends Controller
 {
@@ -48,7 +49,7 @@ class BrandsController extends Controller
         //the relations ship
         $brand->save();
 
-        flash()->success('Brand has been created.');
+        alert()->success('Agora podes adicionar os modelos da marca em causa.','Marca "'. $brand->name.'" criada com sucesso!');
 
         return redirect('/brands/'.$brand->id.'/edit');
     }
@@ -91,7 +92,7 @@ class BrandsController extends Controller
             'code'=>$request->get('code')
         ]);
 
-        flash()->success('Brand has been updated.');
+        alert()->success('Marca "'. $brand->name.'" actualizada com sucesso!');
 
          return redirect('brands');
     }
@@ -169,7 +170,7 @@ class BrandsController extends Controller
         return \Response::json([
                            'error' => false,
                            'code'  => 200,
-                           'feedback' =>'Brand has been deleted.'
+                           'feedback' =>'Marca "'.$brand->name.'" foi apagada.'
                        ], 200);
     }
 

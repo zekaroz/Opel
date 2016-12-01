@@ -42,12 +42,11 @@ Edit Brand '{{ $brand->name}}'
                        url: postUrl,
                        type: 'post',
                        data: {_method: 'delete'},
-                       success:function(msg) {
+                       success:function(response) {
                            link.closest('.thumbnail').toggle( "explode" );
                         },
                        error:function(data) {
-
-                            alert('somethings wrong...' );
+                         console.error(data);
                        }
                    });
                });
@@ -103,7 +102,7 @@ function reloadPictures(){
             alert( msg + xhr.status + " " + xhr.statusText );
           }
       });
-} 
+}
 </script>
 
 @stop

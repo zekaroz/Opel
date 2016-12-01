@@ -2,13 +2,13 @@
 
 @section('page_heading')
 Brands
-@stop 
+@stop
 
 @section('page_title_buttons')
     <a class ="btn btn-primary" href="{{ action('BrandsController@create') }}">
         <i class="fa fa-plus-square fa-fw"></i>
         <span>New Brand</span>
-    </a> 
+    </a>
 @stop
 
 @section('section')
@@ -21,10 +21,10 @@ Brands
     <th></th>
     </thead>
 <tbody>
-    @forelse( $brands as $brand) 
+    @forelse( $brands as $brand)
         <tr>
             <td>
-              <a href="{{action('BrandsController@edit',[$brand->id]) }}" ><i class="fa fa-pencil-square-o fa-fw"></i> 
+              <a href="{{action('BrandsController@edit',[$brand->id]) }}" ><i class="fa fa-pencil-square-o fa-fw"></i>
                    {{ $brand->id }}</a>
             </td>
             <td>
@@ -41,7 +41,7 @@ Brands
                        <span><i class="fa fa-trash-o fa-fw"></i>  </span>
            </a>
             </td>
-        </tr>    
+        </tr>
     @empty
         <tr>
             <td colspan="5">
@@ -54,7 +54,7 @@ Brands
 
 
 <script >
-    $(document).ready( function( $ ) {        
+    $(document).ready( function( $ ) {
         $( '.deleteLink' ).on( 'click', function(e) {
                     e.preventDefault();
                     var link = $(this);
@@ -66,13 +66,26 @@ Brands
                         data: {_method: 'delete'},
                         success:function(msg) {
                             link.closest('tr').animate({'line-height':0},1000).hide(1);
+                            swal({
+                               title: "Marca apagada com sucesso" ,
+                               text: '',
+                               timer: 3000,
+                               showConfirmButton: true,
+                               type: "success"
+                             });
                          },
                         error:function(msg) {
-                           alert('Something wrong...');
+                          swal({
+                             title: "Ocorreu um erro a apagar a marca" ,
+                             text: 'Aconteceu um erro inesperado, por favor tira um print-screen e envia-me sff. :)',
+                             timer: 15000,
+                             showConfirmButton: true,
+                             type: "error"
+                           });
                         }
                     });
         });
     });
 </script>
-        
+
 @stop

@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Auth;
 use Socialite;
-
+use Alert;
 
 class AuthController extends Controller
 {
@@ -108,7 +108,11 @@ class AuthController extends Controller
 
       Auth::login($user);
     }
-    return redirect('/')->with('success', 'Successfully logged in!');
+
+
+    alert()->success('Successfully logged in!', 'Olá, Bem vindo ao sistema de Backoffice do PcQar!');
+
+    return redirect('/backoffice');
   }
 
   public function getSocialRedirect( $provider )
