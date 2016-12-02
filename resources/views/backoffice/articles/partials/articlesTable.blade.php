@@ -1,10 +1,10 @@
 <table class="table table-striped ">
   <thead>
     <th>
-      Article Name
+      Code
     </th>
     <th>
-      Reference
+      Article Name
     </th>
     <th>
       Price
@@ -21,15 +21,14 @@
   <tbody>
 @forelse( $articles as $article)
       <tr>
+        <td>{{$article->getCode()}}</td>
         <td>
           <a href="{{action('ArticlesController@edit',[$article->id]) }}" ><i class="fa fa-pencil-square-o fa-fw"></i>
               {{$article->name}}</a>
+              <small>{{ '('.$article->reference.')'}}</small>
         </td>
         <td>
-              {{$article->reference}}
-        </td>
-        <td>
-             {{$article->price}}
+             {{$article->getPrice()}}
         </td>
         <td>
             {{$article->brand? $article->brand->name : ''}}

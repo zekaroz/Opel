@@ -6,7 +6,7 @@
             <div class="caption">
                 <h4 class="pull-right">
                     @if( $itemPrice > 0 )
-                      {{$itemPrice}} €
+                      {{$itemPrice}}
                     @endif
                   </h4>
                 <h4><a href="{{$itemURL}}">{{$itemName}}</a>

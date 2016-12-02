@@ -16,10 +16,10 @@
                                    <div class="carousel-legend">
                                         {{  $article->name  }}
                                    </div>
-                                   @if( $article->price > 0 )
+                                   @if( $article->hasPrice() )
                                      <div class="carousel-legend-price">
                                        <div class="price-tag">
-                                           {{  $article->price }} €
+                                           {{  $article->getPrice() }}
                                        </div>
                                      </div>
                                    @endif
