@@ -19,20 +19,12 @@
 @section('page_Heading')
   {{$article->name}}
     <small>{{$article->reference}}</small>
+    <hr>
 @stop
 
 
 @section('section')
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <ol class="breadcrumb">
-                    <li> <h6>Código:{{ $article->getCode() }}</h6> </li>
-                </ol>
-            </div>
-        </div>
-        <!-- /.row -->
-
         <!-- Intro Content -->
         <div class="row">
             <div class="col-md-12">
@@ -42,22 +34,26 @@
                       {{ $article->getPrice() }}
                   </div>
                 </div>
+                <div class="text-left">
+                  <div class="codigo-artigo">
+                    <label>Código de Artigo</label>
+                    <h4>{{ $article->getCode() }}</h4>
+                  </div>
+                </div>
             </div>
 
-
-            <div class="col-md-12">
-                @if ( count($articlePictures) )
-                  <h4>Fotografias</h4>
-                    <hr>
-
-                    <div class="panel-body">
-                        @include('fileentries.listPictures', ['pictures' => $articlePictures
-                                                             ,'showOnly' => true
-                                                             ,'altText'  => $article->name])
-                    </div>
-                @endif
-          </div>
+          <hr>
+          <div class="col-md-12">
+              @if ( count($articlePictures) )
+                <h4>Fotografias</h4>
+                <div class="panel-body">
+                    @include('fileentries.listPictures', ['pictures' => $articlePictures
+                                                         ,'showOnly' => true
+                                                         ,'altText'  => $article->name])
+                  </div>
+              @endif
         </div>
+    </div>
         <!-- /.row -->
 
 
