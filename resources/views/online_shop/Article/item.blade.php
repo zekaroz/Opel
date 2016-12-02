@@ -17,7 +17,9 @@
 @stop
 
 @section('page_Heading')
-  {{$article->name}}
+    <div id="Article_Name" class="">
+      {{$article->name}}
+    </div>
     <small>{{$article->reference}}</small>
     <hr>
 @stop
@@ -30,7 +32,7 @@
             <div class="col-md-12">
                 <p> {{$article->description}}</p>
                 <div class="text-right">
-                  <div class="price-tag">
+                  <div id="{{ $article->hasPrice() ? 'Article_Price' : 'NoPrice' }}" class="price-tag">
                       {{ $article->getPrice() }}
                   </div>
                 </div>

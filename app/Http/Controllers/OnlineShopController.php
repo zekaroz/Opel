@@ -305,7 +305,7 @@ class OnlineShopController extends Controller
       $sitemap->add(route('carros_para_pecas'), '2016-11-27T12:30:00+02:00', '1.0', 'daily');
 
       // Add dynamic pages of the site like this (using an example of this very site):
-      $articles = Article::all();
+      $articles = Article::where('public', 1)->get();
 
       foreach($articles as $item) {
         $sitemap_item_images = [];
@@ -318,7 +318,7 @@ class OnlineShopController extends Controller
                                            ]
                                           );
         }
-        $sitemap->add(route('itemDisplayWithSlug', ['slug' => $item->slug]), $item->updated_at, '0.9', 'daily', $sitemap_item_images);
+        $sitemap->add(route('itemDisplayWithSlug', ['slug' => $item->slug]), $item->updated_at, '1', 'daily', $sitemap_item_images);
       }
       // Now, output the sitemap:
       return $sitemap->render('xml');
