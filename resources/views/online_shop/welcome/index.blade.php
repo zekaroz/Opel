@@ -28,8 +28,9 @@
                                                             'itemURL' =>  route('itemDisplayWithSlug', ['slug' => $article->slug]) ,
                                                             'itemName'=> $article->name,
                                                             'itemDescription'=> $article->description,
-                                                            'itemPrice' => $article->price,
-                                                            'picture_filename' => (count($article->pictures)>0)?($article->pictures()->orderBy('is_starred', 'desc')->first()->filename):''
+                                                            'itemPrice' => $article->getPrice(),
+                                                            'picture_filename' => (count($article->pictures)>0)?($article->pictures()->orderBy('is_starred', 'desc')->first()->filename):'',
+                                                            'itemCode' => $article->getCode()
                                                          ])
                         @endforeach
                     @endif

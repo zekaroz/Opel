@@ -65,7 +65,8 @@
 
         @yield('menu')
 
-        <hr>
+        @yield('topSection')
+
         <div class="container">
             <div class="row">
                 @yield('body')

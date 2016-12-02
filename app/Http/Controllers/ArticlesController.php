@@ -170,10 +170,14 @@ class ArticlesController extends Controller
 
         $article->slug = str_slug($article->name) .'-' .$article->id;
 
+
         // this automatically applies the user id for
         //the relations ship
         //TODO: rever isto para associar a peça à loja de que o user é dono;
         $article->save();
+
+        //function inside the Model that self build the code for the article;
+        $article->buildCode();
     }
 
     public function saveImageOrder($articleId , Request $request){

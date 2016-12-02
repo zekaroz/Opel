@@ -116,6 +116,13 @@ body {
     color: #d17581;
 }
 
+.article-code {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #AAA;
+}
+
+
 .thumbnail {
     padding: 0;
 }
@@ -244,3 +251,23 @@ Licensed under MIT
 }
 
 .top-buffer { margin-top:20px; }
+
+.codigo-artigo{
+	width: 160px;
+	background-color: #EFEFEF;
+	border: 1px solid #DDD;
+	padding: 12px 13px;
+	line-height: 5px;
+	border-radius: 4px;
+}
+
+.codigo-artigo label{
+	font-size: 11px;
+	color: gray;
+}
+.codigo-artigo h4{
+	font-size: 16px;
+	font-weight: bolder;
+	margin-top: 7px;
+	margin-bottom: 0px;
+}

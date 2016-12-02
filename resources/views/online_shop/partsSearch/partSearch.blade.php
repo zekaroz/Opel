@@ -15,31 +15,35 @@
 
 <table class="table table-striped search-table">
     <thead>
-      <th></th>
+    <th></th>
+    <th> Código </th>
     <th> Nome </th>
-    <th> Referência </th>
     <th class="number"> Preço (€)  </th>
     </thead>
 <tbody>
     @forelse( $articles as $article)
         <tr>
           <td style="width:130px;">
-            <img src="{{ route('getArticleThumbnailURL', $article->id) }}" style="width:120px;" alt="">
+            <a href="{{ route('itemDisplayWithSlug', ['slug' => $article->slug]) }}">
+              <img src="{{ route('getArticleThumbnailURL', $article->id) }}" style="width:120px;" alt="">
+            </a>
           </td>
-          <td><a href="{{ route('itemDisplayWithSlug', ['slug' => $article->slug]) }}">
-             {{ $article->name}}
-                </a>
+          <td>{{ $article->getCode()  }}</td>
+          <td>
+              <a href="{{ route('itemDisplayWithSlug', ['slug' => $article->slug]) }}">
+                {{ $article->name}}
+              </a>
+              <div>
+                <small>{{ $article->reference}}</small>
+              </div>
           </td>
-           <td>
-             {{ $article->reference}}
-           </td>
             <td class="number">
-              {{ $article->price == 0 ? 'Sob Consulta'  : $article->price.' €' }}
+              {{ $article->getPrice() }}
             </td>
         </tr>
     @empty
         <tr>
-            <td colspan="3">
+            <td colspan="5">
                 Sem artigos a mostrar...
             </td>
         </tr>

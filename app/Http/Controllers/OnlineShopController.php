@@ -141,7 +141,7 @@ class OnlineShopController extends Controller
                 ->with(compact('context_snippet'));
     }
 
-    public function homepage(){
+    public function homepage(Request $request){
 
         $articles = Article::where('public',1)
                             ->with('pictures')
@@ -159,18 +159,23 @@ class OnlineShopController extends Controller
                             ->take(6)
                             ->get();
 
+        $request->session()->put('lastListRouteName', 'homepage');
+        $request->session()->put('lastListRouteName_label', 'Página de Entrada');
+
         return view('online_shop.welcome.index')
                 ->with(compact('articles'))
                 ->with(compact('carrousselArticle'));
       }
 
 
-    public function partSearch(){
+    public function partSearch(Request $request){
         $article_type_car = ArticleType::where('code', 'P')->get()->first();
 
         $articles = Article::all()
                     ->where('article_type_id', $article_type_car->id);
 
+        $request->session()->put('lastListRouteName', 'pecas');
+        $request->session()->put('lastListRouteName_label', 'Peças Recicladas');
 
         return view('online_shop.partsSearch.partSearch')
                     ->with(compact('articles'))
@@ -178,23 +183,29 @@ class OnlineShopController extends Controller
     }
 
 
-    public function carSearch(){
+    public function carSearch(Request $request){
 
         $article_type_car = ArticleType::where('code', 'C')->get()->first();
 
         $articles = Article::all()
                     ->where('article_type_id', $article_type_car->id);
 
+        $request->session()->put('lastListRouteName', 'carros');
+        $request->session()->put('lastListRouteName_label', 'Veículos usados');
+
         return view('online_shop.CarsSearch.carSearch')
                     ->with(compact('articles'))
                     ->with('viewName', $article_type_car);
     }
 
-    public function carPartsSearch(){
+    public function carPartsSearch(Request $request){
         $article_type_car = ArticleType::where('code', 'VP')->get()->first();
 
         $articles = Article::all()
                     ->where('article_type_id', $article_type_car->id);
+
+        $request->session()->put('lastListRouteName', 'carros_para_pecas');
+        $request->session()->put('lastListRouteName_label', 'Veículos para Peças');
 
         return view('online_shop.CarsSearch.carPartsSearch')
                     ->with(compact('articles'))
@@ -204,6 +215,8 @@ class OnlineShopController extends Controller
     public function showArticle($articleid){
 
         $article = Article::find($articleid);
+
+
 
         return view('online_shop.Article.item')
                     ->with(compact('article'));
@@ -242,10 +255,14 @@ class OnlineShopController extends Controller
 
       $articlePictures = $article->pictures()->orderBy('position', 'asc')->get();
 
+      $lastRouteName = session('lastListRouteName');
+      $lastRouteLabel = session('lastListRouteName_label');
 
       return view('online_shop.Article.item')
                  ->with(compact('article'))
-                 ->with(compact('articlePictures'));
+                 ->with(compact('articlePictures'))
+                 ->with(compact('lastRouteName'))
+                 ->with(compact('lastRouteLabel'));
     }
 
     public function contactUs(ContactFormRequest $request){

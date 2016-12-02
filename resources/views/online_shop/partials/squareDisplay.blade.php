@@ -6,7 +6,7 @@
             <div class="caption">
                 <h4 class="pull-right">
                     @if( $itemPrice > 0 )
-                      {{$itemPrice}} €
+                      {{$itemPrice}}
                     @endif
                   </h4>
                 <h4><a href="{{$itemURL}}">{{$itemName}}</a>
@@ -14,16 +14,11 @@
                 <p>
                     {{ $itemDescription}}
                 </p>
+                <p></p>
             </div>
-            <div class="ratings">
-                <p class="pull-right">{{$numberOfReviews}} reviews</p>
-                <p>
-                    @for ($i = 0; $i < $numberOfStars; $i++)
-                        <span class="glyphicon glyphicon-star"></span>
-                    @endfor
-                    @for ($i = 0; $i < 5-$numberOfStars; $i++)
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                    @endfor
+            <div class="article-code">
+                <p class="text-right">
+                  <span class="">{{ $itemCode }}</span>
                 </p>
             </div>
         </div>

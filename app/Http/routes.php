@@ -32,10 +32,8 @@ Route::get('/',['as' => 'homepage', 'uses' => 'OnlineShopController@homepage'] )
 //Contactos
 Route::get('contactos',['as' => 'contacts', 'uses'=>'OnlineShopController@contacts']);
 
-
 // Quem Somos
 Route::get('quem_somos',['as' => 'about', 'uses' => 'OnlineShopController@aboutUs']);
-
 
 // Serviços
 Route::get('servicos',['as' => 'services',   function(){
@@ -52,13 +50,9 @@ Route::get('/carros',['as' => 'carros', 'uses' => 'OnlineShopController@carSearc
 Route::get('/carros_para_pecas', ['as' => 'carros_para_pecas', 'uses' => 'OnlineShopController@carPartsSearch']);
 
 //Article Display Page
-Route::get('/item/{articleid}/show',[
-    'as' => 'itemDisplay', 'uses' => 'OnlineShopController@showArticle'
-] );
+Route::get('/item/{articleid}/show',['as' => 'itemDisplay', 'uses' => 'OnlineShopController@showArticle'] );
 
-Route::get('/item/{slug}',[
-    'as' => 'itemDisplayWithSlug', 'uses' => 'OnlineShopController@showItem'
-] );
+Route::get('/item/{slug}',['as' => 'itemDisplayWithSlug', 'uses' => 'OnlineShopController@showItem'] );
 
 // route to get one of the pictures from the shops
 Route::get('/image/{imageid}',['as' => 'article_image', 'uses' => 'FileEntryController@getImage']);

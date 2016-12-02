@@ -24,6 +24,31 @@ class Article extends Model
         'public'
         ];
 
+    public function buildCode(){
+        $this->code = str_pad( $this->id, 5, "0", STR_PAD_LEFT);
+        $this->save();
+    }
+
+    public function getCode(){
+      $articletype = \App\ArticleType::find($this->article_type_id);
+
+      if(strtoupper($articletype->code) == 'P'){
+          return 'P'.$this->code;
+      }
+      return 'C'.$this->code;
+    }
+
+    public function getPrice(){
+      if($this->price == 0)
+        return 'Sob Consulta';
+
+      return number_format($this->price, 2).' €';
+    }
+
+    public function hasPrice(){
+      return ($this->price != 0); 
+    }
+
     /*
      * Article is of one model of a brand
      */
@@ -45,14 +70,13 @@ class Article extends Model
     /*
      * Article has one model from that brand
      */
-
     public function model(){
         return $this->belongsTo('App\BrandModel',"model_id");
     }
 
     /*
      * Article has one Part Type. Categorization from the
-     */
+   */
     public function partType(){
         return $this->belongsTo('App\PartType',"part_type_id");
     }
