@@ -1,8 +1,8 @@
 @extends('online_shop.layouts.main_wide')
 
 @section('head_section')
-<meta name="description" content="{{ $article->description }} - Serviços Auto - PCQAR.PT">
-<title>{{$article->name}}</title>
+<meta name="description" content="{{ $article->description }}">
+<title>{{$article->name}} - Serviços Auto - PCQAR.PT</title>
 @stop
 
 @section('topSection')
