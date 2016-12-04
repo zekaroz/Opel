@@ -2,7 +2,7 @@
 
 @section('head_section')
 <meta name="description" content="{{ $article->description }}">
-<title>{{$article->name}}</title>
+<title>{{$article->name}} - Serviços Auto - PCQAR.PT</title>
 @stop
 
 @section('topSection')
