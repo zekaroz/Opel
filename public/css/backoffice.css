@@ -90,3 +90,12 @@ color: #468847;
 .parsley-errors-list.filled {
  opacity: 1;
  }
+
+.sold{
+    font-size: 18px;
+    color: #FFF;
+    background: #a94442;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 3px 3px 3px #000;
+}

@@ -27,5 +27,6 @@ class AddSoldColumnToArticlesTable extends Migration
         Schema::table('articles', function (Blueprint $table) {
             $table->dropColumn('sold');
         });
+
     }
 }

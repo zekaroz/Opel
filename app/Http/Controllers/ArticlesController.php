@@ -332,6 +332,20 @@ class ArticlesController extends Controller
         return redirect('articles');
     }
 
+    public function markArticleAsSold(){
+        $article_id = Input::get('article');
+
+        $article = Article::findOrFail($article_id);
+
+        $article->sell();
+
+        return \Response::json([
+                'error' => false,
+                'code'  => 200,
+                'feedback' =>'Article marked as Sold.'
+                ], 200);
+    }
+
     public function addPicture($article_id) {
          $file = Request::file('file');
 

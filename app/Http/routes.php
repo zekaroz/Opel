@@ -16,6 +16,8 @@ Route::get('not_found', ['as'=> 'PageNotFound', function(){
     return View::make('errors.PageNotFound');
 }]);
 
+Route::post('/articles/sold', 'ArticlesController@markArticleAsSold');
+
 Route::get('/google_info/pcqar/sitemap','OnlineShopController@sitemap');
 
 Route::get('articles/all','ArticlesController@articleSearcher');
