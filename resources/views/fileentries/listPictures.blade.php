@@ -67,5 +67,5 @@
           </script>
       @endif
 @section('afterBody')
-    <script src="{{ asset("js/jBox.js") }} " type="text/javascript"></script>
+    <script src="{{ asset("js/jBox.min.js") }} " type="text/javascript"></script>
 @stop

@@ -74,5 +74,8 @@ elixir(function(mix) {
       'public/js/main_app.js'
       );
 
-      mix.copy('resources/assets/js/oficial_scripts/login_script.js', 'public/js');
+      mix.copy([
+              'resources/assets/js/oficial_scripts/login_script.js',
+              'resources/assets/js/oficial_scripts/jBox.min.js'
+                ], 'public/js');
 });
