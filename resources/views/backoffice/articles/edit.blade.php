@@ -12,7 +12,6 @@ Edit Article '{{ $article->name}}'
       Marcar como Vendido
     </button>
   @endif
-
 </div>
 @stop
 

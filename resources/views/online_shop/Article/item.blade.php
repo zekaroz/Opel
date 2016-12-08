@@ -36,15 +36,32 @@
                       {{ $article->getPrice() }}
                   </div>
                 </div>
-                <div class="text-left">
+                <div class="pull-left">
                   <div class="codigo-artigo">
                     <label>Código de Artigo</label>
                     <h4>{{ $article->getCode() }}</h4>
                   </div>
                 </div>
+                <div class="pull-left left-buffer">
+                  <div class="codigo-artigo">
+                    <label>Disponibilidade</label>
+                    @if( $article->sold)
+                      <div class="status-label font-big">
+                        <i class="fa fa-circle Red" ></i>
+                        Vendido
+                      </div>
+                    @else
+                      <div class="status-label font-big">
+                        <i class="fa fa-circle Green" ></i>
+                        Disponível
+                      </div>
+                    @endif
+                  </div>
+                </div>
             </div>
-
+        </div>
           <hr>
+        <div class="row">
           <div class="col-md-12">
               @if ( count($articlePictures) )
                 <h4>Fotografias</h4>
