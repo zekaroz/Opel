@@ -1,19 +1,19 @@
 <table class="table table-striped ">
   <thead>
     <th>
-      Code
+      Código
     </th>
     <th>
-      Article Name
+      Artigo
     </th>
     <th>
-      Price
+      Marca
     </th>
     <th>
-      Brand
+      Preço
     </th>
-    <th>
-      Is Public
+    <th colspan="2">
+      Estado
     </th>
     <th>
     </th>
@@ -28,25 +28,39 @@
               <small>{{ '('.$article->reference.')'}}</small>
         </td>
         <td>
-             {{$article->getPrice()}}
+          {{$article->brand? $article->brand->name : ''}}
+          <small>{{$article->model? '('.$article->model->name.')' : ''}}</small>
         </td>
         <td>
-            {{$article->brand? $article->brand->name : ''}}
-            <small>{{$article->model? '('.$article->model->name.')' : ''}}</small>
+             {{$article->getPrice()}}
         </td>
         <td>
 
             @if($article->public )
                <span  title="It appears on the website">
                  <i class="fa fa-globe "></i>
-                  Public
+                  Público
                </span>
             @else
               <span title="This is a private article, only owner can see">
                 <i class="fa fa-lock "></i>
-                 Private
+                 Privado
               </span>
             @endif
+        </td>
+        <td>
+            <div class="pull-right">
+              @if( $article->sold)
+                <div class="status-label font-small danger">
+                  Vendido
+                </div>
+              @else
+                <div class="status-label font-small success">
+                  Disponível
+                </div>
+              @endif
+            </div>
+
         </td>
         <td>
         <a id="deleteLink_{{  $article->id  }}"  href="Javascript: deleteArticle(  {{  $article->id  }} );" class="deleteLink btn btn-default" data-id="{{$article->id}}">

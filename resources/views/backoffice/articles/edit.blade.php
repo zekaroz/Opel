@@ -2,14 +2,14 @@
 
 @section('page_heading')
 Edit Article '{{ $article->name}}'
-<div class="pull-right">
+<div id="statusLabel" class="pull-right">
   @if( $article->sold)
-    <div class="sold">
-      Sold
+    <div class="status-label font-big danger">
+      Vendido
     </div>
   @else
-    <button type="submit" id="MarkAsSoldButton" class="btn btn-danger" >
-      Mark as Sold
+    <button type="submit" id="MarkAsSoldButton" class="btn btn-success" >
+      Marcar como Vendido
     </button>
   @endif
 
@@ -144,26 +144,33 @@ Edit Article '{{ $article->name}}'
                               url:   postUrl,
                               type: 'post',
                               data: 'article={{ $article->id }}',
-                              success:function(msg) {
-                                swal({
-                                   title: "Artigo está agora Vendido!" ,
-                                   text: 'Artigo apresenta agora a marca de vendido, poderás ou não remover o artigo do site tornando-o privado.',
-                                   timer: 15000,
-                                   showConfirmButton: true,
-                                   type: "success"
-                                 });
-                              },
+                              success:function(response) {
+                                            if (response.error) {
+                                              swal({
+                                                 title: "Ocorreu um erro a marcar Artigo como Vendido" ,
+                                                 text: 'Aconteceu um erro inesperado, por favor tira um print-screen e envia-me sff. :)',
+                                                 timer: 15000,
+                                                 showConfirmButton: true,
+                                                 type: "error"
+                                               });
+                                            }else {
+                                              swal({
+                                                 title: "Artigo está agora Vendido!" ,
+                                                 text: 'Artigo apresenta agora a marca de vendido, poderás ou não remover o artigo do site tornando-o privado.',
+                                                 timer: 15000,
+                                                 showConfirmButton: true,
+                                                 type: "success"
+                                               });
+
+                                               $('#statusLabel').html('<div class="status-label font-big danger"> Vendido </div>');
+                                             }
+                                    },
                               error:function(data) {
-                                swal({
-                                   title: "Ocorreu um erro a marcar Artigo como Vendido" ,
-                                   text: 'Aconteceu um erro inesperado, por favor tira um print-screen e envia-me sff. :)',
-                                   timer: 15000,
-                                   showConfirmButton: true,
-                                   type: "error"
-                                 });
+
                               }
                           });
                     });
+
                   };
 
                   // executes the script to initialization of the page

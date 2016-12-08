@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Article;
 
 class AddSoldColumnToArticlesTable extends Migration
 {
@@ -15,6 +16,11 @@ class AddSoldColumnToArticlesTable extends Migration
         Schema::table('articles', function (Blueprint $table) {
             $table->string('sold');
         });
+
+        foreach(Article::all() as $article){
+            $article->sold = false;
+            $article->save();
+        }
     }
 
     /**

@@ -116,7 +116,7 @@ class ArticlesController extends Controller
       $part_type_id =  Request::input('part_type_id');
       $public =  Request::input('public');
       $article_type_id =  Request::input('article_type_id');
-
+      $hideSold = Request::input('hide_sold_ones');
 
       if($public == 'all'){
           $public = null;
@@ -139,6 +139,11 @@ class ArticlesController extends Controller
                 ->where(function ($query) use ($public){
                   if( isset($public))
                     $query->where('public', $public);
+                })
+                ->where(function ($query) use ($hideSold){
+                  // this filed when selected, must filter only the available ones
+                  if( $hideSold )
+                    $query->where('sold', false);
                 })
                 ->where(function ($query) use ($article_type_id){
                   if( $article_type_id != '' )
@@ -327,7 +332,7 @@ class ArticlesController extends Controller
 
         $this->saveArticle($article);
 
-        alert()->success($article->name.' actualizado com sucesso');
+        alert()->success($article->name.' actualizado com sucesso')->autoclose(1500);;
 
         return redirect('articles');
     }

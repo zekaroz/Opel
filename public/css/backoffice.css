@@ -91,11 +91,29 @@ color: #468847;
  opacity: 1;
  }
 
-.sold{
-    font-size: 18px;
-    color: #FFF;
-    background: #a94442;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 3px 3px 3px #000;
+
+.danger{
+  background-color: #f2dede;
 }
+
+.success{
+    background-color: #dff0d8;
+}
+
+.font-big{
+  font-size: 18px;
+  padding: 10px;
+}
+
+.font-small{
+  font-size: 12px;
+  padding: 5px;
+}
+
+.status-label{
+  border-radius: 4px;
+  box-shadow: 3px 2px 2px #CCC;
+}
+
+.available{
+  }
