@@ -43,4 +43,34 @@ elixir(function(mix) {
        'datatables.min.css'
        ],
        'public/css/main_app.css');
+
+      mix.scripts([
+          'oficial_scripts/jquery.min.js',
+          'oficial_scripts/bootstrap.min.js',
+          'oficial_scripts/jquery.inputmask.bundle.min.js',
+          'oficial_scripts/datatables.min.js',
+          'oficial_scripts/dropzone.js',
+          'oficial_scripts/jquery.touchSwipe.min.js',
+          'oficial_scripts/ladda.min.js',
+          'oficial_scripts/parsley.min.js',
+          'oficial_scripts/select2.min.js',
+          'oficial_scripts/spin.min.js',
+          'oficial_scripts/sweetalert.min.js',
+          'oficial_scripts/custom_script.js',
+          'oficial_scripts/JQ.js'
+      ],
+      'public/js/backoffice.js'
+      );
+
+      mix.scripts([
+          'oficial_scripts/jquery.min.js',
+          'oficial_scripts/bootstrap.min.js',
+          'oficial_scripts/html5shiv.js',
+          'oficial_scripts/respond.min.js',
+          'oficial_scripts/datatables.min.js',
+          'oficial_scripts/jquery.touchSwipe.min.js',
+          'oficial_scripts/header_fading.js'
+      ],
+      'public/js/main_app.js'
+      );
 });

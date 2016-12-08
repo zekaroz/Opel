@@ -10,26 +10,9 @@
    <link href="{{ asset("/css/app_backoffice.css") }}" rel="stylesheet">
 </head>
 <body>
-       <!-- JavaScripts -->
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
-    <script src="{{  asset("/js/jquery.min.js")  }}"></script>
-    <script src="{{  asset("/js/bootstrap.min.js")  }}"></script>
-    <script src="{{ asset("assets/dropzone/dropzone.js") }} " type="text/javascript"></script>
-    <script src="{{ asset("assets/inputmask/jquery.inputmask.bundle.min.js") }} " type="text/javascript"></script>
-    <script src="{{ asset("assets/select2/js/select2.min.js") }} " type="text/javascript"></script>
-    <script src="{{ asset("assets/DataTables/datatables.js") }} " type="text/javascript"></script>
-    <script src="{{ asset("js/jquery.touchSwipe.min.js") }} " type="text/javascript"></script>
-    <script src="{{ asset("js/JQ.js") }} " type="text/javascript"></script>
-    <script src="{{ asset("js/sweetalert.min.js") }}" ></script>
-    <script src="{{ asset("js/spin.min.js") }}" ></script>
-    <script src="{{ asset("js/ladda.min.js") }}" ></script>
-    <script src="{{ asset("js/custom_script.js") }}" ></script>
-    <script src="{{ asset("js/parsley.min.js") }}" ></script>
+    <script src="{{  asset("/js/backoffice.js")  }}"></script>
 
     @include('sweet::alert')
-
-
-
 
     @include('partials.nav_backoffice')
 
