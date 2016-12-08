@@ -1,14 +1,14 @@
 ﻿// Konstruktor
 var jBox = function (settings) {
-    
+
     var imageSelector = ".jbox-img";
     var altText = true;
-    
+
     if(typeof settings != "undefined"){
         if(settings.imageSelector) { imageSelector = settings.imageSelector; }
         if(settings.altText) { altText = settings.altText; }
     }
-    
+
     // Variables
     var jBoxContainer = $(".jbox-container");
     var jBoxContainerImg = $(".jbox-container img");
@@ -318,5 +318,5 @@ var jBox = function (settings) {
         window.ontouchmove = null;
         document.onkeydown = null;
     }
-    // End Disable Scrolling   
+    // End Disable Scrolling
 }

@@ -51,6 +51,7 @@ elixir(function(mix) {
           'oficial_scripts/datatables.min.js',
           'oficial_scripts/dropzone.js',
           'oficial_scripts/jquery.touchSwipe.min.js',
+          'oficial_scripts/jBox.js',
           'oficial_scripts/ladda.min.js',
           'oficial_scripts/parsley.min.js',
           'oficial_scripts/select2.min.js',
@@ -69,6 +70,7 @@ elixir(function(mix) {
           'oficial_scripts/respond.min.js',
           'oficial_scripts/datatables.min.js',
           'oficial_scripts/jquery.touchSwipe.min.js',
+          'oficial_scripts/jBox.js',
           'oficial_scripts/header_fading.js'
       ],
       'public/js/main_app.js'
@@ -76,6 +78,5 @@ elixir(function(mix) {
 
       mix.copy([
               'resources/assets/js/oficial_scripts/login_script.js',
-              'resources/assets/js/oficial_scripts/jBox.js'
                 ], 'public/js');
 });

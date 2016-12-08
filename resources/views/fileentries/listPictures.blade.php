@@ -58,14 +58,10 @@
         </svg>
 
     </div>
-
       @if(   count($pictures)  >  0)
            <script>
               $(document).ready(function() {
-                   var gallery = new jBox();
+                   var gallery = new jBox('teste');
               } );
           </script>
       @endif
-@section('afterBody')
-    <script src="{{ asset("js/jBox.js") }} " type="text/javascript"></script>
-@stop
