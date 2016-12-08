@@ -13,6 +13,34 @@ require('laravel-elixir-vueify');
  */
 
 elixir(function(mix) {
-     mix.phpUnit();
+    // mix.phpUnit();
+     mix.styles([
+      'backoffice.css',
+      'bootstrap.min.css',
+      'bootstrap-social.css',
+      'font-awesome.min.css',
+      'fonts.googleapis.css.css',
+      'jBox.css',
+      'ladda.min.css',
+      'ladda-themeless.min.css',
+      'sweetalert.css',
+      'datatables.min.css',
+      'styles.css',
+      'select2.min.css',
+      'basic.css',
+      'dropzone.css'
+      ],
+      'public/css/app_backoffice.css');
 
+      mix.styles([
+       'bootstrap.min.css',
+       'bootstrap-social.css',
+       'font-awesome.min.css',
+       'fonts.googleapis.css.css',
+       'jBox.css',
+       'shop-homepage.css',
+       'sweetalert.css',
+       'datatables.min.css'
+       ],
+       'public/css/main_app.css');
 });

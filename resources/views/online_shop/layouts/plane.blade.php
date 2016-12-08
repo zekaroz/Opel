@@ -9,44 +9,7 @@
 
     @yield('head_section')
     <meta name="author" content="Pedro Queirós">
-
-
-    <link href="{{ asset("/css/font-awesome.min.css")}}" rel='stylesheet' type='text/css'>
-    <link href="{{ asset("/css/fonts.googleapis.css.css")}}" rel='stylesheet' type='text/css'>
-
-
-    <!-- Bootstrap Core CSS -->
-    <link href="{{ asset("/css/bootstrap.min.css") }}" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="{{ asset("/css/shop-homepage.css") }}" rel="stylesheet">
-     <link rel="stylesheet" type="text/css" href="{{ asset("/assets/DataTables/datatables.css") }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset("/css/jBox.css") }}"/>
-
-
-
-    <style>
-       .fa-btn {
-            margin-right: 6px;
-        }
-        .number{
-            text-align: right;
-        }
-        .date{
-             text-align: right;
-        }
-        .form-group.required label:after {
-          content:"*";
-          color:red;
-        }
-
-        .thumbnail > img, .thumbnail a > img{
-          height: 100px;
-        }
-        .left-buffer{
-          margin-left: 10px;
-        }
-    </style>
-
+    <link href="{{ asset("/css/main_app.css")}}" rel='stylesheet' type='text/css'>
     {!! Analytics::render() !!}
 </head>
 
