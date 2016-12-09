@@ -212,14 +212,12 @@ class OnlineShopController extends Controller
                     ->with('viewName', $article_type_car);
     }
 
+
     public function showArticle($articleid){
 
-        $article = Article::find($articleid);
+        $article = Article::findorFail($articleid);
 
-
-
-        return view('online_shop.Article.item')
-                    ->with(compact('article'));
+        return redirect('/item/'.$article->slug);
     }
 
     public function getArticleThumbnailURL($id){
