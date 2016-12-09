@@ -78,5 +78,6 @@ elixir(function(mix) {
 
       mix.copy([
               'resources/assets/js/oficial_scripts/login_script.js',
+              'resources/assets/js/oficial_scripts/jquery-ui.js'
                 ], 'public/js');
 });

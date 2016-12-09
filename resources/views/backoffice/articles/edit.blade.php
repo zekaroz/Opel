@@ -38,7 +38,7 @@ Edit Article '{{ $article->name}}'
             @if ( isset($articlePictures) )
               <div class="panel-body">
 
-                  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                  <script src="{{ asset('js/jquery-ui.js') }}"></script>
 
                   <hr>
                   @include('fileentries.listPictures', ['pictures' => $articlePictures,
