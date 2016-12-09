@@ -45,8 +45,16 @@ class Article extends Model
       return number_format($this->price, 2).' €';
     }
 
+    public function sell(){
+        $this->sold = true;
+
+        $this->save();
+
+        return true;
+    }
+
     public function hasPrice(){
-      return ($this->price != 0); 
+      return ($this->price != 0);
     }
 
     /*

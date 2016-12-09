@@ -61,7 +61,7 @@
       @if(   count($pictures)  >  0)
            <script>
               $(document).ready(function() {
-                   var gallery = new jBox('teste');
+                   var gallery = new jBox();
               } );
           </script>
       @endif

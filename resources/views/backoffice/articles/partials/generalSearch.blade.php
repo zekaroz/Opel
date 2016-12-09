@@ -38,7 +38,11 @@
                   {!! Form::radio('public' , 'all', ['class' => 'form-control']) !!}
                 </div>
               </div>
-            <div style="margin-top: 20px;">
+              <div class="form-group col-sm-3">
+                <label for="check_sold">Esconder Vendidos</label>
+                {!! Form::checkbox('hide_sold_ones', null , ['id' => 'check_sold', 'class' => 'form-control']) !!}
+              </div>
+              <div style="margin-top: 20px;">
               <button id="search" type="button" style="width:100px;" class="btn btn btn-primary" name="search"> Search</button>
               <button id="reset" type="button" style="width:100px;" class="btn btn-default btn-outline" name="reset"> Reset</button>
           </div>
@@ -56,7 +60,6 @@
 
           function makeSearch(){
             var postData = $('#searchForm').serialize();
-            console.log(postData);
             var refreshElement = $('#searchResult');
 
             // this is a post method to the articles/all route

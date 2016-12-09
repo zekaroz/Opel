@@ -2,6 +2,17 @@
 
 @section('page_heading')
 Edit Article '{{ $article->name}}'
+<div id="statusLabel" class="pull-right">
+  @if( $article->sold)
+    <div class="status-label font-big danger">
+      Vendido
+    </div>
+  @else
+    <button type="submit" id="MarkAsSoldButton" class="btn btn-success" >
+      Marcar como Vendido
+    </button>
+  @endif
+</div>
 @stop
 
 @section('section')
@@ -27,7 +38,7 @@ Edit Article '{{ $article->name}}'
             @if ( isset($articlePictures) )
               <div class="panel-body">
 
-                  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                  <script src="{{ asset('js/jquery-ui.js') }}"></script>
 
                   <hr>
                   @include('fileentries.listPictures', ['pictures' => $articlePictures,
@@ -47,7 +58,7 @@ Edit Article '{{ $article->name}}'
                                   return str.join("&");
                                 };
 
-                  var init_page_scripts = function(){
+                   var init_page_scripts = function(){
                     $(function(){
                        // to make images sortable only in this page
                         $('.picturesHolder').sortable({
@@ -122,6 +133,43 @@ Edit Article '{{ $article->name}}'
                                     }
                                 });
                     });
+
+                    $('#MarkAsSoldButton').on('click', function(e){
+                          e.preventDefault();
+
+                          var postUrl = '/articles/sold';
+
+                          $.ajax({
+                              url:   postUrl,
+                              type: 'post',
+                              data: 'article={{ $article->id }}',
+                              success:function(response) {
+                                            if (response.error) {
+                                              swal({
+                                                 title: "Ocorreu um erro a marcar Artigo como Vendido" ,
+                                                 text: 'Aconteceu um erro inesperado, por favor tira um print-screen e envia-me sff. :)',
+                                                 timer: 15000,
+                                                 showConfirmButton: true,
+                                                 type: "error"
+                                               });
+                                            }else {
+                                              swal({
+                                                 title: "Artigo está agora Vendido!" ,
+                                                 text: 'Artigo apresenta agora a marca de vendido, poderás ou não remover o artigo do site tornando-o privado.',
+                                                 timer: 15000,
+                                                 showConfirmButton: true,
+                                                 type: "success"
+                                               });
+
+                                               $('#statusLabel').html('<div class="status-label font-big danger"> Vendido </div>');
+                                             }
+                                    },
+                              error:function(data) {
+
+                              }
+                          });
+                    });
+
                   };
 
                   // executes the script to initialization of the page

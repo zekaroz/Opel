@@ -276,6 +276,36 @@ Licensed under MIT
     z-index: 12;
 }
 
+.danger{
+  background-color: #f2dede;
+}
+
+.success{
+    background-color: #dff0d8;
+}
+
+.Red{
+  color: darkred;
+}
+
+.Green{
+  color: green;
+}
+
+.font-big{
+  font-size: 16px;
+  padding: 5px;
+}
+
+.font-small{
+  font-size: 12px;
+  padding: 5px;
+}
+
+.status-label{
+  border-radius: 4px;
+  box-shadow: 3px 2px 2px #CCC;
+}
 .fa-btn {
      margin-right: 6px;
  }
