@@ -32,7 +32,7 @@
             <div class="col-md-8 minHeight article-description">
                 <p> {{$article->description}}</p>
             </div>
-            <fieldset class="pull-left col-md-3  col-xs-12">
+            <fieldset class="pull-left col-md-3 col-xs-12" style="margin-bottom: 30px;">
               <legend>Informação do Artigo</legend>
               <div class="pull-left codigo-artigo col-md-11 col-sm-3 col-xs-11">
                 <label>Código de Artigo</label>
@@ -59,7 +59,7 @@
               </div>
             </fieldset>
         </div>
-        <div class="row" style="margin-top: 20px;">
+        <div class="row">
           <div class="col-md-12">
               @if ( count($articlePictures) )
                 <fieldset>
