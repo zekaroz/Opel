@@ -26,21 +26,21 @@
             </div>
             <div class="form-group col-sm-3" style="margin-top: 20px;">
                 <div class="col-sm-4">
-                  <label for="">Público</label>
-                  {!! Form::radio('public' , true, ['class' => 'form-control']) !!}
+                  <label for="public">Público</label>
+                  {!! Form::radio('public' , true, false, ['id' => 'public', 'class' => '']) !!}
                 </div>
                 <div class="col-sm-4">
-                  <label for="">Privado</label>
-                  {!! Form::radio('public' , false, ['class' => 'form-control']) !!}
+                  <label for="private">Privado</label>
+                  {!! Form::radio('public' , false, false, ['id' => 'private', 'class' => '']) !!}
                 </div>
                 <div class="col-sm-4">
-                  <label for="">Todos</label>
-                  {!! Form::radio('public' , 'all', ['class' => 'form-control']) !!}
+                  <label for="all_items">Todos</label>
+                  {!! Form::radio('public' , 'all', false, ['id' => 'all_items', 'class' => '']) !!}
                 </div>
               </div>
-              <div class="form-group col-sm-3">
+              <div class="form-group col-sm-3" style="margin-top: 20px;">
                 <label for="check_sold">Esconder Vendidos</label>
-                {!! Form::checkbox('hide_sold_ones', null , ['id' => 'check_sold', 'class' => 'form-control']) !!}
+                {!! Form::checkbox('hide_sold_ones', null, false , ['id' => 'check_sold', 'class' => '']) !!}
               </div>
               <div style="margin-top: 20px;">
               <button id="search" type="button" style="width:100px;" class="btn btn btn-primary" name="search"> Search</button>
