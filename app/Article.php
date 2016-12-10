@@ -21,7 +21,8 @@ class Article extends Model
         'part_type_id',
         'model_id',
         'brand_id',
-        'public'
+        'public',
+        'quantity'
         ];
 
     public function buildCode(){
@@ -55,6 +56,10 @@ class Article extends Model
 
     public function hasPrice(){
       return ($this->price != 0);
+    }
+
+    public function isAvailable(){
+        return ( $this->quantity >0 );
     }
 
     /*

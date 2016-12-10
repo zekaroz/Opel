@@ -10,6 +10,9 @@
       Marca
     </th>
     <th>
+      Stock
+    </th>
+    <th>
       Preço
     </th>
     <th colspan="2">
@@ -32,10 +35,12 @@
           <small>{{$article->model? '('.$article->model->name.')' : ''}}</small>
         </td>
         <td>
+                {{   $article->quantity  }} un.
+        </td>
+        <td>
              {{$article->getPrice()}}
         </td>
         <td>
-
             @if($article->public )
                <span  title="It appears on the website">
                  <i class="fa fa-globe "></i>
@@ -50,14 +55,14 @@
         </td>
         <td>
             <div class="pull-right">
-              @if( $article->sold)
-                <div class="status-label font-small danger">
-                  Vendido
-                </div>
+              @if( $article->isAvailable())
+                  <div class="status-label font-small success">
+                    Disponível
+                  </div>
               @else
-                <div class="status-label font-small success">
-                  Disponível
-                </div>
+                  <div class="status-label font-small danger">
+                    Esgotado!
+                  </div>
               @endif
             </div>
 

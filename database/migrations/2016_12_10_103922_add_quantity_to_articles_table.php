@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Article;
 
 class AddQuantityToArticlesTable extends Migration
 {
@@ -15,6 +16,11 @@ class AddQuantityToArticlesTable extends Migration
         Schema::table('articles', function (Blueprint $table) {
             $table->integer('quantity')->nullable();
         });
+
+        foreach(Article::where('sold',false)->get() as $article){
+            $article->quantity = 1;
+            $article->save();
+        }
     }
 
     /**
