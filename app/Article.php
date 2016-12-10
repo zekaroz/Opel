@@ -21,7 +21,8 @@ class Article extends Model
         'part_type_id',
         'model_id',
         'brand_id',
-        'public'
+        'public',
+        'quantity'
         ];
 
     public function buildCode(){
@@ -45,8 +46,23 @@ class Article extends Model
       return number_format($this->price, 2).' €';
     }
 
+    public function sell(){
+        $this->sold = true;
+        $this->quantity = 0;
+
+        // this makes the article to appear as sold out!
+
+        $this->save();
+
+        return true;
+    }
+
     public function hasPrice(){
-      return ($this->price != 0); 
+      return ($this->price != 0);
+    }
+
+    public function isAvailable(){
+        return ( $this->quantity >0 );
     }
 
     /*

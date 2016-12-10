@@ -212,15 +212,13 @@ class OnlineShopController extends Controller
                     ->with('viewName', $article_type_car);
     }
 
-    public function showArticle($articleid){
 
-        $article = Article::find($articleid);
+        public function showArticle($articleid){
 
+            $article = Article::findorFail($articleid);
 
-
-        return view('online_shop.Article.item')
-                    ->with(compact('article'));
-    }
+            return redirect('/item/'.$article->slug);
+        }
 
     public function getArticleThumbnailURL($id){
         $pictures = Article::find($id)
@@ -233,7 +231,7 @@ class OnlineShopController extends Controller
 
         if( ! $pic ){
           // when article has no pictures
-          $placeholder = str_replace('\\','/', public_path('placeholderThumbnail.png'));
+          $placeholder = str_replace('\\','/', public_path('placeholderThumbnail.jpg'));
           $image = Image::make($placeholder)->stream();
           return (new Response($image, 200))
                         ->header('Content-Type', 'image/jpeg');

@@ -2,19 +2,17 @@
 
 @section('page_heading')
 Create New Article
-@stop 
+@stop
 
 @section('section')
 
-<br><br>
- 
     @include('errors.list')
- 
+
 <div class="col-sm-6"  >
 {!! Form::open(['url' => 'articles']) !!}
-    @include('backoffice.articles._form', ['submitButtonText' => 'Create Article' ])
+    @include('backoffice.articles._form', ['submitButtonText' => 'Create Article', 'article' => null ])
 {!! Form::close() !!}
 </div>
-       
+
 
 @stop
