@@ -422,12 +422,13 @@ Licensed under MIT
 .top-buffer { margin-top:20px; }
 
 .codigo-artigo{
-	width: 160px;
 	background-color: #EFEFEF;
 	border: 1px solid #DDD;
-	padding: 12px 13px;
+  padding: 12px 13px;
 	line-height: 5px;
 	border-radius: 4px;
+  margin-left: 20px;
+  margin-top: 20px;
 }
 
 .codigo-artigo label{
@@ -495,6 +496,22 @@ Licensed under MIT
  .left-buffer{
    margin-left: 10px;
  }
+
+.minHeight{
+  min-height: 300px;
+}
+
+.gutter-right{
+  border-right: 1px solid #CCC;
+}
+
+.article-description{
+    background: #FEFEFE;
+    border: 1px solid #DDD;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
 
 body.stop-scrolling {
   height: 100%;

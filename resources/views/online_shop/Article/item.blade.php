@@ -18,7 +18,7 @@
 
 @section('page_Heading')
     <div id="Article_Name" class="">
-      {{$article->name}}
+      <img src="{{ route('getArticleThumbnailURL', $article->id) }}" style="width:120px;" class="img-rounded" alt=""> {{$article->name}}
     </div>
     <small>{{$article->reference}}</small>
     <hr>
@@ -29,47 +29,47 @@
     <div class="container">
         <!-- Intro Content -->
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8 minHeight article-description">
                 <p> {{$article->description}}</p>
-                <div class="text-right">
-                  <div id="{{ $article->hasPrice() ? 'Article_Price' : 'NoPrice' }}" class="price-tag">
-                      {{ $article->getPrice() }}
-                  </div>
-                </div>
-                <div class="pull-left">
-                  <div class="codigo-artigo">
-                    <label>Código de Artigo</label>
-                    <h4>{{ $article->getCode() }}</h4>
-                  </div>
-                </div>
-                <div class="pull-left left-buffer">
-                  <div class="codigo-artigo">
-                    <label>Disponibilidade</label>
-                    @if( $article->isAvailable())
-                    <div class="status-label font-big">
-                      <i class="fa fa-circle Green" ></i>
-                      Em Stock
-                    </div>
-                    @else
-                    <div class="status-label font-big">
-                      <i class="fa fa-circle Red" ></i>
-                      Esgotado
-                    </div>
-                    @endif
-                  </div>
-                </div>
             </div>
+            <fieldset class="pull-left col-md-3 col-xs-12" style="margin-bottom: 30px;">
+              <legend>Informação do Artigo</legend>
+              <div class="pull-left codigo-artigo col-md-11 col-sm-3 col-xs-11">
+                <label>Código de Artigo</label>
+                <h4>{{ $article->getCode() }}</h4>
+              </div>
+              <div class="pull-left codigo-artigo col-md-11 col-sm-3 col-xs-11">
+                <label>Disponibilidade</label>
+                @if( $article->isAvailable() )
+                <div class="status-label font-big">
+                  <i class="fa fa-circle Green" ></i>
+                  Em Stock
+                </div>
+                @else
+                <div class="status-label font-big">
+                  <i class="fa fa-circle Red" ></i>
+                  Esgotado
+                </div>
+                @endif
+              </div>
+              <div class="pull-left text-center codigo-artigo col-md-11 col-sm-3 col-xs-11">
+                <div id="{{ $article->hasPrice() ? 'Article_Price' : 'NoPrice' }}" class="price-tag">
+                    {{ $article->getPrice() }}
+                </div>
+              </div>
+            </fieldset>
         </div>
-          <hr>
         <div class="row">
           <div class="col-md-12">
               @if ( count($articlePictures) )
-                <h4>Fotografias</h4>
-                <div class="panel-body">
-                    @include('fileentries.listPictures', ['pictures' => $articlePictures
-                                                         ,'showOnly' => true
-                                                         ,'altText'  => $article->name])
-                  </div>
+                <fieldset>
+                  <legend>Fotografias do Artigo</legend>
+                  <div class="panel-body">
+                      @include('fileentries.listPictures', ['pictures' => $articlePictures
+                                                           ,'showOnly' => true
+                                                           ,'altText'  => $article->name])
+                    </div>
+                </fieldset>
               @endif
         </div>
     </div>
