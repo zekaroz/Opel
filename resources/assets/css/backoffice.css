@@ -124,7 +124,7 @@ color: #468847;
 
 .radioButtons {
      list-style-type:none;
-     margin:0px;
+     margin-top: 5px;
      padding:0;
 }
 
@@ -177,4 +177,9 @@ color: #468847;
 
 .hidden{
   display:none;
+}
+
+.text-note{
+  font-size: 11px;
+  color: #DDD;
 }

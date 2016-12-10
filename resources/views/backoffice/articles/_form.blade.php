@@ -67,13 +67,13 @@
           <div class="form-group quantity col-md-6 col-sd-3">
         @endif
           {!! Form::label('Quantidade' ) !!}
-          {!! Form::number('quantity' , 1 , [
+          {!! Form::number('quantity' , null, [
                 'class' => 'form-control ',
                 'placeholder'=>'Qtd']) !!}
       </div>
     </div>
     <fieldset>
-      <legend>Caracteristicas do Artigo</legend>
+      <legend>Características do Artigo</legend>
       <div class="row">
         <div class="col-md-12">
           <div class='form-group col-md-6 col-sd-3'>
