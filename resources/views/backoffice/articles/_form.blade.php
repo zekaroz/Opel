@@ -37,7 +37,7 @@
       <div class="">
         <label for="publicBox">Visibilidade</label>
       </div>
-       {{ Form::checkbox('public', 1, null, [
+       {{ Form::checkbox('public', 1, !isset($article), [
                    'class' => 'field'
                    ,'data-toggle'  =>  'toggle'
                    ,'data-style'   => 'ios'
