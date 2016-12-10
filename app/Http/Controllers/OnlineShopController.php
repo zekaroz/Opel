@@ -231,7 +231,7 @@ class OnlineShopController extends Controller
 
         if( ! $pic ){
           // when article has no pictures
-          $placeholder = str_replace('\\','/', public_path('placeholderThumbnail.png'));
+          $placeholder = str_replace('\\','/', public_path('placeholderThumbnail.jpg'));
           $image = Image::make($placeholder)->stream();
           return (new Response($image, 200))
                         ->header('Content-Type', 'image/jpeg');
