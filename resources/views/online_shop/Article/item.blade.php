@@ -45,16 +45,16 @@
                 <div class="pull-left left-buffer">
                   <div class="codigo-artigo">
                     <label>Disponibilidade</label>
-                    @if( $article->sold)
-                      <div class="status-label font-big">
-                        <i class="fa fa-circle Red" ></i>
-                        Vendido
-                      </div>
+                    @if( $article->isAvailable())
+                    <div class="status-label font-big">
+                      <i class="fa fa-circle Green" ></i>
+                      Em Stock
+                    </div>
                     @else
-                      <div class="status-label font-big">
-                        <i class="fa fa-circle Green" ></i>
-                        Disponível
-                      </div>
+                    <div class="status-label font-big">
+                      <i class="fa fa-circle Red" ></i>
+                      Esgotado
+                    </div>
                     @endif
                   </div>
                 </div>

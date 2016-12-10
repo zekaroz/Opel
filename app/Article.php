@@ -48,6 +48,9 @@ class Article extends Model
 
     public function sell(){
         $this->sold = true;
+        $this->quantity = 0;
+
+        // this makes the article to appear as sold out!
 
         $this->save();
 

@@ -179,13 +179,16 @@ class ArticlesController extends Controller
         if(! $article->id){
           // if new then it's not sold out
             $article->sold = false;
-            $article->quantity = $article->quantity ? 1 : $article->quantity;
+            $article->quantity = $article->quantity>0 ? $article->quantity : 1 ;
+
         }
 
         // this automatically applies the user id for
         //the relations ship
         //TODO: rever isto para associar a peça à loja de que o user é dono;
         $article->save();
+
+
 
         //function inside the Model that self build the code for the article;
         $article->buildCode();

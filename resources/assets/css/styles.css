@@ -2505,6 +2505,8 @@ label {
   max-width: 100%;
   margin-bottom: 5px;
   font-weight: bold;
+  color: #666;
+  border-bottom: 1px dashed #CCC;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
