@@ -117,3 +117,64 @@ color: #468847;
 
 .available{
   }
+
+.form-group.quantity{
+
+}
+
+.radioButtons {
+     list-style-type:none;
+     margin:0px;
+     padding:0;
+}
+
+.radioButtons li {
+     float:left;
+     margin:0 5px 0 0;
+      width:150px;
+      height:40px;
+      position:relative;
+}
+
+.radioButtons label, .radioButtons input {
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+.radioButtons input[type="radio"] {
+    opacity:0.011;
+    z-index:100;
+}
+
+.radioButtons label.selected,
+.radioButtons label.selected:hover {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+}
+
+.radioButtons label.selected:hover{
+  cursor: auto;
+}
+
+.radioButtons label{
+     padding:5px;
+     border:1px solid #CCC;
+     border-radius: 4px;
+     font-weight: normal;
+     cursor:pointer;
+     text-align: center;
+     z-index:90;
+}
+
+.radioButtons label:hover {
+     background:#DDD;
+}
+
+.hidden{
+  display:none;
+}

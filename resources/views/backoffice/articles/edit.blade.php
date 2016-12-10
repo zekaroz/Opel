@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('page_heading')
-Edit Article '{{ $article->name}}'
+Artigo '{{ $article->name}}'
 <div id="statusLabel" class="pull-right">
   @if( $article->sold)
     <div class="status-label font-big danger">
@@ -16,8 +16,6 @@ Edit Article '{{ $article->name}}'
 @stop
 
 @section('section')
-
-<br><br>
 
  @include('errors.list')
 
@@ -34,21 +32,16 @@ Edit Article '{{ $article->name}}'
                                 'dropId'  => 'filedrop'])
 
         <div id="picturesContainer">
-
             @if ( isset($articlePictures) )
               <div class="panel-body">
-
                   <script src="{{ asset('js/jquery-ui.js') }}"></script>
-
                   <hr>
                   @include('fileentries.listPictures', ['pictures' => $articlePictures,
                                                         'showOnly' => false            ])
               </div>
             @endif
 
-
             <script type="text/javascript">
-
                   var serialize = function(obj) {
                                   var str = [];
                                   for(var p in obj)

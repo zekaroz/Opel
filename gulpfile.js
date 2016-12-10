@@ -17,6 +17,7 @@ elixir(function(mix) {
      mix.styles([
       'backoffice.css',
       'bootstrap.min.css',
+      'bootstrap2-toggle.css',
       'bootstrap-social.css',
       'font-awesome.min.css',
       'fonts.googleapis.css.css',
@@ -47,6 +48,7 @@ elixir(function(mix) {
       mix.scripts([
           'oficial_scripts/jquery.min.js',
           'oficial_scripts/bootstrap.min.js',
+          'oficial_scripts/bootstrap2-toggle.min.js',
           'oficial_scripts/jquery.inputmask.bundle.min.js',
           'oficial_scripts/datatables.min.js',
           'oficial_scripts/dropzone.js',

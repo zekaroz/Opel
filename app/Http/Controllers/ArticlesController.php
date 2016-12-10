@@ -82,13 +82,14 @@ class ArticlesController extends Controller
         $modelsList =  BrandModel::orderBy('name', 'asc')->lists('name','id')->prepend('(all)','');
         $brandsList = Brand::orderBy('name', 'asc')->lists('name','id')->prepend('(all)','');
         $partsList = PartType::orderBy('name', 'asc')->lists('name','id')->prepend('(all)','');
-        $articleTypesList = ArticleType::orderBy('name', 'asc')->lists('name','id')->prepend('(choose one)','');
+        $articleTypesList = ArticleType::orderBy('name', 'asc')->get();
 
         return view('backoffice.articles.create' )
                     ->with(compact('brandsList'))
                     ->with(compact('partsList'))
                     ->with(compact('modelsList'))
                     ->with(compact('articleTypesList'))
+                    ->with(compact('article'))
                 ;
     }
 
@@ -175,6 +176,11 @@ class ArticlesController extends Controller
 
         $article->slug = str_slug($article->name) .'-' .$article->id;
 
+        if(! $article->id){
+          // if new then it's not sold out
+            $article->sold = false;
+            $article->quantity = $article->quantity ? 1 : $article->quantity;
+        }
 
         // this automatically applies the user id for
         //the relations ship
@@ -261,10 +267,9 @@ class ArticlesController extends Controller
         $modelsList =  BrandModel::orderBy('name', 'asc')->lists('name','id')->prepend('(all)', '');
         $brandsList = Brand::orderBy('name', 'asc')->lists('name','id')->prepend('(all)', '');
         $partsList = PartType::orderBy('name', 'asc')->lists('name','id')->prepend('(all)', '');
-         $articleTypesList = ArticleType::orderBy('name', 'asc')->lists('name','id')->prepend('(choose one)','');
+        $articleTypesList = ArticleType::orderBy('name', 'asc')->get();
 
         $article = Article::findorFail($id);
-
         // get the brand pictures
         $articlePictures = $article->pictures()->orderBy('position', 'asc')->get();
 
@@ -283,23 +288,13 @@ class ArticlesController extends Controller
 
         $this->saveArticle($article);
 
-        $modelsList =  BrandModel::orderBy('name', 'asc')->lists('name','id')->prepend('(all)', '');
-        $brandsList = Brand::orderBy('name', 'asc')->lists('name','id')->prepend('(all)', '');
-        $partsList = PartType::orderBy('name', 'asc')->lists('name','id')->prepend('(all)', '');
-        $articleTypesList = ArticleType::orderBy('name', 'asc')->lists('name','id')->prepend('(choose one)','');
+        alert()
+            ->success('Podes agora adicionar as fotografias relativas ao artigo...' ,
+                    $article->name.' criado com sucesso!')
+            ->persistent('Fechar')
+            ->autoclose(1000);
 
-        // get the brand pictures
-        $articlePictures = $article->pictures()->get();
-
-        alert()->success('Podes agora adicionar as fotografias relativas ao artigo...' , $article->name.' criado com sucesso!');
-
-        return view('backoffice.articles.edit')
-                    ->with(compact('brandsList'))
-                    ->with(compact('partsList'))
-                    ->with(compact('modelsList'))
-                    ->with(compact('article'))
-                    ->with(compact('articlePictures'))
-                    ->with(compact('articleTypesList'));
+        return redirect('/articles/'.$article->id.'/edit');
     }
 
 
@@ -329,10 +324,11 @@ class ArticlesController extends Controller
         $article->model_id= $article_new->model_id;
         $article->public = $article_new->public;
         $article->article_type_id = $article_new->article_type_id;
+        $article->quantity = $article_new->quantity;
 
         $this->saveArticle($article);
 
-        alert()->success($article->name.' actualizado com sucesso')->autoclose(1500);;
+        alert()->success($article->name.' actualizado com sucesso')->autoclose(1500);
 
         return redirect('articles');
     }

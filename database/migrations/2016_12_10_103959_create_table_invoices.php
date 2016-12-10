@@ -15,7 +15,7 @@ class CreateTableInvoices extends Migration
         Schema::create('invoices', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name')->nullable();
-          $table->string('fiscal_number')->->nullable();
+          $table->string('fiscal_number')->nullable();
           $table->text('description')->nullable();
           $table->date('invoice_date');
           $table->decimal('total',15,2)->nullable();
@@ -32,7 +32,7 @@ class CreateTableInvoices extends Migration
     public function down()
     {
         Schema::table('invoices', function (Blueprint $table) {
-            $table->drop('invoices');
+            $table->dropIfExists('invoices');
         });
     }
 }
