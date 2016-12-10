@@ -213,12 +213,12 @@ class OnlineShopController extends Controller
     }
 
 
-    public function showArticle($articleid){
+        public function showArticle($articleid){
 
-        $article = Article::findorFail($articleid);
+            $article = Article::findorFail($articleid);
 
-        return redirect('/item/'.$article->slug);
-    }
+            return redirect('/item/'.$article->slug);
+        }
 
     public function getArticleThumbnailURL($id){
         $pictures = Article::find($id)
