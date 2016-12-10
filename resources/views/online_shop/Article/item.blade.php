@@ -18,7 +18,7 @@
 
 @section('page_Heading')
     <div id="Article_Name" class="">
-      {{$article->name}}
+      <img src="{{ route('getArticleThumbnailURL', $article->id) }}" style="width:120px;" class="img-rounded" alt=""> {{$article->name}}
     </div>
     <small>{{$article->reference}}</small>
     <hr>
