@@ -153,7 +153,6 @@ return [
         Ipunkt\LaravelAnalytics\AnalyticsServiceProvider::class,
         Roumen\Sitemap\SitemapServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-        Fx3costa\Laravelchartjs\Providers\ChartjsServiceProvider::class,
 
 
         /*
@@ -163,6 +162,10 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        // Service provider added to extend the existing service provider for ChartJS library
+        App\Providers\MyChartjsServiceProvider::class,
+
         Laracasts\Flash\FlashServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
     ],
