@@ -10,6 +10,9 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+
+Route::get('/dashboard', 'DashboardsController@index');
+
 Route::post('/article/{articleid}/imagesOrder', 'ArticlesController@saveImageOrder');
 
 Route::get('not_found', ['as'=> 'PageNotFound', function(){

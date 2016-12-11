@@ -153,6 +153,7 @@ return [
         Ipunkt\LaravelAnalytics\AnalyticsServiceProvider::class,
         Roumen\Sitemap\SitemapServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        Fx3costa\Laravelchartjs\Providers\ChartjsServiceProvider::class,
 
 
         /*
