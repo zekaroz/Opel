@@ -18,48 +18,66 @@
 
         var <?php echo $element; ?> = document.getElementById("<?php echo $element; ?>").getContext("2d");
 
-        window.myBar = new Chart(<?php echo $element; ?>).Bar(
-                    // ---------------------------------------------------------------
-                    // Data sections
-                    // ---------------------------------------------------------------
-                    {
-                    labels: label,
-                    datasets:
-                            [
-                                <?php
-                                $i = 0; // responsible for iteration
-                                foreach($dataset as $dado):
-                                    echo '{';
-                                ?>
+        var options = {
+          scaleOverlay : false,
+          scaleOverride : false,
+          scaleSteps : null,
+          scaleStepWidth : null,
+          scaleStartValue : null,
+          scaleLineColor : "rgba(0,0,0,.1)",
+          scaleLineWidth : 1,
+          scaleShowLabels : true,
+          scaleLabel : "<%=value%>",
+          scaleFontFamily : "'Arial'",
+          scaleFontSize : 12,
+          scaleFontStyle : "normal",
+          scaleFontColor : "#666",
+          scaleShowGridLines : true,
+          scaleGridLineColor : "rgba(0,0,0,.05)",
+          scaleGridLineWidth : 1,
+          barShowStroke : true,
+          barStrokeWidth : 2,
+          barValueSpacing : 5,
+          barDatasetSpacing : 1,
+          animation : true,
+          animationSteps : 60,
+          animationEasing : "easeOutQuart",
+          onAnimationComplete : function(){} ,
+          responsive: true
+        };
 
-                                    label: "<?php echo $legends[$i]; ?>",
-                                    fillColor: "<?php echo $colours[$i]; ?>",
-                                    strokeColor: "<?php echo $colours[$i]; ?>",
-                                    highlightFill: "<?php echo $colours[$i]; ?>",
-                                    highlightStroke: "<?php echo $colours[$i]; ?>",
-                                    data : [<?php echo $dado; ?>]
+        var dataSet = [
+                  <?php
+                  $i = 0; // responsible for iteration
+                  foreach($dataset as $dado):
+                      echo '{';
+                  ?>
 
-                                    <?php
-                                    ($i+1) == $qtdDatasets ? print '}' : print '}, ';
-                                    $i++;
-                                endforeach;
-                                ?>
-                            ]
-                    },
-                    // End data section
+                      label: "<?php echo $legends[$i]; ?>",
+                      fillColor: "<?php echo $colours[$i]; ?>",
+                      strokeColor: "<?php echo $colours[$i]; ?>",
+                      highlightFill: "<?php echo $colours[$i]; ?>",
+                      highlightStroke: "<?php echo $colours[$i]; ?>",
+                      data : [<?php echo $dado; ?>]
 
-                    // ---------------------------------------------------------------
-                    // Options section
-                    // ---------------------------------------------------------------
-                    {
-                        responsive:true
-                    });
+                      <?php
+                      ($i+1) == $qtdDatasets ? print '}' : print '}, ';
+                      $i++;
+                  endforeach;
+                  ?>
+              ];
 
-                    var legendHolder = document.getElementById('js-legend-bar_<?php echo $element; ?>');
+        window.myBar = new Chart(<?php echo $element; ?>).Bar({
+                                                                labels: label,
+                                                                datasets:dataSet
+                                                              },
+                                                              options);
 
-                    if(legendHolder)
-                        legendHolder.innerHTML = myBar.generateLegend();
-                    // End options section
+        var legendHolder = document.getElementById('js-legend-bar_<?php echo $element; ?>');
+
+        if(legendHolder)
+            legendHolder.innerHTML = myBar.generateLegend();
+        // End options section
 
     });
 </script>

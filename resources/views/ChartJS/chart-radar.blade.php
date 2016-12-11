@@ -20,6 +20,45 @@
     addLoadEvent(function() {
         var <?php echo $element; ?> = document.getElementById("<?php echo $element; ?>").getContext("2d");
 
+        var options = {
+           scaleOverlay : false,
+           scaleOverride : false,
+           scaleSteps : null,
+           scaleStepWidth : null,
+           scaleStartValue : null,
+           scaleShowLine : true,
+           scaleLineColor : "rgba(0,0,0,.1)",
+           scaleLineWidth : 1,
+           scaleShowLabels : false,
+           scaleLabel : "<%=value%>",
+           scaleFontFamily : "'Arial'",
+           scaleFontSize : 12,
+           scaleFontStyle : "normal",
+           scaleFontColor : "#666",
+           scaleShowLabelBackdrop : true,
+           scaleBackdropColor : "rgba(255,255,255,0.75)",
+           scaleBackdropPaddingY : 2,
+           scaleBackdropPaddingX : 2,
+           angleShowLineOut : true,
+           angleLineColor : "rgba(0,0,0,.1)",
+           angleLineWidth : 1,
+           pointLabelFontFamily : "'Arial'",
+           pointLabelFontStyle : "normal",
+           pointLabelFontSize : 12,
+           pointLabelFontColor : "#666",
+           pointDot : true,
+           pointDotRadius : 3,
+           pointDotStrokeWidth : 1,
+           datasetStroke : true,
+           datasetStrokeWidth : 2,
+           datasetFill : true,
+           animation : true,
+           animationSteps : 60,
+           animationEasing : "easeOutQuart",
+           onAnimationComplete : null,
+           responsive: true
+        };
+
         window.myRadar = new Chart(<?php echo $element; ?>).Radar(
                     // ---------------------------------------------------------------
                     // Data sections
@@ -55,9 +94,7 @@
                     // ---------------------------------------------------------------
                     // Options section
                     // ---------------------------------------------------------------
-                    {
-                        responsive:true
-                    });
+                    options);
 
                     var legendHolder = document.getElementById('js-legend-radar_<?php echo $element; ?>');
 

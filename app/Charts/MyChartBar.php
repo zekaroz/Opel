@@ -54,6 +54,7 @@ class MyChartBar extends ChartBar
                 $legends[$i] = $options['legends'][$i] : $legends[$i] = 'My dataset '.($i+1);
         }
 
+
         /*This syntax :: loads this views from the path established in the
         boot of the Service provider with the name of chart-bar*/
         return view('chart-bar::chart-bar')
@@ -62,7 +63,8 @@ class MyChartBar extends ChartBar
                     'labels'        => $labels,
                     'legends'       => $legends,
                     'colours'       => $colours,
-                    'qtdDatasets'   => $datasetQnt
+                    'qtdDatasets'   => $datasetQnt,
+                    'options'       => json_encode($options)
             ]);
 
     }
