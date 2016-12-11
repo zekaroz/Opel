@@ -34,7 +34,7 @@ Dashboard
   </div>
 </div>
 
-{!! app()->chartpiedoughnut->render(  "PieChart",     $data,          ['type' => 'Doughnut'])     !!}
+{!! app()->chartpiedoughnut->render(  "PieChart",     $dataPartTypes,          ['type' => 'Doughnut'])     !!}
 {!! app()->chartpiedoughnut->render(  "PieChart2",    $data,          ['type' => 'Pie'])          !!}
 {!! app()->chartbar->render(          "BarChart",     $data_series,   ['legends' => ['Artigos']]) !!}
 {!! app()->chartline->render(         "LineChart",    $data_series,   ['legends' => ['Artigos']]) !!}

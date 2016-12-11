@@ -30,13 +30,19 @@ class DashboardsController extends Controller
                           group by part_types.name
                           order by 2 asc');*/
 
-        $data = DB::table('articles')
+        $dataPartTypes = DB::table('articles')
                  ->join('part_types', 'articles.part_type_id', '=', 'part_types.id')
                  ->select(DB::raw('part_types.name as partType'),
                           DB::raw('count(*) as article_count'))
                  ->groupBy('partType')
                  ->pluck('article_count', 'partType');
 
+       $data = DB::table('articles')
+                ->join('brands', 'articles.brand_id', '=', 'brands.id')
+                ->select(DB::raw('brands.name as brandName'),
+                         DB::raw('count(*) as article_count'))
+                ->groupBy('brandName')
+                ->pluck('article_count', 'brandName');
 
         $data_series = collect($data)->map(function($x){ return  (array) $x ; })->toArray();
 
@@ -45,6 +51,7 @@ class DashboardsController extends Controller
         return view('dashboards.index')
                     ->with(compact('data'))
                     ->with(compact('data_series'))
+                    ->with(compact('dataPartTypes'))
                     ->with(compact('legends'));
     }
 }
