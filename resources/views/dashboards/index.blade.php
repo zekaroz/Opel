@@ -9,30 +9,53 @@ Dashboard
 @stop
 
 @section('section')
-<?php
-    $data = array(
-        'Jan' => array(33),
-        'Feb' => array(32),
-        'Mar' => array(12)
-    );
 
-    $data2 = array(
-        'Jan' => array(33),
-        'Feb' => array(32),
-        'Março' => array(12)
-    );
-?>
 
-<div class="container-fluid">1
-    <canvas id="BarChart" style="width:50%;"></canvas>
-    <div id="js-legend-bar" class="chart-legend"></div>
+<div class="container">
+
+  <div class="row">
+      <div class="col-sm-6 col-xs-12" >
+            <canvas id="PieChart" style=""></canvas>
+            <div id="js-legend-pie_PieChart" class="chart-legend"></div>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <canvas id="PieChart2" style=""></canvas>
+        <div id="js-legend-pie_PieChart2" class="chart-legend"></div>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
+      <canvas id="BarChart" ></canvas>
+      <div id="js-legend-bar_BarChart" class="chart-legend"></div>
+    </div>
+      <div class="col-sm-6 col-xs-12">
+        <canvas id="LineChart" style="width:50%;"></canvas>
+        <div id="js-legend-line_LineChart" class="chart-legend"></div>
+      </div>
+  </div>
+
 </div>
 
-{!! app()->chartbar->render("BarChart", $data) !!}
 
-<div class="container-fluid">2
-    <canvas id="cenas" style="width:50%;"></canvas>
-</div>
 
-{!! app()->chartbar->render("cenas", $data2) !!}
+{!! app()->chartpiedoughnut->render("PieChart",
+                                    $data,
+                                    [
+                                      'type' => 'Doughnut',
+                                      'cutoutPercentage' => '0'
+
+                                    ]) !!}
+
+{!! app()->chartpiedoughnut->render("PieChart2",
+                                    $data,
+                                    [
+                                      'type' => 'Pie'
+
+                                    ]) !!}
+{!! app()->chartbar->render("BarChart", $data_series, ['legends' => ['Artigos']]) !!}
+
+
+
+{!! app()->chartline->render("LineChart", $data_series, ['legends' => ['Artigos']]) !!}
 @stop

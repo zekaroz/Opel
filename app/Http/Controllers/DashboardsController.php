@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
+use App\PartType;
 
 class DashboardsController extends Controller
 {
@@ -21,6 +23,28 @@ class DashboardsController extends Controller
     }
 
     public function index(){
-        return view('dashboards.index');
+        /*        $data =  DB::select('select part_types.name, count(articles.id) as article_count
+                          from part_types
+                          	left join articles
+                          		on articles.part_type_id = part_types.id
+                          group by part_types.name
+                          order by 2 asc');*/
+
+        $data = DB::table('articles')
+                 ->join('part_types', 'articles.part_type_id', '=', 'part_types.id')
+                 ->select(DB::raw('part_types.name as partType'),
+                          DB::raw('count(*) as article_count'))
+                 ->groupBy('partType')
+                 ->pluck('article_count', 'partType');
+
+
+        $data_series = collect($data)->map(function($x){ return  (array) $x ; })->toArray();
+
+        $legends =  collect($data)->keys();
+
+        return view('dashboards.index')
+                    ->with(compact('data'))
+                    ->with(compact('data_series'))
+                    ->with(compact('legends'));
     }
 }

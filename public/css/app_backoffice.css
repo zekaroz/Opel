@@ -184,6 +184,30 @@ color: #468847;
   color: #DDD;
 }
 
+
+.chart-legend ul {
+    list-style: none;
+    background: none;
+    color: #333;
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 20px;
+}
+
+.chart-legend li {
+    display: block;
+}
+
+.chart-legend  li span{
+    color: red !important;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    list-style-type: none !important;
+    border-radius: 10px;
+}
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
