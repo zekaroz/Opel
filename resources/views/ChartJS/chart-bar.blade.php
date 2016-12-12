@@ -27,7 +27,7 @@
           scaleLineColor : "rgba(0,0,0,.1)",
           scaleLineWidth : 1,
           scaleShowLabels : true,
-          scaleLabel : "<%=value%>",
+          //scaleLabel : "<%=value%>",
           scaleFontFamily : "'Arial'",
           scaleFontSize : 12,
           scaleFontStyle : "normal",
@@ -43,8 +43,9 @@
           animationSteps : 60,
           animationEasing : "easeOutQuart",
           onAnimationComplete : function(){} ,
-          responsive: true
-        };
+          responsive: true,
+          <?php echo $options ; ?>
+      };
 
         var dataSet = [
                   <?php

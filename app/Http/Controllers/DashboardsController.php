@@ -44,14 +44,21 @@ class DashboardsController extends Controller
                 ->groupBy('brandName')
                 ->pluck('article_count', 'brandName');
 
-        $data_series = collect($data)->map(function($x){ return  (array) $x ; })->toArray();
+        $dataPartTypes_by_price = DB::table('articles')
+                                     ->join('part_types', 'articles.part_type_id', '=', 'part_types.id')
+                                     ->select(DB::raw('part_types.name as partType'),
+                                              DB::raw('sum(price) as article_price'))
+                                     ->groupBy('partType')
+                                     ->pluck('article_price', 'partType');
 
-        $legends =  collect($data)->keys();
+
+        $data_series = collect($dataPartTypes_by_price)->map(function($x){ return  (array) $x ; })->toArray();
+
 
         return view('dashboards.index')
                     ->with(compact('data'))
                     ->with(compact('data_series'))
                     ->with(compact('dataPartTypes'))
-                    ->with(compact('legends'));
+                    ->with(compact('dataPartTypes_by_price'));
     }
 }

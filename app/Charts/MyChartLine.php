@@ -29,7 +29,7 @@ class MyChartLine extends ChartLine
      * @param array $options
      * @return $this
      */
-    public function render($canvas, array $data, array $options = null)
+    public function render($canvas, array $data, array $options = null, $text_options = '')
     {
         $datasetQnt = 0; // datasets quatity
         $dataset    = [];
@@ -60,7 +60,8 @@ class MyChartLine extends ChartLine
                     'labels'        => $labels,
                     'colours'       => $colours,
                     'legends'       => $legends,
-                    'qtdDatasets'   => $datasetQnt
+                    'qtdDatasets'   => $datasetQnt,
+                    'options'       => $text_options
             ]);
 
     }

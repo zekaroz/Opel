@@ -29,7 +29,7 @@ class MyChartBar extends ChartBar
      * @param array|null $options
      * @return $this
      */
-    public function render($canvas, array $data, array $options = null)
+    public function render($canvas, array $data, array $options = null, $text_options = '')
     {
         $datasetQnt = 0; // datasets quatity
         $dataset    = [];
@@ -64,7 +64,7 @@ class MyChartBar extends ChartBar
                     'legends'       => $legends,
                     'colours'       => $colours,
                     'qtdDatasets'   => $datasetQnt,
-                    'options'       => json_encode($options)
+                    'options'       => $text_options
             ]);
 
     }

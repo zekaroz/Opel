@@ -48,6 +48,13 @@ Dashboard
 
 {!! app()->chartpiedoughnut->render(  "PieChart",     $dataPartTypes,          ['type' => 'Doughnut'])     !!}
 {!! app()->chartpiedoughnut->render(  "PieChart2",    $data,          ['type' => 'Pie'])          !!}
-{!! app()->chartbar->render(          "BarChart",     $data_series,   ['legends' => ['Artigos'], 'whatever' => ['whatever'] ]) !!}
-{!! app()->chartline->render(         "LineChart",    $data_series,   ['legends' => ['Artigos']]) !!}
+{!! app()->chartbar->render(          "BarChart",
+                                      $data_series,
+                                      [ 'legends' => ['Preço (€)'] ],
+                                      "scaleBeginAtZero: false,
+                                       scaleLabel: function (valuePayload) {
+                                                      return Number(valuePayload.value).toFixed(0).replace('.',',') + ' €';
+                                                  },"
+                            ) !!}
+{!! app()->chartline->render(         "LineChart",    $data_series,   ['legends' => ['Preço (€)']]) !!}
 @stop

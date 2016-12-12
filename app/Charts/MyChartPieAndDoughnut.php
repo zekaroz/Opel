@@ -29,7 +29,7 @@ class MyChartPieAndDoughnut extends ChartPieAndDoughnut
      * @param string $type
      * @return $this
      */
-    public function render($canvas, array $data, array $options = null)
+    public function render($canvas, array $data, array $options = null, $text_options = '')
     {
         $dataQtd    = 0;
         $iterator   = 0;
@@ -60,7 +60,8 @@ class MyChartPieAndDoughnut extends ChartPieAndDoughnut
             ->with(['element'   => $canvas,
                     'data'      => $finalData,
                     'qtdData'   => $dataQtd,
-                    'type'      => $type
+                    'type'      => $type,
+                    'options'       => $text_options
             ]);
 
     }
