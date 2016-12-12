@@ -13,16 +13,16 @@ Dashboard
 <div class="container">
   <div class="row">
       <div class="col-sm-5  col-xs-12 thumbnail" style="margin-top: 20px;">
-        <div class="">
+        <h4 class="text-center ">
               Artigos por Tipo de peça
-        </div>
+        </h4>
         <canvas id="PieChart" style=""></canvas>
         <div id="js-legend-pie_PieChart" class="chart-legend"></div>
       </div>
-      <div class="col-sm-5 col-offset-sm-2 col-xs-12 thumbnail" style="margin-top: 20px;">
-        <div class="">
+      <div class="col-sm-5 col-sm-offset-1 col-xs-12 thumbnail" style="margin-top: 20px;">
+        <h4 class="text-center ">
               Artigos por marca
-        </div>
+        </h4>
         <canvas id="PieChart2" style=""></canvas>
         <div id="js-legend-pie_PieChart2" class="chart-legend"></div>
       </div>
@@ -30,10 +30,16 @@ Dashboard
 
   <div class="row">
     <div class="col-sm-5 col-xs-12 thumbnail" style="margin-top: 40px;">
+      <h4 class="text-center ">
+            Artigos por marca
+      </h4>
       <canvas id="BarChart"></canvas>
       <div id="js-legend-bar_BarChart" class="chart-legend"></div>
     </div>
-    <div class="col-sm-5 col-xs-12 thumbnail" style="margin-top: 40px;">
+    <div class="col-sm-5 col-sm-offset-1 col-xs-12 thumbnail" style="margin-top: 40px;">
+      <h4 class="text-center ">
+            Artigos por marca
+      </h4>
       <canvas id="LineChart" style="width:50%;"></canvas>
       <div id="js-legend-line_LineChart" class="chart-legend"></div>
     </div>
