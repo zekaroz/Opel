@@ -13,6 +13,8 @@ require('laravel-elixir-vueify');
  */
 
 elixir(function(mix) {
+
+    mix.browserify('oficial_scripts/myCharts.js');
     // mix.phpUnit();
      mix.styles([
       'backoffice.css',
@@ -59,6 +61,7 @@ elixir(function(mix) {
           'oficial_scripts/select2.min.js',
           'oficial_scripts/spin.min.js',
           'oficial_scripts/sweetalert.min.js',
+          'oficial_scripts/Chart.js',
           'oficial_scripts/custom_script.js',
           'oficial_scripts/JQ.js'
       ],
