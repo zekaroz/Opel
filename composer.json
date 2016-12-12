@@ -37,7 +37,7 @@
     "autoload": {
         "classmap": [
             "database",
-            "app/Mailers",
+            "app/Mailers"
         ],
         "psr-4": {
             "App\\": "app/"
