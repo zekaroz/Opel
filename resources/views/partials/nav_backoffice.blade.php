@@ -46,6 +46,9 @@
                      <li {{ (Request::is('*users') ? 'class="active"' : '') }}>
                          <a href="{{ url ('users') }}"><i class="fa fa-user fa-fw"></i> Users</a>
                      </li>
+                     <li {{ (Request::is('*Dashboard') ? 'class="active"' : '') }}>
+                         <a href="{{ url ('dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                     </li>
                      @endif
                 </ul>
 
@@ -53,7 +56,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        
+
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

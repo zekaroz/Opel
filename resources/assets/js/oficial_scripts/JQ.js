@@ -1,15 +1,16 @@
 
 
-    function loadingStart(){
+    function loadingStart(callback){
         //let's just show a little spinner;
         $('.loadingDiv').show();
     }
 
-    function loadingEnd(){
+    function loadingEnd(callback){
         //let's hide a little spinner;
         setTimeout(
             function(){
               $('.loadingDiv').hide();
+              callback();
             }
             ,
           1
@@ -30,8 +31,10 @@
     // data - is the data to post to the url
     // url - is the post route to send the data to
     // refreshElement - when set, makes a jquery load on that div with the response if OK.
-    function form_post(data, url, refreshElement){
+    function form_post(data, url, refreshElement, feedbackCallBackFunction){
           loadingStart();
+          feedbackCallBackFunction('start')();
+
           // now that it's loading let's send our request
           $.ajax({
              type: "POST",
@@ -43,12 +46,13 @@
                 if (refreshElement){
                     refreshElement[0].innerHTML = viewRendered;
                 }
-                loadingEnd();
-             }.bind(refreshElement)
+                loadingEnd(feedbackCallBackFunction('stop'));
+             }
              ,
              error:  function(XMLHttpRequest, textStatus, errorThrown) {
                     console.error("Some error submiting the form...");
             }
            });
+
            return false;
     }

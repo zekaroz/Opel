@@ -13,17 +13,21 @@ require('laravel-elixir-vueify');
  */
 
 elixir(function(mix) {
+
+    mix.browserify('oficial_scripts/myCharts.js');
     // mix.phpUnit();
      mix.styles([
       'backoffice.css',
       'bootstrap.min.css',
+
+      'ladda-themeless.min.css',
+
       'bootstrap2-toggle.css',
       'bootstrap-social.css',
       'font-awesome.min.css',
       'fonts.googleapis.css.css',
       'jBox.css',
-      'ladda.min.css',
-      'ladda-themeless.min.css',
+    //  'ladda.min.css', this is only for Ladda original styling
       'sweetalert.css',
       'datatables.min.css',
       'styles.css',
@@ -54,12 +58,16 @@ elixir(function(mix) {
           'oficial_scripts/dropzone.js',
           'oficial_scripts/jquery.touchSwipe.min.js',
           'oficial_scripts/jBox.js',
+
+          'oficial_scripts/spin.min.js',
           'oficial_scripts/ladda.min.js',
+          'oficial_scripts/ladda.jquery.js',
+          'oficial_scripts/custom_script.js',
+
           'oficial_scripts/parsley.min.js',
           'oficial_scripts/select2.min.js',
-          'oficial_scripts/spin.min.js',
           'oficial_scripts/sweetalert.min.js',
-          'oficial_scripts/custom_script.js',
+          'oficial_scripts/Chart.js',
           'oficial_scripts/JQ.js'
       ],
       'public/js/backoffice.js'
