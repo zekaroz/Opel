@@ -49,7 +49,8 @@ class BrandsController extends Controller
         //the relations ship
         $brand->save();
 
-        alert()->success('Agora podes adicionar os modelos da marca em causa.','Marca "'. $brand->name.'" criada com sucesso!');
+        alert()->success('Agora podes adicionar os modelos da marca em causa.','Marca "'. $brand->name.'" criada com sucesso!')
+              ->autoclose(1000);
 
         return redirect('/brands/'.$brand->id.'/edit');
     }
@@ -92,7 +93,8 @@ class BrandsController extends Controller
             'code'=>$request->get('code')
         ]);
 
-        alert()->success('Marca "'. $brand->name.'" actualizada com sucesso!');
+        alert()->success('Marca "'. $brand->name.'" actualizada com sucesso!')
+              ->autoclose(1000);
 
          return redirect('brands');
     }

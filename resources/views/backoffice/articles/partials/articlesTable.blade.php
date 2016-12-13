@@ -68,7 +68,12 @@
 
         </td>
         <td>
-        <a id="deleteLink_{{  $article->id  }}"  href="Javascript: deleteArticle(  {{  $article->id  }} );" class="deleteLink btn btn-default" data-id="{{$article->id}}">
+        <a id="deleteLink_{{  $article->id  }}"
+            href="Javascript: deleteArticle(  {{  $article->id  }} );"
+            class="deleteLink btn btn-default ladda-button"
+            data-style="zoom-out"
+            data-spinner-color="#337ab7"
+            data-id="{{$article->id}}">
                    <span><i class="fa fa-trash-o fa-fw"></i>  </span>
        </a>
         </td>

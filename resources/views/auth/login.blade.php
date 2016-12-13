@@ -53,21 +53,28 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary  ladda-button" data-style="expand-left">
-                                    <i class="fa fa-btn fa-sign-in"></i>Login
+                                <button type="submit"
+                                        class="btn btn-primary ladda-button ladda-progress"
+                                        data-style="zoom-out">
+                                    <i class="fa fa-btn fa-sign-in"></i>
+                                    <span class="ladda-label"> Login</span>
                                 </button>
-                              <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+
+                                <a href="/login/facebook">
+                                      <div class="btn btn-md btn-primary ladda-button"
+                                          data-style="expand-left"
+                                          data-size="s"
+                                          data-color="blue">
+                                          <i class="fa fa-facebook"></i>
+                                          Login with Facebook
+                                      </div>
+                                </a>
                             </div>
 
                           <div class="col-md-6 col-md-offset-4">
                               <hr>
                           </div>
 
-                            <div class="col-md-6 col-md-offset-4">
-                              <a href="/login/facebook" class="btn btn-block btn-social btn-facebook">
-                                <i class="fa fa-facebook"></i> Sign in with Facebook
-                              </a>
-                            </div>
                             <div class="col-md-6 col-md-offset-4" style="margin-top:20px;">
                               <a href="/social/redirect/google" class="btn btn-block btn-social btn-google">
                                 <i class="fa fa-google"></i> Sign in with Google
