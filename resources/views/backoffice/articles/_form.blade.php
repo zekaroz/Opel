@@ -100,8 +100,14 @@
     </fieldset>
     <div class='form-group' style="margin-top: 25px;">
 
-        {!! Form::submit($submitButtonText ,  ['class' => 'btn btn-primary']) !!}
-        or <a href='{{url('articles')}}' class="btn btn-default" > Cancel</a>
+       <button type="submit"
+                class="btn btn-primary ladda-button ladda-progress"
+                name="save"
+                data-style="zoom-out">{{ $submitButtonText }}</button>
+        or <a href='{{url('articles')}}'
+            class="btn btn-default ladda-button ladda-progress"
+            data-spinner-color="#337ab7"
+            data-style="zoom-out" > Cancel</a>
     </div>
 
     <script type="text/javascript">

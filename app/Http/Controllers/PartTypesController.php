@@ -42,7 +42,8 @@ class PartTypesController extends Controller
         //TODO: rever isto para associar a peça à loja de que o user é dono;
         $partType->save();
 
-        alert()->success('Tipo de peça "'. $partType->name.'" criada com sucesso!');
+        alert()->success('Tipo de peça "'. $partType->name.'" criada com sucesso!')
+              ->autoclose(1000);
 
         return redirect('part_types');
     }
@@ -60,8 +61,9 @@ class PartTypesController extends Controller
 
         $partType->update($request->all());
 
-        alert()->success('Tipo de peça "'. $partType->name.'" actualizada com sucesso!');
+        alert()->success('Tipo de peça "'. $partType->name.'" actualizada com sucesso!')
+              ->autoclose(1000);
 
-         return redirect('part_types');
+        return redirect('part_types');
     }
 }

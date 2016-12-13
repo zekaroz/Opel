@@ -43,8 +43,8 @@
                 {!! Form::checkbox('hide_sold_ones', null, false , ['id' => 'check_sold', 'class' => '']) !!}
               </div>
               <div style="margin-top: 20px;">
-              <button id="search" type="button" style="width:100px;" class="btn btn btn-primary" name="search"> Search</button>
-              <button id="reset" type="button" style="width:100px;" class="btn btn-default btn-outline" name="reset"> Reset</button>
+              <button id="search" type="submit" style="width:100px;" class="btn btn btn-primary ladda-button" data-style="zoom-out" name="search"> Search</button>
+              <button id="reset" type="submit" style="width:100px;" class="btn btn-default btn-outline ladda-button" data-style="zoom-out"  data-spinner-color="#337ab7" name="reset"> Reset</button>
           </div>
          </div>
     </form>
@@ -58,30 +58,36 @@
 <script type="text/javascript">
       $(document).ready(function(){
 
-          function makeSearch(){
+          function makeSearch(buttonUsed){
             var postData = $('#searchForm').serialize();
             var refreshElement = $('#searchResult');
 
+            var l = $( buttonUsed ).ladda();
+            // Start loading
+
+            var callbackButtonFeedbackFactory = function(action){
+                return function (){
+                        l.ladda( action );
+                };
+            };
             // this is a post method to the articles/all route
-            form_post(postData, '/articles/all' , refreshElement);
+            form_post(postData, '/articles/all' , refreshElement, callbackButtonFeedbackFactory);
 
             return false;
           }
 
           $('#search').on('click', function(e){
-
             e.preventDefault();
 
-            makeSearch();
+            makeSearch(this);
           });
 
           $('#reset').on('click', function(e){
-
             e.preventDefault();
 
             clearForm('#searchForm');
 
-            makeSearch();
+            makeSearch(this);
           });
 
           // this initializes the list for this screen;
@@ -91,6 +97,10 @@
       function deleteArticle(articleId) {
               var link = $('#deleteLink_' + articleId) ;
               var postUrl = '/articles/'+articleId;
+
+              var l = link.ladda();
+
+              l.ladda('start');
 
               $.ajax({
                   url: postUrl,
@@ -105,6 +115,7 @@
                          showConfirmButton: true,
                          type: "success"
                        });
+                       l.ladda('stop');
                    },
                   error:function(response) {
                     swal({
@@ -114,6 +125,7 @@
                        showConfirmButton: true,
                        type: "error"
                      });
+                     l.ladda('stop');
                   }
               });
       }
