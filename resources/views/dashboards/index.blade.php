@@ -38,7 +38,7 @@ Dashboard
     </div>
     <div class="col-sm-5 col-sm-offset-1 col-xs-12 thumbnail" style="margin-top: 40px;">
       <h4 class="text-center ">
-            Artigos por marca
+            Artigos criados em {{ date("Y") }}
       </h4>
       <canvas id="LineChart" style="width:50%;"></canvas>
       <div id="js-legend-line_LineChart" class="chart-legend"></div>
@@ -56,5 +56,5 @@ Dashboard
                                                       return Number(valuePayload.value).toFixed(0).replace('.',',') + ' €';
                                                   },"
                             ) !!}
-{!! app()->chartline->render(         "LineChart",    $data_series,   ['legends' => ['Preço (€)']]) !!}
+{!! app()->chartline->render(         "LineChart",    $articlesByYear_dataseries,   ['legends' => ['Artigos criados']]) !!}
 @stop

@@ -1450,6 +1450,10 @@ label {
     background-color: #fff;
 }
 
+.container{
+    width: auto;
+}
+
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;
