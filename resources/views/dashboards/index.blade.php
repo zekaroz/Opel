@@ -12,6 +12,18 @@ Dashboard
 
 <div class="container">
   <div class="row">
+    <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div style="overflow:hidden">
+                        <h4>Total Artigos em Stock</h4>
+                        <div class="revenue-div in-bold pull-right font-big text-danger">{{ $StockTotalValue }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+  <div class="row" style="margin-top:20px;">
       <div class="col-sm-5  col-xs-12 thumbnail" style="margin-top: 20px;">
         <h4 class="text-center ">
               Artigos por Tipo de peça
@@ -31,7 +43,7 @@ Dashboard
   <div class="row">
     <div class="col-sm-5 col-xs-12 thumbnail" style="margin-top: 40px;">
       <h4 class="text-center ">
-            Artigos por marca
+            Top 10 Artigos em Stock
       </h4>
       <canvas id="BarChart"></canvas>
       <div id="js-legend-bar_BarChart" class="chart-legend"></div>
@@ -47,7 +59,7 @@ Dashboard
 </div>
 
 {!! app()->chartpiedoughnut->render(  "PieChart",     $dataPartTypes,          ['type' => 'Doughnut'])     !!}
-{!! app()->chartpiedoughnut->render(  "PieChart2",    $data,          ['type' => 'Pie'])          !!}
+{!! app()->chartpiedoughnut->render(  "PieChart2",    $data_Articles_By_Brand,          ['type' => 'Pie'])          !!}
 {!! app()->chartbar->render(          "BarChart",
                                       $data_series,
                                       [ 'legends' => ['Preço (€)'] ],
