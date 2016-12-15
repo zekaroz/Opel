@@ -23,21 +23,25 @@ class DashboardsController extends Controller
     }
 
     public function index(){
-        /*        $data =  DB::select('select part_types.name, count(articles.id) as article_count
-                          from part_types
-                          	left join articles
-                          		on articles.part_type_id = part_types.id
-                          group by part_types.name
-                          order by 2 asc');*/
 
-        $dataPartTypes = DB::table('articles')
+      $StockTotalValue= '100 €';
+
+      $StockTotalValue = DB::table('articles')
+                        ->select(DB::raw('sum(price*quantity) as stockTotal'))
+                        ->where('deleted_at', null)
+                        ->first()
+                        ->stockTotal;
+
+      $StockTotalValue = number_format($StockTotalValue, 0).' €';
+
+      $dataPartTypes = DB::table('articles')
                  ->join('part_types', 'articles.part_type_id', '=', 'part_types.id')
                  ->select(DB::raw('part_types.name as partType'),
                           DB::raw('count(*) as article_count'))
                  ->groupBy('partType')
                  ->pluck('article_count', 'partType');
 
-       $data = DB::table('articles')
+       $data_Articles_By_Brand = DB::table('articles')
                 ->join('brands', 'articles.brand_id', '=', 'brands.id')
                 ->select(DB::raw('brands.name as brandName'),
                          DB::raw('count(*) as article_count'))
@@ -47,9 +51,12 @@ class DashboardsController extends Controller
         $dataPartTypes_by_price = DB::table('articles')
                                      ->join('part_types', 'articles.part_type_id', '=', 'part_types.id')
                                      ->select(DB::raw('part_types.name as partType'),
-                                              DB::raw('sum(price) as article_price'))
+                                              DB::raw('sum(price*quantity) as article_price'))
                                      ->groupBy('partType')
+                                     ->orderBy(DB::raw('sum(price*quantity)'),'desc')
+                                     ->take(10)
                                      ->pluck('article_price', 'partType');
+
 
         $data_series = collect($dataPartTypes_by_price)->map(function($x){ return  (array) $x ; })->toArray();
 
@@ -85,10 +92,11 @@ class DashboardsController extends Controller
                                                                     return (array)  $value;
                                                                 })->toArray();
         return view('dashboards.index')
-                    ->with(compact('data'))
+                    ->with(compact('data_Articles_By_Brand'))
                     ->with(compact('data_series'))
                     ->with(compact('dataPartTypes'))
                     ->with(compact('dataPartTypes_by_price'))
-                    ->with(compact('articlesByYear_dataseries'));
+                    ->with(compact('articlesByYear_dataseries'))
+                    ->with(compact('StockTotalValue'));
     }
 }
