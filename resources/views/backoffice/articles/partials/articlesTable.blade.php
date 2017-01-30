@@ -1,3 +1,10 @@
+<div class="text-muted small col-md-6">
+  Foram encontrados um total de <strong>{{ $articles->total() }}</strong> artigos para pesquisa realizada
+</div>
+
+<div class="text-right col-md-6">
+  {{ $articles->links()  }}
+</div>
 <table class="table table-striped ">
   <thead>
     <th>
@@ -85,6 +92,9 @@
         </td>
     </tr>
 @endforelse
-
 </tbody>
 </table>
+
+<div class="text-right">
+  {{ $articles->links()  }}
+</div>
