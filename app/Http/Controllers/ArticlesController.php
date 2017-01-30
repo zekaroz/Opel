@@ -123,8 +123,10 @@ class ArticlesController extends Controller
           $public = null;
       }
 
-       $articles = Article::
-                  where('name','like','%'.$searchKeyword.'%')
+       $articles = Article::where(function($q) use ($searchKeyword){
+                                  $q->where('name','like','%'.$searchKeyword.'%' )
+                                    ->orWhere('code','like','%'.$searchKeyword.'%');
+                              })
                 ->where(function ($query) use ($brand_id){
                   if($brand_id != '')
                     $query->where('brand_id', $brand_id);
