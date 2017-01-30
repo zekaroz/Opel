@@ -56,25 +56,43 @@
 </div>
 
 <script type="text/javascript">
+      $(window).on('hashchange', function() {
+         if (window.location.hash) {
+             var page = window.location.hash.replace('#', '');
+             if (page == Number.NaN || page <= 0) {
+                 return false;
+             } else {
+                 makeSearch(null, page);
+             }
+         }
+      });
+
+      function makeSearch(buttonUsed, page){
+        var page = page || 1;
+        var postData = $('#searchForm').serialize() + '&page='+ page;
+        var refreshElement = $('#searchResult');
+
+        var l = $( buttonUsed ).ladda();
+        // Start loading
+
+        var callbackButtonFeedbackFactory = function(action){
+            return function (){
+                    l.ladda( action );
+            };
+        };
+        // this is a post method to the articles/all route
+        form_post(postData, '/articles/all' , refreshElement, callbackButtonFeedbackFactory);
+
+        return false;
+      }
+
       $(document).ready(function(){
 
-          function makeSearch(buttonUsed){
-            var postData = $('#searchForm').serialize();
-            var refreshElement = $('#searchResult');
-
-            var l = $( buttonUsed ).ladda();
-            // Start loading
-
-            var callbackButtonFeedbackFactory = function(action){
-                return function (){
-                        l.ladda( action );
-                };
-            };
-            // this is a post method to the articles/all route
-            form_post(postData, '/articles/all' , refreshElement, callbackButtonFeedbackFactory);
-
-            return false;
-          }
+          $(document).on('click', '.pagination a', function (e) {
+              makeSearch(null, $(this).attr('href').split('page=')[1]);
+              console.log('search triggered!');
+              e.preventDefault();
+          });
 
           $('#search').on('click', function(e){
             e.preventDefault();
