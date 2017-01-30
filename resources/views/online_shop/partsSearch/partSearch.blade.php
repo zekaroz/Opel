@@ -24,8 +24,14 @@
     @forelse( $articles as $article)
         <tr>
           <td style="width:130px;">
-            <a href="{{ route('itemDisplayWithSlug', ['slug' => $article->slug]) }}">
+            <a href="{{ route('itemDisplayWithSlug', ['slug' => $article->slug]) }}" style="position:relative;">
               <img src="{{ route('getArticleThumbnailURL', $article->id) }}" style="width:120px;" alt="">
+              @if( ! $article->isAvailable() )
+                <!-- Show ribbon saying "Esgotado"-->
+                <div class="sold-ribbon">
+                  Esgotado!
+                </div>
+              @endif
             </a>
           </td>
           <td>{{ $article->getCode()  }}</td>

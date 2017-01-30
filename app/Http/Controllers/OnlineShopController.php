@@ -144,6 +144,7 @@ class OnlineShopController extends Controller
     public function homepage(Request $request){
 
         $articles = Article::where('public',1)
+                            ->where('quantity','>',0)
                             ->with('pictures')
                             ->orderByRaw("RAND()")
                             ->take(12)
@@ -151,6 +152,7 @@ class OnlineShopController extends Controller
 
 
         $carrousselArticle= Article::where('public',1)
+                            ->where('quantity','>',0)
                             ->whereHas('pictures',
                             function($query) {
                               $query->whereNotNull('fileentries.id');

@@ -513,6 +513,18 @@ Licensed under MIT
     margin-bottom: 30px;
 }
 
+.sold-ribbon{
+  background-color: #bf1919;
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  width: 100%;
+  bottom: -21px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+
 body.stop-scrolling {
   height: 100%;
   overflow: hidden; }
