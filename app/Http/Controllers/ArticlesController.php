@@ -111,6 +111,8 @@ class ArticlesController extends Controller
 
     public function search(){
 
+      $pagination_limit = 15;
+
       $searchKeyword = Request::input('keyword');
       $brand_id =  Request::input('brand_id');
       $brand_model_id =  Request::input('brand_model_id');
@@ -153,7 +155,7 @@ class ArticlesController extends Controller
                     $query->where('article_type_id', $article_type_id);
                 })
                   ->with('articleType','brand','model','partType')
-                  ->orderBy('name', 'asc')->get();
+                  ->orderBy('name', 'asc')->paginate($pagination_limit);
 
       $outputView = view('backoffice.articles.partials.articlesTable')->with(compact('articles'))->render();
 
