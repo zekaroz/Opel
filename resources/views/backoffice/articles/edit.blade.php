@@ -3,7 +3,7 @@
 @section('page_heading')
 Artigo '{{ $article->name}}'
 <div id="statusLabel" class="pull-right">
-  @if( $article->sold)
+  @if( ! $article->isAvailable() )
     <div class="status-label font-big danger">
       Vendido
     </div>

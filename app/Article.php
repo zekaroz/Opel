@@ -62,7 +62,7 @@ class Article extends Model
     }
 
     public function isAvailable(){
-        return ( $this->quantity >0 );
+        return ( $this->quantity >0);
     }
 
     /*
