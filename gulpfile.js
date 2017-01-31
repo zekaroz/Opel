@@ -42,6 +42,7 @@ elixir(function(mix) {
        'bootstrap-social.css',
        'font-awesome.min.css',
        'fonts.googleapis.css.css',
+       'ladda-themeless.min.css',
        'jBox.css',
        'shop-homepage.css',
        'sweetalert.css',
@@ -79,9 +80,18 @@ elixir(function(mix) {
           'oficial_scripts/html5shiv.js',
           'oficial_scripts/respond.min.js',
           'oficial_scripts/datatables.min.js',
+
+          'oficial_scripts/spin.min.js',
+          'oficial_scripts/ladda.min.js',
+          'oficial_scripts/ladda.jquery.js',
+          'oficial_scripts/custom_script.js',
+
           'oficial_scripts/jquery.touchSwipe.min.js',
           'oficial_scripts/jBox.js',
-          'oficial_scripts/header_fading.js'
+          'oficial_scripts/header_fading.js',
+
+          'oficial_scripts/JQ.js'
+
       ],
       'public/js/main_app.js'
       );

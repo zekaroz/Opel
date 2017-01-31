@@ -93,22 +93,6 @@ class ArticlesController extends Controller
                 ;
     }
 
-    public function articleSearcher(){
-        $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
-        $brandsList = Brand::lists('name','id')->prepend('(all)','');
-        $partsList = PartType::lists('name','id')->prepend('(all)','');
-        $articles = Article::with('articleType','brand','model','partType')->orderBy('name', 'asc')->get();
-        $articleTypeList  = ArticleType::lists('name','id')->prepend('(all)','');
-
-
-       return view('backoffice.articles.ArticleSearcher')
-              ->with(compact('modelsList'))
-              ->with(compact('brandsList'))
-              ->with(compact('partsList'))
-              ->with(compact('articles'))
-              ->with(compact('articleTypeList'));
-    }
-
     public function search(){
 
       $pagination_limit = 15;
