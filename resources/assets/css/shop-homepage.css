@@ -347,11 +347,12 @@ Licensed under MIT
 .sold-ribbon{
   background-color: #bf1919;
   position: absolute;
-  color: white;
+  color: white; 
   font-weight: bold;
   font-size: 12px;
   width: 100%;
-  bottom: -21px;
+  bottom: -23px;
   text-align: center;
   letter-spacing: 4px;
+  border-radius: 0px 0px 5px 5px;
 }

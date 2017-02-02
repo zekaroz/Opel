@@ -1,52 +1,34 @@
 <div class="searchBox">
       <form id="searchForm" action="javascript: makeSearch();">
           <div class="row">
-              <div class="form-group col-sm-3">
+              <div class="form-group col-sm-6">
                 <label for="keyword">Pesquisa</label>
                 {!! Form::text('keyword' , null , ['class' => 'form-control']) !!}
               </div>
-              <div class="form-group col-sm-3">
+          </div>
+          <div class="row">
+              <div class="form-group col-sm-6">
                 <label for="keyword">Marcas</label>
                 {!! Form::select('brand_id' , $brandsList ,null ,['class' => 'form-control specialSelect']) !!}
               </div>
-              <div class="form-group col-sm-3">
+              <div class="form-group col-sm-6">
                 <label for="keyword">Modelos</label>
                 {!! Form::select('brand_model_id' , $modelsList ,null ,['class' => 'form-control specialSelect']) !!}
               </div>
-              <div class="form-group col-sm-3">
+              <div class="form-group col-sm-6">
                 <label for="keyword">Tipo de Peça</label>
                 {!! Form::select('part_type_id' , $partsList ,null ,['class' => 'form-control specialSelect']) !!}
               </div>
+              <div class="form-group col-sm-6">
+                <label for="keyword">Tipo de Artigo</label>
+                {!! Form::select('article_type_id' , $articleTypeList ,null ,['class' => 'form-control specialSelect']) !!}
+              </div>
+              <div style="margin-top: 20px;" class="form-group col-sm-6">
+                  <button id="search" type="submit" style="width:100px;" class="btn btn btn-primary ladda-button" data-style="zoom-out" name="search"> Pesquisar</button>
+                  <button id="reset" type="submit" style="width:100px;" class="btn btn-default btn-outline ladda-button" data-style="zoom-out"  data-spinner-color="#337ab7" name="reset"> Limpar</button>
+              </div>
           </div>
 
-          <div class="row">
-            <div class="form-group col-sm-3">
-              <label for="keyword">Tipo de Artigo</label>
-              {!! Form::select('article_type_id' , $articleTypeList ,null ,['class' => 'form-control specialSelect']) !!}
-            </div>
-            <div class="form-group col-sm-3" style="margin-top: 20px;">
-                <div class="col-sm-4">
-                  <label for="public">Público</label>
-                  {!! Form::radio('public' , true, false, ['id' => 'public', 'class' => '']) !!}
-                </div>
-                <div class="col-sm-4">
-                  <label for="private">Privado</label>
-                  {!! Form::radio('public' , false, false, ['id' => 'private', 'class' => '']) !!}
-                </div>
-                <div class="col-sm-4">
-                  <label for="all_items">Todos</label>
-                  {!! Form::radio('public' , 'all', false, ['id' => 'all_items', 'class' => '']) !!}
-                </div>
-              </div>
-              <div class="form-group col-sm-3" style="margin-top: 20px;">
-                <label for="check_sold">Esconder Vendidos</label>
-                {!! Form::checkbox('hide_sold_ones', null, false , ['id' => 'check_sold', 'class' => '']) !!}
-              </div>
-              <div style="margin-top: 20px;">
-              <button id="search" type="submit" style="width:100px;" class="btn btn btn-primary ladda-button" data-style="zoom-out" name="search"> Search</button>
-              <button id="reset" type="submit" style="width:100px;" class="btn btn-default btn-outline ladda-button" data-style="zoom-out"  data-spinner-color="#337ab7" name="reset"> Reset</button>
-          </div>
-         </div>
     </form>
 </div>
 <hr>

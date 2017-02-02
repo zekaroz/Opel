@@ -32,6 +32,7 @@ elixir(function(mix) {
       'datatables.min.css',
       'styles.css',
       'select2.min.css',
+      'select2-bootstrap.css',
       'basic.css',
       'dropzone.css'
       ],
@@ -46,7 +47,9 @@ elixir(function(mix) {
        'jBox.css',
        'shop-homepage.css',
        'sweetalert.css',
-       'datatables.min.css'
+       'datatables.min.css',
+       'select2.min.css',
+       'select2-bootstrap.css',
        ],
        'public/css/main_app.css');
 
@@ -90,7 +93,8 @@ elixir(function(mix) {
           'oficial_scripts/jBox.js',
           'oficial_scripts/header_fading.js',
 
-          'oficial_scripts/JQ.js'
+          'oficial_scripts/JQ.js',
+          'oficial_scripts/select2.min.js',
 
       ],
       'public/js/main_app.js'

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
- 
+
 
 use App;
 use App\Http\Requests;
@@ -18,8 +18,9 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use JsonLd\Context;
-use Request;
 
+
+use Illuminate\Http\Request;
 
 class OnlineShopController extends Controller
 {
@@ -116,16 +117,16 @@ class OnlineShopController extends Controller
               ->with(compact('articleTypeList'));
     }
 
-    public function partsSearch(){
-      $pagination_limit = 5;
+    public function partsSearch(Request $request){
+      $pagination_limit = 10;
 
-      $searchKeyword = Request::input('keyword');
-      $brand_id =  Request::input('brand_id');
-      $brand_model_id =  Request::input('brand_model_id');
-      $part_type_id =  Request::input('part_type_id');
-      $public =  Request::input('public');
-      $article_type_id =  Request::input('article_type_id');
-      $hideSold = Request::input('hide_sold_ones');
+      $searchKeyword = $request->input('keyword');
+      $brand_id =  $request->input('brand_id');
+      $brand_model_id =  $request->input('brand_model_id');
+      $part_type_id =  $request->input('part_type_id');
+      $public =  $request->input('public');
+      $article_type_id =  $request->input('article_type_id');
+      $hideSold = $request->input('hide_sold_ones');
 
       if($public == 'all'){
           $public = null;
