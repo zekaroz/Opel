@@ -103,13 +103,16 @@ class OnlineShopController extends Controller
         //
     }
 
-    public function articleSearcher($articleTypeCode){
+    public function articleSearcher($articleTypeCode, Request $request){
         $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
         $brandsList = Brand::lists('name','id')->prepend('(all)','');
         $partsList = PartType::lists('name','id')->prepend('(all)','');
         $articleTypeList  = ArticleType::lists('name','id')->prepend('(all)','');
 
         $searchPage_articleType =  ArticleType::where('code', $articleTypeCode)->first();
+
+        $request->session()->put('lastListRouteURL', route('genericSearch',$searchPage_articleType->code) );
+        $request->session()->put('lastListRouteName_label', $searchPage_articleType->name);
 
        return view('online_shop.partsSearch.ArticleSearcher')
               ->with(compact('modelsList',
@@ -238,7 +241,7 @@ class OnlineShopController extends Controller
                             ->take(6)
                             ->get();
 
-        $request->session()->put('lastListRouteName', 'homepage');
+        $request->session()->put('lastListRouteURL', route('homepage'));
         $request->session()->put('lastListRouteName_label', 'Página de Entrada');
 
         return view('online_shop.welcome.index')
@@ -247,57 +250,12 @@ class OnlineShopController extends Controller
       }
 
 
-    public function partSearch(Request $request){
-        $article_type_car = ArticleType::where('code', 'P')->get()->first();
+    public function showArticle($articleid){
 
-        $articles = Article::all()
-                    ->where('article_type_id', $article_type_car->id);
+        $article = Article::findorFail($articleid);
 
-        $request->session()->put('lastListRouteName', 'pecas');
-        $request->session()->put('lastListRouteName_label', 'Peças Recicladas');
-
-        return view('online_shop.partsSearch.partSearch')
-                    ->with(compact('articles'))
-                    ->with(compact('article_type_car'));
+        return redirect('/item/'.$article->slug);
     }
-
-
-    public function carSearch(Request $request){
-
-        $article_type_car = ArticleType::where('code', 'C')->get()->first();
-
-        $articles = Article::all()
-                    ->where('article_type_id', $article_type_car->id);
-
-        $request->session()->put('lastListRouteName', 'carros');
-        $request->session()->put('lastListRouteName_label', 'Veículos usados');
-
-        return view('online_shop.CarsSearch.carSearch')
-                    ->with(compact('articles'))
-                    ->with('viewName', $article_type_car);
-    }
-
-    public function carPartsSearch(Request $request){
-        $article_type_car = ArticleType::where('code', 'VP')->get()->first();
-
-        $articles = Article::all()
-                    ->where('article_type_id', $article_type_car->id);
-
-        $request->session()->put('lastListRouteName', 'carros_para_pecas');
-        $request->session()->put('lastListRouteName_label', 'Veículos para Peças');
-
-        return view('online_shop.CarsSearch.carPartsSearch')
-                    ->with(compact('articles'))
-                    ->with('viewName', $article_type_car);
-    }
-
-
-        public function showArticle($articleid){
-
-            $article = Article::findorFail($articleid);
-
-            return redirect('/item/'.$article->slug);
-        }
 
     public function getArticleThumbnailURL($id){
         $pictures = Article::find($id)
@@ -332,13 +290,13 @@ class OnlineShopController extends Controller
 
       $articlePictures = $article->pictures()->orderBy('position', 'asc')->get();
 
-      $lastRouteName = session('lastListRouteName');
+      $lastRouteURL = session('lastListRouteURL');
       $lastRouteLabel = session('lastListRouteName_label');
 
       return view('online_shop.Article.item')
                  ->with(compact('article'))
                  ->with(compact('articlePictures'))
-                 ->with(compact('lastRouteName'))
+                 ->with(compact('lastRouteURL'))
                  ->with(compact('lastRouteLabel'));
     }
 
@@ -377,9 +335,9 @@ class OnlineShopController extends Controller
       $sitemap->add(route('about'),             '2016-11-27T12:30:00+02:00', '0.3', 'monthly');
       $sitemap->add(route('contacts'),          '2016-11-27T12:30:00+02:00', '0.3', 'monthly');
       $sitemap->add(route('services'),          '2016-11-27T12:30:00+02:00', '0.3', 'monthly');
-      $sitemap->add(route('pecas'),             '2016-11-27T12:30:00+02:00', '1.0', 'daily');
-      $sitemap->add(route('carros'),            '2016-11-27T12:30:00+02:00', '1.0', 'daily');
-      $sitemap->add(route('carros_para_pecas'), '2016-11-27T12:30:00+02:00', '1.0', 'daily');
+      $sitemap->add(route('pesquisa/P'),          '2017-02-02T12:30:00+02:00', '1.0', 'daily');
+      $sitemap->add(route('pesquisa/C'),          '2017-02-02T12:30:00+02:00', '1.0', 'daily');
+      $sitemap->add(route('pesquisa/VP'),         '2017-02-02T12:30:00+02:00', '1.0', 'daily');
 
       // Add dynamic pages of the site like this (using an example of this very site):
       $articles = Article::where('public', 1)->get();
