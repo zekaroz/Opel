@@ -5887,7 +5887,8 @@ var b=this;if(this.$element.prop("multiple"))return a.selected=!1,c(a.element).i
               .not(':button, :submit, :reset, :hidden')
               .val('')
               .removeAttr('checked')
-              .removeAttr('selected');
+              .removeAttr('selected')
+              .trigger("change");
 
         return false;
     }

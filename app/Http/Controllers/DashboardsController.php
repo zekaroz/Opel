@@ -79,7 +79,7 @@ class DashboardsController extends Controller
                 on year(articles.created_at) = Months.ano
                   and month(articles.created_at) = Months.mes
               GROUP BY Months.month
-              ORDER BY 1");
+              ORDER BY SUBSTRING(Months.month, 4, 2) asc, 1 asc");
 
        $newArticleList = array();
          collect($articlesByYear_dataseries)->map(function($item) use(&$newArticleList) {
