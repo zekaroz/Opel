@@ -3,7 +3,7 @@
 @section('head_section')
   <meta name="description" content="Pesquisa de pelas por marca ou tipo de peça.
                             Não sabe qual a referencia da peça que procura, nós ajudamos">
-  <title>PcQar - Auto - {{  $searchPage_articleType  }}</title>
+  <title>PcQar - Auto - {{  $searchPage_articleType->name  }}</title>
 @stop
 
 
