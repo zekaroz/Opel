@@ -25,8 +25,10 @@ Route::get('/google_info/pcqar/sitemap','OnlineShopController@sitemap');
 
 Route::get('articles/all','OnlineShopController@articleSearcher');
 
+Route::get('/pesquisa/{articleTypeCode}','OnlineShopController@articleSearcher');
+
 // this is for parts search at the online store
-Route::post('/partsSearch/all','OnlineShopController@partsSearch');
+Route::post('/partsSearch/all','OnlineShopController@globalSearch');
 
 // this is for backoffice only
 Route::post('articles/all','ArticlesController@search');

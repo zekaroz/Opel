@@ -103,21 +103,24 @@ class OnlineShopController extends Controller
         //
     }
 
-    public function articleSearcher(){
+    public function articleSearcher($articleTypeCode){
         $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
         $brandsList = Brand::lists('name','id')->prepend('(all)','');
         $partsList = PartType::lists('name','id')->prepend('(all)','');
         $articleTypeList  = ArticleType::lists('name','id')->prepend('(all)','');
 
+        $searchPage_articleType =  ArticleType::where('code', $articleTypeCode)->first();
 
        return view('online_shop.partsSearch.ArticleSearcher')
-              ->with(compact('modelsList'))
-              ->with(compact('brandsList'))
-              ->with(compact('partsList'))
-              ->with(compact('articleTypeList'));
+              ->with(compact('modelsList',
+                              'brandsList',
+                              'partsList',
+                              'articleTypeList',
+                              'searchPage_articleType'));
+
     }
 
-    public function partsSearch(Request $request){
+    public function globalSearch(Request $request){
       $pagination_limit = 10;
 
       $searchKeyword = $request->input('keyword');
@@ -165,7 +168,7 @@ class OnlineShopController extends Controller
                   ->orderBy('name', 'asc')->paginate($pagination_limit);
 
       $outputView = view('online_shop.partsSearch.components.partsSearchResult')
-                    ->with(compact('articles'))
+                    ->with(compact('articles','searchPage'))
                     ->render();
 
       return $outputView;

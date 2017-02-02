@@ -3,12 +3,12 @@
 @section('head_section')
   <meta name="description" content="Pesquisa de pelas por marca ou tipo de peça.
                             Não sabe qual a referencia da peça que procura, nós ajudamos">
-  <title>PcQar - Auto - Pesquisa de Peças</title>
+  <title>PcQar - Auto - {{  $searchPage_articleType  }}</title>
 @stop
 
 
 @section('page_Heading')
-<i class="fa fa-parts"></i> Pesquisa de Peças
+<i class="fa fa-parts"></i> {{ $searchPage_articleType->name  }}
 @stop
 
 
@@ -17,7 +17,8 @@
 @include('online_shop.partsSearch.components.partsSearch', ['modelsList' => $modelsList,
                                                           'brandsList' => $brandsList,
                                                           'partsList' => $partsList,
-                                                          'articleTypeList' => $articleTypeList
-                                                          ])
+                                                          'articleTypeList' => $articleTypeList,
+                                                          'articleType' => $searchPage_articleType
+                                                            ])
 
 @stop
