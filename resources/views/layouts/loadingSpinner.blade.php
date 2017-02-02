@@ -80,6 +80,7 @@
             display:none;
             position: fixed;
             top: 0px;
+                    z-index:100;
       }
 
       .loadingHolder{
@@ -88,6 +89,7 @@
         left: 0%;
         right: 0;
         margin: 0 auto;
+
       }
     </style>
 <div class="loadingDiv">

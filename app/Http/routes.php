@@ -23,8 +23,12 @@ Route::post('/articles/sold', 'ArticlesController@markArticleAsSold');
 
 Route::get('/google_info/pcqar/sitemap','OnlineShopController@sitemap');
 
-Route::get('articles/all','ArticlesController@articleSearcher');
+Route::get('articles/all','OnlineShopController@articleSearcher');
 
+// this is for parts search at the online store
+Route::post('/partsSearch/all','OnlineShopController@partsSearch');
+
+// this is for backoffice only
 Route::post('articles/all','ArticlesController@search');
 
 Route::get('articles/search','ArticlesController@search');
