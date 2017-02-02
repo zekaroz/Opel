@@ -19,10 +19,12 @@
                 <label for="keyword">Tipo de Peça</label>
                 {!! Form::select('part_type_id' , $partsList ,null ,['class' => 'form-control specialSelect']) !!}
               </div>
-              <div class="form-group col-sm-6">
-                <label for="keyword">Tipo de Artigo</label>
-                {!! Form::select('article_type_id' , $articleTypeList ,null ,['class' => 'form-control specialSelect']) !!}
-              </div>
+              @if( !isset( $articleType ) )
+                  <div class="form-group col-sm-6">
+                    <label for="keyword">Tipo de Artigo</label>
+                      {!! Form::select('article_type_id' , $articleTypeList ,null ,['class' => 'form-control specialSelect']) !!}
+                  </div>
+              @endif
               <div style="margin-top: 20px;" class="form-group col-sm-6">
                   <button id="search" type="submit" style="width:100px;" class="btn btn btn-primary ladda-button" data-style="zoom-out" name="search"> Pesquisar</button>
                   <button id="reset" type="submit" style="width:100px;" class="btn btn-default btn-outline ladda-button" data-style="zoom-out"  data-spinner-color="#337ab7" name="reset"> Limpar</button>
@@ -53,6 +55,13 @@
         var page = page || 1;
         var postData = $('#searchForm').serialize() + '&page='+ page;
         var refreshElement = $('#searchResult');
+
+        @if( isset( $articleType ) )
+            /* this forces the Id of the article type to be
+             * sent when we are in a sepcific view
+             */
+             postData += '&article_type_id={{ $articleType->id }}';
+        @endif
 
         var l = $( buttonUsed ).ladda();
         // Start loading

@@ -1,22 +1,17 @@
-<div class="text-muted small col-md-6">
-  Foram encontrados um total de <strong>{{ $articles->total() }}</strong> artigos para pesquisa realizada
+<style media="screen">
+  .pagination{
+      margin-top: 0px;
+  }
+</style>
+
+<div class="text-muted small col-md-3">
+<strong>{{ $articles->total() }}</strong> Artigos encontrados...
 </div>
 
-<div class="text-right col-md-6">
+<div class="text-right col-md-9">
   {{ $articles->links()  }}
 </div>
 <table class="table table-striped ">
-  <thead>
-    <th colspan="2">
-      Artigo
-    </th>
-    <th>
-      Marca
-    </th>
-    <th class="text-right">
-      Preço
-    </th>
-  </thead>
   <tbody>
 @forelse( $articles as $article)
       <tr>
