@@ -25,7 +25,10 @@ Route::get('/google_info/pcqar/sitemap','OnlineShopController@sitemap');
 
 Route::get('articles/all','OnlineShopController@articleSearcher');
 
-Route::get('/pesquisa/{articleTypeCode}','OnlineShopController@articleSearcher');
+Route::get('/pesquisa/{articleTypeCode}',[
+                                          'as' => 'genericSearch',
+                                          'uses' => 'OnlineShopController@articleSearcher'
+                                        ]);
 
 // this is for parts search at the online store
 Route::post('/partsSearch/all','OnlineShopController@globalSearch');
@@ -50,15 +53,6 @@ Route::get('quem_somos',['as' => 'about', 'uses' => 'OnlineShopController@aboutU
 Route::get('servicos',['as' => 'services',   function(){
         return View::make('online_shop.services.services');
     }]);
-
-//Pesquisa de Peças
-Route::get('/pecas', ['as' => 'pecas', 'uses' => 'OnlineShopController@partSearch']);
-
-//Pesquisa de Automóveis Usados
-Route::get('/carros',['as' => 'carros', 'uses' => 'OnlineShopController@carSearch']);
-
-//Pesquisa de Automóveis para Peças
-Route::get('/carros_para_pecas', ['as' => 'carros_para_pecas', 'uses' => 'OnlineShopController@carPartsSearch']);
 
 //Article Display Page
 Route::get('/item/{articleid}/show',['as' => 'itemDisplay', 'uses' => 'OnlineShopController@showArticle'] );

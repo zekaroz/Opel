@@ -6,9 +6,9 @@
 @stop
 
 @section('topSection')
-  @if( isset( $lastRouteName )  )
+  @if( isset( $lastRouteURL )  )
     <div class="text-left">
-      <a href="{{ route($lastRouteName) }}" class="btn btn-primary">
+      <a href="{{ $lastRouteURL  }}" class="btn btn-primary">
         <i class="fa fa-search"></i>
          {{ 'Voltar a '.$lastRouteLabel }}
       </a>
