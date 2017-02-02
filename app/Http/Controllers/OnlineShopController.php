@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
 use App;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
 use App\ArticleType;
+use App\ArticleImage;
+use App\Brand;
+use App\PartType;
+use App\BrandModel;
 use App\SiteContact;
 use App\Http\Requests\ContactFormRequest;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use JsonLd\Context;
+
+
+use Illuminate\Http\Request;
 
 class OnlineShopController extends Controller
 {
@@ -95,6 +101,77 @@ class OnlineShopController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function articleSearcher($articleTypeCode){
+        $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
+        $brandsList = Brand::lists('name','id')->prepend('(all)','');
+        $partsList = PartType::lists('name','id')->prepend('(all)','');
+        $articleTypeList  = ArticleType::lists('name','id')->prepend('(all)','');
+
+        $searchPage_articleType =  ArticleType::where('code', $articleTypeCode)->first();
+
+       return view('online_shop.partsSearch.ArticleSearcher')
+              ->with(compact('modelsList',
+                              'brandsList',
+                              'partsList',
+                              'articleTypeList',
+                              'searchPage_articleType'));
+
+    }
+
+    public function globalSearch(Request $request){
+      $pagination_limit = 10;
+
+      $searchKeyword = $request->input('keyword');
+      $brand_id =  $request->input('brand_id');
+      $brand_model_id =  $request->input('brand_model_id');
+      $part_type_id =  $request->input('part_type_id');
+      $public =  $request->input('public');
+      $article_type_id =  $request->input('article_type_id');
+      $hideSold = $request->input('hide_sold_ones');
+
+      if($public == 'all'){
+          $public = null;
+      }
+
+       $articles = Article::where(function($q) use ($searchKeyword){
+                                  $q->where('name','like','%'.$searchKeyword.'%' )
+                                    ->orWhere('code','like','%'.$searchKeyword.'%');
+                              })
+                ->where(function ($query) use ($brand_id){
+                  if($brand_id != '')
+                    $query->where('brand_id', $brand_id);
+                })
+                ->where(function ($query) use ($brand_model_id){
+                  if($brand_model_id != '')
+                    $query->where('model_id', $brand_model_id);
+                })
+                ->where(function ($query) use ($part_type_id){
+                  if($part_type_id != '')
+                    $query->where('part_type_id', $part_type_id);
+                })
+                ->where(function ($query) use ($public){
+                  if( isset($public))
+                    $query->where('public', $public);
+                })
+                ->where(function ($query) use ($hideSold){
+                  // this filed when selected, must filter only the available ones
+                  if( $hideSold )
+                    $query->where('sold', false);
+                })
+                ->where(function ($query) use ($article_type_id){
+                  if( $article_type_id != '' )
+                    $query->where('article_type_id', $article_type_id);
+                })
+                  ->with('articleType','brand','model','partType')
+                  ->orderBy('name', 'asc')->paginate($pagination_limit);
+
+      $outputView = view('online_shop.partsSearch.components.partsSearchResult')
+                    ->with(compact('articles','searchPage'))
+                    ->render();
+
+      return $outputView;
     }
 
     public function aboutUs(){
