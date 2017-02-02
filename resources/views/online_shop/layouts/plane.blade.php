@@ -58,7 +58,7 @@
         $('.specialSelect').select2({
              width: '100%',
              minimumResultsForSearch: 10,
-              closeOnSelect: true
+             closeOnSelect: true
         });
 
         $('div.alert').not('.alert_important').delay(3000).slideUp(300);

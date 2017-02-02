@@ -658,7 +658,8 @@ var headerIsSet;
               .not(':button, :submit, :reset, :hidden')
               .val('')
               .removeAttr('checked')
-              .removeAttr('selected');
+              .removeAttr('selected')
+              .trigger("change");
 
         return false;
     }
