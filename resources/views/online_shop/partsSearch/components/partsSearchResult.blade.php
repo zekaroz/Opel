@@ -48,7 +48,7 @@
 @empty
     <tr>
         <td colspan="6">
-            No records to show...
+            Não foram encontrados artigos para a pesquisa efectuada...
         </td>
     </tr>
 @endforelse
