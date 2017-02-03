@@ -7,11 +7,11 @@
               </div>
               <div class="form-group col-sm-3">
                 <label for="keyword">Marcas</label>
-                {!! Form::select('brand_id' , $brandsList ,null ,['class' => 'form-control specialSelect']) !!}
+                {!! Form::select('brand_id' , $brandsList ,null ,['class' => 'form-control specialSelect brand_select']) !!}
               </div>
               <div class="form-group col-sm-3">
                 <label for="keyword">Modelos</label>
-                {!! Form::select('brand_model_id' , $modelsList ,null ,['class' => 'form-control specialSelect']) !!}
+                {!! Form::select('brand_model_id' , $modelsList ,null ,['class' => 'form-control specialSelect model_select' ]) !!}
               </div>
               <div class="form-group col-sm-3">
                 <label for="keyword">Tipo de Peça</label>
@@ -147,5 +147,24 @@
                   }
               });
       }
+
+      $(".brand_select").change(function()
+      {
+        var id=$(this).val();
+        var dataString = 'brand_id='+id ;
+
+        $.ajax
+        ({
+          type: "POST",
+          url: "{{ route('getModelsByBrand') }}",
+          data: dataString,
+          success: function(html)
+          {
+            $(".model_select").html(html);
+            $(".model_select").select2();
+          }
+        });
+
+      });
 
 </script>

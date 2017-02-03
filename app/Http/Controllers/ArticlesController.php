@@ -61,17 +61,6 @@ class ArticlesController extends Controller
                 ->with(compact('partsList'));
     }
 
-    public function API_All(){
-         return  Article::with('articleType','brand','model','partType')->get();
-    }
-
-    public function API_models($brandid){
-
-         $brand = Brand::findorFail($brandid);
-
-         return   $brand->models('name','id','brand_id')->get();
-    }
-
     public function show($id){
         $article = Article::findorFail($id);
 
@@ -238,20 +227,6 @@ class ArticlesController extends Controller
               'code'  => 200,
               'feedback' =>'Order changed. '.$affected.' rows afected;'
             ], 200);
-    }
-
-    // route for API to get the list of models to feed the combobox
-    public function getModelsByBrand(){
-        $brand_id = Input::get('brand_id');
-
-        $modelsList =  BrandModel::where('brand_id', $brand_id)->get();
-
-        $html = '<option value="all">(all)</option>';
-        foreach ($modelsList as $model) {
-          $html = $html.'<option value="'.$model->id.'">'.$model->name.'</option>';
-        }
-
-        return $html;
     }
 
     public function edit($id){
