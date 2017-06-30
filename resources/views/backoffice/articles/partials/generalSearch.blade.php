@@ -72,6 +72,8 @@
         var postData = $('#searchForm').serialize() + '&page='+ page;
         var refreshElement = $('#searchResult');
 
+        console.log(postData);
+
         var l = $( buttonUsed ).ladda();
         // Start loading
 

@@ -24,7 +24,7 @@
             @if( ! $article->isAvailable() )
               <!-- Show ribbon saying "Esgotado"-->
               <div class="sold-ribbon">
-                Esgotado!
+                {{$article->soldOutState() }}
               </div>
             @endif
           </a>
