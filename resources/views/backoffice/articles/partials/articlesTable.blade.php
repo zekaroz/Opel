@@ -68,7 +68,7 @@
                   </div>
               @else
                   <div class="status-label font-small danger">
-                    Esgotado!
+                    {{ $article->soldOutState() }}
                   </div>
               @endif
             </div>

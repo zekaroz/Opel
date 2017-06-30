@@ -39,6 +39,15 @@ class Article extends Model
       return 'C'.$this->code;
     }
 
+    public function soldOutState(){
+      $articletype = \App\ArticleType::find($this->article_type_id);
+
+      if(strtoupper($articletype->code) == 'P'){
+          return 'Esgotado';
+      }
+      return 'Vendido!';
+    }
+
     public function getPrice(){
       if($this->price == 0)
         return 'Sob Consulta';

@@ -7,7 +7,7 @@
 
 
 @section('page_Heading')
-<i class="fa fa-car"></i> Veículos Usados
+<i class="fa fa-car"></i> Veículos Usados 3
 @stop
 
 
@@ -28,7 +28,7 @@
               @if( ! $article->isAvailable() )
                 <!-- Show ribbon saying "Vendido"-->
                 <div class="sold-ribbon">
-                  Vendido
+                    {{ $article->soldOutState() }}
                 </div>
               @endif
             </a>
