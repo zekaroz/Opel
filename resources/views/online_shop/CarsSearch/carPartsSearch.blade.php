@@ -29,7 +29,7 @@
               @if( ! $article->isAvailable() )
                 <!-- Show ribbon saying "Vendido"-->
                 <div class="sold-ribbon">
-                  Vendido
+                  {{ $article->soldOutState() }}
                 </div>
               @endif
             </a>

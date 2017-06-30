@@ -48,7 +48,7 @@
                 @else
                 <div class="status-label font-big">
                   <i class="fa fa-circle Red" ></i>
-                  Esgotado
+                  {{ $article->soldOutState() }}
                 </div>
                 @endif
               </div>
