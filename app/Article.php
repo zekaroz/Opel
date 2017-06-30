@@ -45,7 +45,7 @@ class Article extends Model
       if(strtoupper($articletype->code) == 'P'){
           return 'Esgotado';
       }
-      return 'Vendido!';
+      return 'Vendido';
     }
 
     public function getPrice(){

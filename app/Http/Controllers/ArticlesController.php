@@ -98,6 +98,9 @@ class ArticlesController extends Controller
           $public = null;
       }
 
+
+
+
        $articles = Article::where(function($q) use ($searchKeyword){
                                   $q->where('name','like','%'.$searchKeyword.'%' )
                                     ->orWhere('code','like','%'.$searchKeyword.'%');
@@ -107,7 +110,7 @@ class ArticlesController extends Controller
                     $query->where('brand_id', $brand_id);
                 })
                 ->where(function ($query) use ($brand_model_id){
-                  if($brand_model_id != '')
+                  if($brand_model_id != '' and  $brand_model_id!= 'all' )
                     $query->where('model_id', $brand_model_id);
                 })
                 ->where(function ($query) use ($part_type_id){
