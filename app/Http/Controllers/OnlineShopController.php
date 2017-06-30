@@ -138,9 +138,11 @@ class OnlineShopController extends Controller
           $public = null;
       }
 
-       $articles = Article::where(function($q) use ($searchKeyword){
+      $codesearchKeyword = str_replace('C', '',str_replace('P', '', $searchKeyword));
+
+       $articles = Article::where(function($q) use ($searchKeyword, $codesearchKeyword){
                                   $q->where('name','like','%'.$searchKeyword.'%' )
-                                    ->orWhere('code','like','%'.$searchKeyword.'%');
+                                    ->orWhere('code','like','%'.$codesearchKeyword.'%');
                               })
                 ->where(function ($query) use ($brand_id){
                   if($brand_id != '')
