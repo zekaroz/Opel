@@ -104,10 +104,10 @@ class OnlineShopController extends Controller
     }
 
     public function articleSearcher($articleTypeCode, Request $request){
-        $modelsList =  BrandModel::lists('name','id')->prepend('(all)','');
-        $brandsList = Brand::lists('name','id')->prepend('(all)','');
-        $partsList = PartType::lists('name','id')->prepend('(all)','');
-        $articleTypeList  = ArticleType::lists('name','id')->prepend('(all)','');
+        $modelsList =  BrandModel::orderBy('name', 'asc')->lists('name','id')->prepend('(all)','');
+        $brandsList = Brand::orderBy('name', 'asc')->lists('name','id')->prepend('(all)','');
+        $partsList = PartType::orderBy('name', 'asc')->lists('name','id')->prepend('(all)','');
+        $articleTypeList  = ArticleType::orderBy('name', 'asc')->lists('name','id')->prepend('(all)','');
 
         $searchPage_articleType =  ArticleType::where('code', $articleTypeCode)->first();
 
