@@ -211,7 +211,7 @@ ol li {
             <table class="btn-primary" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td>
-                  <a href="http://reciopel.online">Ir para Reciopel</a>
+                  <a href="https://pcqar.pt">Ir para Reciopel</a>
                 </td>
               </tr>
             </table>

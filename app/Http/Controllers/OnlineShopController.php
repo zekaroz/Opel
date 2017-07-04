@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use Mail;
+
 use App;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -321,6 +323,17 @@ class OnlineShopController extends Controller
 
                 $mailer->contactUs($info_email, $fullname, $contactNumber, $email, $message);
         */
+
+        $email_parameters = array('customer_name'       =>  $site_contact_message->name,
+                                      'customerMessage' => $site_contact_message->message,
+                                      'contact_number'  =>  $site_contact_message->phone,
+                                      'customer_email'  =>  $site_contact_message->email
+        );
+
+        Mail::send('online_shop.contactEmail',$email_parameters , function($message) {
+            $message->to('s.i.ramospereira88@gmail.com','Sandra Pereira')->subject('Welcome');
+        });
+
         flash()->success('O seu contacto foi recebido. Obrigado por nos contactar.');
 
         return view('online_shop.contacts.contacts');
