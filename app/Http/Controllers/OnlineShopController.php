@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use Mail;
+
 use App;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -18,6 +20,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use JsonLd\Context;
+
 
 
 use Illuminate\Http\Request;
@@ -303,7 +306,7 @@ class OnlineShopController extends Controller
     }
 
     public function contactUs(ContactFormRequest $request){
-        $info_email = env('RECIOPEL_MAIL', 'zekaroz@gmail.com');
+        $info_email = env('PCQAR_Email', 'geral@pcqar.pt');
 
         $site_contact_message = new SiteContact();
 
@@ -316,11 +319,37 @@ class OnlineShopController extends Controller
 
         $site_contact_message->save();
 
-        /* Site no longer send direct emails, but stores the messages as alerts in the backoffice
-                $mailer  = new OnlineSiteMailer();
 
-                $mailer->contactUs($info_email, $fullname, $contactNumber, $email, $message);
+        /* Site no longer send direct emails, but stores the messages as alerts in the backoffice
+
+          $mailer  = new OnlineSiteMailer();
+
+          $mailer->contactUs($info_email, $fullname, $contactNumber, $email, $message);
         */
+
+        $email_parameters = [ 'customer_name'       =>  $site_contact_message->name,
+                              'customerMessage' => $site_contact_message->message,
+                              'contact_number'  =>  $site_contact_message->phone,
+                              'customer_email'  =>  $site_contact_message->email,
+                              'pcqarEmail'  => $info_email,
+                              'subject'     => $site_contact_message->subject
+                            ];
+
+      $secondError = '';
+
+      try{
+          Mail::queue('online_shop.contactEmail', $email_parameters ,
+              function($message) use ($email_parameters){
+                  $message->to($email_parameters['pcqarEmail'],$email_parameters['pcqarEmail'])->subject('Mensagem de Cliente em PCQar: '.  $email_parameters['subject']);
+              }
+          );
+        }
+        catch(\Exception $e){
+              flash()->info('Erro a enviar mensagem para PCQar.pt, por favor tente mais tarde: ' . $e->getMessage() );
+
+              return view('online_shop.contacts.contacts');
+        }
+
         flash()->success('O seu contacto foi recebido. Obrigado por nos contactar.');
 
         return view('online_shop.contacts.contacts');
