@@ -6,7 +6,7 @@
 @stop
 
 @section('page_Heading')
-    Localização
+    Contactos
 @stop
 
 @section('section')
@@ -17,7 +17,7 @@
             <ol class="breadcrumb">
                 <li><a href="/">Entrada</a>
                 </li>
-                <li class="active">Localização</li>
+                <li class="active">Contactos</li>
             </ol>
         </div>
     </div>

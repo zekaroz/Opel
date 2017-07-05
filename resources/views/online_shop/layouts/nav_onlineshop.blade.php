@@ -27,7 +27,7 @@
                         <a href="/servicos">Serviços</a>
                     </li>
                     <li>
-                        <a href="/contactos">Localização</a>
+                        <a href="/contactos">Contactos</a>
                     </li>
                 </ul>
                 <!-- Right Side Of Navbar -->
