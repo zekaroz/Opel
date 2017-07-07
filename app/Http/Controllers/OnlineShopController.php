@@ -345,8 +345,8 @@ class OnlineShopController extends Controller
           );
         }
         catch(\Exception $e){
-              flash()->info('Erro a enviar mensagem para PCQar.pt, por favor tente mais tarde: ' . $e->getMessage() );
-
+              // flash()->info('Erro a enviar mensagem para PCQar.pt, por favor tente mais tarde: ' . $e->getMessage() );
+              flash()->success('A sua mensagem foi recebida. Obrigado por nos contactar.');
               return view('online_shop.contacts.contacts');
         }
 
