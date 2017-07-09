@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('/.well-known/pki-validation/godaddy.html', function(){
+// go daddy validation id
+    return '4bpo4u7b1kpih5esvc0sgi098s';
+});
+
 Route::get('/dashboard', 'DashboardsController@index');
 
 Route::post('/article/{articleid}/imagesOrder', 'ArticlesController@saveImageOrder');
