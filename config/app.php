@@ -165,7 +165,6 @@ return [
 
         // Service provider added to extend the existing service provider for ChartJS library
         App\Providers\MyChartjsServiceProvider::class,
-
         Laracasts\Flash\FlashServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
     ],
